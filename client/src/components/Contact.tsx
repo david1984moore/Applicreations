@@ -88,17 +88,17 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-white">
+    <section id="contact" ref={sectionRef} className="py-20 bg-gradient">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-4">Ready to Get Started?</h2>
-            <p className="text-lg text-neutral-dark/70">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+            <p className="text-lg text-white/90">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
           </div>
           
-          <div className="bg-neutral-light rounded-lg p-8 md:p-10 shadow-md">
+          <div className="bg-white rounded-lg p-8 md:p-10 shadow-md">
             {submitStatus === 'success' && (
               <div className="success-message rounded-md p-4 mb-4">
                 Thank you for your submission! We will get back to you soon.
