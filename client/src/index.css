@@ -77,11 +77,24 @@
     @apply border-none;
   }
 
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
     font-family: 'Inter', sans-serif;
     color: #333333;
     scroll-behavior: smooth;
+    background: linear-gradient(90deg, #6b48ff, #00ddeb) fixed;
+    background-size: 100% 100vh;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
 
   .bg-gradient {
@@ -125,9 +138,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    padding-bottom: 0;
     margin: 0;
-    background: linear-gradient(90deg, #6b48ff, #00ddeb);
+    background: none;
     box-shadow: none;
     border: none;
     outline: none;
@@ -136,8 +148,18 @@
   /* Hero section styling for seamless transition */
   .hero {
     margin: 0;
+    padding: 40px;
     padding-top: 0;
-    background: linear-gradient(90deg, #6b48ff, #00ddeb);
+    background: none;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Remove any visible separation between navbar and hero */
+  header, nav, .hero, header::after, header::before, nav::after, nav::before, .hero::after, .hero::before {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
   
   nav ul {

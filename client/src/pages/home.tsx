@@ -36,13 +36,13 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <Navbar />
       <Hero />
       <OurServices />
       <WhatWeDo />
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 }

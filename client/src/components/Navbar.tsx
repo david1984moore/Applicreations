@@ -36,8 +36,8 @@ export function Navbar() {
   };
 
   return (
-    <header className={`w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] m-0 p-0 pb-0 border-none outline-none`} style={{ background: 'linear-gradient(90deg, #6b48ff, #00ddeb)', position: 'static' }}>
-      <nav className="container mx-auto px-6 flex items-center h-full m-0 pb-0 border-none outline-none" style={{ boxShadow: 'none' }}>
+    <header className={`w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] m-0 p-0 border-none outline-none`} style={{ background: 'none', position: 'static' }}>
+      <nav className="container mx-auto px-6 flex items-center h-full m-0 border-none outline-none" style={{ boxShadow: 'none', background: 'none' }}>
         <div className="flex justify-between items-center w-full border-none">
           <a 
             href="#home" 
