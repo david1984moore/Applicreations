@@ -36,22 +36,22 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center pb-0`}>
-      <nav className="container mx-auto px-6 py-2">
-        <div className="flex justify-between items-center">
+    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[64px] pb-0`}>
+      <nav className="container mx-auto px-6 flex items-center h-full">
+        <div className="flex justify-between items-center w-full">
           <a 
             href="#home" 
-            className="flex items-center"
+            className="flex items-center mx-[15px]"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('home');
             }}
           >
-            <Logo className="h-14 w-auto" />
+            <Logo className="h-[50px] w-auto" />
           </a>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 ml-auto">
+          <div className="hidden md:flex space-x-6">
             <a 
               href="#home" 
               className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
