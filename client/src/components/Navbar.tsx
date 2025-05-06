@@ -99,13 +99,15 @@ export function Navbar() {
 
   return (
     <header 
-      className="w-[100%] z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0"
+      className="z-[1000] flex items-center h-[70px] fixed top-0"
       style={{ 
         background: navbarBackground,
         borderBottom: borderStyle,
         boxShadow: boxShadowStyle,
         transition: 'all 0.3s ease',
-        width: 'calc(100% - var(--scrollbar-width, 0px))',
+        width: 'calc(100% - 8px)', /* Fixed width accounting for scrollbar */
+        left: 0,
+        right: 0,
       }}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between h-full">
@@ -175,14 +177,14 @@ export function Navbar() {
       
         {/* Mobile Navigation Menu */}
         <div 
-          className={`absolute left-0 right-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`absolute left-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
           style={{
             background: navbarBackground,
             boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
             zIndex: 999,
-            width: 'calc(100% - var(--scrollbar-width, 0px))'
+            width: 'calc(100% - 8px)', /* Fixed width accounting for scrollbar */
           }}
         >
           <div className="pt-2 pb-1 space-y-2 px-6">

@@ -88,6 +88,11 @@
     width: 100%;
     overflow-x: hidden;
     position: relative;
+    box-sizing: border-box;
+  }
+  
+  html {
+    overflow-y: scroll;
   }
   
   body {
@@ -150,6 +155,12 @@
     right: 0 !important;
     width: 100% !important;
     z-index: 1000 !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Fix for navbar spilling over scrollbar */
+  body {
+    overflow-x: hidden;
   }
   
   nav {
