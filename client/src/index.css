@@ -109,7 +109,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%);
+    background: #ffffff;
     transition: width 0.3s ease;
   }
   
@@ -125,8 +125,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #6b48ff, #00ddeb);
+    box-shadow: none;
     border: none;
   }
   

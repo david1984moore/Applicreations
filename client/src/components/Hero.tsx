@@ -18,7 +18,7 @@ export function Hero() {
       id="home" 
       ref={heroRef}
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 py-[40px] overflow-hidden"
-      style={{ background: 'linear-gradient(90deg, #5a3fe6 0%, #00b8d4 100%)' }}
+      style={{ background: 'linear-gradient(90deg, #6b48ff, #00ddeb)' }}
     >
       {/* Concise headline with animation */}
       <h1 

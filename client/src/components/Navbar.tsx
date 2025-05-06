@@ -36,8 +36,8 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[70px] pb-0 border-none`}>
-      <nav className="container mx-auto px-6 flex items-center h-full border-none">
+    <header className={`fixed w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] pb-0 border-none`} style={{ background: 'linear-gradient(90deg, #6b48ff, #00ddeb)' }}>
+      <nav className="container mx-auto px-6 flex items-center h-full border-none" style={{ boxShadow: 'none' }}>
         <div className="flex justify-between items-center w-full border-none">
           <a 
             href="#home" 
@@ -55,7 +55,7 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#home" 
-                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('home');
@@ -67,7 +67,7 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#what-we-do" 
-                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('what-we-do');
@@ -79,7 +79,7 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#contact" 
-                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('contact');
@@ -94,7 +94,7 @@ export function Navbar() {
           <div className="md:hidden">
             <button 
               aria-label="Toggle mobile menu"
-              className="text-neutral-dark focus:outline-none"
+              className="text-white focus:outline-none"
               onClick={toggleMobileMenu}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,7 +113,7 @@ export function Navbar() {
           <div className="pt-2 pb-1 space-y-2">
             <a 
               href="#home" 
-              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
+              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -123,7 +123,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
+              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -133,7 +133,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
+              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
