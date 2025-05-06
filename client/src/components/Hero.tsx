@@ -41,7 +41,7 @@ export function Hero() {
             Digital solutions to <br className="hidden md:block"/> real world problems
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-10">
-            We create simple, beautiful, functional websites and apps for people and businesses.
+            Simple, beautiful websites and apps for businesses and consumers.
           </p>
           <button 
             onClick={() => handleClick('contact')}
