@@ -12,7 +12,7 @@ import {
 // Custom SVG component for process icons
 function Icon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-16 h-16 bg-gradient rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-3 relative z-10">
+    <div className="w-16 h-16 text-purple flex items-center justify-center mx-auto lg:mx-0 mb-3 relative z-10">
       {children}
     </div>
   );
@@ -53,7 +53,7 @@ export function WhatWeDo() {
 
   return (
     <section id="what-we-do" ref={sectionRef} className="py-12 bg-neutral-light">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="text-center mb-12 reveal">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-2">What We Do</h2>
           <p className="text-lg text-neutral-dark/70 max-w-2xl mx-auto">
@@ -72,7 +72,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <BoltIcon className="h-8 w-8 text-white" />
+                    <BoltIcon className="h-8 w-8" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Ideate</h3>
@@ -87,7 +87,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <ArrowPathIcon className="h-8 w-8 text-white" />
+                    <ArrowPathIcon className="h-8 w-8" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Iterate</h3>
@@ -102,7 +102,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <CheckCircleIcon className="h-8 w-8 text-white" />
+                    <CheckCircleIcon className="h-8 w-8" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Congratulate</h3>
@@ -126,7 +126,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <BoltIcon className="h-8 w-8 text-white" />
+                  <BoltIcon className="h-8 w-8" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -141,7 +141,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <ArrowPathIcon className="h-8 w-8 text-white" />
+                  <ArrowPathIcon className="h-8 w-8" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -156,7 +156,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <CheckCircleIcon className="h-8 w-8 text-white" />
+                  <CheckCircleIcon className="h-8 w-8" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
