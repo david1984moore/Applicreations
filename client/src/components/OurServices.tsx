@@ -36,7 +36,6 @@ export function OurServices() {
         <div className="text-center mb-16 reveal">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-3 relative inline-block">
             Our Services
-            <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient"></span>
           </h2>
         </div>
 
