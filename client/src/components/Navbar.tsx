@@ -107,10 +107,9 @@ export function Navbar() {
         borderBottom: borderStyle,
         boxShadow: boxShadowStyle,
         transition: 'all 0.3s ease',
-        width: '100%', // Use 100% width
+        width: 'calc(100% - var(--scrollbar-width))', // Subtract scrollbar width from total width
         left: 0,
-        right: 0,
-        paddingRight: 'var(--scrollbar-width)', // Use CSS variable for scrollbar width
+        right: 'var(--scrollbar-width)',
       }}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between h-full">
@@ -187,8 +186,8 @@ export function Navbar() {
             background: navbarBackground,
             boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
             zIndex: 999,
-            width: '100%', // Use 100% width
-            paddingRight: 'var(--scrollbar-width)', // Use CSS variable for scrollbar width
+            width: 'calc(100% - var(--scrollbar-width))', // Match header width
+            right: 'var(--scrollbar-width)',
           }}
         >
           <div className="pt-2 pb-1 space-y-2 px-6">

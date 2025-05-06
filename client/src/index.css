@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --scrollbar-width: 17px; /* Updated scrollbar width value for better accuracy */
+  --scrollbar-width: 20px; /* Standard scrollbar width that works across browsers */
 }
 
 @layer base {
@@ -152,8 +152,7 @@
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
+    width: calc(100% - var(--scrollbar-width)) !important;
     z-index: 1000 !important;
     overflow-x: hidden !important;
     box-sizing: border-box !important;
