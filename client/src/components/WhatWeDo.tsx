@@ -1,9 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { 
-  BoltIcon, 
-  ArrowPathIcon, 
-  CheckCircleIcon
-} from '@heroicons/react/24/outline';
 
 // Custom SVG component for process icons
 function Icon({ children }: { children: React.ReactNode }) {
@@ -56,7 +51,9 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <BoltIcon className="h-8 w-8 text-white" />
+                    <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Ideate</h3>
@@ -71,7 +68,9 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <ArrowPathIcon className="h-8 w-8 text-white" />
+                    <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Iterate</h3>
@@ -86,7 +85,9 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <CheckCircleIcon className="h-8 w-8 text-white" />
+                    <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Congratulate</h3>
@@ -110,7 +111,9 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <BoltIcon className="h-8 w-8 text-white" />
+                  <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -125,7 +128,9 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <ArrowPathIcon className="h-8 w-8 text-white" />
+                  <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -140,7 +145,9 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <CheckCircleIcon className="h-8 w-8 text-white" />
+                  <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
