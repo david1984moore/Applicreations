@@ -22,7 +22,7 @@ export default function LogoImage({ className = "" }: { className?: string }) {
           .cls-5 { fill: none; } /* Inner shape transparent */
           .cls-6 { fill: #59b2cf; }
           .cls-7 { fill: #d7b6ed; }
-          .cls-8 { fill: none; } /* Inner shape transparent */
+          .cls-8 { fill: #12fcf4; } /* Butterfly head - teal color */
           .cls-9 { fill: #1f2937; } /* Standardize dark text */
           .cls-10 { fill: #1f2937; } /* Standardize dark text */
           .cls-11 { fill: #1f2937; } /* Standardize dark text */
