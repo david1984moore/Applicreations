@@ -25,7 +25,7 @@ export function OurServices() {
   }, []);
 
   return (
-    <section id="our-services" ref={sectionRef} className="py-16 bg-gradient-to-b from-neutral-50 to-neutral-100">
+    <section id="our-services" ref={sectionRef} className="py-16 bg-gradient-to-b from-neutral-50 to-neutral-100 light-bg-section">
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="text-center mb-16 reveal">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-3 relative inline-block">

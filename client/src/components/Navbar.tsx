@@ -29,80 +29,72 @@ export function Navbar() {
         setScrolled(false);
       }
       
-      // Get navbar height and calculate its bottom position
-      const navbarHeight = 70;
-      const scrollY = window.scrollY;
-      const navbarBottomPosition = scrollY + navbarHeight;
+      // Get elements we need to check at the current scroll position
+      const header = document.querySelector('header');
+      if (!header) return;
       
-      // Get all sections by ID
-      const homeSection = document.getElementById('home');
-      const servicesSection = document.getElementById('our-services');
-      const whatWeDoSection = document.getElementById('what-we-do');
-      const contactSection = document.getElementById('contact');
+      // Calculate the y-coordinate at the middle of the navbar
+      const headerRect = header.getBoundingClientRect();
+      const navbarMiddleY = headerRect.top + (headerRect.height / 2);
       
-      // Calculate section boundaries
-      // We add a small buffer (10px) to make transitions smoother
-      const buffer = 10;
+      // Find what element is at that y-coordinate in the middle of the screen horizontally
+      // This is more reliable than calculating offsets
+      const navbarMiddleX = window.innerWidth / 2;
+      const elementAtNavbar = document.elementFromPoint(navbarMiddleX, navbarMiddleY);
       
-      // Explicitly calculate the boundaries for each section
-      const homeSectionTop = homeSection ? homeSection.offsetTop : 0;
-      const homeSectionBottom = homeSection ? homeSectionTop + homeSection.offsetHeight : 0;
+      // Find the section that contains this element
+      let currentSectionElement = elementAtNavbar;
+      while (currentSectionElement && !currentSectionElement.id) {
+        currentSectionElement = currentSectionElement.parentElement;
+      }
       
-      const servicesSectionTop = servicesSection ? servicesSection.offsetTop - buffer : 0;
-      const servicesSectionBottom = servicesSection ? servicesSectionTop + servicesSection.offsetHeight : 0;
+      // Check if we're over a light background section
+      // First, directly check if the current section or any parent has the light-bg-section class
+      let isLightBg = false;
+      let el = elementAtNavbar;
+      while (el) {
+        if (el.classList && el.classList.contains('light-bg-section')) {
+          isLightBg = true;
+          break;
+        }
+        el = el.parentElement;
+      }
       
-      const whatWeDoSectionTop = whatWeDoSection ? whatWeDoSection.offsetTop - buffer : 0;
-      const whatWeDoSectionBottom = whatWeDoSection ? whatWeDoSectionTop + whatWeDoSection.offsetHeight : 0;
+      // Fallback checks for specific section IDs
+      let sectionId = 'home';
+      if (currentSectionElement && currentSectionElement.id) {
+        sectionId = currentSectionElement.id;
+        console.log('Current Section ID:', sectionId);
+        
+        // Override light background check for specific sections if needed
+        if (sectionId === 'our-services' || sectionId === 'what-we-do') {
+          isLightBg = true;
+        } else if (sectionId === 'home' || sectionId === 'contact') {
+          isLightBg = false;
+        }
+      }
       
-      const contactSectionTop = contactSection ? contactSection.offsetTop - buffer : 0;
+      setCurrentSection(sectionId);
       
-      // Debug logging to verify positions
-      console.log('Navbar bottom position:', navbarBottomPosition);
-      console.log('Home section:', homeSectionTop, 'to', homeSectionBottom);
-      console.log('Services section:', servicesSectionTop, 'to', servicesSectionBottom);
-      console.log('What We Do section:', whatWeDoSectionTop, 'to', whatWeDoSectionBottom);
-      console.log('Contact section starts at:', contactSectionTop);
+      // Debug logging
+      console.log('Is over light background:', isLightBg);
+      console.log('Current section:', sectionId);
       
-      // Determine which section we're in based on the navbar's position
-      // We check if any part of the navbar is in each section
-      
-      // Hard-coded approach for maximum reliability
-      // Check from bottom to top of page to prioritize the section we're entering
-      if (navbarBottomPosition >= contactSectionTop) {
-        // Contact section has dark background
-        setCurrentSection('contact');
+      // Set colors based on background
+      if (isLightBg) {
+        // Light background - use dark text
+        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
+        setTextColor('#000000');
+        updateLogoTextColors('#000000');
+        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
+        console.log('Setting dark text for light background');
+      } else {
+        // Dark background - use light text
         setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
         setTextColor('white');
         updateLogoTextColors('white');
         document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        console.log('In contact section - white text');
-      } 
-      else if (navbarBottomPosition >= whatWeDoSectionTop && navbarBottomPosition < contactSectionTop) {
-        // What We Do section has light background
-        setCurrentSection('what-we-do');
-        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
-        setTextColor('#000000');
-        updateLogoTextColors('#000000');
-        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        console.log('In what-we-do section - black text');
-      } 
-      else if (navbarBottomPosition >= servicesSectionTop && navbarBottomPosition < whatWeDoSectionTop) {
-        // Services section has light background
-        setCurrentSection('our-services');
-        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
-        setTextColor('#000000');
-        updateLogoTextColors('#000000');
-        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        console.log('In services section - black text');
-      } 
-      else {
-        // Home/hero section has dark background
-        setCurrentSection('home');
-        setNavBgColor(scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent');
-        setTextColor('white');
-        updateLogoTextColors('white');
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        console.log('In home section - white text');
+        console.log('Setting light text for dark background');
       }
     };
 
