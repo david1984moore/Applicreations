@@ -124,8 +124,13 @@ export function Navbar() {
   const handleNavClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      // Calculate the offset considering the fixed navbar height
+      const navbarHeight = 70; // Height of the navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      
       window.scrollTo({
-        top: element.offsetTop,
+        top: offsetPosition,
         behavior: 'smooth'
       });
     }
@@ -134,24 +139,18 @@ export function Navbar() {
 
   return (
     <header 
-      className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none`} 
+      className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none fixed top-0 left-0 right-0`} 
       style={{ 
         background: scrolled ? navBgColor : 'transparent',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        width: '100%',
-        transition: 'background 0.3s ease',
+        transition: 'background 0.3s ease, box-shadow 0.3s ease',
         zIndex: 1000,
-        margin: 0,
-        padding: 0
+        width: '100%',
+        boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'
       }}
     >
       <nav 
         className="container mx-auto px-6 flex items-center h-full m-0 border-none outline-none" 
         style={{ 
-          boxShadow: 'none',
           background: 'none'
         }}
       >
@@ -244,14 +243,16 @@ export function Navbar() {
         
         {/* Mobile Navigation Menu */}
         <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-none ${
+          className={`absolute left-0 right-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out border-none ${
             mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
           style={{
-            background: scrolled ? navBgColor : 'transparent'
+            background: scrolled ? navBgColor : 'transparent',
+            boxShadow: mobileMenuOpen && scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
+            zIndex: 999
           }}
         >
-          <div className="pt-2 pb-1 space-y-2">
+          <div className="pt-2 pb-1 space-y-2 px-6">
             <a 
               href="#home" 
               className="block font-medium py-1 text-sm transition-colors duration-300"
