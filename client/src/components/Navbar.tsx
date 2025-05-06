@@ -10,7 +10,7 @@ export function Navbar() {
 
   useEffect(() => {
     // Helper function to update logo text colors consistently
-    const updateLogoTextColors = (color) => {
+    const updateLogoTextColors = (color: string) => {
       // Select ALL possible text elements in the logo to ensure consistent coloring
       const logoTexts = document.querySelectorAll('.cls-1, .cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
       logoTexts.forEach(text => {
@@ -69,13 +69,8 @@ export function Navbar() {
         setNavBgColor('#f5f5f5');
         setTextColor('#1f2937');
         
-        // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
-        logoTexts.forEach(text => {
-          if (text instanceof SVGElement) {
-            text.style.fill = '#1f2937';
-          }
-        });
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('#1f2937');
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
@@ -85,13 +80,8 @@ export function Navbar() {
         setNavBgColor('#ffffff');
         setTextColor('#1f2937');
         
-        // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
-        logoTexts.forEach(text => {
-          if (text instanceof SVGElement) {
-            text.style.fill = '#1f2937';
-          }
-        });
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('#1f2937');
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
@@ -101,13 +91,8 @@ export function Navbar() {
         setNavBgColor('#1f2937');
         setTextColor('white');
         
-        // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
-        logoTexts.forEach(text => {
-          if (text instanceof SVGElement) {
-            text.style.fill = 'white';
-          }
-        });
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('white');
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
