@@ -9,6 +9,17 @@ export function Navbar() {
   const [textColor, setTextColor] = useState<string>('white');
 
   useEffect(() => {
+    // Helper function to update logo text colors consistently
+    const updateLogoTextColors = (color) => {
+      // Select ALL possible text elements in the logo to ensure consistent coloring
+      const logoTexts = document.querySelectorAll('.cls-1, .cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
+      logoTexts.forEach(text => {
+        if (text instanceof SVGElement) {
+          text.style.fill = color;
+        }
+      });
+    };
+    
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
@@ -47,13 +58,8 @@ export function Navbar() {
         setNavBgColor('linear-gradient(90deg, #6b48ff, #00ddeb)');
         setTextColor('white');
         
-        // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
-        logoTexts.forEach(text => {
-          if (text instanceof SVGElement) {
-            text.style.fill = 'white';
-          }
-        });
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('white');
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
