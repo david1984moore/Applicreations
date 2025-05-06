@@ -90,6 +90,109 @@
     transform: translateY(0);
   }
 
+  /* Service Cards & Icon Animations */
+  .service-card {
+    background-color: white;
+    border: 1px solid rgba(138, 79, 255, 0.1);
+    transition: all 0.4s ease;
+  }
+
+  .service-card:hover {
+    border-color: rgba(138, 79, 255, 0.3);
+    transform: translateY(-5px);
+  }
+
+  .service-hover {
+    background-color: rgba(248, 247, 254, 1);
+  }
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(138, 79, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+  }
+
+  /* Icon specific animations */
+  .icon-pulse .animate-globe {
+    animation: pulse-slow 3s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .icon-float .phone-body {
+    animation: float 3s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .icon-float .phone-arrow {
+    animation: pulse-slow 2s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .icon-spin .server-top {
+    animation-delay: 0.2s;
+  }
+
+  .icon-spin .server-middle {
+    animation-delay: 0.4s;
+  }
+
+  .icon-spin .server-bottom {
+    animation-delay: 0.6s;
+  }
+
+  .animation-delay-150 {
+    animation-delay: 0.15s;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .animation-delay-450 {
+    animation-delay: 0.45s;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  .animation-delay-750 {
+    animation-delay: 0.75s;
+  }
+
+  .icon-rotate .wrench-body {
+    animation: rotate 3s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .service-link {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .service-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%);
+    transition: width 0.3s ease;
+  }
+
+  .service-link:hover::after {
+    width: 100%;
+  }
+
   .success-message {
     background-color: rgba(72, 187, 120, 0.1);
     border-left: 4px solid #48BB78;
