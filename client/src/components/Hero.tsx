@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import { Logo } from './Logo';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -21,11 +20,6 @@ export function Hero() {
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 py-[40px] overflow-hidden"
       style={{ background: 'linear-gradient(90deg, #5a3fe6 0%, #00b8d4 100%)' }}
     >
-      {/* Logo centered at the top with animation */}
-      <div className={`transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <Logo className="h-[150px] w-auto mb-[20px]" />
-      </div>
-      
       {/* Concise headline with animation */}
       <h1 
         className={`text-[4rem] font-[700] text-white leading-tight mb-[15px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
