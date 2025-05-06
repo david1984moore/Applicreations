@@ -1,5 +1,8 @@
 // This file exports the Applicreations logo as an SVG React component
 export default function LogoImage({ className = "" }: { className?: string }) {
+  // Determine if we need white text based on class name
+  const useWhiteText = className?.includes('text-white') || false;
+  
   return (
     <svg 
       id="Layer_1" 
@@ -14,21 +17,21 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       <defs>
         <style>
           {`
-          .cls-1 { fill: #111; }
+          .cls-1 { fill: ${useWhiteText ? '#ffffff' : '#111'}; }
           .cls-2 { fill: none; } /* Inner shape transparent */
           .cls-3 { fill: #b255fe; }
-          .cls-4 { fill: #1f2937; } /* Standardize dark text */
+          .cls-4 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
           .cls-5 { fill: none; } /* Inner shape transparent */
           .cls-6 { fill: #59b2cf; }
           .cls-7 { fill: #d7b6ed; }
           .cls-8 { fill: #12fcf4; } /* Butterfly head - teal color */
-          .cls-9 { fill: #1f2937; } /* Standardize dark text */
-          .cls-10 { fill: #1f2937; } /* Standardize dark text */
-          .cls-11 { fill: #1f2937; } /* Standardize dark text */
+          .cls-9 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
+          .cls-10 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
+          .cls-11 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
           .cls-12 { fill: #0780fe; } /* Butterfly head - dark blue center */
           .cls-13 { fill: none; }
           .cls-14 { fill: none; } /* Inner shape transparent */
-          .cls-15 { fill: #1f2937; } /* Standardize dark text */
+          .cls-15 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
           `}
         </style>
       </defs>
