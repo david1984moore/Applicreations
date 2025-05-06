@@ -115,7 +115,33 @@
   .navbar-logo {
     display: flex;
     align-items: center;
-    margin: 0 8px;
+    margin: 0 8px; /* Adjusted margin for smaller logo */
+  }
+  
+  .navbar-logo svg {
+    height: 25px; /* Reduced to 25px, about half of the previous 50px */
+    width: auto;
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  nav {
+    height: 70px; /* Unchanged */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   
   .reveal {
