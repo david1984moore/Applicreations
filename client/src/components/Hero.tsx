@@ -1,33 +1,52 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Logo } from './Logo';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after component mount
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section 
       id="home" 
       ref={heroRef}
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 py-[40px] overflow-hidden"
-      style={{ background: 'linear-gradient(90deg, #6b48ff 0%, #00ddeb 100%)' }}
+      style={{ background: 'linear-gradient(90deg, #5a3fe6 0%, #00b8d4 100%)' }}
     >
-      {/* Logo centered at the top */}
-      <Logo className="h-[150px] w-auto mb-[20px]" />
+      {/* Logo centered at the top with animation */}
+      <div className={`transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <Logo className="h-[150px] w-auto mb-[20px]" />
+      </div>
       
-      {/* Concise headline */}
-      <h1 className="text-[3.5rem] font-[700] text-white leading-tight mb-[15px] text-center">
+      {/* Concise headline with animation */}
+      <h1 
+        className={`text-[4rem] font-[700] text-white leading-tight mb-[15px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        style={{ transitionDelay: '0.2s' }}
+      >
         Crafting Digital Excellence
       </h1>
       
-      {/* Short tagline */}
-      <p className="text-[1.3rem] text-white mb-[30px] text-center">
+      {/* Short tagline with animation */}
+      <p 
+        className={`text-[1.3rem] text-white mb-[30px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        style={{ transitionDelay: '0.4s' }}
+      >
         We build stunning websites and apps tailored for your success.
       </p>
       
-      {/* CTA Button */}
+      {/* CTA Button with animation */}
       <a 
         href="#contact"
-        className="inline-flex items-center justify-center py-[15px] px-[40px] bg-white text-[#6b48ff] font-[600] text-[1.2rem] rounded-[50px] border-0 hover:bg-[#f0f0f0] transform hover:scale-[1.05] transition-all duration-300"
+        className={`cta-button inline-flex items-center justify-center py-[15px] px-[40px] bg-white text-[#5a3fe6] font-[600] text-[1.2rem] rounded-[50px] border-0 hover:bg-[#f0f0f0] transform hover:scale-[1.05] transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        style={{ transitionDelay: '0.6s' }}
       >
         Get Started Now
       </a>
