@@ -11,8 +11,8 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       data-name="Layer 1" 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="313.71 646.92 406.62 89.85"
-      width="406.62"
-      height="89.85"
+      width="100%"
+      height="100%"
       className={className}
       aria-label="Applicreations logo"
     >
@@ -22,18 +22,18 @@ export default function LogoImage({ className = "" }: { className?: string }) {
           .cls-1 { fill: ${useWhiteText ? '#ffffff' : '#111'}; }
           .cls-2 { fill: none; } /* Inner shape transparent */
           .cls-3 { fill: #b255fe; }
-          .cls-4 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
+          .cls-4 { fill: ${useWhiteText ? '#ffffff' : '#1a1a1a'}; } /* Made text darker for visibility */
           .cls-5 { fill: none; } /* Inner shape transparent */
           .cls-6 { fill: #59b2cf; }
           .cls-7 { fill: #d7b6ed; }
           .cls-8 { fill: #12fcf4; } /* Butterfly head - teal color */
-          .cls-9 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
-          .cls-10 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
-          .cls-11 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
-          .cls-12 { fill: ${useWhiteText ? '#ffffff' : '#0780fe'}; } /* Butterfly head - dark blue center (made dynamic) */
+          .cls-9 { fill: ${useWhiteText ? '#ffffff' : '#1a1a1a'}; } /* Made text darker for visibility */
+          .cls-10 { fill: ${useWhiteText ? '#ffffff' : '#1a1a1a'}; } /* Made text darker for visibility */
+          .cls-11 { fill: ${useWhiteText ? '#ffffff' : '#1a1a1a'}; } /* Made text darker for visibility */
+          .cls-12 { fill: ${useWhiteText ? '#ffffff' : '#0780fe'}; } /* Butterfly head - dark blue center */
           .cls-13 { fill: none; }
           .cls-14 { fill: none; } /* Inner shape transparent */
-          .cls-15 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
+          .cls-15 { fill: ${useWhiteText ? '#ffffff' : '#1a1a1a'}; } /* Made text darker for visibility */
           `}
         </style>
       </defs>

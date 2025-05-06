@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <Logo className="h-24" />
+            <Logo className="h-16 w-auto" />
           </div>
           
           <div className="text-center md:text-right">
