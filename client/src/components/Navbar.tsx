@@ -82,39 +82,106 @@ export function Navbar() {
 
       console.log('All sections found, setting up IntersectionObserver');
 
-      // Create an observer with options
-      // rootMargin of -70px to account for the navbar height
-      // This ensures we detect sections as they reach the navbar, not the viewport top
-      const observerOptions = {
+      // We need two separate observers with different thresholds
+      // 1. A main observer that tracks when a section is primarily visible
+      // 2. A boundary observer that detects the exact moment a section hits the navbar
+
+      // Observer 1: For precise boundary detection (triggers immediately at boundary)
+      const boundaryObserverOptions = {
         root: null, // Use the viewport
-        rootMargin: '-70px 0px 0px 0px', // Offset for the navbar height
-        threshold: [0, 0.25, 0.5, 0.75, 1], // Multiple thresholds for better detection
+        // The key adjustment: negative offset ensures we detect when navbar hits section top edge
+        // Adjust this value to fine-tune exactly when color changes happen
+        rootMargin: '-70px 0px 0px 0px', // Exactly matches navbar height for precise detection
+        threshold: [0, 0.05], // Trigger the moment ANY part of the section reaches the navbar bottom
       };
 
-      // Create our observer
-      const sectionObserver = new IntersectionObserver((entries) => {
-        // Sort entries by largest intersection ratio that's also visible
+      // Observer 2: For stable section detection (less jumpy)
+      const mainObserverOptions = {
+        root: null, // Use the viewport
+        rootMargin: '-70px 0px 0px 0px', // Offset for the navbar height
+        threshold: [0.4], // Trigger when a significant portion is visible
+      };
+
+      // Create a debounced version of setColorsForSection to prevent flickering
+      let lastSectionId = '';
+      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+      
+      const debouncedSetColors = (sectionId: string) => {
+        // If it's the same section, update immediately
+        if (sectionId === lastSectionId) {
+          return;
+        }
+        
+        // For transitions between dark and light sections, apply immediately
+        const isDarkToLight = 
+          (lastSectionId === 'home' || lastSectionId === 'contact') && 
+          (sectionId === 'our-services' || sectionId === 'what-we-do');
+          
+        const isLightToDark = 
+          (lastSectionId === 'our-services' || lastSectionId === 'what-we-do') && 
+          (sectionId === 'home' || sectionId === 'contact');
+        
+        if (isDarkToLight || isLightToDark) {
+          if (debounceTimer) clearTimeout(debounceTimer);
+          lastSectionId = sectionId;
+          setColorsForSection(sectionId);
+          return;
+        }
+        
+        // Otherwise, debounce to prevent flickering
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          lastSectionId = sectionId;
+          setColorsForSection(sectionId);
+        }, 100);
+      };
+
+      // Create our observers
+      const boundaryObserver = new IntersectionObserver((entries) => {
+        // When a section crosses the boundary exactly
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Entry is intersecting - section is now partially in view
+            debouncedSetColors(entry.target.id);
+          }
+        });
+      }, boundaryObserverOptions);
+      
+      // Main observer for stable behavior
+      const mainObserver = new IntersectionObserver((entries) => {
+        // Sort entries by intersection ratio for stable section detection
         const visibleEntries = entries
           .filter(entry => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        // If we have a visible section with the highest ratio, use it
+        // If we have a visible section with sufficient visibility, use it
         if (visibleEntries.length > 0) {
           const topSection = visibleEntries[0].target;
-          setColorsForSection(topSection.id);
+          debouncedSetColors(topSection.id);
         }
-      }, observerOptions);
+      }, mainObserverOptions);
 
-      // Start observing each section
+      // Start observing each section with both observers
       sections.forEach(section => {
-        if (section) sectionObserver.observe(section);
+        if (section) {
+          boundaryObserver.observe(section);
+          mainObserver.observe(section);
+        }
       });
 
+      // Return a cleanup function that will be called when component unmounts
       return () => {
         // Clean up by stopping observation of all sections
         sections.forEach(section => {
-          if (section) sectionObserver.unobserve(section);
+          if (section) {
+            boundaryObserver.unobserve(section);
+            mainObserver.unobserve(section);
+          }
         });
+        
+        // Disconnect observers to clean up all resources
+        boundaryObserver.disconnect();
+        mainObserver.disconnect();
       };
     };
 
