@@ -1,3 +1,5 @@
+import logoImage from '../assets/logo.png';
+
 interface LogoProps {
   className?: string;
 }
@@ -5,7 +7,7 @@ interface LogoProps {
 export function Logo({ className = "" }: LogoProps) {
   return (
     <img 
-      src="/logo.png" 
+      src={logoImage} 
       alt="Applicreations logo" 
       className={className} 
     />

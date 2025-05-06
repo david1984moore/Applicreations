@@ -47,7 +47,7 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-10" />
+            <Logo className="h-12" />
           </a>
           
           {/* Desktop Navigation */}
