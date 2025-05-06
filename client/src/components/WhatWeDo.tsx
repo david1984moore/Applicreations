@@ -113,12 +113,9 @@ export function WhatWeDo() {
         
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 reveal">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
-              alt="Server room with modern equipment" 
-              className="w-full h-64 object-cover"
-              loading="lazy"
-            />
+            <div className="w-full h-64 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
+              <ServerIcon className="h-24 w-24 text-purple" />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold text-neutral-dark mb-3">Hosting Services</h3>
               <p className="text-neutral-dark/70">
@@ -128,12 +125,9 @@ export function WhatWeDo() {
           </div>
           
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1563770660941-10b3dc980c30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=800" 
-              alt="Computer maintenance and tools" 
-              className="w-full h-64 object-cover"
-              loading="lazy"
-            />
+            <div className="w-full h-64 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
+              <WrenchScrewdriverIcon className="h-24 w-24 text-purple" />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold text-neutral-dark mb-3">Maintenance & Support</h3>
               <p className="text-neutral-dark/70">
