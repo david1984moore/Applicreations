@@ -10,13 +10,6 @@ export default function Home() {
     // Set page title and meta description for SEO
     document.title = "Applicreations | Digital Solutions to Real World Problems";
     
-    // Add favicon
-    const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
-    link.setAttribute('rel', 'icon');
-    link.setAttribute('type', 'image/png');
-    link.setAttribute('href', '/images/logo.png');
-    document.head.appendChild(link);
-    
     // Implement smooth scrolling behavior
     document.documentElement.style.scrollBehavior = 'smooth';
     
