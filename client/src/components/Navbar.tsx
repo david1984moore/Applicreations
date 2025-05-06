@@ -36,9 +36,9 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} h-16 flex items-center overflow-visible pb-0`}>
-      <nav className="container mx-auto px-6 py-0">
-        <div className="flex justify-between items-center py-0">
+    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center pb-0`}>
+      <nav className="container mx-auto px-6 py-2">
+        <div className="flex justify-between items-center">
           <a 
             href="#home" 
             className="flex items-center"
@@ -47,7 +47,7 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-[14rem] w-auto transform scale-125 -my-4" />
+            <Logo className="h-14 w-auto" />
           </a>
           
           {/* Desktop Navigation */}
