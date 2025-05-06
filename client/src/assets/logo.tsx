@@ -26,7 +26,7 @@ export default function LogoImage({ className = "" }: { className?: string }) {
           .cls-9 { fill: #1f2937; } /* Standardize dark text */
           .cls-10 { fill: #1f2937; } /* Standardize dark text */
           .cls-11 { fill: #1f2937; } /* Standardize dark text */
-          .cls-12 { fill: none; } /* Inner shape transparent */
+          .cls-12 { fill: #0780fe; } /* Butterfly head - dark blue center */
           .cls-13 { fill: none; }
           .cls-14 { fill: none; } /* Inner shape transparent */
           .cls-15 { fill: #1f2937; } /* Standardize dark text */
