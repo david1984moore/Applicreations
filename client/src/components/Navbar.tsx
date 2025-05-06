@@ -47,11 +47,11 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-2.5 w-auto" />
+            <Logo className="h-[25px] w-auto" />
           </a>
           
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6">
+          <ul className="hidden md:flex space-x-6 justify-end flex-1">
             <li>
               <a 
                 href="#home" 
