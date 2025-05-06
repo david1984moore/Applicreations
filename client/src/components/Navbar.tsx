@@ -67,10 +67,10 @@ export function Navbar() {
       } else if (servicesSection && scrollPosition < (servicesSectionTop + servicesSection.offsetHeight)) {
         setCurrentSection('our-services');
         setNavBgColor('#f5f5f5');
-        setTextColor('#1f2937');
+        setTextColor('#000000'); // Change to black for maximum contrast
         
         // Update logo text fill color with our helper function
-        updateLogoTextColors('#1f2937');
+        updateLogoTextColors('#000000'); // Change to black for maximum contrast
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
@@ -78,10 +78,10 @@ export function Navbar() {
       } else if (whatWeDoSection && scrollPosition < (whatWeDoSectionTop + whatWeDoSection.offsetHeight)) {
         setCurrentSection('what-we-do');
         setNavBgColor('#ffffff');
-        setTextColor('#1f2937');
+        setTextColor('#000000'); // Change to black for maximum contrast
         
         // Update logo text fill color with our helper function
-        updateLogoTextColors('#1f2937');
+        updateLogoTextColors('#000000'); // Change to black for maximum contrast
         
         // Update nav link hover color
         document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
@@ -159,7 +159,7 @@ export function Navbar() {
               transition: 'color 0.3s ease, fill 0.3s ease'
             }}
           >
-            <Logo className={textColor === 'white' ? 'text-white' : 'text-neutral-dark'} />
+            <Logo className={textColor === 'white' ? 'text-white' : 'text-black'} />
           </a>
           
           {/* Desktop Navigation */}
