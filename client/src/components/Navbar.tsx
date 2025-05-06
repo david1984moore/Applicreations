@@ -36,53 +36,59 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[64px] pb-0`}>
+    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[70px] pb-0`}>
       <nav className="container mx-auto px-6 flex items-center h-full">
         <div className="flex justify-between items-center w-full">
           <a 
             href="#home" 
-            className="flex items-center mx-[15px]"
+            className="navbar-logo"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('home');
             }}
           >
-            <Logo className="h-[50px] w-auto" />
+            <Logo />
           </a>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6">
-            <a 
-              href="#home" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('home');
-              }}
-            >
-              Home
-            </a>
-            <a 
-              href="#what-we-do" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('what-we-do');
-              }}
-            >
-              What We Do
-            </a>
-            <a 
-              href="#contact" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('contact');
-              }}
-            >
-              Contact
-            </a>
-          </div>
+          <ul className="hidden md:flex space-x-6">
+            <li>
+              <a 
+                href="#home" 
+                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('home');
+                }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#what-we-do" 
+                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('what-we-do');
+                }}
+              >
+                What We Do
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('contact');
+                }}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
           
           {/* Mobile Navigation Button */}
           <div className="md:hidden">
