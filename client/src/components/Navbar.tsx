@@ -48,7 +48,7 @@ export function Navbar() {
         setTextColor('white');
         
         // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-15');
+        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
         logoTexts.forEach(text => {
           if (text instanceof SVGElement) {
             text.style.fill = 'white';
@@ -64,7 +64,7 @@ export function Navbar() {
         setTextColor('#1f2937');
         
         // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-15');
+        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
         logoTexts.forEach(text => {
           if (text instanceof SVGElement) {
             text.style.fill = '#1f2937';
@@ -80,7 +80,7 @@ export function Navbar() {
         setTextColor('#1f2937');
         
         // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-15');
+        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
         logoTexts.forEach(text => {
           if (text instanceof SVGElement) {
             text.style.fill = '#1f2937';
@@ -96,7 +96,7 @@ export function Navbar() {
         setTextColor('white');
         
         // Update logo text fill color and nav link colors
-        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-15');
+        const logoTexts = document.querySelectorAll('.cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
         logoTexts.forEach(text => {
           if (text instanceof SVGElement) {
             text.style.fill = 'white';

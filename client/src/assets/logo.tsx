@@ -28,7 +28,7 @@ export default function LogoImage({ className = "" }: { className?: string }) {
           .cls-9 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
           .cls-10 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
           .cls-11 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
-          .cls-12 { fill: #0780fe; } /* Butterfly head - dark blue center */
+          .cls-12 { fill: ${useWhiteText ? '#ffffff' : '#0780fe'}; } /* Butterfly head - dark blue center (made dynamic) */
           .cls-13 { fill: none; }
           .cls-14 { fill: none; } /* Inner shape transparent */
           .cls-15 { fill: ${useWhiteText ? '#ffffff' : '#1f2937'}; } /* Dynamic text color */
