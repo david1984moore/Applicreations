@@ -5,17 +5,17 @@
 @layer base {
   /* Navbar logo styling */
   .navbar-logo {
-    height: 40px;
+    height: 20px;
     width: auto;
     display: flex;
     align-items: center;
-    margin: 0 10px;
-    max-height: 40px;
+    margin: 0 5px;
+    max-height: 20px;
     overflow: visible;
   }
   
   .navbar-logo svg {
-    height: 40px !important;
+    height: 20px !important;
     width: auto !important;
     max-width: none !important;
     max-height: none !important;
@@ -112,19 +112,7 @@
     width: 100%;
   }
   
-  .navbar-logo {
-    display: flex;
-    align-items: center;
-    margin: 0 8px; /* Adjusted margin for smaller logo */
-  }
-  
-  .navbar-logo svg {
-    height: 25px; /* Reduced to 25px, about half of the previous 50px */
-    width: auto;
-    max-width: none;
-    max-height: none;
-    overflow: visible;
-  }
+  /* The navbar-logo styling is now defined above */
   
   nav {
     height: 70px; /* Unchanged */
