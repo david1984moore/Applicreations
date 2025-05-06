@@ -20,109 +20,99 @@ export function Navbar() {
       });
     };
     
-    // Function to determine if a background is light or dark
-    const isLightBackground = (section: Element): boolean => {
-      // Get the background color of the section
-      const bgColor = window.getComputedStyle(section).backgroundColor;
-      const bgImage = window.getComputedStyle(section).backgroundImage;
-      
-      // If it has a gradient background (like hero and contact sections), consider it dark
-      if (bgImage.includes('gradient') && (
-          bgImage.includes('6b48ff') || 
-          bgImage.includes('00ddeb') || 
-          bgImage.includes('8A4FFF') || 
-          bgImage.includes('3E8BFF')
-      )) {
-        return false; // Dark background
-      }
-      
-      // If it has light neutral background colors (like services and what-we-do sections)
-      if (bgColor.includes('rgb(245, 245, 245)') || // #f5f5f5
-          bgColor.includes('rgb(255, 255, 255)') || // white
-          bgColor.includes('rgb(250, 250, 250)') || // near-white
-          bgColor.includes('rgba(255, 255, 255') || // white with alpha
-          section.id === 'our-services' ||
-          section.id === 'what-we-do') {
-        return true; // Light background
-      }
-      
-      // Default to dark for other cases
-      return false;
-    };
-    
+    // Function to handle scroll events and update navbar colors
     const handleScroll = () => {
+      // Handle scrolled state
       if (window.scrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
       
-      // Get navbar height to account for offset
+      // Get navbar height and calculate its bottom position
       const navbarHeight = 70;
+      const scrollY = window.scrollY;
+      const navbarBottomPosition = scrollY + navbarHeight;
       
-      // Get all main sections
-      const sections = [
-        document.getElementById('home'),
-        document.getElementById('our-services'),
-        document.getElementById('what-we-do'),
-        document.getElementById('contact')
-      ].filter(section => section !== null) as HTMLElement[];
+      // Get all sections by ID
+      const homeSection = document.getElementById('home');
+      const servicesSection = document.getElementById('our-services');
+      const whatWeDoSection = document.getElementById('what-we-do');
+      const contactSection = document.getElementById('contact');
       
-      // Determine which section the navbar is currently over
-      // We use the middle of the navbar as the reference point
-      const navbarMiddle = window.scrollY + (navbarHeight / 2);
+      // Calculate section boundaries
+      // We add a small buffer (10px) to make transitions smoother
+      const buffer = 10;
       
-      let activeSection: HTMLElement | null = null;
-      let currentSectionId = '';
+      // Explicitly calculate the boundaries for each section
+      const homeSectionTop = homeSection ? homeSection.offsetTop : 0;
+      const homeSectionBottom = homeSection ? homeSectionTop + homeSection.offsetHeight : 0;
       
-      // Find the current section based on scroll position
-      for (const section of sections) {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (navbarMiddle >= sectionTop && navbarMiddle < sectionBottom) {
-          activeSection = section;
-          currentSectionId = section.id;
-          break;
-        }
-      }
+      const servicesSectionTop = servicesSection ? servicesSection.offsetTop - buffer : 0;
+      const servicesSectionBottom = servicesSection ? servicesSectionTop + servicesSection.offsetHeight : 0;
       
-      // If no section is found (shouldn't happen), use the first section
-      if (!activeSection && sections.length > 0) {
-        activeSection = sections[0];
-        currentSectionId = activeSection.id;
-      }
+      const whatWeDoSectionTop = whatWeDoSection ? whatWeDoSection.offsetTop - buffer : 0;
+      const whatWeDoSectionBottom = whatWeDoSection ? whatWeDoSectionTop + whatWeDoSection.offsetHeight : 0;
       
-      // Debug logging
-      console.log('Scroll position:', navbarMiddle);
-      console.log('Active section:', currentSectionId);
+      const contactSectionTop = contactSection ? contactSection.offsetTop - buffer : 0;
       
-      // Set colors based on the active section
-      if (activeSection) {
-        setCurrentSection(currentSectionId);
-        
-        const isLight = isLightBackground(activeSection);
-        
-        if (isLight) {
-          // Light background - use dark text
-          setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
-          setTextColor('#000000');
-          updateLogoTextColors('#000000');
-          document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        } else {
-          // Dark background - use light text
-          setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
-          setTextColor('white');
-          updateLogoTextColors('white');
-          document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        }
+      // Debug logging to verify positions
+      console.log('Navbar bottom position:', navbarBottomPosition);
+      console.log('Home section:', homeSectionTop, 'to', homeSectionBottom);
+      console.log('Services section:', servicesSectionTop, 'to', servicesSectionBottom);
+      console.log('What We Do section:', whatWeDoSectionTop, 'to', whatWeDoSectionBottom);
+      console.log('Contact section starts at:', contactSectionTop);
+      
+      // Determine which section we're in based on the navbar's position
+      // We check if any part of the navbar is in each section
+      
+      // Hard-coded approach for maximum reliability
+      // Check from bottom to top of page to prioritize the section we're entering
+      if (navbarBottomPosition >= contactSectionTop) {
+        // Contact section has dark background
+        setCurrentSection('contact');
+        setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
+        setTextColor('white');
+        updateLogoTextColors('white');
+        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        console.log('In contact section - white text');
+      } 
+      else if (navbarBottomPosition >= whatWeDoSectionTop && navbarBottomPosition < contactSectionTop) {
+        // What We Do section has light background
+        setCurrentSection('what-we-do');
+        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
+        setTextColor('#000000');
+        updateLogoTextColors('#000000');
+        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
+        console.log('In what-we-do section - black text');
+      } 
+      else if (navbarBottomPosition >= servicesSectionTop && navbarBottomPosition < whatWeDoSectionTop) {
+        // Services section has light background
+        setCurrentSection('our-services');
+        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
+        setTextColor('#000000');
+        updateLogoTextColors('#000000');
+        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
+        console.log('In services section - black text');
+      } 
+      else {
+        // Home/hero section has dark background
+        setCurrentSection('home');
+        setNavBgColor(scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent');
+        setTextColor('white');
+        updateLogoTextColors('white');
+        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        console.log('In home section - white text');
       }
     };
 
+    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    // Initial call to set the correct section on page load
-    handleScroll();
     
+    // Initial call to set the correct colors on page load
+    setTimeout(handleScroll, 100); // Small delay to ensure DOM is fully loaded
+    
+    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
