@@ -26,7 +26,9 @@ export function Navbar() {
       outer.parentNode?.removeChild(outer);
       
       // Set the scrollbar width variable
-      document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+      // If scrollbar width is 0 (mobile browsers often), use a fallback value
+      const finalWidth = scrollbarWidth > 0 ? scrollbarWidth : 0;
+      document.documentElement.style.setProperty('--scrollbar-width', `${finalWidth}px`);
     };
 
     const checkScrollPosition = () => {
@@ -105,9 +107,10 @@ export function Navbar() {
         borderBottom: borderStyle,
         boxShadow: boxShadowStyle,
         transition: 'all 0.3s ease',
-        width: 'calc(100% - 8px)', /* Fixed width accounting for scrollbar */
+        width: '100%', // Use 100% width
         left: 0,
         right: 0,
+        paddingRight: 'var(--scrollbar-width)', // Use CSS variable for scrollbar width
       }}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between h-full">
@@ -184,7 +187,8 @@ export function Navbar() {
             background: navbarBackground,
             boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
             zIndex: 999,
-            width: 'calc(100% - 8px)', /* Fixed width accounting for scrollbar */
+            width: '100%', // Use 100% width
+            paddingRight: 'var(--scrollbar-width)', // Use CSS variable for scrollbar width
           }}
         >
           <div className="pt-2 pb-1 space-y-2 px-6">
