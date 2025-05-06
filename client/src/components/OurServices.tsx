@@ -38,9 +38,6 @@ export function OurServices() {
             Our Services
             <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient"></span>
           </h2>
-          <p className="text-lg text-neutral-dark/70 max-w-2xl mx-auto mt-6">
-            We provide a comprehensive suite of digital solutions tailored to your business needs.
-          </p>
         </div>
 
         {/* Services - Alternating left-right layout with improved visuals */}
