@@ -170,15 +170,15 @@ export function WhatWeDo() {
         </div>
 
         {/* Services - Alternating left-right layout */}
-        <div className="mt-16 space-y-12 reveal">
+        <div className="mt-16 space-y-12 reveal px-4 md:px-12 lg:px-20 xl:px-32">
           <h3 className="text-2xl font-bold text-neutral-dark text-center mb-8">Our Services</h3>
 
           {/* Web Development - Left image, right text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
-            <div className="md:col-span-5 flex justify-center items-center py-8">
-              <GlobeAltIcon className="h-32 w-32 text-purple" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center reveal">
+            <div className="md:col-span-4 flex justify-center items-center py-4">
+              <GlobeAltIcon className="h-28 w-28 text-purple" />
             </div>
-            <div className="md:col-span-7 px-4">
+            <div className="md:col-span-8 px-2">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Web Development</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
               <p className="text-neutral-dark/70">
@@ -189,8 +189,8 @@ export function WhatWeDo() {
           </div>
 
           {/* App Development - Right image, left text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
-            <div className="md:col-span-7 md:order-1 order-2 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center reveal">
+            <div className="md:col-span-8 md:order-1 order-2 px-2">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">App Development</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
               <p className="text-neutral-dark/70">
@@ -198,17 +198,17 @@ export function WhatWeDo() {
                 Our mobile solutions work seamlessly across platforms, providing a consistent experience that keeps users coming back.
               </p>
             </div>
-            <div className="md:col-span-5 md:order-2 order-1 flex justify-center items-center py-8">
-              <DevicePhoneMobileIcon className="h-32 w-32 text-purple" />
+            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-4">
+              <DevicePhoneMobileIcon className="h-28 w-28 text-purple" />
             </div>
           </div>
 
           {/* Hosting Services - Left image, right text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
-            <div className="md:col-span-5 flex justify-center items-center py-8">
-              <ServerIcon className="h-32 w-32 text-purple" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center reveal">
+            <div className="md:col-span-4 flex justify-center items-center py-4">
+              <ServerIcon className="h-28 w-28 text-purple" />
             </div>
-            <div className="md:col-span-7 px-4">
+            <div className="md:col-span-8 px-2">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Hosting Services</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
               <p className="text-neutral-dark/70">
@@ -219,8 +219,8 @@ export function WhatWeDo() {
           </div>
 
           {/* Maintenance & Support - Right image, left text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
-            <div className="md:col-span-7 md:order-1 order-2 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center reveal">
+            <div className="md:col-span-8 md:order-1 order-2 px-2">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Maintenance & Support</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
               <p className="text-neutral-dark/70">
@@ -228,8 +228,8 @@ export function WhatWeDo() {
                 Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
               </p>
             </div>
-            <div className="md:col-span-5 md:order-2 order-1 flex justify-center items-center py-8">
-              <WrenchScrewdriverIcon className="h-32 w-32 text-purple" />
+            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-4">
+              <WrenchScrewdriverIcon className="h-28 w-28 text-purple" />
             </div>
           </div>
         </div>
