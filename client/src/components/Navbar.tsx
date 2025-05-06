@@ -6,6 +6,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState('home');
   const [navBackground, setNavBackground] = useState('transparent');
+  const [textColor, setTextColor] = useState('white');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,22 +35,27 @@ export function Navbar() {
         if (entry.isIntersecting) {
           setCurrentSection(entry.target.id);
           
-          // Change navbar background based on section
+          // Change navbar background and text color based on section
           switch(entry.target.id) {
             case 'home':
               setNavBackground('linear-gradient(90deg, #6b48ff, #00ddeb)');
+              setTextColor('white');
               break;
             case 'our-services':
               setNavBackground('#f5f5f5');
+              setTextColor('#333333');
               break;
             case 'what-we-do':
               setNavBackground('#f5f5f5');
+              setTextColor('#333333');
               break;
             case 'contact':
               setNavBackground('linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%)');
+              setTextColor('white');
               break;
             default:
               setNavBackground('transparent');
+              setTextColor('white');
           }
         }
       });
@@ -110,7 +116,8 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#home" 
-                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
+                className="nav-link font-medium text-md transition-colors duration-300"
+                style={{ color: textColor, borderColor: textColor }}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('home');
@@ -122,7 +129,8 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#what-we-do" 
-                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
+                className="nav-link font-medium text-md transition-colors duration-300"
+                style={{ color: textColor, borderColor: textColor }}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('what-we-do');
@@ -134,7 +142,8 @@ export function Navbar() {
             <li className="border-none">
               <a 
                 href="#contact" 
-                className="nav-link text-white hover:text-[#f0f0f0] font-medium text-md transition-colors duration-300"
+                className="nav-link font-medium text-md transition-colors duration-300"
+                style={{ color: textColor, borderColor: textColor }}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('contact');
@@ -149,7 +158,8 @@ export function Navbar() {
           <div className="md:hidden">
             <button 
               aria-label="Toggle mobile menu"
-              className="text-white focus:outline-none"
+              className="focus:outline-none"
+              style={{ color: textColor }}
               onClick={toggleMobileMenu}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -168,7 +178,8 @@ export function Navbar() {
           <div className="pt-2 pb-1 space-y-2">
             <a 
               href="#home" 
-              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
+              className="block font-medium py-1 text-sm transition-colors duration-300"
+              style={{ color: textColor }}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -178,7 +189,8 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
+              className="block font-medium py-1 text-sm transition-colors duration-300"
+              style={{ color: textColor }}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -188,7 +200,8 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block text-white hover:text-[#f0f0f0] font-medium py-1 text-sm transition-colors duration-300"
+              className="block font-medium py-1 text-sm transition-colors duration-300"
+              style={{ color: textColor }}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');

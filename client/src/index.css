@@ -122,8 +122,8 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #ffffff;
-    transition: width 0.3s ease;
+    background: currentColor;
+    transition: width 0.3s ease, background-color 0.3s ease;
   }
   
   .nav-link:hover::after {
