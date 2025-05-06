@@ -20,6 +20,36 @@ export function Navbar() {
       });
     };
     
+    // Function to determine if a background is light or dark
+    const isLightBackground = (section: Element): boolean => {
+      // Get the background color of the section
+      const bgColor = window.getComputedStyle(section).backgroundColor;
+      const bgImage = window.getComputedStyle(section).backgroundImage;
+      
+      // If it has a gradient background (like hero and contact sections), consider it dark
+      if (bgImage.includes('gradient') && (
+          bgImage.includes('6b48ff') || 
+          bgImage.includes('00ddeb') || 
+          bgImage.includes('8A4FFF') || 
+          bgImage.includes('3E8BFF')
+      )) {
+        return false; // Dark background
+      }
+      
+      // If it has light neutral background colors (like services and what-we-do sections)
+      if (bgColor.includes('rgb(245, 245, 245)') || // #f5f5f5
+          bgColor.includes('rgb(255, 255, 255)') || // white
+          bgColor.includes('rgb(250, 250, 250)') || // near-white
+          bgColor.includes('rgba(255, 255, 255') || // white with alpha
+          section.id === 'our-services' ||
+          section.id === 'what-we-do') {
+        return true; // Light background
+      }
+      
+      // Default to dark for other cases
+      return false;
+    };
+    
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
@@ -30,72 +60,62 @@ export function Navbar() {
       // Get navbar height to account for offset
       const navbarHeight = 70;
       
-      // Calculate current scroll position with an offset for the navbar
-      const scrollPosition = window.scrollY + navbarHeight;
+      // Get all main sections
+      const sections = [
+        document.getElementById('home'),
+        document.getElementById('our-services'),
+        document.getElementById('what-we-do'),
+        document.getElementById('contact')
+      ].filter(section => section !== null) as HTMLElement[];
       
-      // Get all main sections and their positions
-      const homeSection = document.getElementById('home');
-      const servicesSection = document.getElementById('our-services');
-      const whatWeDoSection = document.getElementById('what-we-do');
-      const contactSection = document.getElementById('contact');
+      // Determine which section the navbar is currently over
+      // We use the middle of the navbar as the reference point
+      const navbarMiddle = window.scrollY + (navbarHeight / 2);
       
-      // Calculate section offsets, adjusting for navbar height
-      const homeSectionTop = homeSection ? homeSection.offsetTop - navbarHeight : 0;
-      const servicesSectionTop = servicesSection ? servicesSection.offsetTop - navbarHeight : 0;
-      const whatWeDoSectionTop = whatWeDoSection ? whatWeDoSection.offsetTop - navbarHeight : 0;
-      const contactSectionTop = contactSection ? contactSection.offsetTop - navbarHeight : 0;
+      let activeSection: HTMLElement | null = null;
+      let currentSectionId = '';
       
-      // Debug logging to verify the scroll position and section offsets
-      console.log('Scroll position:', scrollPosition);
-      console.log('Home section top:', homeSectionTop);
-      console.log('Services section top:', servicesSectionTop);
-      console.log('What We Do section top:', whatWeDoSectionTop);
-      console.log('Contact section top:', contactSectionTop);
+      // Find the current section based on scroll position
+      for (const section of sections) {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (navbarMiddle >= sectionTop && navbarMiddle < sectionBottom) {
+          activeSection = section;
+          currentSectionId = section.id;
+          break;
+        }
+      }
       
-      // Determine which section is currently in view and set colors accordingly
-      if (homeSection && scrollPosition < (homeSectionTop + homeSection.offsetHeight)) {
-        setCurrentSection('home');
-        setNavBgColor('linear-gradient(90deg, #6b48ff, #00ddeb)');
-        setTextColor('white');
+      // If no section is found (shouldn't happen), use the first section
+      if (!activeSection && sections.length > 0) {
+        activeSection = sections[0];
+        currentSectionId = activeSection.id;
+      }
+      
+      // Debug logging
+      console.log('Scroll position:', navbarMiddle);
+      console.log('Active section:', currentSectionId);
+      
+      // Set colors based on the active section
+      if (activeSection) {
+        setCurrentSection(currentSectionId);
         
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('white');
+        const isLight = isLightBackground(activeSection);
         
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        
-      } else if (servicesSection && scrollPosition < (servicesSectionTop + servicesSection.offsetHeight)) {
-        setCurrentSection('our-services');
-        setNavBgColor('#f5f5f5');
-        setTextColor('#000000'); // Change to black for maximum contrast
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('#000000'); // Change to black for maximum contrast
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
-        
-      } else if (whatWeDoSection && scrollPosition < (whatWeDoSectionTop + whatWeDoSection.offsetHeight)) {
-        setCurrentSection('what-we-do');
-        setNavBgColor('#ffffff');
-        setTextColor('#000000'); // Change to black for maximum contrast
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('#000000'); // Change to black for maximum contrast
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
-        
-      } else if (contactSection && scrollPosition >= contactSectionTop) {
-        setCurrentSection('contact');
-        setNavBgColor('#1f2937');
-        setTextColor('white');
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('white');
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        if (isLight) {
+          // Light background - use dark text
+          setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
+          setTextColor('#000000');
+          updateLogoTextColors('#000000');
+          document.documentElement.style.setProperty('--nav-link-hover', '#333333');
+        } else {
+          // Dark background - use light text
+          setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
+          setTextColor('white');
+          updateLogoTextColors('white');
+          document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        }
       }
     };
 
