@@ -28,7 +28,7 @@ export function Navbar() {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: element.offsetTop - 70,
         behavior: 'smooth'
       });
     }
@@ -37,7 +37,7 @@ export function Navbar() {
 
   return (
     <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-sm' : ''}`}>
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-6 py-2">
         <div className="flex justify-between items-center">
           <a 
             href="#home" 
@@ -47,14 +47,14 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-12" />
+            <Logo className="h-16" />
           </a>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6">
             <a 
               href="#home" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium transition-colors duration-300"
+              className="nav-link text-neutral-dark hover:text-purple font-medium text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -64,7 +64,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium transition-colors duration-300"
+              className="nav-link text-neutral-dark hover:text-purple font-medium text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -74,7 +74,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="nav-link text-neutral-dark hover:text-purple font-medium transition-colors duration-300"
+              className="nav-link text-neutral-dark hover:text-purple font-medium text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');

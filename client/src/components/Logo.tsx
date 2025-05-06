@@ -8,7 +8,7 @@ export function Logo({ className = "" }: LogoProps) {
       src="/images/logo.png" 
       alt="Applicreations Logo" 
       className={className} 
-      style={{ height: "auto", maxWidth: "150px" }}
+      style={{ height: "auto", maxWidth: "200px" }}
     />
   );
 }
