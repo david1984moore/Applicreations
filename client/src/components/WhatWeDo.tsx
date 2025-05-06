@@ -129,7 +129,7 @@ export function WhatWeDo() {
           
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1581093458791-9d19c9f0bf9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
+              src="https://images.unsplash.com/photo-1563770660941-10b3dc980c30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=800" 
               alt="Computer maintenance and tools" 
               className="w-full h-64 object-cover"
               loading="lazy"
