@@ -19,78 +19,33 @@ export function Navbar() {
         }
       });
     };
-    
-    // Function to handle scroll events and update navbar colors
-    const handleScroll = () => {
-      // Get current scroll position
-      const scrollPosition = window.scrollY;
+
+    // Function to set colors based on the current section
+    const setColorsForSection = (sectionId: string) => {
+      console.log('Current section:', sectionId);
       
-      // Handle general scrolled state (for background blur/shadow)
-      if (scrollPosition > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      // Set the current section for UI state
+      setCurrentSection(sectionId);
       
-      // Get the sections we need to check
-      const navbarHeight = 70; // Must match the height in the JSX below
-      const servicesSection = document.getElementById('our-services');
-      const whatWeDoSection = document.getElementById('what-we-do');
-      const contactSection = document.getElementById('contact');
-      
-      // Calculate position where navbar BOTTOM meets the section TOP
-      // This ensures we change color at exactly the right moment when scrolling
-      const navbarBottom = navbarHeight;
-      
-      if (!servicesSection || !whatWeDoSection || !contactSection) {
-        // Safety check if elements aren't loaded yet
-        return;
-      }
-      
-      // Get the exact position where each section starts
-      // We adjust by navbar height to account for the viewport offset
-      const servicesSectionTop = servicesSection.getBoundingClientRect().top + window.scrollY - navbarBottom;
-      const whatWeDoSectionTop = whatWeDoSection.getBoundingClientRect().top + window.scrollY - navbarBottom;
-      const contactSectionTop = contactSection.getBoundingClientRect().top + window.scrollY - navbarBottom;
-      
-      // Log the current positions for debugging
-      console.log(`Current scroll: ${scrollPosition}`);
-      console.log(`Services section starts at: ${servicesSectionTop}`);
-      console.log(`What We Do section starts at: ${whatWeDoSectionTop}`);
-      console.log(`Contact section starts at: ${contactSectionTop}`);
-      
-      // Apply text color rules based on current section
-      // We set precise boundaries based on the exact section positions
-      if (scrollPosition < servicesSectionTop) {
-        // In Home section (dark background)
-        setCurrentSection('home');
+      // Update colors based on the section background
+      if (sectionId === 'home') {
+        // Home section (dark background) - use light text
         setNavBgColor(scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent');
         setTextColor('white');
         updateLogoTextColors('white');
         document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
         console.log('Home section - white text');
       } 
-      else if (scrollPosition >= servicesSectionTop && scrollPosition < whatWeDoSectionTop) {
-        // In Services section (light background)
-        setCurrentSection('our-services');
+      else if (sectionId === 'our-services' || sectionId === 'what-we-do') {
+        // Services & What We Do sections (light background) - use dark text
         setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
         setTextColor('#000000');
         updateLogoTextColors('#000000');
         document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        console.log('Services section - black text');
+        console.log(`${sectionId} section - black text`);
       }
-      else if (scrollPosition >= whatWeDoSectionTop && scrollPosition < contactSectionTop) {
-        // In What We Do section (light background)
-        setCurrentSection('what-we-do');
-        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
-        setTextColor('#000000');
-        updateLogoTextColors('#000000');
-        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        console.log('What We Do section - black text');
-      }
-      else {
-        // In Contact section (dark background)
-        setCurrentSection('contact');
+      else if (sectionId === 'contact') {
+        // Contact section (dark background) - use light text
         setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
         setTextColor('white');
         updateLogoTextColors('white');
@@ -99,18 +54,85 @@ export function Navbar() {
       }
     };
 
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Initial call to set the correct colors on page load
-    // Use a slightly longer delay to ensure all DOM elements are properly loaded and positioned
-    setTimeout(handleScroll, 500);
-    
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    // Function to handle basic scroll for navbar background effects (blur/shadow)
+    const handleBasicScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
-  }, []);
+
+    // Set up the IntersectionObserver to detect when sections enter viewport
+    const setupIntersectionObserver = () => {
+      // Get all the sections we need to track
+      const sections = [
+        document.getElementById('home'),
+        document.getElementById('our-services'),
+        document.getElementById('what-we-do'),
+        document.getElementById('contact')
+      ];
+
+      // Ensure all sections are loaded before proceeding
+      if (sections.some(section => !section)) {
+        console.log('Waiting for all sections to load...');
+        setTimeout(setupIntersectionObserver, 100);
+        return;
+      }
+
+      console.log('All sections found, setting up IntersectionObserver');
+
+      // Create an observer with options
+      // rootMargin of -70px to account for the navbar height
+      // This ensures we detect sections as they reach the navbar, not the viewport top
+      const observerOptions = {
+        root: null, // Use the viewport
+        rootMargin: '-70px 0px 0px 0px', // Offset for the navbar height
+        threshold: [0, 0.25, 0.5, 0.75, 1], // Multiple thresholds for better detection
+      };
+
+      // Create our observer
+      const sectionObserver = new IntersectionObserver((entries) => {
+        // Sort entries by largest intersection ratio that's also visible
+        const visibleEntries = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        // If we have a visible section with the highest ratio, use it
+        if (visibleEntries.length > 0) {
+          const topSection = visibleEntries[0].target;
+          setColorsForSection(topSection.id);
+        }
+      }, observerOptions);
+
+      // Start observing each section
+      sections.forEach(section => {
+        if (section) sectionObserver.observe(section);
+      });
+
+      return () => {
+        // Clean up by stopping observation of all sections
+        sections.forEach(section => {
+          if (section) sectionObserver.unobserve(section);
+        });
+      };
+    };
+
+    // Set up scroll listener for basic navbar effects
+    window.addEventListener('scroll', handleBasicScroll);
+    
+    // Initialize the intersection observer with a delay to ensure DOM is loaded
+    const observerCleanup = setTimeout(setupIntersectionObserver, 500);
+    
+    // Set initial colors based on the initial section (likely 'home')
+    setColorsForSection('home');
+    
+    // Clean up event listeners and timers on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleBasicScroll);
+      clearTimeout(observerCleanup);
+    };
+  }, [scrolled]); // Add scrolled as a dependency since we reference it in the effect
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
