@@ -12,15 +12,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/x-icon;base64,AA==">
-    <style>
-      /* Force browser to use our icon or nothing */
-      link[rel="icon"], link[rel="shortcut icon"] {
-        content: '';
-        display: none !important;
-        visibility: hidden !important;
-      }
-    </style>
+    <script>
+      // Prevent favicon requests entirely
+      const originalHead = document.head.appendChild;
+      document.head.appendChild = function(el) {
+        if (el.rel === 'icon' || el.rel === 'shortcut icon' || el.rel === 'apple-touch-icon') {
+          return document.createElement('meta'); // return dummy element
+        }
+        return originalHead.call(this, el);
+      };
+    </script>
+    <link rel="icon" href="about:blank">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
 
   </head>
   <body>
