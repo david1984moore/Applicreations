@@ -14,7 +14,7 @@ export default function Home() {
     const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
     link.setAttribute('rel', 'icon');
     link.setAttribute('type', 'image/png');
-    link.setAttribute('href', '/images/logo.png');
+    link.setAttribute('href', 'https://i.imgur.com/nnPgTbj.png');
     document.head.appendChild(link);
     
     // Implement smooth scrolling behavior

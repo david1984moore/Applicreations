@@ -47,8 +47,7 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-10" />
-            <span className="ml-2 text-xl font-bold text-neutral-dark">Applicreations</span>
+            <Logo className="h-12" />
           </a>
           
           {/* Desktop Navigation */}
