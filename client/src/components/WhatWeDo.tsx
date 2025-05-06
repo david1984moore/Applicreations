@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { BoltIcon, ArrowPathIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { BoltIcon, ArrowPathIcon, CheckCircleIcon, ServerIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
 
 // Custom SVG component for icons
 function Icon({ children }: { children: React.ReactNode }) {
@@ -106,6 +106,38 @@ export function WhatWeDo() {
               <h3 className="text-xl font-semibold text-neutral-dark mb-3">App Development</h3>
               <p className="text-neutral-dark/70">
                 We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 reveal">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
+              alt="Server room with modern equipment" 
+              className="w-full h-64 object-cover"
+              loading="lazy"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-neutral-dark mb-3">Hosting Services</h3>
+              <p className="text-neutral-dark/70">
+                We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
+              </p>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1581093458791-9d19c9f0bf9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
+              alt="Computer maintenance and tools" 
+              className="w-full h-64 object-cover"
+              loading="lazy"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-neutral-dark mb-3">Maintenance & Support</h3>
+              <p className="text-neutral-dark/70">
+                We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
               </p>
             </div>
           </div>
