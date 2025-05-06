@@ -28,7 +28,7 @@ export function Navbar() {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 70,
+        top: element.offsetTop - 50,
         behavior: 'smooth'
       });
     }
@@ -37,7 +37,7 @@ export function Navbar() {
 
   return (
     <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-sm' : ''}`}>
-      <nav className="container mx-auto px-6 py-2">
+      <nav className="container mx-auto px-6 py-0.5">
         <div className="flex justify-between items-center">
           <a 
             href="#home" 
@@ -47,11 +47,11 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-16" />
+            <Logo className="h-10" />
           </a>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex space-x-4">
             <a 
               href="#home" 
               className="nav-link text-neutral-dark hover:text-purple font-medium text-sm transition-colors duration-300"
@@ -91,7 +91,7 @@ export function Navbar() {
               className="text-neutral-dark focus:outline-none"
               onClick={toggleMobileMenu}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
@@ -101,13 +101,13 @@ export function Navbar() {
         {/* Mobile Navigation Menu */}
         <div 
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-48' : 'max-h-0'
+            mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
         >
-          <div className="pt-4 pb-2 space-y-4">
+          <div className="pt-2 pb-1 space-y-2">
             <a 
               href="#home" 
-              className="block text-neutral-dark hover:text-purple font-medium py-2 transition-colors duration-300"
+              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -117,7 +117,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block text-neutral-dark hover:text-purple font-medium py-2 transition-colors duration-300"
+              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -127,7 +127,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block text-neutral-dark hover:text-purple font-medium py-2 transition-colors duration-300"
+              className="block text-neutral-dark hover:text-purple font-medium py-1 text-sm transition-colors duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
