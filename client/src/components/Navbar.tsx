@@ -15,8 +15,8 @@ export function Navbar() {
       }
     };
 
-    // Initial check
-    checkScrollPosition();
+    // Initial check - force it to be true to always show background
+    setScrolled(true);
     
     // Add event listener
     window.addEventListener('scroll', checkScrollPosition);
@@ -61,20 +61,14 @@ export function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  // Determine if gradient should be applied - always show when scrolled
-  const navbarBackground = scrolled 
-    ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' 
-    : 'transparent';
+  // Always apply gradient background regardless of scroll position
+  const navbarBackground = 'linear-gradient(90deg, #6b48ff, #00ddeb)';
 
-  // Border styles - only when scrolled
-  const borderStyle = scrolled 
-    ? '1px solid #ffffff' 
-    : 'none';
+  // Always show border
+  const borderStyle = '1px solid #ffffff';
 
-  // Box shadow when scrolled
-  const boxShadowStyle = scrolled 
-    ? '0 2px 10px rgba(0, 0, 0, 0.15)' 
-    : 'none';
+  // Always show box shadow
+  const boxShadowStyle = '0 2px 10px rgba(0, 0, 0, 0.15)';
 
   return (
     <header 
