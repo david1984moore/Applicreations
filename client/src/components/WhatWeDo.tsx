@@ -12,7 +12,7 @@ import {
 // Custom SVG component for process icons
 function Icon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-16 h-16 text-purple flex items-center justify-center mx-auto lg:mx-0 mb-3 relative z-10">
+    <div className="w-16 h-16 bg-gradient rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-3 relative z-10">
       {children}
     </div>
   );
@@ -72,7 +72,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <BoltIcon className="h-8 w-8" />
+                    <BoltIcon className="h-8 w-8 text-white" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Ideate</h3>
@@ -87,7 +87,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <ArrowPathIcon className="h-8 w-8" />
+                    <ArrowPathIcon className="h-8 w-8 text-white" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Iterate</h3>
@@ -102,7 +102,7 @@ export function WhatWeDo() {
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
                   <Icon>
-                    <CheckCircleIcon className="h-8 w-8" />
+                    <CheckCircleIcon className="h-8 w-8 text-white" />
                   </Icon>
                   <div className="bg-white rounded-lg shadow-md p-5 text-center transition-all duration-300 hover:shadow-lg mt-3 w-full">
                     <h3 className="text-xl font-semibold text-neutral-dark mb-2">Congratulate</h3>
@@ -126,7 +126,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <BoltIcon className="h-8 w-8" />
+                  <BoltIcon className="h-8 w-8 text-white" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -141,7 +141,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <ArrowPathIcon className="h-8 w-8" />
+                  <ArrowPathIcon className="h-8 w-8 text-white" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -156,7 +156,7 @@ export function WhatWeDo() {
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
-                  <CheckCircleIcon className="h-8 w-8" />
+                  <CheckCircleIcon className="h-8 w-8 text-white" />
                 </Icon>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
@@ -174,11 +174,9 @@ export function WhatWeDo() {
           <h3 className="text-2xl font-bold text-neutral-dark text-center mb-8">Our Services</h3>
 
           {/* Web Development - Left image, right text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
-            <div className="md:col-span-5 bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="w-full h-48 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
-                <GlobeAltIcon className="h-20 w-20 text-purple" />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
+            <div className="md:col-span-5 flex justify-center items-center py-8">
+              <GlobeAltIcon className="h-32 w-32 text-purple" />
             </div>
             <div className="md:col-span-7 px-4">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Web Development</h3>
@@ -191,7 +189,7 @@ export function WhatWeDo() {
           </div>
 
           {/* App Development - Right image, left text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
             <div className="md:col-span-7 md:order-1 order-2 px-4">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">App Development</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
@@ -200,10 +198,8 @@ export function WhatWeDo() {
                 Our mobile solutions work seamlessly across platforms, providing a consistent experience that keeps users coming back.
               </p>
             </div>
-            <div className="md:col-span-5 md:order-2 order-1 bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="w-full h-48 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
-                <DevicePhoneMobileIcon className="h-20 w-20 text-purple" />
-              </div>
+            <div className="md:col-span-5 md:order-2 order-1 flex justify-center items-center py-8">
+              <DevicePhoneMobileIcon className="h-32 w-32 text-purple" />
             </div>
           </div>
 
