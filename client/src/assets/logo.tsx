@@ -1,8 +1,8 @@
 // This file exports the Applicreations logo as an SVG React component
 export default function LogoImage({ className = "" }: { className?: string }) {
   // Determine if we need white text based on class name
-  // The Navbar component will update the fill color directly via DOM manipulation
-  // This is a fallback for initial render
+  // Now we'll use direct styling from Navbar.tsx via DOM manipulation
+  // This variable is a fallback for initial render
   const useWhiteText = className?.includes('text-white') || false;
   
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Logo } from './Logo';
 
 export function Navbar() {
@@ -7,54 +7,17 @@ export function Navbar() {
   const [currentSection, setCurrentSection] = useState<string>('home');
   const [navBgColor, setNavBgColor] = useState<string>('transparent');
   const [textColor, setTextColor] = useState<string>('white');
-  const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    // Enhanced function to update all logo text colors consistently
+    // Helper function to update logo text colors consistently
     const updateLogoTextColors = (color: string) => {
-      // Update all SVG text elements in the logo
+      // Select ALL possible text elements in the logo to ensure consistent coloring
       const logoTexts = document.querySelectorAll('.cls-1, .cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
       logoTexts.forEach(text => {
         if (text instanceof SVGElement) {
           text.style.fill = color;
         }
       });
-    };
-    
-    // Function to detect background color at a specific point on the screen
-    const getBackgroundColorAtPoint = (element: Element): string => {
-      // Get the computed background color
-      const bgColor = window.getComputedStyle(element).backgroundColor;
-      
-      // Check if it's transparent (rgba(0, 0, 0, 0) or transparent)
-      if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
-        // If transparent, try parent element
-        if (element.parentElement) {
-          return getBackgroundColorAtPoint(element.parentElement);
-        }
-        // Default fallback color if we reach the top of the DOM
-        return 'rgb(255, 255, 255)';
-      }
-      
-      return bgColor;
-    };
-    
-    // Function to determine if background is dark or light
-    const isBackgroundDark = (rgbColor: string): boolean => {
-      // Extract RGB values from the string
-      const match = rgbColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-      if (!match) return false;
-      
-      const r = parseInt(match[1], 10);
-      const g = parseInt(match[2], 10);
-      const b = parseInt(match[3], 10);
-      
-      // Calculate perceived brightness using the formula
-      // (299*R + 587*G + 114*B) / 1000
-      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-      
-      // Consider dark if brightness is below 128 (middle of 0-255)
-      return brightness < 128;
     };
     
     const handleScroll = () => {
@@ -70,7 +33,7 @@ export function Navbar() {
       // Calculate current scroll position with an offset for the navbar
       const scrollPosition = window.scrollY + navbarHeight;
       
-      // Get all main sections
+      // Get all main sections and their positions
       const homeSection = document.getElementById('home');
       const servicesSection = document.getElementById('our-services');
       const whatWeDoSection = document.getElementById('what-we-do');
@@ -89,50 +52,51 @@ export function Navbar() {
       console.log('What We Do section top:', whatWeDoSectionTop);
       console.log('Contact section top:', contactSectionTop);
       
-      // Determine which section is currently in view
-      let currentElement: HTMLElement | null = null;
-      let newTextColor = 'white'; // Default
-      
+      // Determine which section is currently in view and set colors accordingly
       if (homeSection && scrollPosition < (homeSectionTop + homeSection.offsetHeight)) {
         setCurrentSection('home');
         setNavBgColor('linear-gradient(90deg, #6b48ff, #00ddeb)');
-        newTextColor = 'white'; // Home has a dark gradient background
-        currentElement = homeSection;
+        setTextColor('white');
+        
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('white');
+        
+        // Update nav link hover color
+        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        
       } else if (servicesSection && scrollPosition < (servicesSectionTop + servicesSection.offsetHeight)) {
         setCurrentSection('our-services');
         setNavBgColor('#f5f5f5');
-        newTextColor = '#000000'; // Services has a light background
-        currentElement = servicesSection;
+        setTextColor('#000000'); // Change to black for maximum contrast
+        
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('#000000'); // Change to black for maximum contrast
+        
+        // Update nav link hover color
+        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
+        
       } else if (whatWeDoSection && scrollPosition < (whatWeDoSectionTop + whatWeDoSection.offsetHeight)) {
         setCurrentSection('what-we-do');
         setNavBgColor('#ffffff');
-        newTextColor = '#000000'; // What We Do has a light background
-        currentElement = whatWeDoSection;
+        setTextColor('#000000'); // Change to black for maximum contrast
+        
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('#000000'); // Change to black for maximum contrast
+        
+        // Update nav link hover color
+        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
+        
       } else if (contactSection && scrollPosition >= contactSectionTop) {
         setCurrentSection('contact');
         setNavBgColor('#1f2937');
-        newTextColor = 'white'; // Contact has a dark background
-        currentElement = contactSection;
+        setTextColor('white');
+        
+        // Update logo text fill color with our helper function
+        updateLogoTextColors('white');
+        
+        // Update nav link hover color
+        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
       }
-      
-      // If we have a current element, get its background color and determine text color
-      if (currentElement) {
-        const bgColor = getBackgroundColorAtPoint(currentElement);
-        const shouldUseDarkText = !isBackgroundDark(bgColor);
-        newTextColor = shouldUseDarkText ? '#000000' : 'white';
-      }
-      
-      // Update text color state and apply to logo
-      setTextColor(newTextColor);
-      
-      // Update logo text fill color with our helper function
-      updateLogoTextColors(newTextColor);
-      
-      // Update nav link hover color based on text color
-      document.documentElement.style.setProperty(
-        '--nav-link-hover', 
-        newTextColor === 'white' ? '#f0f0f0' : '#e0e0e0'
-      );
     };
 
     window.addEventListener('scroll', handleScroll);
