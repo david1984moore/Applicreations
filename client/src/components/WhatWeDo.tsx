@@ -6,9 +6,7 @@ import {
   ServerIcon, 
   WrenchScrewdriverIcon,
   GlobeAltIcon,
-  DevicePhoneMobileIcon,
-  ArrowRightIcon,
-  ArrowLeftIcon
+  DevicePhoneMobileIcon
 } from '@heroicons/react/24/outline';
 
 // Custom SVG component for process icons
@@ -62,13 +60,13 @@ export function WhatWeDo() {
             We help businesses and consumers transform their ideas into exceptional digital experiences.
           </p>
         </div>
-        
+
         {/* Process Timeline - Desktop view shows horizontal flow */}
         <div className="hidden lg:block mb-16 reveal">
           <div className="relative">
             {/* Process connection line */}
             <div className="absolute top-1/2 left-[12%] right-[12%] h-1 bg-gradient-to-r from-purple/30 via-purple/50 to-purple/30 transform -translate-y-1/2"></div>
-            
+
             <div className="flex justify-between">
               {/* Process Step 1 */}
               <div className="w-1/3 px-4">
@@ -83,11 +81,8 @@ export function WhatWeDo() {
                     </p>
                   </div>
                 </div>
-                <div className="flex justify-end mt-4 mr-4">
-                  <ArrowRightIcon className="h-6 w-6 text-purple" />
-                </div>
               </div>
-              
+
               {/* Process Step 2 */}
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
@@ -101,11 +96,8 @@ export function WhatWeDo() {
                     </p>
                   </div>
                 </div>
-                <div className="flex justify-end mt-4 mr-4">
-                  <ArrowRightIcon className="h-6 w-6 text-purple" />
-                </div>
               </div>
-              
+
               {/* Process Step 3 */}
               <div className="w-1/3 px-4">
                 <div className="flex flex-col items-center">
@@ -123,22 +115,19 @@ export function WhatWeDo() {
             </div>
           </div>
         </div>
-        
+
         {/* Process Mobile View - Vertical flow */}
         <div className="lg:hidden mb-12 reveal">
           <div className="grid grid-cols-1 gap-12 relative">
             {/* Vertical line connecting process steps */}
             <div className="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-purple/30 via-purple/50 to-purple/30"></div>
-            
+
             {/* Process Step 1 */}
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
                   <BoltIcon className="h-8 w-8 text-white" />
                 </Icon>
-                <div className="h-16 flex items-center">
-                  <ArrowRightIcon className="h-5 w-5 text-purple transform rotate-90" />
-                </div>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
                 <h3 className="text-xl font-semibold text-neutral-dark mb-2">Ideate</h3>
@@ -147,16 +136,13 @@ export function WhatWeDo() {
                 </p>
               </div>
             </div>
-            
+
             {/* Process Step 2 */}
             <div className="flex">
               <div className="mr-6 relative z-10">
                 <Icon>
                   <ArrowPathIcon className="h-8 w-8 text-white" />
                 </Icon>
-                <div className="h-16 flex items-center">
-                  <ArrowRightIcon className="h-5 w-5 text-purple transform rotate-90" />
-                </div>
               </div>
               <div className="bg-white rounded-lg shadow-md p-5 flex-1">
                 <h3 className="text-xl font-semibold text-neutral-dark mb-2">Iterate</h3>
@@ -165,7 +151,7 @@ export function WhatWeDo() {
                 </p>
               </div>
             </div>
-            
+
             {/* Process Step 3 */}
             <div className="flex">
               <div className="mr-6 relative z-10">
@@ -182,11 +168,11 @@ export function WhatWeDo() {
             </div>
           </div>
         </div>
-        
+
         {/* Services - Alternating left-right layout */}
         <div className="mt-16 space-y-12 reveal">
           <h3 className="text-2xl font-bold text-neutral-dark text-center mb-8">Our Services</h3>
-          
+
           {/* Web Development - Left image, right text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
             <div className="md:col-span-5 bg-white rounded-lg shadow-md overflow-hidden">
@@ -201,12 +187,9 @@ export function WhatWeDo() {
                 We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
                 Our web solutions combine striking visuals with intuitive navigation to help you connect with your audience effectively.
               </p>
-              <div className="flex justify-end mt-3">
-                <ArrowLeftIcon className="h-5 w-5 text-purple md:block hidden" />
-              </div>
             </div>
           </div>
-          
+
           {/* App Development - Right image, left text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
             <div className="md:col-span-7 md:order-1 order-2 px-4">
@@ -216,9 +199,6 @@ export function WhatWeDo() {
                 We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
                 Our mobile solutions work seamlessly across platforms, providing a consistent experience that keeps users coming back.
               </p>
-              <div className="flex justify-start mt-3">
-                <ArrowRightIcon className="h-5 w-5 text-purple md:block hidden" />
-              </div>
             </div>
             <div className="md:col-span-5 md:order-2 order-1 bg-white rounded-lg shadow-md overflow-hidden">
               <div className="w-full h-48 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
@@ -226,7 +206,7 @@ export function WhatWeDo() {
               </div>
             </div>
           </div>
-          
+
           {/* Hosting Services - Left image, right text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
             <div className="md:col-span-5 bg-white rounded-lg shadow-md overflow-hidden">
@@ -241,12 +221,9 @@ export function WhatWeDo() {
                 We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
                 Our infrastructure is built for speed, security, and reliability so you can focus on growing your business.
               </p>
-              <div className="flex justify-end mt-3">
-                <ArrowLeftIcon className="h-5 w-5 text-purple md:block hidden" />
-              </div>
             </div>
           </div>
-          
+
           {/* Maintenance & Support - Right image, left text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
             <div className="md:col-span-7 md:order-1 order-2 px-4">
