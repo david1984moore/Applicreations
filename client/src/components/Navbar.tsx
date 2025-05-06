@@ -37,11 +37,11 @@ export function Navbar() {
 
   return (
     <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-sm' : ''}`}>
-      <nav className="container mx-auto px-6 py-1">
-        <div className="flex justify-between items-center">
+      <nav className="container mx-auto px-6 py-0">
+        <div className="flex justify-between items-center -my-2">
           <a 
             href="#home" 
-            className="flex items-center"
+            className="flex items-center -my-2"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('home');
