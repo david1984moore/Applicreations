@@ -41,17 +41,6 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        purple: {
-          DEFAULT: "#8A4FFF",
-          dark: "#6035D1",
-          light: "#A375FF",
-          600: "#6035D1",
-        },
-        neutral: {
-          light: "#F8F9FA",
-          DEFAULT: "#EBEBEB",
-          dark: "#333333",
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -90,20 +79,10 @@ export default {
             height: "0",
           },
         },
-        "pulse-subtle": {
-          "0%, 100%": { opacity: 1 },
-          "50%": { opacity: 0.8 },
-        },
-        "float": {
-          "0%, 100%": { transform: 'translateY(0)' },
-          "50%": { transform: 'translateY(-10px)' },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-subtle": "pulse-subtle 3s ease-in-out infinite",
-        "float": "float 5s ease-in-out infinite",
       },
     },
   },
