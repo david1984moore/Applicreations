@@ -108,13 +108,13 @@ export function Hero() {
           >
             <div className="relative flex items-center justify-center">
               {/* Glass card effect */}
-              <div className="rounded-3xl w-full aspect-square bg-white/10 backdrop-blur-xl p-10 border border-white/20 shadow-2xl relative overflow-hidden">
+              <div className="rounded-3xl w-full aspect-square bg-transparent backdrop-blur-sm p-10 border border-white/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/30 rounded-full blur-xl"></div>
                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/30 rounded-full blur-xl"></div>
                 
                 {/* Logo in center */}
                 <div className="flex items-center justify-center h-full">
-                  <LogoImage className="w-60 h-60 object-contain filter drop-shadow-lg" />
+                  <LogoImage className="w-80 h-80 object-contain filter drop-shadow-xl" />
                 </div>
                 
                 {/* Floating features */}

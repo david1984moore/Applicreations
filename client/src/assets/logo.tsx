@@ -24,7 +24,7 @@ export default function LogoImage({ className = "" }: { className?: string }) {
           .cls-10 { fill: #0f0f0f; }
           .cls-11 { fill: #0b0b0b; }
           .cls-12 { fill: #0780fe; }
-          .cls-13 { fill: #fefefe; }
+          .cls-13 { fill: none; }
           .cls-14 { fill: #ededed; }
           .cls-15 { fill: #070707; }
           `}
