@@ -1,5 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { BoltIcon, ArrowPathIcon, CheckCircleIcon, ServerIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
+import { 
+  BoltIcon, 
+  ArrowPathIcon, 
+  CheckCircleIcon, 
+  ServerIcon, 
+  WrenchScrewdriverIcon,
+  GlobeAltIcon,
+  DevicePhoneMobileIcon
+} from '@heroicons/react/24/outline';
 
 // Custom SVG component for icons
 function Icon({ children }: { children: React.ReactNode }) {
@@ -81,12 +89,9 @@ export function WhatWeDo() {
         
         <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 reveal">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
-              alt="Website design mockup" 
-              className="w-full h-64 object-cover"
-              loading="lazy"
-            />
+            <div className="w-full h-64 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
+              <GlobeAltIcon className="h-24 w-24 text-purple" />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold text-neutral-dark mb-3">Web Development</h3>
               <p className="text-neutral-dark/70">
@@ -96,12 +101,9 @@ export function WhatWeDo() {
           </div>
           
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
-              alt="Mobile application interface" 
-              className="w-full h-64 object-cover"
-              loading="lazy"
-            />
+            <div className="w-full h-64 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
+              <DevicePhoneMobileIcon className="h-24 w-24 text-purple" />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold text-neutral-dark mb-3">App Development</h3>
               <p className="text-neutral-dark/70">
