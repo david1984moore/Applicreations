@@ -10,7 +10,6 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       height="89.85"
       className={className}
       aria-label="Applicreations logo"
-      style={{ width: 'auto', height: '50px' }}
     >
       <defs>
         <style>
