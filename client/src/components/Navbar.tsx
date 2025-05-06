@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 
 export function Navbar() {
@@ -7,6 +7,64 @@ export function Navbar() {
   const [currentSection, setCurrentSection] = useState<string>('home');
   const [navBgColor, setNavBgColor] = useState<string>('transparent');
   const [textColor, setTextColor] = useState<string>('white');
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  // Function to determine if a color is light or dark
+  const isColorLight = (color: string): boolean => {
+    // Extract RGB components from color string
+    let r = 0, g = 0, b = 0;
+    
+    // Handle gradient backgrounds
+    if (color.includes('linear-gradient')) {
+      // For gradients, let's assume they're dark by default
+      return false;
+    }
+    
+    // Handle hexadecimal colors
+    if (color.startsWith('#')) {
+      const hex = color.replace('#', '');
+      r = parseInt(hex.substring(0, 2), 16);
+      g = parseInt(hex.substring(2, 4), 16);
+      b = parseInt(hex.substring(4, 6), 16);
+    } 
+    // Handle rgb/rgba colors
+    else if (color.startsWith('rgb')) {
+      const rgba = color.match(/\d+/g);
+      if (rgba) {
+        r = parseInt(rgba[0]);
+        g = parseInt(rgba[1]);
+        b = parseInt(rgba[2]);
+      }
+    }
+    // Handle named colors
+    else {
+      // For named colors like 'white', 'black', etc.
+      if (color === 'white' || color === '#ffffff' || color === '#fff') return true;
+      if (color === 'transparent') return false; // Assume transparent is over a dark background initially
+      if (color === 'black' || color === '#000000' || color === '#000') return false;
+      
+      // For other named colors, we'll need to map them to RGB
+      const tempElement = document.createElement('div');
+      tempElement.style.color = color;
+      document.body.appendChild(tempElement);
+      const computedColor = getComputedStyle(tempElement).color;
+      document.body.removeChild(tempElement);
+      
+      const rgbValues = computedColor.match(/\d+/g);
+      if (rgbValues) {
+        r = parseInt(rgbValues[0]);
+        g = parseInt(rgbValues[1]);
+        b = parseInt(rgbValues[2]);
+      }
+    }
+    
+    // Calculate relative luminance using the sRGB color space formula
+    // This gives more weight to green since human eyes are more sensitive to green
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    
+    // Return true if color is light (luminance > 0.5), false if dark
+    return luminance > 0.5;
+  };
 
   useEffect(() => {
     // Helper function to update logo text colors consistently
@@ -19,8 +77,64 @@ export function Navbar() {
         }
       });
     };
+
+    // Get sections for background detection
+    const homeSection = document.getElementById('home');
+    const servicesSection = document.getElementById('our-services');
+    const whatWeDoSection = document.getElementById('what-we-do');
+    const contactSection = document.getElementById('contact');
+    
+    // Create color sensors for each section to be used with IntersectionObserver
+    const navbarHeight = 35; // Half the navbar height for the observer
+    
+    // Create sensor elements for background color detection
+    const sensors: HTMLDivElement[] = [];
+    
+    // Function to create a sensor element
+    const createSensor = (id: string, zIndex: number = -1) => {
+      const sensor = document.createElement('div');
+      sensor.id = `color-sensor-${id}`;
+      sensor.className = 'color-sensor';
+      sensor.style.position = 'fixed';
+      sensor.style.height = '1px';
+      sensor.style.width = '100%';
+      sensor.style.top = `${navbarHeight}px`;
+      sensor.style.left = '0';
+      sensor.style.pointerEvents = 'none';
+      sensor.style.zIndex = zIndex.toString();
+      sensor.style.opacity = '0';
+      return sensor;
+    };
+    
+    // Create and append sensors to the body
+    const homeSensor = createSensor('home');
+    const servicesSensor = createSensor('our-services');
+    const whatWeDoSensor = createSensor('what-we-do');
+    const contactSensor = createSensor('contact');
+    
+    sensors.push(homeSensor, servicesSensor, whatWeDoSensor, contactSensor);
+    
+    sensors.forEach(sensor => document.body.appendChild(sensor));
+    
+    // Function to get background color at sensor position
+    const getBackgroundColorAt = (element: HTMLElement): string => {
+      const rect = element.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      
+      // Get the element at this position
+      const elementAtPoint = document.elementFromPoint(x, y);
+      
+      if (elementAtPoint) {
+        // Get the computed background color
+        return window.getComputedStyle(elementAtPoint).backgroundColor;
+      }
+      
+      return 'transparent';
+    };
     
     const handleScroll = () => {
+      // Update scrolled state
       if (window.scrollY > 10) {
         setScrolled(true);
       } else {
@@ -33,69 +147,62 @@ export function Navbar() {
       // Calculate current scroll position with an offset for the navbar
       const scrollPosition = window.scrollY + navbarHeight;
       
-      // Get all main sections and their positions
-      const homeSection = document.getElementById('home');
-      const servicesSection = document.getElementById('our-services');
-      const whatWeDoSection = document.getElementById('what-we-do');
-      const contactSection = document.getElementById('contact');
-      
       // Calculate section offsets, adjusting for navbar height
       const homeSectionTop = homeSection ? homeSection.offsetTop - navbarHeight : 0;
       const servicesSectionTop = servicesSection ? servicesSection.offsetTop - navbarHeight : 0;
       const whatWeDoSectionTop = whatWeDoSection ? whatWeDoSection.offsetTop - navbarHeight : 0;
       const contactSectionTop = contactSection ? contactSection.offsetTop - navbarHeight : 0;
       
-      // Debug logging to verify the scroll position and section offsets
+      // For debugging
       console.log('Scroll position:', scrollPosition);
       console.log('Home section top:', homeSectionTop);
       console.log('Services section top:', servicesSectionTop);
       console.log('What We Do section top:', whatWeDoSectionTop);
       console.log('Contact section top:', contactSectionTop);
       
-      // Determine which section is currently in view and set colors accordingly
+      // Determine which section is currently in view and set appropriate background color
       if (homeSection && scrollPosition < (homeSectionTop + homeSection.offsetHeight)) {
         setCurrentSection('home');
         setNavBgColor('linear-gradient(90deg, #6b48ff, #00ddeb)');
-        setTextColor('white');
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('white');
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        
       } else if (servicesSection && scrollPosition < (servicesSectionTop + servicesSection.offsetHeight)) {
         setCurrentSection('our-services');
         setNavBgColor('#f5f5f5');
-        setTextColor('#000000'); // Change to black for maximum contrast
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('#000000'); // Change to black for maximum contrast
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
-        
       } else if (whatWeDoSection && scrollPosition < (whatWeDoSectionTop + whatWeDoSection.offsetHeight)) {
         setCurrentSection('what-we-do');
         setNavBgColor('#ffffff');
-        setTextColor('#000000'); // Change to black for maximum contrast
-        
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('#000000'); // Change to black for maximum contrast
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#e0e0e0');
-        
       } else if (contactSection && scrollPosition >= contactSectionTop) {
         setCurrentSection('contact');
         setNavBgColor('#1f2937');
-        setTextColor('white');
+      }
+      
+      // Detect background color at current position
+      let activeSensor: HTMLDivElement | null = null;
+      
+      // Find which section is currently at the navbar level
+      if (homeSection && scrollPosition < (homeSectionTop + homeSection.offsetHeight)) {
+        activeSensor = homeSensor;
+      } else if (servicesSection && scrollPosition < (servicesSectionTop + servicesSection.offsetHeight)) {
+        activeSensor = servicesSensor;
+      } else if (whatWeDoSection && scrollPosition < (whatWeDoSectionTop + whatWeDoSection.offsetHeight)) {
+        activeSensor = whatWeDoSensor;
+      } else if (contactSection && scrollPosition >= contactSectionTop) {
+        activeSensor = contactSensor;
+      }
+      
+      // If we have an active sensor, check its background color
+      if (activeSensor) {
+        const bgColor = getBackgroundColorAt(activeSensor);
+        const isLight = isColorLight(bgColor);
         
-        // Update logo text fill color with our helper function
-        updateLogoTextColors('white');
-        
-        // Update nav link hover color
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
+        // Update text color based on background brightness
+        const newTextColor = isLight ? '#000000' : 'white';
+        if (textColor !== newTextColor) {
+          setTextColor(newTextColor);
+          updateLogoTextColors(newTextColor);
+          
+          // Update nav link hover color
+          document.documentElement.style.setProperty('--nav-link-hover', isLight ? '#e0e0e0' : '#f0f0f0');
+        }
       }
     };
 
@@ -105,8 +212,14 @@ export function Navbar() {
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      // Clean up - remove sensors
+      sensors.forEach(sensor => {
+        if (document.body.contains(sensor)) {
+          document.body.removeChild(sensor);
+        }
+      });
     };
-  }, []);
+  }, [textColor]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -130,6 +243,7 @@ export function Navbar() {
 
   return (
     <header 
+      ref={navbarRef}
       className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none fixed top-0 left-0 right-0`} 
       style={{ 
         background: scrolled ? navBgColor : 'transparent',
