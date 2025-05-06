@@ -5,10 +5,10 @@ interface LogoProps {
 export function Logo({ className = "" }: LogoProps) {
   return (
     <img 
-      src="https://i.imgur.com/nnPgTbj.png" 
+      src="/images/logo.png" 
       alt="Applicreations Logo" 
       className={className} 
-      style={{ height: "auto", width: "auto" }}
+      style={{ height: "auto", maxWidth: "150px" }}
     />
   );
 }
