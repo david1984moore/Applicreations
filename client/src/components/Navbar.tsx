@@ -29,7 +29,8 @@ export function Navbar() {
       
       // Update colors based on the section background
       if (sectionId === 'home') {
-        // Home section (dark background) - use light text
+        // Home section (dark gradient background) - use light text
+        // Always show a solid background when scrolled (even slightly)
         setNavBgColor(scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent');
         setTextColor('white');
         updateLogoTextColors('white');
@@ -38,7 +39,8 @@ export function Navbar() {
       } 
       else if (sectionId === 'our-services' || sectionId === 'what-we-do') {
         // Services & What We Do sections (light background) - use dark text
-        setNavBgColor(scrolled ? '#f5f5f5' : 'transparent');
+        // Use a light solid background when scrolled (with slight transparency)
+        setNavBgColor(scrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent');
         setTextColor('#000000');
         updateLogoTextColors('#000000');
         document.documentElement.style.setProperty('--nav-link-hover', '#333333');
@@ -46,7 +48,8 @@ export function Navbar() {
       }
       else if (sectionId === 'contact') {
         // Contact section (dark background) - use light text
-        setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.9)' : 'transparent');
+        // Use a dark solid background when scrolled
+        setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.95)' : 'transparent');
         setTextColor('white');
         updateLogoTextColors('white');
         document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
@@ -56,7 +59,8 @@ export function Navbar() {
 
     // Function to handle basic scroll for navbar background effects (blur/shadow)
     const handleBasicScroll = () => {
-      if (window.scrollY > 10) {
+      // Show solid background at the very first pixel of scroll
+      if (window.scrollY > 0) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -226,10 +230,12 @@ export function Navbar() {
       className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none fixed top-0 left-0 right-0`} 
       style={{ 
         background: scrolled ? navBgColor : 'transparent',
-        transition: 'background 0.3s ease, box-shadow 0.3s ease',
+        transition: 'all 0.3s ease',
         zIndex: 1000,
         width: '100%',
-        boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'
+        boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
+        backdropFilter: scrolled ? 'blur(5px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none'
       }}
     >
       <nav 
@@ -333,6 +339,8 @@ export function Navbar() {
           style={{
             background: scrolled ? navBgColor : 'transparent',
             boxShadow: mobileMenuOpen && scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
+            backdropFilter: scrolled ? 'blur(5px)' : 'none',
+            WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none',
             zIndex: 999
           }}
         >
