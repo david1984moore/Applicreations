@@ -28,7 +28,7 @@ export function Navbar() {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 50,
+        top: element.offsetTop,
         behavior: 'smooth'
       });
     }
@@ -36,8 +36,8 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] pb-0 border-none`} style={{ background: 'linear-gradient(90deg, #6b48ff, #00ddeb)' }}>
-      <nav className="container mx-auto px-6 flex items-center h-full border-none" style={{ boxShadow: 'none' }}>
+    <header className={`w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] m-0 p-0 pb-0 border-none outline-none`} style={{ background: 'linear-gradient(90deg, #6b48ff, #00ddeb)', position: 'static' }}>
+      <nav className="container mx-auto px-6 flex items-center h-full m-0 pb-0 border-none outline-none" style={{ boxShadow: 'none' }}>
         <div className="flex justify-between items-center w-full border-none">
           <a 
             href="#home" 

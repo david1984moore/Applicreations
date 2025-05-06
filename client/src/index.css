@@ -120,14 +120,24 @@
   /* The navbar-logo styling is now defined above */
   
   nav {
-    height: 70px; /* Unchanged */
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    padding-bottom: 0;
+    margin: 0;
     background: linear-gradient(90deg, #6b48ff, #00ddeb);
     box-shadow: none;
     border: none;
+    outline: none;
+  }
+  
+  /* Hero section styling for seamless transition */
+  .hero {
+    margin: 0;
+    padding-top: 0;
+    background: linear-gradient(90deg, #6b48ff, #00ddeb);
   }
   
   nav ul {
