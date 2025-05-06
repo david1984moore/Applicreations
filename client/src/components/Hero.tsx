@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import LogoImage from '../assets/logo';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -112,9 +111,12 @@ export function Hero() {
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/30 rounded-full blur-xl"></div>
                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/30 rounded-full blur-xl"></div>
                 
-                {/* Logo in center */}
+                {/* Center content */}
                 <div className="flex items-center justify-center h-full">
-                  <LogoImage className="w-80 h-80 object-contain filter drop-shadow-xl" />
+                  <div className="text-center">
+                    <h2 className="text-3xl font-bold text-white mb-4">Applicreations</h2>
+                    <p className="text-white/80">Modern web solutions</p>
+                  </div>
                 </div>
                 
                 {/* Floating features */}
