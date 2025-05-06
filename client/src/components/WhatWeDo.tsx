@@ -43,9 +43,6 @@ export function WhatWeDo() {
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="text-center mb-12 reveal">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-2">What We Do</h2>
-          <p className="text-lg text-neutral-dark/70 max-w-2xl mx-auto">
-            We help businesses and consumers transform their ideas into exceptional digital experiences.
-          </p>
         </div>
 
         {/* Process Timeline - Desktop view shows horizontal flow */}
