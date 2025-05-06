@@ -4,6 +4,8 @@ import { Logo } from './Logo';
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentSection, setCurrentSection] = useState('home');
+  const [navBackground, setNavBackground] = useState('transparent');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,52 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Intersection Observer to detect which section is in view
+  useEffect(() => {
+    const observerOptions = {
+      rootMargin: '-80px 0px -80px 0px', // Adjust rootMargin to account for navbar height
+      threshold: 0.2
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setCurrentSection(entry.target.id);
+          
+          // Change navbar background based on section
+          switch(entry.target.id) {
+            case 'home':
+              setNavBackground('linear-gradient(90deg, #6b48ff, #00ddeb)');
+              break;
+            case 'our-services':
+              setNavBackground('#f5f5f5');
+              break;
+            case 'what-we-do':
+              setNavBackground('#f5f5f5');
+              break;
+            case 'contact':
+              setNavBackground('linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%)');
+              break;
+            default:
+              setNavBackground('transparent');
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        sectionObserver.unobserve(section);
+      });
     };
   }, []);
 
@@ -36,8 +84,15 @@ export function Navbar() {
   };
 
   return (
-    <header className={`w-full z-50 ${scrolled ? '' : ''} flex items-center h-[70px] m-0 p-0 border-none outline-none`} style={{ background: 'none', position: 'static' }}>
-      <nav className="container mx-auto px-6 flex items-center h-full m-0 border-none outline-none" style={{ boxShadow: 'none', background: 'none' }}>
+    <header className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none fixed top-0 left-0 right-0`}>
+      <nav 
+        className="container mx-auto px-6 flex items-center h-full m-0 border-none outline-none w-full" 
+        style={{ 
+          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none', 
+          background: navBackground, 
+          transition: 'background 0.3s ease, box-shadow 0.3s ease' 
+        }}
+      >
         <div className="flex justify-between items-center w-full border-none">
           <a 
             href="#home" 
