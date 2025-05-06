@@ -37,7 +37,7 @@ export function Navbar() {
 
   return (
     <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-sm' : ''}`}>
-      <nav className="container mx-auto px-6 py-3">
+      <nav className="container mx-auto px-6 py-1">
         <div className="flex justify-between items-center">
           <a 
             href="#home" 
@@ -47,7 +47,7 @@ export function Navbar() {
               handleNavClick('home');
             }}
           >
-            <Logo className="h-24" />
+            <Logo className="h-20" />
           </a>
           
           {/* Desktop Navigation */}
