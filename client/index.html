@@ -12,24 +12,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Trick browsers into not showing a favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22> </text></svg>">
+    <!-- Block Replit favicon -->
+    <style>
+      /* CSS selector to hide any favicon Replit might inject */
+      link[rel*="icon"] {
+        visibility: hidden !important;
+        display: none !important;
+      }
+    </style>
     <script>
-      // Prevent favicon requests entirely
-      const originalHead = document.head.appendChild;
-      document.head.appendChild = function(el) {
-        if (el.rel === 'icon' || el.rel === 'shortcut icon' || el.rel === 'apple-touch-icon') {
-          return document.createElement('meta'); // return dummy element
+      // Intercept and block favicon-related elements
+      const originalCreateElement = document.createElement;
+      document.createElement = function(tagName) {
+        const element = originalCreateElement.call(document, tagName);
+        if (tagName.toLowerCase() === 'link') {
+          const originalSetAttribute = element.setAttribute;
+          element.setAttribute = function(name, value) {
+            if (name.toLowerCase() === 'rel' && 
+                (value.toLowerCase().includes('icon') || 
+                 value.toLowerCase().includes('shortcut'))) {
+              return element; // Block favicon-related links
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
         }
-        return originalHead.call(this, el);
+        return element;
       };
     </script>
-    <link rel="icon" href="about:blank">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
-
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-
   </body>
 </html>
