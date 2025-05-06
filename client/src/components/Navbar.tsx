@@ -4,9 +4,7 @@ import { Logo } from './Logo';
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [currentSection, setCurrentSection] = useState<string>('home');
-  const [navBgColor, setNavBgColor] = useState<string>('transparent');
-  const [textColor, setTextColor] = useState<string>('white');
+  const textColor = 'white';
 
   useEffect(() => {
     // Helper function to update logo text colors consistently
@@ -20,46 +18,9 @@ export function Navbar() {
       });
     };
 
-    // Function to set colors based on the current section
-    const setColorsForSection = (sectionId: string) => {
-      console.log('Current section:', sectionId);
-      
-      // Set the current section for UI state
-      setCurrentSection(sectionId);
-      
-      // Update colors based on the section background
-      if (sectionId === 'home') {
-        // Home section (dark gradient background) - use light text
-        // Always show a solid background when scrolled (even slightly)
-        setNavBgColor(scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent');
-        setTextColor('white');
-        updateLogoTextColors('white');
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        console.log('Home section - white text');
-      } 
-      else if (sectionId === 'our-services' || sectionId === 'what-we-do') {
-        // Services & What We Do sections (light background) - use dark text
-        // Use a light solid background when scrolled (with slight transparency)
-        setNavBgColor(scrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent');
-        setTextColor('#000000');
-        updateLogoTextColors('#000000');
-        document.documentElement.style.setProperty('--nav-link-hover', '#333333');
-        console.log(`${sectionId} section - black text`);
-      }
-      else if (sectionId === 'contact') {
-        // Contact section (dark background) - use light text
-        // Use a dark solid background when scrolled
-        setNavBgColor(scrolled ? 'rgba(31, 41, 55, 0.95)' : 'transparent');
-        setTextColor('white');
-        updateLogoTextColors('white');
-        document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
-        console.log('Contact section - white text');
-      }
-    };
-
-    // Function to handle basic scroll for navbar background effects (blur/shadow)
-    const handleBasicScroll = () => {
-      // Show solid background at the very first pixel of scroll
+    // Function to handle scroll for navbar border and backdrop effects
+    const handleScroll = () => {
+      // Show border at the very first pixel of scroll
       if (window.scrollY > 0) {
         setScrolled(true);
       } else {
@@ -67,143 +28,18 @@ export function Navbar() {
       }
     };
 
-    // Set up the IntersectionObserver to detect when sections enter viewport
-    const setupIntersectionObserver = () => {
-      // Get all the sections we need to track
-      const sections = [
-        document.getElementById('home'),
-        document.getElementById('our-services'),
-        document.getElementById('what-we-do'),
-        document.getElementById('contact')
-      ];
-
-      // Ensure all sections are loaded before proceeding
-      if (sections.some(section => !section)) {
-        console.log('Waiting for all sections to load...');
-        setTimeout(setupIntersectionObserver, 100);
-        return;
-      }
-
-      console.log('All sections found, setting up IntersectionObserver');
-
-      // We need two separate observers with different thresholds
-      // 1. A main observer that tracks when a section is primarily visible
-      // 2. A boundary observer that detects the exact moment a section hits the navbar
-
-      // Observer 1: For precise boundary detection (triggers immediately at boundary)
-      const boundaryObserverOptions = {
-        root: null, // Use the viewport
-        // The key adjustment: negative offset ensures we detect when navbar hits section top edge
-        // Adjust this value to fine-tune exactly when color changes happen
-        rootMargin: '-70px 0px 0px 0px', // Exactly matches navbar height for precise detection
-        threshold: [0, 0.05], // Trigger the moment ANY part of the section reaches the navbar bottom
-      };
-
-      // Observer 2: For stable section detection (less jumpy)
-      const mainObserverOptions = {
-        root: null, // Use the viewport
-        rootMargin: '-70px 0px 0px 0px', // Offset for the navbar height
-        threshold: [0.4], // Trigger when a significant portion is visible
-      };
-
-      // Create a debounced version of setColorsForSection to prevent flickering
-      let lastSectionId = '';
-      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
-      
-      const debouncedSetColors = (sectionId: string) => {
-        // If it's the same section, update immediately
-        if (sectionId === lastSectionId) {
-          return;
-        }
-        
-        // For transitions between dark and light sections, apply immediately
-        const isDarkToLight = 
-          (lastSectionId === 'home' || lastSectionId === 'contact') && 
-          (sectionId === 'our-services' || sectionId === 'what-we-do');
-          
-        const isLightToDark = 
-          (lastSectionId === 'our-services' || lastSectionId === 'what-we-do') && 
-          (sectionId === 'home' || sectionId === 'contact');
-        
-        if (isDarkToLight || isLightToDark) {
-          if (debounceTimer) clearTimeout(debounceTimer);
-          lastSectionId = sectionId;
-          setColorsForSection(sectionId);
-          return;
-        }
-        
-        // Otherwise, debounce to prevent flickering
-        if (debounceTimer) clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-          lastSectionId = sectionId;
-          setColorsForSection(sectionId);
-        }, 100);
-      };
-
-      // Create our observers
-      const boundaryObserver = new IntersectionObserver((entries) => {
-        // When a section crosses the boundary exactly
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Entry is intersecting - section is now partially in view
-            debouncedSetColors(entry.target.id);
-          }
-        });
-      }, boundaryObserverOptions);
-      
-      // Main observer for stable behavior
-      const mainObserver = new IntersectionObserver((entries) => {
-        // Sort entries by intersection ratio for stable section detection
-        const visibleEntries = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        // If we have a visible section with sufficient visibility, use it
-        if (visibleEntries.length > 0) {
-          const topSection = visibleEntries[0].target;
-          debouncedSetColors(topSection.id);
-        }
-      }, mainObserverOptions);
-
-      // Start observing each section with both observers
-      sections.forEach(section => {
-        if (section) {
-          boundaryObserver.observe(section);
-          mainObserver.observe(section);
-        }
-      });
-
-      // Return a cleanup function that will be called when component unmounts
-      return () => {
-        // Clean up by stopping observation of all sections
-        sections.forEach(section => {
-          if (section) {
-            boundaryObserver.unobserve(section);
-            mainObserver.unobserve(section);
-          }
-        });
-        
-        // Disconnect observers to clean up all resources
-        boundaryObserver.disconnect();
-        mainObserver.disconnect();
-      };
-    };
-
-    // Set up scroll listener for basic navbar effects
-    window.addEventListener('scroll', handleBasicScroll);
+    // Set up scroll listener for navbar effects
+    window.addEventListener('scroll', handleScroll);
     
-    // Initialize the intersection observer with a delay to ensure DOM is loaded
-    const observerCleanup = setTimeout(setupIntersectionObserver, 500);
+    // Set initial styles
+    updateLogoTextColors('white');
+    document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
     
-    // Set initial colors based on the initial section (likely 'home')
-    setColorsForSection('home');
-    
-    // Clean up event listeners and timers on component unmount
+    // Clean up event listeners on component unmount
     return () => {
-      window.removeEventListener('scroll', handleBasicScroll);
-      clearTimeout(observerCleanup);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrolled]); // Add scrolled as a dependency since we reference it in the effect
+  }, []); // No dependencies needed anymore
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -227,12 +63,13 @@ export function Navbar() {
 
   return (
     <header 
-      className={`w-full z-50 flex items-center h-[70px] m-0 p-0 border-none outline-none fixed top-0 left-0 right-0`} 
+      className={`w-full z-50 flex items-center h-[70px] m-0 p-0 fixed top-0 left-0 right-0`} 
       style={{ 
-        background: scrolled ? navBgColor : 'transparent',
+        background: scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent',
         transition: 'all 0.3s ease',
         zIndex: 1000,
         width: '100%',
+        borderBottom: scrolled ? '1px solid #ffffff' : 'none',
         boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
         backdropFilter: scrolled ? 'blur(5px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none'
@@ -258,7 +95,7 @@ export function Navbar() {
               transition: 'color 0.3s ease, fill 0.3s ease'
             }}
           >
-            <Logo className={textColor === 'white' ? 'text-white' : 'text-black'} />
+            <Logo className="text-white" />
           </a>
           
           {/* Desktop Navigation */}
@@ -337,7 +174,7 @@ export function Navbar() {
             mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
           style={{
-            background: scrolled ? navBgColor : 'transparent',
+            background: scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent',
             boxShadow: mobileMenuOpen && scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
             backdropFilter: scrolled ? 'blur(5px)' : 'none',
             WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none',
