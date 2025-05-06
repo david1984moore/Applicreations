@@ -5,9 +5,12 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       id="Layer_1" 
       data-name="Layer 1" 
       xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 1080 1078.2"
+      viewBox="313.71 646.92 406.62 89.85"
+      width="406.62"
+      height="89.85"
       className={className}
       aria-label="Applicreations logo"
+      style={{ width: 'auto', height: '50px' }}
     >
       <defs>
         <style>
