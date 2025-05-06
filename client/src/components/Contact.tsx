@@ -88,7 +88,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-gradient">
+    <section id="contact" ref={sectionRef} className="pt-24 pb-20 bg-gradient">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">

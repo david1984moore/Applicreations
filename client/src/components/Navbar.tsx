@@ -4,23 +4,10 @@ import { Logo } from './Logo';
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const textColor = 'white';
 
+  // Check for scroll position on component mount and when scrolling
   useEffect(() => {
-    // Helper function to update logo text colors consistently
-    const updateLogoTextColors = (color: string) => {
-      // Select ALL possible text elements in the logo to ensure consistent coloring
-      const logoTexts = document.querySelectorAll('.cls-1, .cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
-      logoTexts.forEach(text => {
-        if (text instanceof SVGElement) {
-          text.style.fill = color;
-        }
-      });
-    };
-
-    // Function to handle scroll for navbar border and backdrop effects
-    const handleScroll = () => {
-      // Show border at the very first pixel of scroll
+    const checkScrollPosition = () => {
       if (window.scrollY > 0) {
         setScrolled(true);
       } else {
@@ -28,18 +15,31 @@ export function Navbar() {
       }
     };
 
-    // Set up scroll listener for navbar effects
-    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    checkScrollPosition();
     
-    // Set initial styles
-    updateLogoTextColors('white');
+    // Add event listener
+    window.addEventListener('scroll', checkScrollPosition);
+    
+    // Update text colors in SVG logo
+    const updateLogoColors = () => {
+      const logoTexts = document.querySelectorAll('.cls-1, .cls-4, .cls-9, .cls-10, .cls-11, .cls-12, .cls-15');
+      logoTexts.forEach(text => {
+        if (text instanceof SVGElement) {
+          text.style.fill = 'white';
+        }
+      });
+    };
+    
+    // Execute once on mount
+    updateLogoColors();
     document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
     
-    // Clean up event listeners on component unmount
+    // Cleanup listener on unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', checkScrollPosition);
     };
-  }, []); // No dependencies needed anymore
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -61,134 +61,111 @@ export function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  // Determine if gradient should be applied - always show when scrolled
+  const navbarBackground = scrolled 
+    ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' 
+    : 'transparent';
+
+  // Border styles - only when scrolled
+  const borderStyle = scrolled 
+    ? '1px solid #ffffff' 
+    : 'none';
+
+  // Box shadow when scrolled
+  const boxShadowStyle = scrolled 
+    ? '0 2px 10px rgba(0, 0, 0, 0.15)' 
+    : 'none';
+
   return (
     <header 
-      className={`w-full z-50 flex items-center h-[70px] m-0 p-0 fixed top-0 left-0 right-0`} 
+      className="w-full z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0"
       style={{ 
-        background: scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent',
+        background: navbarBackground,
+        borderBottom: borderStyle,
+        boxShadow: boxShadowStyle,
         transition: 'all 0.3s ease',
-        zIndex: 1000,
-        width: '100%',
-        borderBottom: scrolled ? '1px solid #ffffff' : 'none',
-        boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
-        backdropFilter: scrolled ? 'blur(5px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none'
       }}
     >
-      <nav 
-        className="container mx-auto px-6 flex items-center h-full m-0 border-none outline-none" 
-        style={{ 
-          background: 'none'
-        }}
-      >
-        <div className="flex justify-between items-center w-full border-none">
-          <a 
-            href="#home" 
-            className="navbar-logo"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick('home');
-            }}
-            style={{
-              fill: textColor,
-              color: textColor,
-              transition: 'color 0.3s ease, fill 0.3s ease'
-            }}
-          >
-            <Logo className="text-white" />
-          </a>
-          
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 justify-end flex-1 border-none">
-            <li className="border-none">
-              <a 
-                href="#home" 
-                className={`nav-link font-medium text-md transition-colors duration-300`}
-                style={{ 
-                  color: textColor,
-                  transition: 'color 0.3s ease'
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('home');
-                }}
-              >
-                Home
-              </a>
-            </li>
-            <li className="border-none">
-              <a 
-                href="#what-we-do" 
-                className={`nav-link font-medium text-md transition-colors duration-300`}
-                style={{ 
-                  color: textColor,
-                  transition: 'color 0.3s ease'
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('what-we-do');
-                }}
-              >
-                What We Do
-              </a>
-            </li>
-            <li className="border-none">
-              <a 
-                href="#contact" 
-                className={`nav-link font-medium text-md transition-colors duration-300`}
-                style={{ 
-                  color: textColor,
-                  transition: 'color 0.3s ease'
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('contact');
-                }}
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-          
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden">
-            <button 
-              aria-label="Toggle mobile menu"
-              className="focus:outline-none"
-              style={{ 
-                color: textColor,
-                transition: 'color 0.3s ease'
-              }}
-              onClick={toggleMobileMenu}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <nav className="container mx-auto px-6 flex items-center justify-between h-full">
+        <a 
+          href="#home" 
+          className="navbar-logo"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick('home');
+          }}
+        >
+          <Logo className="text-white" />
+        </a>
         
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex space-x-6">
+          <li>
+            <a 
+              href="#home" 
+              className="nav-link font-medium text-md transition-colors duration-300 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home');
+              }}
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#what-we-do" 
+              className="nav-link font-medium text-md transition-colors duration-300 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('what-we-do');
+              }}
+            >
+              What We Do
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#contact" 
+              className="nav-link font-medium text-md transition-colors duration-300 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('contact');
+              }}
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+        
+        {/* Mobile Navigation Button */}
+        <div className="md:hidden">
+          <button 
+            aria-label="Toggle mobile menu"
+            className="text-white focus:outline-none"
+            onClick={toggleMobileMenu}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      
         {/* Mobile Navigation Menu */}
         <div 
-          className={`absolute left-0 right-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out border-none ${
+          className={`absolute left-0 right-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
           style={{
-            background: scrolled ? 'linear-gradient(90deg, #6b48ff, #00ddeb)' : 'transparent',
-            boxShadow: mobileMenuOpen && scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
-            backdropFilter: scrolled ? 'blur(5px)' : 'none',
-            WebkitBackdropFilter: scrolled ? 'blur(5px)' : 'none',
+            background: navbarBackground,
+            boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
             zIndex: 999
           }}
         >
           <div className="pt-2 pb-1 space-y-2 px-6">
             <a 
               href="#home" 
-              className="block font-medium py-1 text-sm transition-colors duration-300"
-              style={{ 
-                color: textColor,
-                transition: 'color 0.3s ease'
-              }}
+              className="block font-medium py-1 text-sm text-white"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -198,11 +175,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block font-medium py-1 text-sm transition-colors duration-300"
-              style={{ 
-                color: textColor,
-                transition: 'color 0.3s ease'
-              }}
+              className="block font-medium py-1 text-sm text-white"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -212,11 +185,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block font-medium py-1 text-sm transition-colors duration-300"
-              style={{ 
-                color: textColor,
-                transition: 'color 0.3s ease'
-              }}
+              className="block font-medium py-1 text-sm text-white"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
