@@ -50,6 +50,146 @@
     background: linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%);
   }
   
+  /* Hero section styles */
+  .bg-hero-gradient {
+    background: radial-gradient(ellipse at top left, rgba(138, 79, 255, 1), rgba(62, 139, 255, 0.8)), 
+                linear-gradient(135deg, rgba(138, 79, 255, 0.9) 0%, rgba(62, 139, 255, 0.9) 100%);
+    backdrop-filter: blur(5px);
+  }
+  
+  .shadow-glow {
+    background: linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%);
+    box-shadow: 0 10px 30px -10px rgba(138, 79, 255, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  }
+  
+  .shadow-glow-intense {
+    box-shadow: 0 15px 40px -10px rgba(138, 79, 255, 0.7),
+                inset 0 1px 3px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(138, 79, 255, 0.3);
+  }
+  
+  /* Floating shapes animations */
+  .floating-shape {
+    position: absolute;
+    opacity: 0.6;
+    filter: blur(10px);
+    animation: float 20s infinite alternate ease-in-out;
+  }
+  
+  .shape-circle-1 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 79, 255, 0.6) 0%, rgba(138, 79, 255, 0) 70%);
+    top: 20%;
+    right: 15%;
+  }
+  
+  .shape-circle-2 {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(62, 139, 255, 0.5) 0%, rgba(62, 139, 255, 0) 70%);
+    bottom: 10%;
+    left: 5%;
+  }
+  
+  .shape-circle-3 {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 10%;
+    left: 30%;
+  }
+  
+  .shape-blob-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(138, 79, 255, 0.2) 0%, rgba(138, 79, 255, 0) 70%);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    top: -5%;
+    left: -5%;
+    transform-origin: center center;
+    animation: morph 15s infinite alternate ease-in-out;
+  }
+  
+  .shape-blob-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(ellipse, rgba(62, 139, 255, 0.2) 0%, rgba(62, 139, 255, 0) 70%);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    bottom: -5%;
+    right: -5%;
+    transform-origin: center center;
+    animation: morph 20s infinite alternate ease-in-out;
+  }
+  
+  .bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  
+  /* Animations */
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-15px) translateX(15px);
+    }
+    50% {
+      transform: translateY(10px) translateX(-10px);
+    }
+    75% {
+      transform: translateY(-5px) translateX(20px);
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+  }
+  
+  @keyframes morph {
+    0% {
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+    25% { 
+      border-radius: 40% 60% 70% 30% / 60% 40% 50% 40%;
+    }
+    50% { 
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    75% { 
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% { 
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Animation utilities */
+  .animate-float {
+    animation: float 10s infinite alternate ease-in-out;
+  }
+  
+  .animate-float-slow {
+    animation: float 15s infinite alternate ease-in-out;
+  }
+  
   .btn-gradient {
     background: linear-gradient(135deg, #6035D1 0%, #2D6BCE 100%);
     transition: all 0.3s ease;
