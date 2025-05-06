@@ -75,13 +75,22 @@ export function Navbar() {
   };
 
   const handleNavClick = (sectionId: string) => {
-    // Using location.hash to navigate to the section
-    // This leverages the native browser behavior for handling anchor links
-    // Combined with our CSS scroll-padding-top and scroll-margin-top, this will work correctly
     const section = document.getElementById(sectionId);
     
     if (section) {
-      window.location.hash = sectionId;
+      // Force scroll to section using scrollIntoView even if hash is the same
+      section.scrollIntoView({ behavior: 'smooth' });
+      
+      // Add a small delay and then adjust for navbar height
+      setTimeout(() => {
+        window.scrollBy({
+          top: -70, // Adjust for navbar height
+          behavior: 'smooth'
+        });
+      }, 50);
+      
+      // Update hash without causing a scroll (which we've already handled)
+      history.pushState(null, '', `#${sectionId}`);
     } else {
       console.error("Section not found:", sectionId);
     }
