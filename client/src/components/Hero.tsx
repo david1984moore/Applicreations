@@ -28,7 +28,7 @@ export function Hero() {
     <section 
       id="home" 
       ref={heroRef}
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-28 overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient z-0"></div>
@@ -114,7 +114,7 @@ export function Hero() {
                 
                 {/* Logo in center */}
                 <div className="flex items-center justify-center h-full">
-                  <LogoImage className="w-40 h-40 object-contain filter drop-shadow-lg" />
+                  <LogoImage className="w-60 h-60 object-contain filter drop-shadow-lg" />
                 </div>
                 
                 {/* Floating features */}
