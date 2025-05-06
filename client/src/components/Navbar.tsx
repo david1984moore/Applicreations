@@ -36,9 +36,9 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[70px] pb-0`}>
-      <nav className="container mx-auto px-6 flex items-center h-full">
-        <div className="flex justify-between items-center w-full">
+    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''} flex items-center h-[70px] pb-0 border-none`}>
+      <nav className="container mx-auto px-6 flex items-center h-full border-none">
+        <div className="flex justify-between items-center w-full border-none">
           <a 
             href="#home" 
             className="navbar-logo"
@@ -51,8 +51,8 @@ export function Navbar() {
           </a>
           
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 justify-end flex-1">
-            <li>
+          <ul className="hidden md:flex space-x-6 justify-end flex-1 border-none">
+            <li className="border-none">
               <a 
                 href="#home" 
                 className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
@@ -64,7 +64,7 @@ export function Navbar() {
                 Home
               </a>
             </li>
-            <li>
+            <li className="border-none">
               <a 
                 href="#what-we-do" 
                 className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
@@ -76,7 +76,7 @@ export function Navbar() {
                 What We Do
               </a>
             </li>
-            <li>
+            <li className="border-none">
               <a 
                 href="#contact" 
                 className="nav-link text-neutral-dark hover:text-purple font-medium text-md transition-colors duration-300"
@@ -106,7 +106,7 @@ export function Navbar() {
         
         {/* Mobile Navigation Menu */}
         <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-none ${
             mobileMenuOpen ? 'max-h-40' : 'max-h-0'
           }`}
         >

@@ -71,6 +71,11 @@
   * {
     @apply border-border;
   }
+  
+  /* Remove borders from navbar elements */
+  nav, nav *, header, header * {
+    @apply border-none;
+  }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
