@@ -1,0 +1,47 @@
+**Prompt for Replit Agent:**
+
+Create a business website for "Applicreations," a web and app development service based in Wilmington, Delaware. The website must be polished, professional, modern, sleek, minimalist, and reflect the quality of a high-end tech company. Follow only the best coding practices and the highest standards for well-structured, clean, and maintainable code. The site must be fully responsive, designed for both large screens and optimized for mobile users, ensuring an effortless and intuitive user experience across devices.
+
+**Design and Structure Requirements:**
+
+1. **Navigation (Navigation Bar and Footer):**
+   - The navigation bar and footer must have a white background.
+   - The navigation bar should include links to "Home," "What We Do," and "Contact."
+   - On mobile view, the navigation bar should use a standard hamburger icon. When clicked, the navigation bar must dynamically extend downward to reveal the navigation links, and when clicked again, it should dynamically collapse upward to its default state.
+   - The footer should include the business information: "Based in Wilmington, Delaware" and "Email: solutions@applicreations.com."
+
+2. **Hero Section:**
+   - Create a minimalist hero section that prominently displays the brand tagline: "Digital solutions to real world problems."
+   - Include a single call-to-action button (e.g., "Get Started") that links to the Contact section. Style the button to be visually prominent yet elegant, using a color from the logo’s palette (e.g., the darker purple shade) with white text, and add a subtle hover effect (e.g., slight color change or scale).
+   - Use very few words to ensure the user understands the core offering (web and app development services) in 10 seconds or less.
+
+3. **"What We Do" Section (or "Our Process"):**
+   - Highlight the design process: "Ideate, Iterate, Congratulate."
+   - Use simple, minimalist icons to represent each step.
+   - Include a brief description that communicates Applicreations services both businesses and consumers by creating websites and apps.
+   - Keep the wording professional, concise, and focused on user flow, ensuring quick comprehension.
+
+4. **Contact Section:**
+   - Include a contact form for prospective customers with the following fields:
+     - First Name (required)
+     - Last Name (required)
+     - Email (required)
+     - Phone Number (optional)
+     - Business Name (optional)
+     - A text area to describe their project (required)
+   - Implement client-side form validation, ensuring required fields are filled before submission. Provide clear, user-friendly feedback with success and error messages (e.g., 'Thank you for your submission!' or 'Please fill in all required fields'). Style the messages to match the minimalist design.
+   - Ensure the form is styled elegantly and is easy to use on both desktop and mobile.
+
+**Additional Requirements:**
+
+- **SEO Optimization:** Implement best practices for SEO, including proper meta tags, semantic HTML, alt text for images, and fast loading times.
+- **Design Inspiration:** Draw inspiration from the visual style and elegance of https://microfeller.com/ghost-ar and https://developers.snap.com/. The design should be very visual, elegant, and beautiful, with an effortless scrolling experience.
+- **Color Scheme and Logo:** Derive the color scheme from the Applicreations logo, which features shades of purple and blue. Incorporate the logo into the site (e.g., in the navigation bar).
+- **Typography:** Use modern, clean sans-serif fonts inspired by the typography of the reference sites. Ensure a strong visual hierarchy with appropriate font sizes, weights, and spacing for headings, subheadings, and body text to enhance readability and elegance.
+- **Animations:** Incorporate subtle, tasteful animations to enhance the user experience, such as smooth scrolling, fade-in effects for sections as the user scrolls, and minimal hover effects on buttons and interactive elements. Ensure animations are lightweight and do not compromise performance.
+- **Performance:** Optimize all images and assets (including the logo) for fast loading times, using modern formats like WebP where appropriate, and ensure lazy loading for images below the fold to improve performance.
+- **Accessibility:** Ensure the site is fully accessible, supporting keyboard navigation, screen reader compatibility, and sufficient color contrast ratios for text and interactive elements, following WCAG 2.1 guidelines.
+- **Favicon and Compatibility:** Create a favicon using the Applicreations logo and ensure the site is fully compatible across modern browsers (Chrome, Firefox, Safari, Edge) with consistent styling and functionality.
+- **Scalability:** Structure the code in a modular way to allow for easy addition of future sections (e.g., a blog, portfolio, or team page) without disrupting the existing design.
+- **Testing:** Thoroughly test the site for responsiveness across devices (desktop, tablet, mobile) and debug any issues to ensure a flawless user experience.
+- **User Experience:** Ensure the overall design is well-structured, intuitive, and simple. Prioritize good taste in design, focusing on a seamless and elegant user experience.
