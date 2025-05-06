@@ -13,20 +13,20 @@ export default function LogoImage({ className = "" }: { className?: string }) {
         <style>
           {`
           .cls-1 { fill: #111; }
-          .cls-2 { fill: #f6f6f6; }
+          .cls-2 { fill: #1f2937; } /* Match text color */
           .cls-3 { fill: #b255fe; }
-          .cls-4 { fill: #090909; }
-          .cls-5 { fill: #cdf4fd; }
+          .cls-4 { fill: #1f2937; } /* Standardize dark text */
+          .cls-5 { fill: #1f2937; } /* Match text color */
           .cls-6 { fill: #59b2cf; }
           .cls-7 { fill: #d7b6ed; }
-          .cls-8 { fill: #12fcf4; }
-          .cls-9 { fill: #0d0d0d; }
-          .cls-10 { fill: #0f0f0f; }
-          .cls-11 { fill: #0b0b0b; }
-          .cls-12 { fill: #0780fe; }
+          .cls-8 { fill: #1f2937; } /* Match text color */
+          .cls-9 { fill: #1f2937; } /* Standardize dark text */
+          .cls-10 { fill: #1f2937; } /* Standardize dark text */
+          .cls-11 { fill: #1f2937; } /* Standardize dark text */
+          .cls-12 { fill: #1f2937; } /* Match text color */
           .cls-13 { fill: none; }
-          .cls-14 { fill: #ededed; }
-          .cls-15 { fill: #070707; }
+          .cls-14 { fill: #1f2937; } /* Match text color */
+          .cls-15 { fill: #1f2937; } /* Standardize dark text */
           `}
         </style>
       </defs>
