@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --scrollbar-width: 8px;
+}
+
 @layer base {
   /* Navbar logo styling */
   .navbar-logo {

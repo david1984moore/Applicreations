@@ -7,6 +7,28 @@ export function Navbar() {
 
   // Check for scroll position on component mount and when scrolling
   useEffect(() => {
+    // Calculate scrollbar width to prevent navbar from extending over scrollbar
+    const calculateScrollbarWidth = () => {
+      // Create outer div
+      const outer = document.createElement('div');
+      outer.style.visibility = 'hidden';
+      outer.style.overflow = 'scroll';
+      document.body.appendChild(outer);
+      
+      // Create inner div
+      const inner = document.createElement('div');
+      outer.appendChild(inner);
+      
+      // Calculate the width difference
+      const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+      
+      // Remove divs
+      outer.parentNode?.removeChild(outer);
+      
+      // Set the scrollbar width variable
+      document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+    };
+
     const checkScrollPosition = () => {
       if (window.scrollY > 0) {
         setScrolled(true);
@@ -15,11 +37,15 @@ export function Navbar() {
       }
     };
 
-    // Initial check - force it to be true to always show background
-    setScrolled(true);
+    // Calculate scrollbar width
+    calculateScrollbarWidth();
+    
+    // Initial check
+    checkScrollPosition();
     
     // Add event listener
     window.addEventListener('scroll', checkScrollPosition);
+    window.addEventListener('resize', calculateScrollbarWidth);
     
     // Update text colors in SVG logo
     const updateLogoColors = () => {
@@ -38,6 +64,7 @@ export function Navbar() {
     // Cleanup listener on unmount
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
+      window.removeEventListener('resize', calculateScrollbarWidth);
     };
   }, []);
 
@@ -64,20 +91,21 @@ export function Navbar() {
   // Always apply gradient background regardless of scroll position
   const navbarBackground = 'linear-gradient(90deg, #6b48ff, #00ddeb)';
 
-  // Always show border
-  const borderStyle = '1px solid #ffffff';
+  // Border only when scrolled
+  const borderStyle = scrolled ? '1px solid #ffffff' : 'none';
 
-  // Always show box shadow
-  const boxShadowStyle = '0 2px 10px rgba(0, 0, 0, 0.15)';
+  // Box shadow only when scrolled
+  const boxShadowStyle = scrolled ? '0 2px 10px rgba(0, 0, 0, 0.15)' : 'none';
 
   return (
     <header 
-      className="w-full z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0"
+      className="w-[100%] z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0"
       style={{ 
         background: navbarBackground,
         borderBottom: borderStyle,
         boxShadow: boxShadowStyle,
         transition: 'all 0.3s ease',
+        width: 'calc(100% - var(--scrollbar-width, 0px))',
       }}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between h-full">
@@ -153,7 +181,8 @@ export function Navbar() {
           style={{
             background: navbarBackground,
             boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
-            zIndex: 999
+            zIndex: 999,
+            width: 'calc(100% - var(--scrollbar-width, 0px))'
           }}
         >
           <div className="pt-2 pb-1 space-y-2 px-6">
