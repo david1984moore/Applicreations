@@ -93,6 +93,13 @@
   
   html {
     overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Adjusts all anchor links to account for fixed navbar */
+  }
+  
+  /* Section anchor points */
+  section[id] {
+    scroll-margin-top: 70px;
   }
   
   body {

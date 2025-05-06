@@ -75,22 +75,18 @@ export function Navbar() {
   };
 
   const handleNavClick = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Calculate the offset considering the fixed navbar height
-      const navbarHeight = 70; // Height of the navbar
-      
-      // Get the element's position relative to the top of the document
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      
-      // Adjust for navbar height
-      const offsetPosition = elementPosition - navbarHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+    // Using location.hash to navigate to the section
+    // This leverages the native browser behavior for handling anchor links
+    // Combined with our CSS scroll-padding-top and scroll-margin-top, this will work correctly
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+      window.location.hash = sectionId;
+    } else {
+      console.error("Section not found:", sectionId);
     }
+    
+    // Close mobile menu if open
     setMobileMenuOpen(false);
   };
 
