@@ -204,11 +204,9 @@ export function WhatWeDo() {
           </div>
 
           {/* Hosting Services - Left image, right text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
-            <div className="md:col-span-5 bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="w-full h-48 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
-                <ServerIcon className="h-20 w-20 text-purple" />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
+            <div className="md:col-span-5 flex justify-center items-center py-8">
+              <ServerIcon className="h-32 w-32 text-purple" />
             </div>
             <div className="md:col-span-7 px-4">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Hosting Services</h3>
@@ -221,7 +219,7 @@ export function WhatWeDo() {
           </div>
 
           {/* Maintenance & Support - Right image, left text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal md:px-6 lg:px-12">
             <div className="md:col-span-7 md:order-1 order-2 px-4">
               <h3 className="text-2xl font-semibold text-neutral-dark mb-3">Maintenance & Support</h3>
               <div className="w-16 h-1 bg-gradient mb-4"></div>
@@ -230,10 +228,8 @@ export function WhatWeDo() {
                 Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
               </p>
             </div>
-            <div className="md:col-span-5 md:order-2 order-1 bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="w-full h-48 bg-gradient-to-br from-purple/10 to-purple/30 flex items-center justify-center">
-                <WrenchScrewdriverIcon className="h-20 w-20 text-purple" />
-              </div>
+            <div className="md:col-span-5 md:order-2 order-1 flex justify-center items-center py-8">
+              <WrenchScrewdriverIcon className="h-32 w-32 text-purple" />
             </div>
           </div>
         </div>
