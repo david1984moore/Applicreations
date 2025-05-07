@@ -114,10 +114,10 @@
   width: 6px;
   height: 14px;
   background-color: #6b7280; /* Gray-500 color */
-  top: -36px;
-  right: -12px;
+  top: -14px; /* Position from the top of the roof */
+  right: 8px; /* Position from the right of the roof */
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(3px);
   z-index: 5;
 }
 
@@ -128,30 +128,30 @@
   background-color: #e5e7eb;
   border-radius: 50%;
   opacity: 0;
-  top: -40px;
-  right: -13px;
+  top: -22px; /* Position slightly above the chimney */
+  right: 8px; /* Match the chimney's right position */
   z-index: 5;
 }
 
 .smoke.smoke-1 {
   width: 6px;
   height: 6px;
-  top: -38px;
-  right: -12px;
+  top: -20px;
+  right: 8px;
 }
 
 .smoke.smoke-2 {
   width: 8px;
   height: 8px;
-  top: -45px;
-  right: -10px;
+  top: -28px;
+  right: 7px;
 }
 
 .smoke.smoke-3 {
   width: 10px;
   height: 10px;
-  top: -52px;
-  right: -8px;
+  top: -36px;
+  right: 6px;
 }
 
 /* Animation classes applied through JS */
@@ -221,11 +221,15 @@
     opacity: 0;
     transform: translateY(10px);
   }
-  40% {
+  25% {
     opacity: 0;
     transform: translateY(10px);
   }
-  55% {
+  35% {
+    opacity: 0.5;
+    transform: translateY(5px);
+  }
+  45% {
     opacity: 1;
     transform: translateY(0);
   }
