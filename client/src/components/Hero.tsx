@@ -30,11 +30,32 @@ export function Hero() {
         Building apps and websites that solve problems.
       </p>
       
-      {/* Microfeller-style "Get Started Now" button */}
+      {/* Microfeller-style "Get Started Now" button with enhanced interactivity */}
       <a 
         href="#contact"
         className={`contact-button ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
+        onClick={(e) => {
+          // Create ripple effect
+          const button = e.currentTarget;
+          const ripple = document.createElement('span');
+          const rect = button.getBoundingClientRect();
+          
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.className = 'ripple-animation';
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+          
+          button.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        }}
       >
         <span className="contact-button-text">
           Get Started Now
