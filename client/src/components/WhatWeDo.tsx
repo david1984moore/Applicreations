@@ -53,7 +53,7 @@ export function WhatWeDo() {
         {/* Desktop View */}
         <div className="hidden md:flex gap-8 reveal">
           {/* Card 1: Ideate */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:transform hover:scale-105 transition-all duration-300">
+          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
               <Icon>
                 <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@ export function WhatWeDo() {
           </div>
 
           {/* Card 2: Iterate */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:transform hover:scale-105 transition-all duration-300">
+          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
               <Icon>
                 <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@ export function WhatWeDo() {
           </div>
 
           {/* Card 3: Congratulate */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:transform hover:scale-105 transition-all duration-300">
+          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
               <Icon>
                 <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
