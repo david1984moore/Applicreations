@@ -11,9 +11,9 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       data-name="Layer 1" 
       xmlns="http://www.w3.org/2000/svg" 
       preserveAspectRatio="xMidYMid meet"
-      viewBox="313.71 630.92 406.62 115.85"
-      width="100%"
-      height="100%"
+      viewBox="313.71 628.92 406.62 119.85"
+      width="120%"  
+      height="120%"
       className={className}
       aria-label="Applicreations logo"
     >
