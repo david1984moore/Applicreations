@@ -30,13 +30,56 @@ export function Hero() {
         Building apps and websites that solve problems.
       </p>
       
-      {/* CTA Button with animation - Modified to have instant dark mode transition on hover */}
+      {/* CTA Button with animation - Recreated from the provided spec */}
       <a 
         href="#contact"
-        className={`cta-button inline-flex items-center justify-center py-[15px] px-[40px] bg-white text-[#5a3fe6] font-[600] text-[1.2rem] rounded-[50px] border-0 hover:bg-[#333] hover:text-white ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out`}
+        className={`${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
       >
-        Get Started Now
+        <button className="link-button group/link-button relative inline-block w-max cursor-pointer select-none items-center rounded-full px-4 py-2 text-2 capitalize [--text-color:white]">
+          <span className="grid grid-flow-col items-center gap-x-2.5 text-[--text-color]">
+            <span className="size-2.5 rounded-full bg-current"></span>
+            <span className="overflow-clip">
+              <span className="block animate-transform" style={{ "--in-transform-1": "translateY(0%)", "--in-transform-2": "translateY(-100%)", "--duration": "400ms", "--delay": "0ms" } as React.CSSProperties}>
+                <span>
+                  Get Started Now
+                </span>
+              </span>
+            </span>
+          </span>
+          <span 
+            style={{ 
+              '--top': '14.199998069263137px', 
+              '--right': '79.579045776872px', 
+              '--bottom': '14.20001163171377px', 
+              '--left': '16px',
+              '--in-transform-1': 'scale(0.5)',
+              '--in-transform-2': 'scale(0.1)'
+            } as React.CSSProperties} 
+            className="absolute bottom-[--bottom] left-[--left] right-[--right] top-[--top] rounded-full bg-[--text-color] transition-[top,right,bottom,left] group-hover/link-button:rounded-full"
+          ></span>
+          <span 
+            className="grid grid-flow-col items-center gap-x-2.5 invert span-full" 
+            aria-hidden 
+            style={{ 
+              '--in-transform-1': 'translateY(0%)', 
+              '--in-transform-2': 'translateY(-100%)', 
+              '--duration': '400ms', 
+              '--delay': '0ms'
+            } as React.CSSProperties
+          }>
+            <span 
+              className="size-2.5 animate-transform rounded-full bg-current" 
+              style={{ 
+                '--in-transform-1': 'scale(0.5)', 
+                '--in-transform-2': 'scale(0.1)',
+                '--duration': '400ms', 
+                '--delay': '0ms'
+              } as React.CSSProperties
+            }></span>
+          </span>
+          <span className="absolute inset-0 rounded-full opacity-20 ring-1 ring-inset ring-[--text-color]"></span>
+        </button>
       </a>
     </section>
   );

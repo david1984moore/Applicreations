@@ -79,10 +79,15 @@ export default {
             height: "0",
           },
         },
+        "transform": {
+          from: { transform: "var(--in-transform-1)" },
+          to: { transform: "var(--in-transform-2)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "transform": "transform var(--duration, 400ms) ease-in-out var(--delay, 0ms)",
       },
     },
   },
