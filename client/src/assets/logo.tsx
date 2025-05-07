@@ -3,7 +3,7 @@ export default function LogoImage({ className = "" }: { className?: string }) {
   // Determine if we need white text based on class name
   // Now we'll use direct styling from Navbar.tsx via DOM manipulation
   // This variable is a fallback for initial render
-  const useWhiteText = className?.includes('text-white') || false;
+  const useWhiteText = className?.includes('text-white') || className?.includes('h-full') || false;
   
   return (
     <svg 

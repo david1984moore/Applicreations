@@ -23,12 +23,16 @@ export function Footer() {
         </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
-          <div className="flex items-center justify-center">
-            <span className="text-sm text-white/80 mr-2">&copy; {currentYear}</span>
-            <div className="h-6 w-24 mx-1">
-              <Logo className="text-white" />
+          {/* Logo section in the middle */}
+          <div className="mb-4 flex justify-center">
+            <div className="h-10 w-40">
+              <Logo className="text-white h-full w-full" />
             </div>
-            <span className="text-sm text-white/80 ml-2">All rights reserved.</span>
+          </div>
+          
+          {/* Copyright section */}
+          <div className="flex items-center justify-center">
+            <span className="text-sm text-white/80">&copy; {currentYear} applicreations ALL rights reserved.</span>
           </div>
         </div>
       </div>
