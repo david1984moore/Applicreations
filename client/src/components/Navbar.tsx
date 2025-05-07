@@ -177,32 +177,38 @@ export function Navbar() {
         <div className="md:hidden">
           <button 
             aria-label="Toggle mobile menu"
-            className="text-white focus:outline-none"
+            className="text-white p-2 rounded-md hover:bg-white/10 focus:outline-none transition-colors"
             onClick={toggleMobileMenu}
+            aria-expanded={mobileMenuOpen}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {mobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       
         {/* Mobile Navigation Menu */}
         <div 
-          className={`absolute left-0 top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-40' : 'max-h-0'
+          className={`fixed left-0 w-full top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
           }`}
           style={{
             background: navbarBackground,
             boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
             zIndex: 999,
-            width: 'calc(100% - var(--scrollbar-width))', // Match header width
-            right: 'var(--scrollbar-width)',
+            transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
           }}
         >
-          <div className="pt-2 pb-1 space-y-2 px-6">
+          <div className="pt-3 pb-3 space-y-4 px-6">
             <a 
               href="#home" 
-              className="block font-medium py-1 text-sm text-white"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -212,7 +218,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block font-medium py-1 text-sm text-white"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -222,7 +228,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block font-medium py-1 text-sm text-white"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
