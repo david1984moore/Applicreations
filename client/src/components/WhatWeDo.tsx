@@ -37,7 +37,7 @@ export function WhatWeDo() {
     <section id="what-we-do" ref={sectionRef} className="pt-24 pb-12 bg-neutral-light light-bg-section">
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="text-center mb-12 reveal">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-2">What We Do</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">What We Do</h2>
         </div>
 
         {/* Process Timeline - Desktop view shows horizontal flow */}
