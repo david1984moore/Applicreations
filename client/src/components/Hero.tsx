@@ -30,13 +30,13 @@ export function Hero() {
         Building apps and websites that solve problems.
       </p>
       
-      {/* Animated Get Started Button with advanced hover effects */}
+      {/* Microfeller-style "Get Started Now" button */}
       <a 
         href="#contact"
-        className={`get-started-button ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700 ease-out`}
+        className={`contact-button ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
       >
-        <span className="button-content">
+        <span className="contact-button-text">
           Get Started Now
         </span>
       </a>
