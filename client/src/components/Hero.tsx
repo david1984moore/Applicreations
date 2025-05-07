@@ -24,10 +24,10 @@ export function Hero() {
       
       {/* Short tagline with animation */}
       <p 
-        className={`text-[1.3rem] text-white mb-[30px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`text-[1.5rem] font-semibold text-white mb-[30px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         style={{ transitionDelay: '0.4s' }}
       >
-        We build stunning websites and apps tailored for your success.
+        Building apps and websites that solve problems.
       </p>
       
       {/* CTA Button with animation - Modified to have instant dark mode transition on hover */}
