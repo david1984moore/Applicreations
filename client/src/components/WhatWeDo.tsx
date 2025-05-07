@@ -75,7 +75,9 @@ function HammerContainer({ children }: { children: React.ReactNode }) {
         <div className="hammer-head"></div>
         <div className="hammer-handle"></div>
       </div>
-      <div className={`nail ${isAnimating ? 'animate-nail' : ''}`}></div>
+      <div className={`nail ${isAnimating ? 'animate-nail' : ''}`}>
+        <div className="nail-head"></div>
+      </div>
       
       {children}
     </div>
