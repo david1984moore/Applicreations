@@ -1,10 +1,16 @@
 import { useEffect, useRef } from 'react';
 
 // Custom SVG component for process icons with the new design
-function Icon({ children }: { children: React.ReactNode }) {
+function Icon({ children, color = "bg-white/20", iconColor = "text-white" }: { 
+  children: React.ReactNode;
+  color?: string;
+  iconColor?: string;
+}) {
   return (
-    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto relative z-10 shadow-lg">
-      {children}
+    <div className={`w-16 h-16 rounded-full ${color} backdrop-blur-sm flex items-center justify-center mx-auto relative z-10 shadow-lg`}>
+      <div className={iconColor}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -52,11 +58,11 @@ export function WhatWeDo() {
 
         {/* Desktop View */}
         <div className="hidden md:flex gap-8 reveal">
-          {/* Card 1: Ideate */}
+          {/* Card 1: Ideate - Orange/Red Color Scheme */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </Icon>
@@ -67,11 +73,11 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 2: Iterate */}
+          {/* Card 2: Iterate - Green Color Scheme */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </Icon>
@@ -82,11 +88,11 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 3: Congratulate */}
+          {/* Card 3: Congratulate - Pink Color Scheme */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </Icon>
@@ -100,11 +106,11 @@ export function WhatWeDo() {
 
         {/* Mobile View - Stacked cards */}
         <div className="md:hidden space-y-6 reveal">
-          {/* Card 1: Ideate */}
+          {/* Card 1: Ideate - Orange/Red Color Scheme */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </Icon>
@@ -115,11 +121,11 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 2: Iterate */}
+          {/* Card 2: Iterate - Green Color Scheme */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </Icon>
@@ -130,11 +136,11 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 3: Congratulate */}
+          {/* Card 3: Congratulate - Pink Color Scheme */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon>
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </Icon>
