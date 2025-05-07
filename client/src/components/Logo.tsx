@@ -6,6 +6,10 @@ interface LogoProps {
 }
 
 export function Logo({ className = "" }: LogoProps) {
-  // Ensure the text-white class is explicitly added when in the footer
-  return <LogoSvg className={cn(className)} />;
+  // Add a specific class for larger size in the navbar
+  return (
+    <div className="w-36 h-auto">
+      <LogoSvg className={cn(className)} />
+    </div>
+  );
 }
