@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { FooterLogo } from './FooterLogo';
 
 export function Footer() {
   const [currentYear] = useState(new Date().getFullYear());
@@ -24,8 +25,10 @@ export function Footer() {
         <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <div className="flex items-center justify-center">
             <span className="text-sm text-neutral-dark/60 mr-1">&copy; {currentYear}</span>
-            <span className="text-purple font-medium mr-1">Applicreations</span>
-            <span className="text-sm text-neutral-dark/60">All rights reserved.</span>
+            <div className="h-4 w-28">
+              <FooterLogo />
+            </div>
+            <span className="text-sm text-neutral-dark/60 ml-1">All rights reserved.</span>
           </div>
         </div>
       </div>
