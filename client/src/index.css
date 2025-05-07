@@ -636,6 +636,14 @@
     font-weight: 600;
   }
   
+  button.link-button.group\/link-button.relative.inline-block.w-max.cursor-pointer.select-none.items-center.rounded-full.px-4.py-2.text-2.capitalize.col-\[track-start_9_\/_track-end_12\].justify-self-end.\[--text-color\:currentColor\] {
+    /* Additional styling to ensure proper button appearance */
+    display: inline-grid;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
   /* Animation for the transform property */
   .animate-transform {
     animation: transform-animation 0.4s ease-in-out;

@@ -36,7 +36,7 @@ export function Hero() {
         className={`${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
       >
-        <button className="link-button group/link-button relative inline-block w-max cursor-pointer select-none items-center rounded-full px-4 py-2 text-2 capitalize [--text-color:white]">
+        <button className="link-button group/link-button relative inline-block w-max cursor-pointer select-none items-center rounded-full px-4 py-2 text-2 capitalize col-[track-start_9_/_track-end_12] justify-self-end [--text-color:white]">
           <span className="grid grid-flow-col items-center gap-x-2.5 text-[--text-color]">
             <span className="size-2.5 rounded-full bg-current"></span>
             <span className="overflow-clip">
@@ -56,7 +56,7 @@ export function Hero() {
               '--in-transform-1': 'scale(0.5)',
               '--in-transform-2': 'scale(0.1)'
             } as React.CSSProperties} 
-            className="absolute bottom-[--bottom] left-[--left] right-[--right] top-[--top] rounded-full bg-[--text-color] transition-[top,right,bottom,left] group-hover/link-button:rounded-full"
+            className="absolute bottom-[--bottom] left-[--left] right-[--right] top-[--top] rounded-full bg-[--text-color] transition-all duration-300 group-hover/link-button:rounded-full group-hover/link-button:inset-0"
           ></span>
           <span 
             className="grid grid-flow-col items-center gap-x-2.5 invert span-full" 
