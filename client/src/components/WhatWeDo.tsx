@@ -88,14 +88,26 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 3: Congratulate - Pink Color Scheme */}
+          {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </Icon>
+              <div className="confetti-container">
+                {/* Confetti pieces - positioned around the icon */}
+                <div className="confetti" style={{ top: '-10px', left: '25%', animationDelay: '0s' }}></div>
+                <div className="confetti yellow" style={{ top: '-5px', left: '60%', animationDelay: '0.3s' }}></div>
+                <div className="confetti blue" style={{ top: '0px', left: '80%', animationDelay: '0.6s' }}></div>
+                <div className="confetti green" style={{ top: '5px', left: '30%', animationDelay: '0.9s' }}></div>
+                <div className="confetti purple" style={{ top: '10px', left: '70%', animationDelay: '1.2s' }}></div>
+                <div className="confetti yellow" style={{ top: '-5px', left: '40%', animationDelay: '1.5s' }}></div>
+                <div className="confetti" style={{ top: '0px', left: '20%', animationDelay: '1.8s' }}></div>
+                <div className="confetti blue" style={{ top: '5px', left: '55%', animationDelay: '2.1s' }}></div>
+                
+                <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </Icon>
+              </div>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Congratulate</h3>
               <p className="text-white/90 text-lg">
                 We deliver your polished product and celebrate your success as your digital solution reaches its audience.
@@ -136,14 +148,26 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 3: Congratulate - Pink Color Scheme */}
+          {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </Icon>
+              <div className="confetti-container">
+                {/* Confetti pieces - positioned around the icon */}
+                <div className="confetti" style={{ top: '-10px', left: '25%', animationDelay: '0s' }}></div>
+                <div className="confetti yellow" style={{ top: '-5px', left: '60%', animationDelay: '0.3s' }}></div>
+                <div className="confetti blue" style={{ top: '0px', left: '80%', animationDelay: '0.6s' }}></div>
+                <div className="confetti green" style={{ top: '5px', left: '30%', animationDelay: '0.9s' }}></div>
+                <div className="confetti purple" style={{ top: '10px', left: '70%', animationDelay: '1.2s' }}></div>
+                <div className="confetti yellow" style={{ top: '-5px', left: '40%', animationDelay: '1.5s' }}></div>
+                <div className="confetti" style={{ top: '0px', left: '20%', animationDelay: '1.8s' }}></div>
+                <div className="confetti blue" style={{ top: '5px', left: '55%', animationDelay: '2.1s' }}></div>
+                
+                <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </Icon>
+              </div>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Congratulate</h3>
               <p className="text-white/90">
                 We deliver your polished product and celebrate your success as your digital solution reaches its audience.
