@@ -636,7 +636,7 @@
     background-color: #000;
     color: white;
     overflow: hidden;
-    transition: color 0.3s ease;
+    transition: color 0.8s ease;
   }
   
   .animated-button::before {
@@ -645,16 +645,34 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background-color: white;
     border-radius: 50%;
-    transition: transform 0.5s cubic-bezier(0.2, 0.95, 0.5, 1);
+    transition: transform 0.8s cubic-bezier(0.2, 0.95, 0.5, 1);
     z-index: 1;
   }
   
+  .animated-button::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+    transition: transform 0.8s cubic-bezier(0.2, 0.95, 0.5, 1);
+    z-index: 2;
+  }
+  
   .animated-button:hover::before {
-    transform: translateY(-50%) scale(60);
+    transform: translateY(-50%) scale(100);
+  }
+  
+  .animated-button:hover::after {
+    transform: translateY(-50%) scale(1);
   }
   
   .animated-button:hover .button-text {
@@ -662,6 +680,6 @@
   }
   
   .button-text {
-    transition: color 0.3s ease;
+    transition: color 0.8s ease;
   }
 }
