@@ -75,6 +75,192 @@
   }
 }
 
+/* Roof Animation for Iterate Card */
+.roof-container {
+  position: relative;
+  z-index: 1;
+}
+
+.roof {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 20px solid #34d399; /* Emerald-400 color */
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0;
+  z-index: 6;
+  transform-origin: bottom center;
+}
+
+.roof-body {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background-color: #10b981; /* Emerald-500 color */
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  opacity: 0;
+  z-index: 6;
+  transform-origin: center;
+}
+
+.chimney {
+  position: absolute;
+  width: 6px;
+  height: 14px;
+  background-color: #6b7280; /* Gray-500 color */
+  top: -36px;
+  right: -12px;
+  opacity: 0;
+  transform: translateY(10px);
+  z-index: 5;
+}
+
+.smoke {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  opacity: 0;
+  top: -40px;
+  right: -13px;
+  z-index: 5;
+}
+
+.smoke.smoke-1 {
+  width: 6px;
+  height: 6px;
+  top: -38px;
+  right: -12px;
+}
+
+.smoke.smoke-2 {
+  width: 8px;
+  height: 8px;
+  top: -45px;
+  right: -10px;
+}
+
+.smoke.smoke-3 {
+  width: 10px;
+  height: 10px;
+  top: -52px;
+  right: -8px;
+}
+
+/* Animation classes applied through JS */
+.roof.animate-roof {
+  animation: roof-appear 5s ease-in-out forwards;
+}
+
+.roof-body.animate-roof-body {
+  animation: roof-body-appear 5s ease-in-out forwards;
+}
+
+.chimney.animate-chimney {
+  animation: chimney-appear 5s ease-in-out forwards;
+}
+
+.smoke.animate-smoke {
+  animation: smoke-appear 5s ease-in-out forwards;
+}
+
+@keyframes roof-appear {
+  0% {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(0.2);
+  }
+  25% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0;
+  }
+}
+
+@keyframes roof-body-appear {
+  0% {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(0.2);
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes chimney-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes smoke-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  55% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  65% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(0.8);
+  }
+  80% {
+    opacity: 0.5;
+    transform: translateY(-15px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-25px) scale(1.5);
+  }
+}
+
 
 
 @layer base {
