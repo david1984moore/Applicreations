@@ -25,8 +25,8 @@ export function Footer() {
         <div className="border-t border-white/20 pt-6 text-center">
           {/* Logo section in the middle */}
           <div className="mb-4 flex justify-center">
-            <div className="h-10 w-40">
-              <Logo className="text-white h-full w-full" />
+            <div className="h-16 w-48 flex items-center justify-center py-2">
+              <Logo className="text-white w-full" />
             </div>
           </div>
           
