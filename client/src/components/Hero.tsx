@@ -20,13 +20,7 @@ export function Hero() {
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ background: 'none', paddingTop: '90px', paddingBottom: '40px' }}
     >
-      {/* Concise headline with animation */}
-      <h1 
-        className={`text-[4rem] font-[700] text-white leading-tight mb-[15px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-        style={{ transitionDelay: '0.2s' }}
-      >
-        Crafting Digital Excellence
-      </h1>
+      
       
       {/* Short tagline with animation */}
       <p 
