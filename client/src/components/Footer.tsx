@@ -1,4 +1,4 @@
-import { Logo } from './Logo';
+import { FooterLogo } from './FooterLogo';
 
 export function Footer() {
   return (
@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <Logo className="h-20 w-auto" />
+            <FooterLogo className="h-20 w-auto" />
           </div>
           
           <div className="text-center md:text-right">
