@@ -1,5 +1,5 @@
-import { Logo } from './Logo';
 import { cn } from '@/lib/utils';
+import { SimpleFooterLogo } from './SimpleFooterLogo';
 
 export function Footer() {
   return (
@@ -19,15 +19,12 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-6 pt-6 border-t border-gray-200 text-center flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center mb-2">
-            <div className="h-5 w-36">
-              <Logo className="h-full" />
-            </div>
+        <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+          <div className="flex items-center justify-center space-x-2">
+            <span className="text-sm text-neutral-dark/60">&copy; {new Date().getFullYear()}</span>
+            <SimpleFooterLogo />
+            <span className="text-sm text-neutral-dark/60">All rights reserved.</span>
           </div>
-          <p className="text-sm text-neutral-dark/60">
-            &copy; {new Date().getFullYear()} All rights reserved.
-          </p>
         </div>
       </div>
     </footer>
