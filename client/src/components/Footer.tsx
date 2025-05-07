@@ -32,7 +32,7 @@ export function Footer() {
           
           {/* Copyright section */}
           <div className="flex items-center justify-center">
-            <span className="text-sm text-white/80">&copy; {currentYear} applicreations ALL rights reserved.</span>
+            <span className="text-sm text-white/80">&copy; {currentYear} ALL rights reserved.</span>
           </div>
         </div>
       </div>
