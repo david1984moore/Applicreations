@@ -5,6 +5,27 @@ import { Logo } from './Logo';
 export function Footer() {
   const [currentYear] = useState(new Date().getFullYear());
   
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const homeSection = document.getElementById('home');
+    
+    if (homeSection) {
+      // Scroll to home section
+      homeSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Adjust for navbar height
+      setTimeout(() => {
+        window.scrollBy({
+          top: -70, // Adjust for navbar height
+          behavior: 'smooth'
+        });
+      }, 50);
+      
+      // Update URL hash
+      history.pushState(null, '', `#home`);
+    }
+  };
+  
   return (
     <footer className="bg-gradient-to-r from-[#6b48ff] to-[#00ddeb] py-10 text-white">
       <div className="container mx-auto px-6">
@@ -23,11 +44,16 @@ export function Footer() {
         </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
-          {/* Logo section in the middle */}
+          {/* Logo section in the middle - clickable */}
           <div className="mb-4 flex justify-center">
-            <div className="h-20 w-52 flex items-center justify-center py-3">
+            <a 
+              href="#home" 
+              onClick={handleLogoClick}
+              className="h-20 w-52 flex items-center justify-center py-3 cursor-pointer transition-transform duration-300 hover:scale-105"
+              aria-label="Go to home"
+            >
               <Logo className="text-white w-full" />
-            </div>
+            </a>
           </div>
           
           {/* Copyright section */}
