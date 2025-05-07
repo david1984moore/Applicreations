@@ -6,6 +6,141 @@
   --scrollbar-width: 20px; /* Standard scrollbar width that works across browsers */
 }
 
+/* Light Bulb Animation for Ideate Card */
+.lightbulb-container {
+  position: relative;
+  z-index: 1;
+}
+
+.lightbulb-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,190,0.8) 0%, rgba(255,153,51,0) 70%);
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.lightbulb-rays {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.lightbulb-ray {
+  position: absolute;
+  background-color: rgba(255, 236, 179, 0.8);
+  height: 2px;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+}
+
+.ray-1 {
+  transform: rotate(0deg) translateX(20px);
+}
+
+.ray-2 {
+  transform: rotate(45deg) translateX(20px);
+}
+
+.ray-3 {
+  transform: rotate(90deg) translateX(20px);
+}
+
+.ray-4 {
+  transform: rotate(135deg) translateX(20px);
+}
+
+.ray-5 {
+  transform: rotate(180deg) translateX(20px);
+}
+
+.ray-6 {
+  transform: rotate(225deg) translateX(20px);
+}
+
+.ray-7 {
+  transform: rotate(270deg) translateX(20px);
+}
+
+.ray-8 {
+  transform: rotate(315deg) translateX(20px);
+}
+
+/* Animation classes applied through JS */
+.lightbulb-glow.animate-glow {
+  animation: lightbulb-glow 5s ease-in-out forwards;
+}
+
+.lightbulb-rays.animate-rays {
+  animation: lightbulb-rays 5s ease-in-out forwards;
+}
+
+@keyframes lightbulb-glow {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.3;
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes lightbulb-rays {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+    opacity: 0.3;
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1) rotate(45deg);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4) rotate(180deg);
+    opacity: 0;
+  }
+}
+
 /* Confetti Animation for Congratulate Card */
 .confetti-container {
   position: relative;

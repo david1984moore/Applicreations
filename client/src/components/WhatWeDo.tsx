@@ -15,6 +15,44 @@ function Icon({ children, color = "bg-white/20", iconColor = "text-white" }: {
   );
 }
 
+// Light Bulb container with trigger-based animation
+function LightBulbContainer({ children }: { children: React.ReactNode }) {
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  const handleMouseEnter = () => {
+    if (!isAnimating) {
+      setIsAnimating(true);
+      // Reset animation after 5 seconds
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 5000);
+    }
+  };
+  
+  return (
+    <div 
+      className="lightbulb-container cursor-pointer" 
+      title="Hover to light up the idea!"
+      onMouseEnter={handleMouseEnter}
+    >
+      {/* Light bulb glow and rays */}
+      <div className={`lightbulb-glow ${isAnimating ? 'animate-glow' : ''}`}></div>
+      <div className={`lightbulb-rays ${isAnimating ? 'animate-rays' : ''}`}>
+        <div className="lightbulb-ray ray-1"></div>
+        <div className="lightbulb-ray ray-2"></div>
+        <div className="lightbulb-ray ray-3"></div>
+        <div className="lightbulb-ray ray-4"></div>
+        <div className="lightbulb-ray ray-5"></div>
+        <div className="lightbulb-ray ray-6"></div>
+        <div className="lightbulb-ray ray-7"></div>
+        <div className="lightbulb-ray ray-8"></div>
+      </div>
+      
+      {children}
+    </div>
+  );
+}
+
 // Confetti container with trigger-based animation
 function ConfettiContainer({ children }: { children: React.ReactNode }) {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -128,14 +166,16 @@ export function WhatWeDo() {
 
         {/* Desktop View */}
         <div className="hidden md:flex gap-8 reveal">
-          {/* Card 1: Ideate - Orange/Red Color Scheme */}
+          {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </Icon>
+              <LightBulbContainer>
+                <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </Icon>
+              </LightBulbContainer>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Ideate</h3>
               <p className="text-white/90 text-lg">
                 We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
@@ -180,14 +220,16 @@ export function WhatWeDo() {
 
         {/* Mobile View - Stacked cards */}
         <div className="md:hidden space-y-6 reveal">
-          {/* Card 1: Ideate - Orange/Red Color Scheme */}
+          {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </Icon>
+              <LightBulbContainer>
+                <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </Icon>
+              </LightBulbContainer>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Ideate</h3>
               <p className="text-white/90">
                 We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
