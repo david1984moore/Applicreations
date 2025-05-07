@@ -1,7 +1,9 @@
 import { cn } from '@/lib/utils';
-import { SimpleFooterLogo } from './SimpleFooterLogo';
+import { useState, useEffect } from 'react';
 
 export function Footer() {
+  const [currentYear] = useState(new Date().getFullYear());
+  
   return (
     <footer className="bg-white border-t border-gray-200 py-8">
       <div className="container mx-auto px-6">
@@ -20,9 +22,9 @@ export function Footer() {
         </div>
         
         <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-          <div className="flex items-center justify-center space-x-2">
-            <span className="text-sm text-neutral-dark/60">&copy; {new Date().getFullYear()}</span>
-            <SimpleFooterLogo />
+          <div className="flex items-center justify-center">
+            <span className="text-sm text-neutral-dark/60 mr-1">&copy; {currentYear}</span>
+            <span className="text-purple font-medium mr-1">Applicreations</span>
             <span className="text-sm text-neutral-dark/60">All rights reserved.</span>
           </div>
         </div>
