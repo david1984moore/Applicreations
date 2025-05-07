@@ -25,7 +25,7 @@ export function Footer() {
         <div className="border-t border-white/20 pt-6 text-center">
           <div className="flex items-center justify-center">
             <span className="text-sm text-white/80 mr-2">&copy; {currentYear}</span>
-            <div className="h-5 w-auto mx-1">
+            <div className="h-6 w-24 mx-1">
               <Logo className="text-white" />
             </div>
             <span className="text-sm text-white/80 ml-2">All rights reserved.</span>
