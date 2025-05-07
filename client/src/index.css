@@ -75,6 +75,149 @@
   }
 }
 
+/* Hammer Animation for Iterate Card */
+.hammer-container {
+  position: relative;
+  z-index: 1;
+}
+
+.hammer {
+  position: absolute;
+  width: 24px;
+  height: 30px;
+  opacity: 0;
+  z-index: 5;
+  background: none;
+  transform-origin: 50% 90%;
+  top: -30px;
+  right: -16px;
+}
+
+.hammer-head {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background-color: #6B7280;
+  top: 0;
+  right: 0;
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.hammer-handle {
+  position: absolute;
+  width: 4px;
+  height: 24px;
+  background-color: #D1D5DB;
+  top: 6px;
+  right: 4px;
+  border-radius: 2px;
+}
+
+.nail {
+  position: absolute;
+  width: 4px;
+  height: 12px;
+  background-color: #9CA3AF;
+  border-radius: 1px;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.nail.animate-nail {
+  animation: nail-down 5s ease-in-out forwards;
+}
+
+.hammer.animate-hammer {
+  opacity: 1;
+  animation: hammer-bang 5s ease-in-out forwards;
+}
+
+@keyframes hammer-bang {
+  0% {
+    opacity: 0;
+    transform: rotate(-25deg);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(-25deg);
+  }
+  15% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  35% {
+    transform: rotate(8deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  55% {
+    transform: rotate(3deg);
+  }
+  60% {
+    transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes nail-down {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(-50%) translateY(1px);
+  }
+  30% {
+    transform: translateX(-50%) translateY(2px);
+  }
+  40% {
+    transform: translateX(-50%) translateY(3px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(4px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(5px);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0;
+  }
+}
+
 @layer base {
   /* Navbar logo styling */
   .navbar-logo {

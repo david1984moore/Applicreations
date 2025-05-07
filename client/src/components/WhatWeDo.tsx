@@ -50,6 +50,38 @@ function ConfettiContainer({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Hammer container with trigger-based animation
+function HammerContainer({ children }: { children: React.ReactNode }) {
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  const handleMouseEnter = () => {
+    if (!isAnimating) {
+      setIsAnimating(true);
+      // Reset animation after 5 seconds
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 5000);
+    }
+  };
+  
+  return (
+    <div 
+      className="hammer-container cursor-pointer" 
+      title="Hover to see construction in action!"
+      onMouseEnter={handleMouseEnter}
+    >
+      {/* Hammer and nail elements */}
+      <div className={`hammer ${isAnimating ? 'animate-hammer' : ''}`}>
+        <div className="hammer-head"></div>
+        <div className="hammer-handle"></div>
+      </div>
+      <div className={`nail ${isAnimating ? 'animate-nail' : ''}`}></div>
+      
+      {children}
+    </div>
+  );
+}
+
 export function WhatWeDo() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -108,14 +140,16 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 2: Iterate - Green Color Scheme */}
+          {/* Card 2: Iterate - Green Color Scheme with Hammer */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </Icon>
+              <HammerContainer>
+                <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </Icon>
+              </HammerContainer>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Iterate</h3>
               <p className="text-white/90 text-lg">
                 We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
@@ -158,14 +192,16 @@ export function WhatWeDo() {
             </div>
           </div>
 
-          {/* Card 2: Iterate - Green Color Scheme */}
+          {/* Card 2: Iterate - Green Color Scheme with Hammer */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </Icon>
+              <HammerContainer>
+                <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </Icon>
+              </HammerContainer>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Iterate</h3>
               <p className="text-white/90">
                 We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
