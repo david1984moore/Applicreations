@@ -636,7 +636,7 @@
     background-color: #000;
     color: white;
     overflow: hidden;
-    transition: color 0.8s ease;
+    transition: color 1.2s ease;
   }
   
   .animated-button::before {
@@ -645,11 +645,11 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     background-color: white;
     border-radius: 50%;
-    transition: transform 0.8s cubic-bezier(0.2, 0.95, 0.5, 1);
+    transition: transform 1.2s cubic-bezier(0.2, 0.95, 0.5, 1);
     z-index: 1;
   }
   
@@ -659,16 +659,16 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%) scale(0);
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     background-color: black;
     border-radius: 50%;
-    transition: transform 0.8s cubic-bezier(0.2, 0.95, 0.5, 1);
+    transition: transform 1.2s cubic-bezier(0.2, 0.95, 0.5, 1);
     z-index: 2;
   }
   
   .animated-button:hover::before {
-    transform: translateY(-50%) scale(100);
+    transform: translateY(-50%) scale(120);
   }
   
   .animated-button:hover::after {
@@ -680,6 +680,6 @@
   }
   
   .button-text {
-    transition: color 0.8s ease;
+    transition: color 1.2s ease;
   }
 }

@@ -36,7 +36,7 @@ export function Hero() {
         className={`animated-button relative inline-flex items-center justify-center py-[15px] px-[42px] font-[600] text-[1.2rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
       >
-        <span className="button-text relative z-10 ml-3">Get Started Now</span>
+        <span className="button-text relative z-10 ml-5">Get Started Now</span>
       </a>
     </section>
   );
