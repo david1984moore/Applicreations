@@ -10,7 +10,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-center items-center mb-8">
           <div className="text-center">
-            <p className="text-white/90 mb-2 font-medium">Based in Wilmington, Delaware</p>
+            <p className="text-white/90 mb-2 font-medium">Wilmington, Delaware</p>
             <p className="text-white/90">
               <a 
                 href="mailto:solutions@applicreations.com" 
