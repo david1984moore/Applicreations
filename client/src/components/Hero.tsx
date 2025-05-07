@@ -39,7 +39,7 @@ export function Hero() {
       {/* CTA Button with animation - Modified to have instant dark mode transition on hover */}
       <a 
         href="#contact"
-        className={`cta-button inline-flex items-center justify-center py-[15px] px-[40px] bg-white text-[#5a3fe6] font-[600] text-[1.2rem] rounded-[50px] border-0 hover:bg-[#333] hover:text-white transition-colors duration-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`cta-button inline-flex items-center justify-center py-[15px] px-[40px] bg-white text-[#5a3fe6] font-[600] text-[1.2rem] rounded-[50px] border-0 hover:bg-[#333] hover:text-white ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out`}
         style={{ transitionDelay: '0.6s' }}
       >
         Get Started Now
