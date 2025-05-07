@@ -12,7 +12,7 @@ export function Footer() {
           <div className="text-center">
             <p className="text-white/90 mb-2 font-medium">Based in Wilmington, Delaware</p>
             <p className="text-white/90">
-              Email: <a 
+              <a 
                 href="mailto:solutions@applicreations.com" 
                 className="text-white hover:text-white/80 transition-colors duration-300 underline decoration-1 underline-offset-2"
               >
