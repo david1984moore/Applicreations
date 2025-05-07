@@ -91,7 +91,7 @@ export function WhatWeDo() {
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <div className="confetti-container">
+              <div className="confetti-container cursor-pointer" title="Hover for celebration!">
                 {/* Confetti pieces - positioned around the icon */}
                 <div className="confetti" style={{ top: '-10px', left: '25%', animationDelay: '0s' }}></div>
                 <div className="confetti yellow" style={{ top: '-5px', left: '60%', animationDelay: '0.3s' }}></div>
@@ -151,7 +151,7 @@ export function WhatWeDo() {
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex flex-col items-center text-center">
-              <div className="confetti-container">
+              <div className="confetti-container cursor-pointer" title="Hover for celebration!">
                 {/* Confetti pieces - positioned around the icon */}
                 <div className="confetti" style={{ top: '-10px', left: '25%', animationDelay: '0s' }}></div>
                 <div className="confetti yellow" style={{ top: '-5px', left: '60%', animationDelay: '0.3s' }}></div>
