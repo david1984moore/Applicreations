@@ -112,9 +112,9 @@
 .chimney {
   position: absolute;
   width: 6px;
-  height: 14px;
+  height: 18px; /* Made taller */
   background-color: #6b7280; /* Gray-500 color */
-  top: -14px; /* Position from the top of the roof */
+  top: -18px; /* Adjusted top position to match new height */
   right: 14px; /* Position more to the left (increased right value) */
   opacity: 0;
   transform: translateY(3px);
@@ -128,7 +128,7 @@
   background-color: #e5e7eb;
   border-radius: 50%;
   opacity: 0;
-  top: -22px; /* Position slightly above the chimney */
+  top: -26px; /* Position slightly above the taller chimney */
   right: 14px; /* Match the chimney's right position */
   z-index: 5;
 }
@@ -136,21 +136,21 @@
 .smoke.smoke-1 {
   width: 6px;
   height: 6px;
-  top: -20px;
+  top: -24px;
   right: 14px;
 }
 
 .smoke.smoke-2 {
   width: 8px;
   height: 8px;
-  top: -28px;
+  top: -32px;
   right: 13px;
 }
 
 .smoke.smoke-3 {
   width: 10px;
   height: 10px;
-  top: -36px;
+  top: -40px;
   right: 12px;
 }
 
