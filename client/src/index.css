@@ -629,4 +629,39 @@
     background-color: rgba(245, 101, 101, 0.1);
     border-left: 4px solid #F56565;
   }
+  
+  /* Animated Button with Dot Expand Effect (Microfeller style) */
+  .animated-button {
+    position: relative;
+    background-color: #000;
+    color: white;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+  
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.5s cubic-bezier(0.2, 0.95, 0.5, 1);
+    z-index: 1;
+  }
+  
+  .animated-button:hover::before {
+    transform: translateY(-50%) scale(60);
+  }
+  
+  .animated-button:hover .button-text {
+    color: #000;
+  }
+  
+  .button-text {
+    transition: color 0.3s ease;
+  }
 }
