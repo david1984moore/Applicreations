@@ -50,9 +50,9 @@
   transform: rotate(45deg);
 }
 
-/* Apply animation only when parent is hovered */
-.confetti-container:hover .confetti {
-  animation: confetti-fall 5s ease-in-out;
+/* Animation class applied through JS */
+.confetti.animate-confetti {
+  animation: confetti-fall 5s ease-in-out forwards;
 }
 
 @keyframes confetti-fall {
