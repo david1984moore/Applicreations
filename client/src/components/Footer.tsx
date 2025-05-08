@@ -59,14 +59,14 @@ export function Footer() {
         
         <div className="border-t border-white/20 pt-6 text-center">
           {/* Logo section in the middle - clickable */}
-          <div className="mb-4 flex justify-center">
+          <div className="mb-4 flex justify-center px-4">
             <a 
               href="#home" 
               onClick={handleLogoClick}
-              className="h-20 w-52 flex items-center justify-center py-3 cursor-pointer transition-transform duration-300 hover:scale-105"
+              className="h-20 md:w-52 w-full max-w-[280px] flex items-center justify-center py-3 cursor-pointer transition-transform duration-300 hover:scale-105 overflow-visible"
               aria-label="Go to home"
             >
-              <Logo className="text-white w-full" />
+              <Logo className="text-white w-full overflow-visible" />
             </a>
           </div>
           

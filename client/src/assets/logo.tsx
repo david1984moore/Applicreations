@@ -10,11 +10,11 @@ export default function LogoImage({ className = "" }: { className?: string }) {
       id="Layer_1" 
       data-name="Layer 1" 
       xmlns="http://www.w3.org/2000/svg" 
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="xMidYMid slice"
       viewBox="313.71 630.92 406.62 115.85"
       width="100%"
       height="100%"
-      className={className}
+      className={`${className} overflow-visible`}
       aria-label="Applicreations logo"
     >
       <defs>

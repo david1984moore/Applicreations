@@ -6,10 +6,10 @@ interface LogoProps {
 }
 
 export function Logo({ className = "" }: LogoProps) {
-  // Add a specific class for larger size in the navbar
+  // Using responsive width to prevent logo from being cut off on mobile
   return (
-    <div className="w-72 h-auto">
-      <LogoSvg className={cn(className)} />
+    <div className="w-full h-auto max-w-[240px] mx-auto overflow-visible">
+      <LogoSvg className={cn("w-full h-auto", className)} />
     </div>
   );
 }
