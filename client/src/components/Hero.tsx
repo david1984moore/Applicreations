@@ -21,7 +21,7 @@ export function Hero() {
       style={{ 
         background: 'transparent',
         paddingTop: '70px', 
-        paddingBottom: '250px', /* Maximum padding to allow more space for the gradient overlay */
+        paddingBottom: '120px', /* Increased padding at bottom for smoother transition */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',
