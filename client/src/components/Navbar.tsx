@@ -1,36 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Check for scroll position on component mount and when scrolling
   useEffect(() => {
-    // Calculate scrollbar width to prevent navbar from extending over scrollbar
-    const calculateScrollbarWidth = () => {
-      // Create outer div
-      const outer = document.createElement('div');
-      outer.style.visibility = 'hidden';
-      outer.style.overflow = 'scroll';
-      document.body.appendChild(outer);
-      
-      // Create inner div
-      const inner = document.createElement('div');
-      outer.appendChild(inner);
-      
-      // Calculate the width difference
-      const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-      
-      // Remove divs
-      outer.parentNode?.removeChild(outer);
-      
-      // Set the scrollbar width variable
-      // If scrollbar width is 0 (mobile browsers often), use a fallback value
-      const finalWidth = scrollbarWidth > 0 ? scrollbarWidth : 0;
-      document.documentElement.style.setProperty('--scrollbar-width', `${finalWidth}px`);
-    };
-
     const checkScrollPosition = () => {
       if (window.scrollY > 0) {
         setScrolled(true);
@@ -39,32 +17,11 @@ export function Navbar() {
       }
     };
     
-    // Add event listener to close mobile menu when clicking outside
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (mobileMenuOpen) {
-        const target = e.target as HTMLElement;
-        const isNavbarClick = target.closest('header') !== null;
-        
-        // Only close if clicking outside of navbar entirely
-        if (!isNavbarClick) {
-          setMobileMenuOpen(false);
-        }
-      }
-    };
-    
-    // Listen for clicks on the document
-    document.addEventListener('click', handleOutsideClick);
-    
-
-    // Calculate scrollbar width
-    calculateScrollbarWidth();
-    
     // Initial check
     checkScrollPosition();
     
     // Add event listener
     window.addEventListener('scroll', checkScrollPosition);
-    window.addEventListener('resize', calculateScrollbarWidth);
     
     // Update text colors in SVG logo
     const updateLogoColors = () => {
@@ -83,15 +40,37 @@ export function Navbar() {
     // Cleanup listener on unmount
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
-      window.removeEventListener('resize', calculateScrollbarWidth);
-      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  // Setup click outside handler to close menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuOpen) {
+        // Check if click is outside both menu and the hamburger button
+        const target = event.target as Node;
+        const isOutsideMenu = menuRef.current && !menuRef.current.contains(target);
+        const isOutsideButton = buttonRef.current && !buttonRef.current.contains(target);
+        
+        if (isOutsideMenu && isOutsideButton) {
+          setMobileMenuOpen(false);
+        }
+      }
+    };
+    
+    // Add click event listener 
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Clean up event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [mobileMenuOpen]);
 
   const toggleMobileMenu = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setMobileMenuOpen(!mobileMenuOpen);
+    setMobileMenuOpen(prevState => !prevState);
   };
 
   const handleNavClick = (sectionId: string) => {
@@ -134,12 +113,6 @@ export function Navbar() {
   
   // Use the same gradient for all screen sizes to match the rest of the site
   const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
-
-  // No border to avoid line between navbar and content
-  const borderStyle = 'none';
-
-  // No box shadow to avoid line between navbar and content
-  const boxShadowStyle = 'none';
 
   return (
     <header 
@@ -211,6 +184,7 @@ export function Navbar() {
         {/* Mobile Navigation Button */}
         <div className="md:hidden flex items-center justify-center z-50 mr-0">
           <button 
+            ref={buttonRef}
             aria-label="Toggle mobile menu"
             className="text-white p-3 focus:outline-none transition-colors"
             onClick={toggleMobileMenu}
@@ -234,20 +208,22 @@ export function Navbar() {
             )}
           </button>
         </div>
+      </nav>
       
-        {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Menu - Now outside the nav to avoid nested layout issues */}
+      {/* Render it only in the DOM when it's open */}
+      {isMobile && (
         <div 
+          ref={menuRef}
           className={`fixed left-0 w-full top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+            mobileMenuOpen ? 'block max-h-[300px] opacity-100' : 'invisible max-h-0 opacity-0'
           }`}
           style={{
             background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             zIndex: 49,
             transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
-            visibility: mobileMenuOpen ? 'visible' : 'hidden', // Add visibility to prevent interactions when closed
           }}
-          onClick={(e) => e.stopPropagation()} // Prevent clicks from propagating
         >
           <div className="pt-3 pb-3 space-y-4 px-6">
             <a 
@@ -255,7 +231,6 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation(); // Stop event propagation
                 handleNavClick('home');
               }}
             >
@@ -266,7 +241,6 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation(); // Stop event propagation
                 handleNavClick('what-we-do');
               }}
             >
@@ -277,7 +251,6 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation(); // Stop event propagation
                 handleNavClick('contact');
               }}
             >
@@ -285,7 +258,7 @@ export function Navbar() {
             </a>
           </div>
         </div>
-      </nav>
+      )}
     </header>
   );
 }
