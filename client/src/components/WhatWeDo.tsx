@@ -22,10 +22,10 @@ function LightBulbContainer({ children }: { children: React.ReactNode }) {
   const handleMouseEnter = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      // Reset animation after 5 seconds
+      // Reset animation after 1.5 seconds
       setTimeout(() => {
         setIsAnimating(false);
-      }, 5000);
+      }, 1500);
     }
   };
   

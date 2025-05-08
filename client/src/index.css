@@ -82,11 +82,11 @@
 
 /* Animation classes applied through JS */
 .lightbulb-glow.animate-glow {
-  animation: lightbulb-glow 5s ease-in-out forwards;
+  animation: lightbulb-glow 1.5s ease-in-out forwards;
 }
 
 .lightbulb-rays.animate-rays {
-  animation: lightbulb-rays 5s ease-in-out forwards;
+  animation: lightbulb-rays 1.5s ease-in-out forwards;
 }
 
 @keyframes lightbulb-glow {
@@ -187,7 +187,7 @@
 
 /* Animation class applied through JS */
 .confetti.animate-confetti {
-  animation: confetti-fall 5s ease-in-out forwards;
+  animation: confetti-fall 1.5s ease-in-out forwards;
 }
 
 @keyframes confetti-fall {
@@ -291,19 +291,19 @@
 
 /* Animation classes applied through JS */
 .roof.animate-roof {
-  animation: roof-appear 5s ease-in-out forwards;
+  animation: roof-appear 1.5s ease-in-out forwards;
 }
 
 .roof-body.animate-roof-body {
-  animation: roof-body-appear 5s ease-in-out forwards;
+  animation: roof-body-appear 1.5s ease-in-out forwards;
 }
 
 .chimney.animate-chimney {
-  animation: chimney-appear 5s ease-in-out forwards;
+  animation: chimney-appear 1.5s ease-in-out forwards;
 }
 
 .smoke.animate-smoke {
-  animation: smoke-appear 5s ease-in-out forwards;
+  animation: smoke-appear 1.5s ease-in-out forwards;
 }
 
 @keyframes roof-appear {
