@@ -591,9 +591,18 @@
   }
   
   /* Remove any visible separation between navbar and hero */
-  header, nav, .hero, header::before, nav::after, nav::before, .hero::after, .hero::before {
+  header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before {
     border: none !important;
+    border-bottom: none !important;
     outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Ensure there's no gap between navbar and hero */
+  header + .hero, 
+  .hero {
+    margin-top: 0 !important;
+    border-top: none !important;
   }
   
   /* Ensure header has smooth transitions */

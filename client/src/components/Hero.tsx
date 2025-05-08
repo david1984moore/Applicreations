@@ -20,8 +20,11 @@ export function Hero() {
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
         background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)', 
-        paddingTop: '90px', 
-        paddingBottom: '40px' 
+        paddingTop: '70px', 
+        paddingBottom: '40px',
+        border: 'none',
+        boxShadow: 'none',
+        outline: 'none'
       }}
     >
       

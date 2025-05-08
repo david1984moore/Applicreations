@@ -115,11 +115,11 @@ export function Navbar() {
   // Use the same gradient for all screen sizes to match the rest of the site
   const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
 
-  // Border only when scrolled
-  const borderStyle = scrolled ? '1px solid #ffffff' : 'none';
+  // No border to avoid line between navbar and content
+  const borderStyle = 'none';
 
-  // Box shadow only when scrolled
-  const boxShadowStyle = scrolled ? '0 2px 10px rgba(0, 0, 0, 0.15)' : 'none';
+  // No box shadow to avoid line between navbar and content
+  const boxShadowStyle = 'none';
 
   return (
     <header 
@@ -212,8 +212,8 @@ export function Navbar() {
             mobileMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
           }`}
           style={{
-            background: navbarBackground,
-            boxShadow: mobileMenuOpen ? boxShadowStyle : 'none',
+            background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
+            boxShadow: 'none',
             zIndex: 999,
             transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
           }}
