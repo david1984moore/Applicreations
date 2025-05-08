@@ -601,10 +601,14 @@
     position: relative;
     background: linear-gradient(to bottom, 
       #6b48ff 0%, 
-      #5a63ff 50%, 
-      #4b79ff 75%, 
-      #3d8aff 85%,
-      #e8f0ff 97%,
+      #6359ff 35%, 
+      #5b69ff 55%, 
+      #5378ff 65%, 
+      #4b86ff 75%, 
+      #6ba2ff 85%,
+      #a6c7ff 90%,
+      #d1e2ff 95%,
+      #edf5ff 98%,
       rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;

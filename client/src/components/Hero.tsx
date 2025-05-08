@@ -17,11 +17,11 @@ export function Hero() {
     <section 
       id="home" 
       ref={heroRef}
-      className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
+      className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
         background: 'transparent',
         paddingTop: '70px', 
-        paddingBottom: '120px', /* Increased padding at bottom for smoother transition */
+        paddingBottom: '150px', /* Further increased padding at bottom for smoother transition */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',
