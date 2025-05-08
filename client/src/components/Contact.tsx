@@ -91,16 +91,13 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-24 pb-20 relative overflow-hidden"
-      style={{ 
-        background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)'
-      }}
+      className="pt-24 pb-20 relative overflow-hidden bg-gradient-to-b from-neutral-50 to-neutral-100 light-bg-section"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Let's Go!</h2>
-            <p className="text-lg text-white/90">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-3 relative inline-block">Let's Go!</h2>
+            <p className="text-lg text-neutral-dark/70">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
           </div>
