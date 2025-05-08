@@ -596,15 +596,21 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container with super smooth gradient transition to white */
+  /* Navbar-Hero Container with ultra-smooth gradient transition to white */
   .navbar-hero-container {
     position: relative;
     background: linear-gradient(to bottom, 
       #6b48ff 0%, 
+      #6652ff 30%, 
       #5a63ff 50%, 
-      #4b79ff 75%, 
-      #3d8aff 85%,
+      #4b79ff 65%, 
+      #3d8aff 75%,
+      #3399ff 80%,
+      #70b8ff 85%,
+      #9ccfff 90%,
+      #cce6ff 94%,
       #e8f0ff 97%,
+      #f5f9ff 99%,
       rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;
@@ -622,6 +628,20 @@
     -webkit-backface-visibility: hidden;
     /* Explicitly no dividing lines */
     background-clip: padding-box;
+  }
+  
+  /* Additional fade transition element at the bottom of the hero section */
+  .gradient-fade-transition {
+    position: relative;
+    height: 150px;
+    width: 100%;
+    background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 30%,
+      rgba(255, 255, 255, 0.7) 70%,
+      rgba(255, 255, 255, 1) 100%);
+    margin-top: -150px;
+    z-index: 5;
   }
   
   /* Remove any visible separation between navbar and hero */

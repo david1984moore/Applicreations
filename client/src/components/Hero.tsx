@@ -21,7 +21,7 @@ export function Hero() {
       style={{ 
         background: 'transparent',
         paddingTop: '70px', 
-        paddingBottom: '120px', /* Increased padding at bottom for smoother transition */
+        paddingBottom: '200px', /* Significantly increased padding at bottom for a more gradual transition */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',

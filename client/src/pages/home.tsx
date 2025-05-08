@@ -40,6 +40,7 @@ export default function Home() {
       <div className="navbar-hero-container">
         <Navbar />
         <Hero />
+        <div className="gradient-fade-transition"></div>
       </div>
       <OurServices />
       <WhatWeDo />
