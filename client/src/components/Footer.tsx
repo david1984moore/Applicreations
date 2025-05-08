@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { Logo } from './Logo';
+import { SimpleFooterLogo } from './SimpleFooterLogo';
 
 export function Footer() {
   const [currentYear] = useState(new Date().getFullYear());
@@ -63,10 +64,16 @@ export function Footer() {
             <a 
               href="#home" 
               onClick={handleLogoClick}
-              className="h-20 md:w-52 w-full max-w-[280px] flex items-center justify-center py-3 cursor-pointer transition-transform duration-300 hover:scale-105 overflow-visible"
+              className="h-20 w-full flex items-center justify-center py-3 cursor-pointer transition-transform duration-300 hover:scale-105"
               aria-label="Go to home"
             >
-              <Logo className="text-white w-full overflow-visible" />
+              {/* Use different logo components for mobile and desktop */}
+              <div className="block md:hidden">
+                <SimpleFooterLogo className="transform scale-125" />
+              </div>
+              <div className="hidden md:block w-full max-w-[240px]">
+                <Logo className="text-white w-full" />
+              </div>
             </a>
           </div>
           
