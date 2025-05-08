@@ -17,18 +17,18 @@ export function Hero() {
     <section 
       id="home" 
       ref={heroRef}
-      className="hero min-h-[65vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
+      className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
         background: 'transparent',
         paddingTop: '70px', 
-        paddingBottom: '120px', /* Adjusted padding to work with our white section overlap */
+        paddingBottom: '180px', /* Significantly increased padding for our new transition approach */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',
         outline: 'none',
         marginTop: 0,
         position: 'relative',
-        zIndex: 5 /* Position above the gradient overlay */
+        zIndex: 2 /* Position above the gradient overlay */
       }}
     >
       

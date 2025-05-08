@@ -41,17 +41,8 @@ export default function Home() {
         <Navbar />
         <Hero />
       </div>
-      
-      {/* Create an extra white section that overlaps with the hero gradient for a smoother transition */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 10, 
-        background: 'white',
-        marginTop: '-80px', /* Create an overlap with the hero section */
-        paddingTop: '80px',  /* Add padding to compensate for the negative margin */
-        borderTopLeftRadius: '100% 80px', /* Subtle curve to help break any potential hard lines */
-        borderTopRightRadius: '100% 80px'
-      }}>
+      {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
+      <div style={{ position: 'relative', zIndex: 5, background: 'white' }}>
         <OurServices />
         <WhatWeDo />
         <Contact />

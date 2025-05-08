@@ -596,10 +596,11 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container - completely redesigned fade with a noise texture overlay blend for perfect transition */
+  /* Navbar-Hero Container - completely redesigned fade for perfect transition */
   .navbar-hero-container {
     position: relative;
     background: #6b48ff;
+    background-attachment: fixed;
     display: block;
     border: none !important;
     margin: 0 !important;
@@ -607,62 +608,44 @@
     width: 100%;
     border-bottom: 0 !important;
     overflow: visible;
-    mix-blend-mode: normal;
-    /* Force GPU acceleration for smoother rendering */
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
+    /* Force GPU acceleration to prevent pixel rendering issues */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent any potential rendering artifacts */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
+    /* Explicitly no dividing lines */
+    background-clip: padding-box;
   }
   
-  /* Create an absolutely massive, extremely gradual overlay fade */
-  .navbar-hero-container::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -20px; /* Extend slightly below to avoid any visible edge */
-    height: 600px; /* Ultra-long fade area */
-    background: linear-gradient(
-      to bottom,
-      hsla(255, 100%, 64%, 0) 0%,
-      hsla(252, 100%, 65%, 0.01) 8.3%,
-      hsla(249, 100%, 67%, 0.02) 16.6%,
-      hsla(246, 100%, 68%, 0.04) 25%,
-      hsla(243, 100%, 70%, 0.06) 33.3%,
-      hsla(240, 95%, 72%, 0.08) 41.6%,
-      hsla(237, 90%, 74%, 0.1) 50%,
-      hsla(234, 85%, 77%, 0.2) 58.3%,
-      hsla(231, 80%, 80%, 0.3) 66.6%,
-      hsla(228, 75%, 83%, 0.4) 75%,
-      hsla(225, 70%, 87%, 0.6) 83.3%,
-      hsla(222, 65%, 92%, 0.8) 91.6%,
-      hsl(220, 60%, 99%) 100%
-    );
-    pointer-events: none;
-    z-index: 3;
-  }
-  
-  /* Second overlay with different blending to create texture and eliminate banding */
+  /* This empty pseudo-element creates a perfect gradient overlay with ultra-smooth transition */
   .navbar-hero-container::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 450px;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-    background-size: 200px;
-    opacity: 0.2;
-    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 50%, black 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 50%, black 100%);
-    mix-blend-mode: overlay;
+    height: 350px; /* Control the height of the gradient fade - increased for smoother transition */
+    background: linear-gradient(to bottom, 
+      rgba(107, 72, 255, 0) 0%,
+      rgba(115, 85, 255, 0.02) 10%,
+      rgba(123, 98, 255, 0.05) 20%,
+      rgba(136, 116, 252, 0.08) 30%,
+      rgba(150, 135, 250, 0.12) 40%,
+      rgba(164, 159, 250, 0.2) 50%,
+      rgba(183, 183, 248, 0.3) 60%, 
+      rgba(202, 208, 246, 0.4) 70%,
+      rgba(220, 232, 244, 0.65) 80%,
+      rgba(238, 246, 252, 0.85) 90%,
+      rgba(246, 250, 253, 0.95) 95%,
+      rgba(255, 255, 255, 1) 100%);
     pointer-events: none;
-    z-index: 2;
-    will-change: opacity;
-    transform: translateZ(0);
+    z-index: 1;
+    opacity: 0.999; /* Prevent pixel rounding issues */
+    will-change: opacity; /* Optimize for animations */
+    -webkit-backface-visibility: hidden; /* Prevent artifacts */
+    -moz-backface-visibility: hidden;
+    transform: translateZ(0); /* Force GPU rendering */
   }
   
   /* Remove any visible separation between navbar and hero */
