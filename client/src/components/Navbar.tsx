@@ -123,9 +123,9 @@ export function Navbar() {
 
   return (
     <header 
-      className="z-[1000] flex items-center h-[70px] fixed top-0"
+      className="z-[1000] flex items-center h-[70px] fixed top-0 w-full"
       style={{ 
-        background: 'transparent',
+        background: scrolled ? navbarBackground : 'transparent',
         borderBottom: 'none',
         boxShadow: 'none',
         transition: 'all 0.3s ease',
@@ -188,20 +188,24 @@ export function Navbar() {
         </ul>
         
         {/* Mobile Navigation Button */}
-        <div className="md:hidden">
+        <div className="md:hidden block z-50">
           <button 
             aria-label="Toggle mobile menu"
-            className="text-white p-2 rounded-md hover:bg-white/10 focus:outline-none transition-colors"
+            className="text-white p-2 rounded-md hover:bg-white/20 focus:outline-none transition-colors border border-white/40 bg-white/10"
             onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
+            style={{
+              boxShadow: '0 0 10px rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(8px)'
+            }}
           >
             {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
@@ -210,12 +214,12 @@ export function Navbar() {
         {/* Mobile Navigation Menu */}
         <div 
           className={`fixed left-0 w-full top-[70px] md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
+            mobileMenuOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
           }`}
           style={{
             background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
-            boxShadow: 'none',
-            zIndex: 999,
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            zIndex: 49,
             transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
           }}
         >
