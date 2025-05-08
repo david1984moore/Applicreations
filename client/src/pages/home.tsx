@@ -41,10 +41,13 @@ export default function Home() {
         <Navbar />
         <Hero />
       </div>
-      <OurServices />
-      <WhatWeDo />
-      <Contact />
-      <Footer />
+      {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
+      <div style={{ position: 'relative', zIndex: 5, background: 'white' }}>
+        <OurServices />
+        <WhatWeDo />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }
