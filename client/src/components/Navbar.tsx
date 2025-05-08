@@ -38,6 +38,23 @@ export function Navbar() {
         setScrolled(false);
       }
     };
+    
+    // Add event listener to close mobile menu when clicking outside
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (mobileMenuOpen) {
+        const target = e.target as HTMLElement;
+        const isNavbarClick = target.closest('header') !== null;
+        
+        // Only close if clicking outside of navbar entirely
+        if (!isNavbarClick) {
+          setMobileMenuOpen(false);
+        }
+      }
+    };
+    
+    // Listen for clicks on the document
+    document.addEventListener('click', handleOutsideClick);
+    
 
     // Calculate scrollbar width
     calculateScrollbarWidth();
@@ -67,10 +84,13 @@ export function Navbar() {
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
       window.removeEventListener('resize', calculateScrollbarWidth);
+      document.removeEventListener('click', handleOutsideClick);
     };
-  }, []);
+  }, [mobileMenuOpen]);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
@@ -225,7 +245,9 @@ export function Navbar() {
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             zIndex: 49,
             transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
+            visibility: mobileMenuOpen ? 'visible' : 'hidden', // Add visibility to prevent interactions when closed
           }}
+          onClick={(e) => e.stopPropagation()} // Prevent clicks from propagating
         >
           <div className="pt-3 pb-3 space-y-4 px-6">
             <a 
@@ -233,6 +255,7 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation(); // Stop event propagation
                 handleNavClick('home');
               }}
             >
@@ -243,6 +266,7 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation(); // Stop event propagation
                 handleNavClick('what-we-do');
               }}
             >
@@ -253,6 +277,7 @@ export function Navbar() {
               className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation(); // Stop event propagation
                 handleNavClick('contact');
               }}
             >
