@@ -98,7 +98,7 @@ export function Contact() {
             </p>
           </div>
           
-          <div className="bg-white rounded-lg p-8 md:p-10 shadow-md">
+          <div className="bg-[#f5f0ff] rounded-lg p-8 md:p-10 shadow-md">
             {submitStatus === 'success' && (
               <div className="success-message rounded-md p-4 mb-4">
                 Thank you for your submission! We will get back to you soon.
