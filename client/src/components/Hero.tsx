@@ -21,14 +21,12 @@ export function Hero() {
       style={{ 
         background: 'transparent',
         paddingTop: '70px', 
-        paddingBottom: '180px', /* Significantly increased padding for our new transition approach */
+        paddingBottom: '150px', /* Further increased padding at bottom for smoother transition */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',
         outline: 'none',
-        marginTop: 0,
-        position: 'relative',
-        zIndex: 2 /* Position above the gradient overlay */
+        marginTop: 0
       }}
     >
       

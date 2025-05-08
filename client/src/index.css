@@ -596,10 +596,20 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container - completely redesigned fade for perfect transition */
+  /* Navbar-Hero Container with super smooth gradient transition to white */
   .navbar-hero-container {
     position: relative;
-    background: #6b48ff;
+    background: linear-gradient(to bottom, 
+      #6b48ff 0%, 
+      #6359ff 35%, 
+      #5b69ff 55%, 
+      #5378ff 65%, 
+      #4b86ff 75%, 
+      #6ba2ff 85%,
+      #a6c7ff 90%,
+      #d1e2ff 95%,
+      #edf5ff 98%,
+      rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;
     border: none !important;
@@ -616,36 +626,6 @@
     -webkit-backface-visibility: hidden;
     /* Explicitly no dividing lines */
     background-clip: padding-box;
-  }
-  
-  /* This empty pseudo-element creates a perfect gradient overlay with ultra-smooth transition */
-  .navbar-hero-container::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 350px; /* Control the height of the gradient fade - increased for smoother transition */
-    background: linear-gradient(to bottom, 
-      rgba(107, 72, 255, 0) 0%,
-      rgba(115, 85, 255, 0.02) 10%,
-      rgba(123, 98, 255, 0.05) 20%,
-      rgba(136, 116, 252, 0.08) 30%,
-      rgba(150, 135, 250, 0.12) 40%,
-      rgba(164, 159, 250, 0.2) 50%,
-      rgba(183, 183, 248, 0.3) 60%, 
-      rgba(202, 208, 246, 0.4) 70%,
-      rgba(220, 232, 244, 0.65) 80%,
-      rgba(238, 246, 252, 0.85) 90%,
-      rgba(246, 250, 253, 0.95) 95%,
-      rgba(255, 255, 255, 1) 100%);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.999; /* Prevent pixel rounding issues */
-    will-change: opacity; /* Optimize for animations */
-    -webkit-backface-visibility: hidden; /* Prevent artifacts */
-    -moz-backface-visibility: hidden;
-    transform: translateZ(0); /* Force GPU rendering */
   }
   
   /* Remove any visible separation between navbar and hero */
