@@ -40,8 +40,9 @@ export default function Home() {
       <div className="navbar-hero-container">
         <Navbar />
         <Hero />
-        <div className="gradient-fade-transition"></div>
       </div>
+      {/* Overlay with a perfectly smooth gradient that spans multiple sections */}
+      <div className="gradient-fade-transition"></div>
       <OurServices />
       <WhatWeDo />
       <Contact />
