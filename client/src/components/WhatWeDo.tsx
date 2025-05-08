@@ -151,13 +151,18 @@ export function WhatWeDo() {
     <section 
       id="what-we-do" 
       ref={sectionRef} 
-      className="py-24 relative overflow-hidden"
+      className="py-24 relative overflow-visible"
       style={{ 
         background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
       }}
     >
       {/* Subtle background pattern for depth */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-20"></div>
+      
+      {/* Wave transition for smooth blend into the Contact section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden" style={{ transform: 'translateY(99%)' }}>
+        <div className="absolute inset-x-0 h-full bg-gradient-to-b from-[#3881ff] to-neutral-50" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 20%)' }}></div>
+      </div>
       
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
         <div className="text-center mb-16 reveal">

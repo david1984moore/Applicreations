@@ -634,6 +634,21 @@
     margin-top: 0 !important;
     border-top: none !important;
   }
+
+  /* Ensure there's no visible line between sections */
+  section {
+    border: none !important;
+    outline: none !important;
+    margin: 0 !important;
+  }
+
+  /* Specific style for the transition between What We Do and Contact sections */
+  #what-we-do + #contact {
+    margin-top: -3rem !important;
+    border: none !important;
+    position: relative;
+    z-index: 10;
+  }
   
   /* Ensure header has smooth transitions and absolutely no borders or lines */
   header {
