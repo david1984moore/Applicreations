@@ -37,11 +37,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full m-0 p-0 overflow-hidden" style={{ background: 'none' }}>
-      <div className="navbar-hero-container">
+      <div className="navbar-hero-container relative">
         <Navbar />
         <Hero />
       </div>
-      <OurServices />
+      <div className="services-container relative z-10" style={{ marginTop: '-4rem' }}>
+        <OurServices />
+      </div>
       <WhatWeDo />
       <Contact />
       <Footer />
