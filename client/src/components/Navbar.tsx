@@ -192,15 +192,13 @@ export function Navbar() {
         <div className="md:hidden flex items-center justify-center z-50 mr-0">
           <button 
             aria-label="Toggle mobile menu"
-            className="text-white p-3 rounded-md hover:bg-white/30 focus:outline-none transition-colors border-2 border-white/70 bg-purple-700"
+            className="text-white p-3 rounded-md hover:bg-white/10 focus:outline-none transition-colors"
             onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
             style={{
-              boxShadow: '0 0 15px rgba(255, 255, 255, 0.4)',
-              backdropFilter: 'blur(8px)',
               marginRight: '0',
-              minWidth: '50px', 
-              minHeight: '50px'
+              minWidth: '48px', 
+              minHeight: '48px'
             }}
           >
             {mobileMenuOpen ? (
