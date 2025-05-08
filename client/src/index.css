@@ -637,13 +637,8 @@
     color: white;
     overflow: hidden;
     /* Fast transition when leaving hover state */
-    transition: color 0.4s ease, border 0.4s ease;
+    transition: color 0.4s ease;
     border-radius: 50px; /* Ensure border radius is set */
-    border: 2px solid transparent; /* Initial transparent border */
-  }
-  
-  .animated-button:hover {
-    border: 2px solid #000; /* Black border on hover */
   }
   
   .animated-button::before {
