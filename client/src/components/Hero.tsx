@@ -22,18 +22,23 @@ export function Hero() {
     >
       
       
-      {/* Short tagline with animation */}
-      <p 
-        className={`text-[1.5rem] font-semibold text-white mb-[30px] text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      {/* Eye-catching tagline with animation */}
+      <div 
+        className={`text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-[30px]`}
         style={{ transitionDelay: '0.4s' }}
       >
-        Building apps and websites that solve problems.
-      </p>
+        <p className="text-[1.65rem] md:text-[1.8rem] font-bold text-white leading-tight">
+          We turn <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-400">problems</span> into <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-teal-400">solutions</span>
+        </p>
+        <p className="text-[1.3rem] md:text-[1.5rem] font-medium text-white/90 mt-2">
+          with custom apps and websites.
+        </p>
+      </div>
       
-      {/* CTA Button with animation - Microfeller style dot expand effect */}
+      {/* CTA Button with animation - Microfeller style dot expand effect - SMALLER SIZE */}
       <a 
         href="#contact"
-        className={`animated-button relative inline-flex items-center justify-center py-[15px] px-[42px] font-[600] text-[1.2rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
+        className={`animated-button relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
         style={{ 
           transitionDelay: '0.6s',
           border: 'none',
