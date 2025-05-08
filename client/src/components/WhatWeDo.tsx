@@ -31,7 +31,7 @@ function LightBulbContainer({ children }: { children: React.ReactNode }) {
   
   return (
     <div 
-      className="lightbulb-container cursor-pointer" 
+      className="lightbulb-container w-full" 
       title="Hover to light up the idea!"
       onMouseEnter={handleMouseEnter}
     >
@@ -69,7 +69,7 @@ function ConfettiContainer({ children }: { children: React.ReactNode }) {
   
   return (
     <div 
-      className="confetti-container cursor-pointer" 
+      className="confetti-container w-full" 
       title="Hover for celebration!"
       onMouseEnter={handleMouseEnter}
     >
@@ -104,7 +104,7 @@ function RoofContainer({ children }: { children: React.ReactNode }) {
   
   return (
     <div 
-      className="roof-container cursor-pointer" 
+      className="roof-container w-full" 
       title="Hover to see construction!"
       onMouseEnter={handleMouseEnter}
     >
@@ -167,109 +167,109 @@ export function WhatWeDo() {
         {/* Desktop View */}
         <div className="hidden md:flex gap-8 reveal">
           {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
-            <div className="flex flex-col items-center text-center">
-              <LightBulbContainer>
+          <LightBulbContainer>
+            <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </Icon>
-              </LightBulbContainer>
-              <h3 className="text-2xl font-bold text-white mt-6 mb-4">Ideate</h3>
-              <p className="text-white/90 text-lg">
-                We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
-              </p>
+                <h3 className="text-2xl font-bold text-white mt-6 mb-4">Ideate</h3>
+                <p className="text-white/90 text-lg">
+                  We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
+                </p>
+              </div>
             </div>
-          </div>
+          </LightBulbContainer>
 
           {/* Card 2: Iterate - Green Color Scheme with Roof */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
-            <div className="flex flex-col items-center text-center">
-              <RoofContainer>
+          <RoofContainer>
+            <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                 </Icon>
-              </RoofContainer>
-              <h3 className="text-2xl font-bold text-white mt-6 mb-4">Iterate</h3>
-              <p className="text-white/90 text-lg">
-                We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
-              </p>
+                <h3 className="text-2xl font-bold text-white mt-6 mb-4">Iterate</h3>
+                <p className="text-white/90 text-lg">
+                  We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
+                </p>
+              </div>
             </div>
-          </div>
+          </RoofContainer>
 
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
-          <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300">
-            <div className="flex flex-col items-center text-center">
-              <ConfettiContainer>
+          <ConfettiContainer>
+            <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </Icon>
-              </ConfettiContainer>
-              <h3 className="text-2xl font-bold text-white mt-6 mb-4">Congratulate</h3>
-              <p className="text-white/90 text-lg">
-                We deliver your polished product and celebrate your success as your digital solution reaches its audience.
-              </p>
+                <h3 className="text-2xl font-bold text-white mt-6 mb-4">Congratulate</h3>
+                <p className="text-white/90 text-lg">
+                  We deliver your polished product and celebrate your success as your digital solution reaches its audience.
+                </p>
+              </div>
             </div>
-          </div>
+          </ConfettiContainer>
         </div>
 
         {/* Mobile View - Stacked cards */}
         <div className="md:hidden space-y-6 reveal">
           {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            <div className="flex flex-col items-center text-center">
-              <LightBulbContainer>
+          <LightBulbContainer>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-orange-400 to-red-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </Icon>
-              </LightBulbContainer>
-              <h3 className="text-xl font-bold text-white mt-4 mb-2">Ideate</h3>
-              <p className="text-white/90">
-                We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
-              </p>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Ideate</h3>
+                <p className="text-white/90">
+                  We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
+                </p>
+              </div>
             </div>
-          </div>
+          </LightBulbContainer>
 
           {/* Card 2: Iterate - Green Color Scheme with Roof */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            <div className="flex flex-col items-center text-center">
-              <RoofContainer>
+          <RoofContainer>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-emerald-400 to-teal-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                 </Icon>
-              </RoofContainer>
-              <h3 className="text-xl font-bold text-white mt-4 mb-2">Iterate</h3>
-              <p className="text-white/90">
-                We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
-              </p>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Iterate</h3>
+                <p className="text-white/90">
+                  We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
+                </p>
+              </div>
             </div>
-          </div>
+          </RoofContainer>
 
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            <div className="flex flex-col items-center text-center">
-              <ConfettiContainer>
+          <ConfettiContainer>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer">
+              <div className="flex flex-col items-center text-center">
                 <Icon color="bg-gradient-to-br from-pink-400 to-rose-500" iconColor="text-white">
                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </Icon>
-              </ConfettiContainer>
-              <h3 className="text-xl font-bold text-white mt-4 mb-2">Congratulate</h3>
-              <p className="text-white/90">
-                We deliver your polished product and celebrate your success as your digital solution reaches its audience.
-              </p>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Congratulate</h3>
+                <p className="text-white/90">
+                  We deliver your polished product and celebrate your success as your digital solution reaches its audience.
+                </p>
+              </div>
             </div>
-          </div>
+          </ConfettiContainer>
         </div>
       </div>
     </section>
