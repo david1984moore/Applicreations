@@ -226,7 +226,7 @@ export function Contact() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className={`animated-button relative inline-flex items-center justify-center py-[15px] px-[42px] font-[600] text-[1.2rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
+                    className={`animated-button relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
                     style={{ 
                       border: 'none',
                       outline: 'none'
