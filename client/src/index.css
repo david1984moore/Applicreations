@@ -634,35 +634,6 @@
     margin-top: 0 !important;
     border-top: none !important;
   }
-
-  /* Ensure there's no visible line between sections */
-  section {
-    border: none !important;
-    outline: none !important;
-    margin: 0 !important;
-  }
-
-  /* Smooth section transitions */
-  #what-we-do {
-    margin-bottom: 0 !important;
-    position: relative;
-    z-index: 5;
-    padding-bottom: 6rem !important;
-  }
-  
-  #contact {
-    margin-top: -4rem !important;
-    position: relative;
-    z-index: 4;
-    background: linear-gradient(180deg, #f0f4ff 0%, #f7f7ff 15%, #f9f9ff 100%) !important;
-  }
-  
-  /* Remove any borders or shadows between sections */
-  section {
-    border-top: 0 !important;
-    border-bottom: 0 !important;
-    box-shadow: none !important;
-  }
   
   /* Ensure header has smooth transitions and absolutely no borders or lines */
   header {

@@ -91,7 +91,7 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-16 pb-20 relative overflow-hidden light-bg-section"
+      className="pt-24 pb-20 relative overflow-hidden bg-gradient-to-b from-neutral-50 to-neutral-100 light-bg-section"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">
