@@ -689,13 +689,13 @@
   
   .animated-button:hover .button-text {
     color: #000;
-    transition: color 0.4s ease, transform 0.3s ease, opacity 0.3s ease;
+    transition: color 0.4s ease, transform 0.15s ease, opacity 0.15s ease;
     transform: translateY(-30px);
     opacity: 0;
   }
   
   .button-text {
-    transition: color 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    transition: color 0.4s ease, transform 0.2s ease, opacity 0.2s ease;
     position: relative;
     z-index: 10;
     transform: translateY(0);
@@ -707,13 +707,13 @@
     color: #000;
     transform: translateY(-30px);
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
   
   /* Make the hover text appear on hover */
   .animated-button:hover .button-text-hover {
     transform: translateY(0);
     opacity: 1;
-    transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s;
+    transition: transform 0.15s ease 0.05s, opacity 0.15s ease 0.05s;
   }
 }
