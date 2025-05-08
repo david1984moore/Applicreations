@@ -512,6 +512,9 @@
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+    /* This eliminates sub-pixel rendering differences */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .bg-gradient {
@@ -593,9 +596,31 @@
     z-index: 1;
   }
   
+  /* Navbar-Hero Container without any dividing line */
+  .navbar-hero-container {
+    position: relative;
+    background: linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff);
+    background-attachment: fixed;
+    display: block;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    border-bottom: 0 !important;
+    overflow: visible;
+    /* Force GPU acceleration to prevent pixel rendering issues */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent any potential rendering artifacts */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Explicitly no dividing lines */
+    background-clip: padding-box;
+  }
+  
   /* Remove any visible separation between navbar and hero */
   header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before,
-  header *, nav *, .hero * {
+  header *, nav *, .hero *, .navbar-hero-container, .navbar-hero-container::before, .navbar-hero-container::after {
     border: none !important;
     border-bottom: none !important;
     border-top: none !important;
@@ -610,9 +635,15 @@
     border-top: none !important;
   }
   
-  /* Ensure header has smooth transitions */
+  /* Ensure header has smooth transitions and absolutely no borders or lines */
   header {
-    transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+    transition: background-color 0.3s ease !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    background-clip: padding-box !important;
   }
   
   nav ul {

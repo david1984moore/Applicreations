@@ -36,9 +36,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
-      <Navbar />
-      <Hero />
+    <div className="min-h-screen w-full m-0 p-0 overflow-hidden" style={{ background: 'none' }}>
+      <div className="navbar-hero-container">
+        <Navbar />
+        <Hero />
+      </div>
       <OurServices />
       <WhatWeDo />
       <Contact />

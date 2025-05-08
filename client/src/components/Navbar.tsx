@@ -125,7 +125,7 @@ export function Navbar() {
     <header 
       className="z-[1000] flex items-center h-[70px] fixed top-0"
       style={{ 
-        background: navbarBackground,
+        background: 'transparent',
         borderBottom: 'none',
         boxShadow: 'none',
         transition: 'all 0.3s ease',
