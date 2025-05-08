@@ -91,13 +91,10 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-24 pb-20 relative overflow-hidden light-bg-section"
+      className="pt-16 pb-20 relative overflow-hidden light-bg-section"
     >
-      {/* Gradient overlay to blend from WhatWeDo section */}
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#3881ff] to-transparent"></div>
-      
-      {/* Light background that starts below the gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-50 to-neutral-100 -z-10"></div>
+      {/* Background with seamless transition */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#3881ff] via-[#7da2ff] to-[#f5f0ff] -z-10"></div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto reveal">
