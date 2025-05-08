@@ -639,6 +639,8 @@
     /* Fast transition when leaving hover state */
     transition: color 0.4s ease;
     border-radius: 50px; /* Ensure border radius is set */
+    border: none;
+    outline: none;
   }
   
   .animated-button::before {
@@ -672,19 +674,29 @@
   }
   
   /* Faster transition for the white dot expansion (initial hover) */
+  .animated-button:hover {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
   .animated-button:hover::before {
-    width: 100%;
-    height: 100%;
-    left: 0;
+    width: 101%; /* Slightly larger to ensure no gaps */
+    height: 102%; /* Slightly larger to ensure no gaps */
+    left: -0.5px; /* Slight offset to prevent edge artifacts */
     transform: translateY(-50%);
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
+    box-shadow: none;
   }
   
   /* Faster transition for the black dot (same as white dot disappearing) */
   .animated-button:hover::after {
     transform: translateY(-50%) scale(1);
     transition: transform 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
+    border: none;
+    box-shadow: none;
+    outline: none;
   }
   
   .animated-button:hover .button-text {
