@@ -129,22 +129,23 @@ export function Navbar() {
         borderBottom: 'none',
         boxShadow: 'none',
         transition: 'all 0.3s ease',
-        width: 'calc(100% - var(--scrollbar-width))', // Subtract scrollbar width from total width
+        width: '100%', // Use full width for mobile
         left: 0,
-        right: 'var(--scrollbar-width)',
+        right: 0,
         outline: 'none',
+        padding: '0 5px', // Add some padding for mobile
       }}
     >
-      <nav className="container mx-auto px-6 flex items-center justify-between h-full">
+      <nav className="w-full px-4 flex items-center justify-between h-full">
         <a 
           href="#home" 
-          className="navbar-logo"
+          className="navbar-logo max-w-[70%] md:max-w-none"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick('home');
           }}
         >
-          <Logo className="text-white" />
+          <Logo className="text-white scale-[0.85] md:scale-100" />
         </a>
         
         {/* Desktop Navigation */}
@@ -188,23 +189,26 @@ export function Navbar() {
         </ul>
         
         {/* Mobile Navigation Button */}
-        <div className="md:hidden block z-50">
+        <div className="md:hidden flex items-center justify-center z-50 mr-0">
           <button 
             aria-label="Toggle mobile menu"
-            className="text-white p-2 rounded-md hover:bg-white/20 focus:outline-none transition-colors border border-white/40 bg-white/10"
+            className="text-white p-3 rounded-md hover:bg-white/30 focus:outline-none transition-colors border-2 border-white/70 bg-purple-700"
             onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
             style={{
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(8px)'
+              boxShadow: '0 0 15px rgba(255, 255, 255, 0.4)',
+              backdropFilter: 'blur(8px)',
+              marginRight: '0',
+              minWidth: '50px', 
+              minHeight: '50px'
             }}
           >
             {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
