@@ -509,6 +509,9 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   .bg-gradient {
@@ -591,9 +594,11 @@
   }
   
   /* Remove any visible separation between navbar and hero */
-  header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before {
+  header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before,
+  header *, nav *, .hero * {
     border: none !important;
     border-bottom: none !important;
+    border-top: none !important;
     outline: none !important;
     box-shadow: none !important;
   }

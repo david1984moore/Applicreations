@@ -126,12 +126,13 @@ export function Navbar() {
       className="z-[1000] flex items-center h-[70px] fixed top-0"
       style={{ 
         background: navbarBackground,
-        borderBottom: borderStyle,
-        boxShadow: boxShadowStyle,
+        borderBottom: 'none',
+        boxShadow: 'none',
         transition: 'all 0.3s ease',
         width: 'calc(100% - var(--scrollbar-width))', // Subtract scrollbar width from total width
         left: 0,
         right: 'var(--scrollbar-width)',
+        outline: 'none',
       }}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between h-full">
