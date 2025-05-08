@@ -596,13 +596,15 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container with smooth gradient transition to white */
+  /* Navbar-Hero Container with super smooth gradient transition to white */
   .navbar-hero-container {
     position: relative;
     background: linear-gradient(to bottom, 
       #6b48ff 0%, 
-      #4b79ff 60%, 
-      #3881ff 80%, 
+      #5a63ff 50%, 
+      #4b79ff 75%, 
+      #3d8aff 85%,
+      #e8f0ff 97%,
       rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;
