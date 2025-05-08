@@ -223,7 +223,7 @@ export function Contact() {
                 />
                 
                 <div className="text-center">
-                  <Button 
+                  <button 
                     type="submit" 
                     disabled={isSubmitting}
                     className={`animated-button relative inline-flex items-center justify-center py-[15px] px-[42px] font-[600] text-[1.2rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
@@ -238,7 +238,7 @@ export function Contact() {
                     <span className="button-text-hover absolute z-10 ml-5">
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </span>
-                  </Button>
+                  </button>
                 </div>
               </form>
             </Form>
