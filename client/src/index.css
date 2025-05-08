@@ -680,13 +680,20 @@
       transform: translateY(-50%) scale(1);
       border-radius: 50%;
     }
-    30% {
-      transform: translateY(-50%) scaleX(18) scaleY(2.5);
-      border-radius: 20px;
+    25% {
+      /* First become a pill shape matching button's border-radius */
+      transform: translateY(-50%) scaleX(14) scaleY(2.6);
+      border-radius: 50px;
+    }
+    40% {
+      /* Maintain pill shape for a moment with slightly larger size */
+      transform: translateY(-50%) scaleX(16) scaleY(2.6);
+      border-radius: 50px;
     }
     100% {
+      /* Then fill the entire button */
       transform: translateY(-50%) scale(120);
-      border-radius: 50%;
+      border-radius: 50px;
     }
   }
   
