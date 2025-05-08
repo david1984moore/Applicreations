@@ -18,7 +18,11 @@ export function Hero() {
       id="home" 
       ref={heroRef}
       className="hero min-h-[80vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
-      style={{ background: 'none', paddingTop: '90px', paddingBottom: '40px' }}
+      style={{ 
+        background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)', 
+        paddingTop: '90px', 
+        paddingBottom: '40px' 
+      }}
     >
       
       

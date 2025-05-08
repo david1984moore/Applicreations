@@ -503,21 +503,12 @@
     font-family: 'Inter', sans-serif;
     color: #333333;
     scroll-behavior: smooth;
-    /* Default gradient for desktop */
-    background: linear-gradient(90deg, #6b48ff, #00ddeb) fixed;
+    /* Using the mobile gradient for all screen sizes */
+    background: linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff) fixed;
     background-size: 100% 100vh;
     margin: 0;
     padding: 0;
     min-height: 100vh;
-  }
-  
-  /* Mobile-specific background gradient */
-  @media (max-width: 768px) {
-    body {
-      /* Angled gradient that doesn't get too light on right side */
-      background: linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff) fixed;
-      background-size: 100% 100vh;
-    }
   }
 
   .bg-gradient {
