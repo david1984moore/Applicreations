@@ -151,18 +151,15 @@ export function WhatWeDo() {
     <section 
       id="what-we-do" 
       ref={sectionRef} 
-      className="py-24 relative overflow-visible"
+      className="py-24 pb-72 relative"
       style={{ 
         background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
+        position: 'relative',
+        zIndex: 1
       }}
     >
       {/* Subtle background pattern for depth */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-20"></div>
-      
-      {/* Create a seamless gradient blend to the next section */}
-      <div className="absolute -bottom-40 left-0 right-0 h-80 overflow-visible" style={{ transform: 'translateZ(0)' }}>
-        <div className="w-full h-full bg-gradient-to-b from-[#3881ff] via-[#b0c4ff] to-[#f7f7ff] opacity-100"></div>
-      </div>
       
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
         <div className="text-center mb-16 reveal">

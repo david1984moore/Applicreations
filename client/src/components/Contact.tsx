@@ -93,10 +93,7 @@ export function Contact() {
       ref={sectionRef} 
       className="pt-44 pb-20 relative overflow-hidden light-bg-section"
       style={{ 
-        background: 'linear-gradient(to bottom, #f7f7ff, #f5f5f8)', 
-        marginTop: '-3rem',
-        boxShadow: 'none',
-        border: 'none'
+        background: 'linear-gradient(180deg, #f0f4ff 0%, #f7f7ff 15%, #f9f9ff 100%)'
       }}
     >
       <div className="container mx-auto px-6">
