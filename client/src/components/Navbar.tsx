@@ -230,7 +230,7 @@ export function Navbar() {
           <div className="pt-3 pb-3 space-y-4 px-6">
             <a 
               href="#home" 
-              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -240,7 +240,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do" 
-              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -250,7 +250,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact" 
-              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors"
+              className="block font-medium py-2 text-base text-white hover:text-gray-200 transition-colors text-right pr-8"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
