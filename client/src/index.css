@@ -596,24 +596,21 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container with ultra-smooth gradient transition to white */
+  /* Navbar-Hero Container with super smooth gradient transition to white */
   .navbar-hero-container {
     position: relative;
     background: linear-gradient(to bottom, 
       #6b48ff 0%, 
-      #5a63ff 45%, 
-      #4b79ff 70%, 
-      #3d8aff 80%,
-      #a6c8ff 90%,
-      #d1e3ff 95%,
-      #eaf4ff 98%,
+      #5a63ff 50%, 
+      #4b79ff 75%, 
+      #3d8aff 85%,
+      #e8f0ff 97%,
       rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;
     border: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    padding-bottom: 40px !important; /* Add extra padding at the bottom */
     width: 100%;
     border-bottom: 0 !important;
     overflow: visible;
@@ -625,22 +622,6 @@
     -webkit-backface-visibility: hidden;
     /* Explicitly no dividing lines */
     background-clip: padding-box;
-  }
-  
-  /* Additional gradient overlay for seamless transition */
-  .navbar-hero-container::after {
-    content: '';
-    position: absolute;
-    bottom: -10px; /* Slight overlap with the section below */
-    left: 0;
-    width: 100%;
-    height: 80px; /* Height of the gradient overlay */
-    background: linear-gradient(to bottom, 
-      #eaf4ff 0%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 1) 100%);
-    z-index: 1; /* Ensure it's above other content but below any interactive elements */
-    pointer-events: none; /* Allow clicking through this element */
   }
   
   /* Remove any visible separation between navbar and hero */
