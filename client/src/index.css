@@ -596,10 +596,14 @@
     z-index: 1;
   }
   
-  /* Navbar-Hero Container without any dividing line */
+  /* Navbar-Hero Container with smooth gradient transition to white */
   .navbar-hero-container {
     position: relative;
-    background: linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff);
+    background: linear-gradient(to bottom, 
+      #6b48ff 0%, 
+      #4b79ff 60%, 
+      #3881ff 80%, 
+      rgba(255, 255, 255, 1) 100%);
     background-attachment: fixed;
     display: block;
     border: none !important;

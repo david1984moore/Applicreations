@@ -154,8 +154,17 @@ export function WhatWeDo() {
       className="py-24 relative overflow-hidden"
       style={{ 
         background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
+        position: 'relative'
       }}
     >
+      {/* Gradient overlay for smooth transition to the contact section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(56, 129, 255, 0) 0%, rgba(255, 255, 255, 1) 100%)',
+          zIndex: 5
+        }}
+      ></div>
       {/* Subtle background pattern for depth */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-20"></div>
       
