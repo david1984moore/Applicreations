@@ -112,10 +112,8 @@ export function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  // Choose gradient based on screen size
-  const navbarBackground = isMobile
-    ? 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)'
-    : 'linear-gradient(90deg, #6b48ff, #00ddeb)';
+  // Use the same gradient for all screen sizes to match the rest of the site
+  const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
 
   // Border only when scrolled
   const borderStyle = scrolled ? '1px solid #ffffff' : 'none';

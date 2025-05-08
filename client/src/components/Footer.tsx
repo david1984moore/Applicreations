@@ -37,10 +37,8 @@ export function Footer() {
     }
   };
   
-  // Get matching gradient for mobile that we used in the body
-  const footerGradientClass = isMobile 
-    ? "bg-gradient-to-br from-[#6b48ff] via-[#4b79ff] to-[#3881ff]" 
-    : "bg-gradient-to-r from-[#6b48ff] to-[#00ddeb]";
+  // Use the same gradient for both mobile and desktop
+  const footerGradientClass = "bg-gradient-to-br from-[#6b48ff] via-[#4b79ff] to-[#3881ff]";
     
   return (
     <footer className={`${footerGradientClass} py-10 text-white`}>
