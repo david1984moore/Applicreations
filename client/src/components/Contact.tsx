@@ -226,9 +226,18 @@ export function Contact() {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="btn-gradient text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+                    className={`animated-button relative inline-flex items-center justify-center py-[15px] px-[42px] font-[600] text-[1.2rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
+                    style={{ 
+                      border: 'none',
+                      outline: 'none'
+                    }}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <span className="button-text relative z-10 ml-5">
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </span>
+                    <span className="button-text-hover absolute z-10 ml-5">
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </span>
                   </Button>
                 </div>
               </form>
