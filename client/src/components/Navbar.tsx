@@ -99,8 +99,23 @@ export function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  // Always apply gradient background regardless of scroll position
-  const navbarBackground = 'linear-gradient(90deg, #6b48ff, #00ddeb)';
+  // Different gradients for mobile versus desktop
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+  // Update isMobile state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Choose gradient based on screen size
+  const navbarBackground = isMobile
+    ? 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)'
+    : 'linear-gradient(90deg, #6b48ff, #00ddeb)';
 
   // Border only when scrolled
   const borderStyle = scrolled ? '1px solid #ffffff' : 'none';
