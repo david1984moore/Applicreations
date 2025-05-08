@@ -642,32 +642,19 @@
     margin: 0 !important;
   }
 
-  /* Specific style for the smooth gradient transition between What We Do and Contact sections */
+  /* Smooth section transitions */
   #what-we-do {
-    margin-bottom: -240px !important;
+    margin-bottom: 0 !important;
     position: relative;
     z-index: 5;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    padding-bottom: 6rem !important;
   }
   
   #contact {
-    margin-top: 0 !important;
-    padding-top: 240px !important;
+    margin-top: -4rem !important;
     position: relative;
     z-index: 4;
-  }
-  
-  /* Create a gradient overlay behind the section overlap */
-  #what-we-do::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, #3881ff);
-    opacity: 0.7;
-    z-index: -1;
+    background: linear-gradient(180deg, #f0f4ff 0%, #f7f7ff 15%, #f9f9ff 100%) !important;
   }
   
   /* Remove any borders or shadows between sections */

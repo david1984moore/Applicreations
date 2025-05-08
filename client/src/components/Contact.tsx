@@ -91,10 +91,7 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-44 pb-20 relative overflow-hidden light-bg-section"
-      style={{ 
-        background: 'linear-gradient(180deg, #f0f4ff 0%, #f7f7ff 15%, #f9f9ff 100%)'
-      }}
+      className="pt-16 pb-20 relative overflow-hidden light-bg-section"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">

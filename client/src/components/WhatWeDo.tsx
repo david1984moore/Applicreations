@@ -151,7 +151,7 @@ export function WhatWeDo() {
     <section 
       id="what-we-do" 
       ref={sectionRef} 
-      className="py-24 pb-72 relative"
+      className="py-24 pb-32 relative"
       style={{ 
         background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
         position: 'relative',
@@ -160,6 +160,9 @@ export function WhatWeDo() {
     >
       {/* Subtle background pattern for depth */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-20"></div>
+      
+      {/* Gradient fade transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-[#4b79ff]/80 to-[#f7f7ff] opacity-100" style={{ zIndex: 0 }}></div>
       
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
         <div className="text-center mb-16 reveal">
