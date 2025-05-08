@@ -60,10 +60,10 @@ function ConfettiContainer({ children }: { children: React.ReactNode }) {
   const handleMouseEnter = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      // Reset animation after 5 seconds
+      // Reset animation after 1.5 seconds
       setTimeout(() => {
         setIsAnimating(false);
-      }, 5000);
+      }, 1500);
     }
   };
   
@@ -75,13 +75,13 @@ function ConfettiContainer({ children }: { children: React.ReactNode }) {
     >
       {/* Confetti pieces - positioned around the icon */}
       <div className={`confetti ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '-10px', left: '25%', animationDelay: '0s' }}></div>
-      <div className={`confetti yellow ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '-5px', left: '60%', animationDelay: '0.3s' }}></div>
-      <div className={`confetti blue ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '0px', left: '80%', animationDelay: '0.6s' }}></div>
-      <div className={`confetti green ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '5px', left: '30%', animationDelay: '0.9s' }}></div>
-      <div className={`confetti purple ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '10px', left: '70%', animationDelay: '1.2s' }}></div>
-      <div className={`confetti yellow ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '-5px', left: '40%', animationDelay: '1.5s' }}></div>
-      <div className={`confetti ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '0px', left: '20%', animationDelay: '1.8s' }}></div>
-      <div className={`confetti blue ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '5px', left: '55%', animationDelay: '2.1s' }}></div>
+      <div className={`confetti yellow ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '-5px', left: '60%', animationDelay: '0.1s' }}></div>
+      <div className={`confetti blue ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '0px', left: '80%', animationDelay: '0.2s' }}></div>
+      <div className={`confetti green ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '5px', left: '30%', animationDelay: '0.3s' }}></div>
+      <div className={`confetti purple ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '10px', left: '70%', animationDelay: '0.4s' }}></div>
+      <div className={`confetti yellow ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '-5px', left: '40%', animationDelay: '0.5s' }}></div>
+      <div className={`confetti ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '0px', left: '20%', animationDelay: '0.6s' }}></div>
+      <div className={`confetti blue ${isAnimating ? 'animate-confetti' : ''}`} style={{ top: '5px', left: '55%', animationDelay: '0.7s' }}></div>
       
       {children}
     </div>
@@ -95,10 +95,10 @@ function RoofContainer({ children }: { children: React.ReactNode }) {
   const handleMouseEnter = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      // Reset animation after 5 seconds
+      // Reset animation after 1.5 seconds
       setTimeout(() => {
         setIsAnimating(false);
-      }, 5000);
+      }, 1500);
     }
   };
   
@@ -112,9 +112,9 @@ function RoofContainer({ children }: { children: React.ReactNode }) {
       <div className={`roof ${isAnimating ? 'animate-roof' : ''}`}></div>
       <div className={`roof-body ${isAnimating ? 'animate-roof-body' : ''}`}></div>
       <div className={`chimney ${isAnimating ? 'animate-chimney' : ''}`}></div>
-      <div className={`smoke smoke-1 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.2s' }}></div>
-      <div className={`smoke smoke-2 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.4s' }}></div>
-      <div className={`smoke smoke-3 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.6s' }}></div>
+      <div className={`smoke smoke-1 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.1s' }}></div>
+      <div className={`smoke smoke-2 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.2s' }}></div>
+      <div className={`smoke smoke-3 ${isAnimating ? 'animate-smoke' : ''}`} style={{ animationDelay: '0.3s' }}></div>
       
       {children}
     </div>
