@@ -1,9 +1,20 @@
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Logo } from './Logo';
 
 export function Footer() {
   const [currentYear] = useState(new Date().getFullYear());
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+  // Update mobile state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -26,8 +37,13 @@ export function Footer() {
     }
   };
   
+  // Get matching gradient for mobile that we used in the body
+  const footerGradientClass = isMobile 
+    ? "bg-gradient-to-br from-[#6b48ff] via-[#4b79ff] to-[#3881ff]" 
+    : "bg-gradient-to-r from-[#6b48ff] to-[#00ddeb]";
+    
   return (
-    <footer className="bg-gradient-to-r from-[#6b48ff] to-[#00ddeb] py-10 text-white">
+    <footer className={`${footerGradientClass} py-10 text-white`}>
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-center items-center mb-8">
           <div className="text-center">
