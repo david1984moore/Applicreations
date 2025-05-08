@@ -159,9 +159,9 @@ export function WhatWeDo() {
       {/* Subtle background pattern for depth */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-20"></div>
       
-      {/* Wave transition for smooth blend into the Contact section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden" style={{ transform: 'translateY(99%)' }}>
-        <div className="absolute inset-x-0 h-full bg-gradient-to-b from-[#3881ff] to-neutral-50" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 20%)' }}></div>
+      {/* Create a seamless gradient blend to the next section */}
+      <div className="absolute -bottom-40 left-0 right-0 h-80 overflow-visible" style={{ transform: 'translateZ(0)' }}>
+        <div className="w-full h-full bg-gradient-to-b from-[#3881ff] via-[#b0c4ff] to-[#f7f7ff] opacity-100"></div>
       </div>
       
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
