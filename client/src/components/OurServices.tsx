@@ -34,9 +34,9 @@ export function OurServices() {
         </div>
 
         {/* Services - Alternating left-right layout with improved visuals */}
-        <div className="space-y-12 md:space-y-20 reveal px-2 md:px-12 lg:px-20 xl:px-32">
+        <div className="space-y-8 md:space-y-20 reveal px-2 md:px-12 lg:px-20 xl:px-32">
           {/* Web Development - Left image, right text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform rotate-3"></div>
             <div className="md:col-span-4 flex justify-center items-center py-4">
               <div className="relative">
@@ -65,7 +65,7 @@ export function OurServices() {
           </div>
 
           {/* App Development - Right image, left text */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-2"></div>
             <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
               <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
@@ -106,16 +106,16 @@ export function OurServices() {
                 </div>
               </div>
             </div>
-            <div className="md:col-span-8 px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-2xl font-semibold text-neutral-dark mb-4">Hosting Services</h3>
-                <div className="w-16 h-1 bg-gradient mb-4"></div>
+            <div className="md:col-span-8 px-1 md:px-2">
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">Hosting Services</h3>
+                <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
                   Our infrastructure is built for speed, security, and reliability so you can focus on growing your business.
                 </p>
-                <div className="mt-4 flex gap-4">
-                  <span className="inline-flex items-center text-sm font-medium text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Cloud-based</span>
+                <div className="mt-3 md:mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Cloud-based</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>99.9% Uptime</span>
                 </div>
               </div>
@@ -125,16 +125,16 @@ export function OurServices() {
           {/* Maintenance & Support - Right image, left text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-1"></div>
-            <div className="md:col-span-8 md:order-1 order-2 px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-2xl font-semibold text-neutral-dark mb-4">Maintenance & Support</h3>
-                <div className="w-16 h-1 bg-gradient mb-4"></div>
+            <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">Maintenance & Support</h3>
+                <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
                   Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
                 </p>
-                <div className="mt-4 flex gap-4">
-                  <span className="inline-flex items-center text-sm font-medium text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>24/7 Support</span>
+                <div className="mt-3 md:mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>24/7 Support</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Regular Updates</span>
                 </div>
               </div>
