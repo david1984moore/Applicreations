@@ -85,7 +85,7 @@ export function OurServices() {
                 </div>
               </div>
             </div>
-            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-4">
+            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-2 md:py-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
@@ -143,7 +143,7 @@ export function OurServices() {
                 </div>
               </div>
             </div>
-            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-4">
+            <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-2 md:py-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
