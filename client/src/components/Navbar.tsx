@@ -139,9 +139,9 @@ export function Navbar() {
       {/* Very Simple Static Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="fixed top-[70px] left-0 w-full bg-gradient-to-r from-purple-600 to-blue-500 z-[999]"
+          className="fixed top-[70px] left-0 w-full bg-black z-[999]"
           style={{
-            background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
+            background: '#000000',
           }}
         >
           <div className="py-2 px-4 flex flex-col items-end">
