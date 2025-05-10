@@ -39,7 +39,7 @@ export function Hero() {
         style={{ transitionDelay: '0.4s' }}
       >
         <p className="text-[1.65rem] md:text-[1.8rem] font-bold text-white leading-tight">
-          We turn <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-400">problems</span> into <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-teal-400">solutions</span>
+          We turn <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-teal-400">problems</span> into <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-400">solutions</span>
         </p>
         <p className="text-[1.3rem] md:text-[1.5rem] font-medium text-white/90 mt-2">
           with custom apps and websites.
