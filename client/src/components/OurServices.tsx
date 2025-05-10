@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 // Add more compact styles for mobile
-const iconContainerClass = "h-20 w-20 md:h-28 md:w-28 text-blue-600 drop-shadow-md";
-const compactPaddingClass = "py-1 md:py-4";
+const iconContainerClass = "h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md";
+const compactPaddingClass = "py-2 md:py-4";
 
 export function OurServices() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,7 +42,7 @@ export function OurServices() {
           {/* Web Development - Left image, right text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform rotate-3"></div>
-            <div className="md:col-span-4 flex justify-center items-center py-4">
+            <div className="md:col-span-4 flex justify-center items-center py-2 md:py-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
@@ -100,7 +100,7 @@ export function OurServices() {
           {/* Hosting Services - Left image, right text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform rotate-1"></div>
-            <div className="md:col-span-4 flex justify-center items-center py-4">
+            <div className="md:col-span-4 flex justify-center items-center py-2 md:py-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
