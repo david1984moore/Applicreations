@@ -56,9 +56,9 @@ export function OurServices() {
                   We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
                   Our web solutions combine striking visuals with intuitive navigation to help you connect with your audience effectively.
                 </p>
-                <div className="mt-4 flex gap-3">
-                  <span className="inline-block text-xs bg-purple-100 text-purple px-3 py-1 rounded-full">Responsive Design</span>
-                  <span className="inline-block text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Performance Focused</span>
+                <div className="mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-sm font-medium text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Responsive Design</span>
+                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Performance Focused</span>
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@ export function OurServices() {
                   We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
                   Our mobile solutions work seamlessly across platforms, providing a consistent experience that keeps users coming back.
                 </p>
-                <div className="mt-4 flex gap-3">
-                  <span className="inline-block text-xs bg-purple-100 text-purple px-3 py-1 rounded-full">iOS & Android</span>
-                  <span className="inline-block text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">User-Centered Design</span>
+                <div className="mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-sm font-medium text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>iOS & Android</span>
+                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>User-Centered Design</span>
                 </div>
               </div>
             </div>
@@ -114,9 +114,9 @@ export function OurServices() {
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
                   Our infrastructure is built for speed, security, and reliability so you can focus on growing your business.
                 </p>
-                <div className="mt-4 flex gap-3">
-                  <span className="inline-block text-xs bg-purple-100 text-purple px-3 py-1 rounded-full">Cloud-based</span>
-                  <span className="inline-block text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">99.9% Uptime</span>
+                <div className="mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-sm font-medium text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Cloud-based</span>
+                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>99.9% Uptime</span>
                 </div>
               </div>
             </div>
@@ -133,9 +133,9 @@ export function OurServices() {
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
                   Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
                 </p>
-                <div className="mt-4 flex gap-3">
-                  <span className="inline-block text-xs bg-purple-100 text-purple px-3 py-1 rounded-full">24/7 Support</span>
-                  <span className="inline-block text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Regular Updates</span>
+                <div className="mt-4 flex gap-4">
+                  <span className="inline-flex items-center text-xs text-purple"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>24/7 Support</span>
+                  <span className="inline-flex items-center text-xs text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Regular Updates</span>
                 </div>
               </div>
             </div>
