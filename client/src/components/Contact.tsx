@@ -96,7 +96,7 @@ export function Contact() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-400 mb-3 relative inline-block">Let's Go!</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-dark mb-3 relative inline-block">Let's Go!</h2>
             <p className="text-lg text-neutral-dark/70">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
