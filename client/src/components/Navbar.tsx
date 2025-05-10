@@ -144,10 +144,10 @@ export function Navbar() {
             background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
           }}
         >
-          <div className="p-4 flex flex-col items-end">
+          <div className="py-2 px-4 flex flex-col items-end">
             <a 
               href="#home"
-              className="block py-2 text-white text-xl font-medium"
+              className="block py-1.5 text-white text-base font-medium"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
@@ -157,7 +157,7 @@ export function Navbar() {
             </a>
             <a 
               href="#what-we-do"
-              className="block py-2 text-white text-xl font-medium"
+              className="block py-1.5 text-white text-base font-medium"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('what-we-do');
@@ -167,7 +167,7 @@ export function Navbar() {
             </a>
             <a 
               href="#contact"
-              className="block py-2 text-white text-xl font-medium"
+              className="block py-1.5 text-white text-base font-medium"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('contact');
