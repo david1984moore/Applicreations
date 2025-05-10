@@ -163,7 +163,7 @@ export function WhatWeDo() {
       
       <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
         <div className="text-center mb-16 reveal">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">What We Do</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What We Do</h2>
         </div>
 
         {/* Desktop View */}
