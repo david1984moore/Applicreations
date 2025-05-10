@@ -37,11 +37,11 @@ export function Footer() {
     }
   };
   
-  // Use the same gradient for both mobile and desktop
-  const footerGradientClass = "bg-gradient-to-br from-[#6b48ff] via-[#4b79ff] to-[#3881ff]";
+  // Changed to black background
+  const footerBgClass = "bg-black";
     
   return (
-    <footer className={`${footerGradientClass} py-10 text-white`}>
+    <footer className={`${footerBgClass} py-10 text-white`}>
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-center items-center mb-8">
           <div className="text-center">
