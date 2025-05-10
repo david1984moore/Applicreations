@@ -38,7 +38,7 @@ export function OurServices() {
         </div>
 
         {/* Services - Alternating left-right layout with improved visuals */}
-        <div className="space-y-8 md:space-y-20 reveal px-2 md:px-12 lg:px-20 xl:px-32">
+        <div className="space-y-4 md:space-y-20 reveal px-2 md:px-12 lg:px-20 xl:px-32">
           {/* Web Development - Left image, right text */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform rotate-3"></div>
@@ -53,14 +53,14 @@ export function OurServices() {
               </div>
             </div>
             <div className="md:col-span-8 px-1 md:px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">Web Development</h3>
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-2 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-1 md:mb-4">Web Development</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
                   Our web solutions combine striking visuals with intuitive navigation to help you connect with your audience effectively.
                 </p>
-                <div className="mt-3 md:mt-4 flex gap-4">
+                <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Responsive Design</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Performance Focused</span>
                 </div>
@@ -72,8 +72,8 @@ export function OurServices() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-2"></div>
             <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">App Development</h3>
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-2 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-1 md:mb-4">App Development</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
@@ -111,8 +111,8 @@ export function OurServices() {
               </div>
             </div>
             <div className="md:col-span-8 px-1 md:px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">Hosting Services</h3>
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-2 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-1 md:mb-4">Hosting Services</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
@@ -130,8 +130,8 @@ export function OurServices() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center reveal relative">
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-1"></div>
             <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
-              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-3 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
-                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-2 md:mb-4">Maintenance & Support</h3>
+              <div className="bg-white bg-opacity-70 backdrop-blur-sm p-2 md:p-6 rounded-xl shadow-sm relative z-10 border border-gray-100">
+                <h3 className="text-xl md:text-2xl font-semibold text-neutral-dark mb-1 md:mb-4">Maintenance & Support</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-2 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
