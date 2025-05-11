@@ -781,15 +781,15 @@
   
   /* Faster transition for the white dot expansion (initial hover) */
   .animated-button:hover {
-    border: 3px solid black !important; /* Thicker border with !important to override inline styles */
+    border: 1.5px solid black !important; /* Thinner border with !important to override inline styles */
     outline: none;
     box-shadow: none;
   }
   
   .animated-button:hover::before {
-    width: 92%; /* Reduced width to leave space for the border */
-    height: 84%; /* Reduced height to leave space for the border */
-    left: 4%; /* Centered to accommodate the border */
+    width: 96%; /* Adjusted width for thinner border */
+    height: 90%; /* Adjusted height for thinner border */
+    left: 2%; /* Centered to accommodate the thinner border */
     transform: translateY(-50%);
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
