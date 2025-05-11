@@ -40,6 +40,23 @@ export function Footer() {
   // Changed to black background
   const footerBgClass = "bg-black";
     
+  const handleNavClick = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      
+      setTimeout(() => {
+        window.scrollBy({
+          top: -70,
+          behavior: 'smooth'
+        });
+      }, 50);
+      
+      history.pushState(null, '', `#${sectionId}`);
+    }
+  };
+  
   return (
     <footer className={`${footerBgClass} py-10 text-white`}>
       <div className="container mx-auto px-6">
@@ -47,6 +64,60 @@ export function Footer() {
           <div className="text-center">
             <p className="text-white/90 mb-2 font-medium">Wilmington, Delaware</p>
           </div>
+        </div>
+        
+        {/* Navigation Links */}
+        <div className="flex justify-center mb-8">
+          <ul className="flex flex-wrap justify-center gap-6 md:gap-10">
+            <li>
+              <a 
+                href="#home" 
+                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('home');
+                }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#what-we-do" 
+                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('what-we-do');
+                }}
+              >
+                What We Do
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#our-services" 
+                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('our-services');
+                }}
+              >
+                Services
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('contact');
+                }}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
