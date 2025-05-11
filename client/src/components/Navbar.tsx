@@ -101,7 +101,7 @@ export function Navbar() {
                   handleNavClick('what-we-do');
                 }}
               >
-                What We Do
+                Our Process
               </a>
             </li>
             <li>
@@ -175,7 +175,7 @@ export function Navbar() {
                 handleNavClick('what-we-do');
               }}
             >
-              What We Do
+              Our Process
             </a>
             <a 
               href="#our-services"

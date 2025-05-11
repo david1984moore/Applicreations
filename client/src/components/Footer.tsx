@@ -90,7 +90,7 @@ export function Footer() {
                   handleNavClick('what-we-do');
                 }}
               >
-                What We Do
+                Our Process
               </a>
             </li>
             <li>
