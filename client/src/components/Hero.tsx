@@ -21,7 +21,7 @@ export function Hero() {
       style={{ 
         background: 'transparent',
         paddingTop: '120px', /* Increased from 70px to 120px to create more space between navbar and hero */
-        paddingBottom: '300px', /* Further increased for more space at the transition area */
+        paddingBottom: '180px', 
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',

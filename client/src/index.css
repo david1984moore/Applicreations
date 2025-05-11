@@ -506,15 +506,12 @@
     /* Enhanced gradient with more smooth color transitions */
     background: linear-gradient(110deg, 
       #6b48ff 0%, 
-      #6750ff 10%, 
-      #6358ff 20%, 
-      #5f60ff 30%, 
-      #5a68ff 40%,
-      #5570ff 50%, 
-      #5079ff 60%, 
-      #4a82ff 70%, 
-      #4589ff 80%, 
-      #3f8dff 90%, 
+      #6551ff 15%, 
+      #5e5aff 30%, 
+      #576aff 45%, 
+      #4f77ff 60%, 
+      #4780ff 75%, 
+      #3e89ff 90%, 
       #3881ff 100%) fixed;
     background-size: 100% 100vh;
     margin: 0;
@@ -636,47 +633,28 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 600px; /* Further increased height for even more gradual transition */
+    height: 450px; /* Increased height for more gradual transition */
     background: linear-gradient(to bottom, 
       rgba(107, 72, 255, 0) 0%,
-      rgba(108, 73, 255, 0.001) 2%,
-      rgba(109, 74, 255, 0.003) 4%,
-      rgba(110, 75, 255, 0.005) 6%,
-      rgba(111, 76, 255, 0.007) 8%,
-      rgba(112, 77, 255, 0.009) 10%,
-      rgba(113, 78, 255, 0.011) 12%,
-      rgba(114, 79, 255, 0.013) 14%,
-      rgba(115, 80, 255, 0.016) 16%,
-      rgba(116, 81, 255, 0.019) 18%,
-      rgba(118, 83, 255, 0.022) 20%,
-      rgba(120, 85, 255, 0.026) 22%,
-      rgba(122, 87, 255, 0.03) 24%,
-      rgba(124, 89, 255, 0.035) 26%,
-      rgba(126, 91, 255, 0.04) 28%,
-      rgba(128, 93, 255, 0.045) 30%,
-      rgba(131, 97, 255, 0.05) 32%,
-      rgba(134, 102, 255, 0.06) 35%,
-      rgba(137, 107, 255, 0.07) 38%,
-      rgba(141, 112, 255, 0.08) 41%,
-      rgba(145, 117, 255, 0.1) 44%,
-      rgba(149, 124, 255, 0.12) 47%,
-      rgba(153, 131, 255, 0.14) 50%,
-      rgba(157, 138, 255, 0.16) 53%,
-      rgba(162, 146, 255, 0.18) 56%,
-      rgba(167, 154, 255, 0.21) 59%,
-      rgba(173, 164, 255, 0.24) 62%,
-      rgba(180, 173, 255, 0.28) 65%,
-      rgba(188, 182, 255, 0.32) 68%,
-      rgba(196, 192, 255, 0.37) 71%,
-      rgba(204, 202, 255, 0.42) 74%,
-      rgba(213, 214, 255, 0.48) 77%,
-      rgba(222, 226, 254, 0.54) 80%,
-      rgba(230, 235, 254, 0.61) 83%,
-      rgba(237, 242, 253, 0.68) 86%,
-      rgba(242, 246, 252, 0.75) 89%,
-      rgba(245, 248, 252, 0.82) 92%,
-      rgba(247, 249, 251, 0.89) 95%,
-      rgba(248, 249, 250, 0.95) 98%,
+      rgba(110, 75, 255, 0.005) 5%,
+      rgba(113, 78, 255, 0.01) 10%,
+      rgba(116, 82, 255, 0.02) 15%,
+      rgba(119, 85, 255, 0.03) 20%,
+      rgba(122, 88, 255, 0.04) 25%,
+      rgba(125, 92, 255, 0.06) 30%,
+      rgba(130, 100, 255, 0.08) 35%,
+      rgba(135, 110, 255, 0.10) 40%,
+      rgba(145, 120, 255, 0.12) 45%,
+      rgba(155, 130, 255, 0.15) 50%,
+      rgba(165, 140, 255, 0.18) 55%,
+      rgba(175, 160, 255, 0.22) 60%,
+      rgba(188, 178, 255, 0.28) 65%,
+      rgba(202, 198, 255, 0.35) 70%,
+      rgba(215, 220, 255, 0.45) 75%,
+      rgba(225, 235, 255, 0.55) 80%,
+      rgba(235, 242, 255, 0.68) 85%,
+      rgba(242, 246, 255, 0.80) 90%,
+      rgba(248, 250, 252, 0.95) 97%,
       rgba(248, 249, 251, 1) 100%);
     pointer-events: none;
     z-index: 1;
@@ -686,7 +664,6 @@
     -moz-backface-visibility: hidden;
     transform: translateZ(0); /* Force GPU rendering */
     transition: opacity 0.3s ease; /* Smooth transition for any changes */
-    border: none !important;
   }
   
   /* Remove any visible separation between navbar and hero */

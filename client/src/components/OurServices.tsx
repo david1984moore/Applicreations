@@ -29,7 +29,7 @@ export function OurServices() {
   }, []);
 
   return (
-    <section id="our-services" ref={sectionRef} className="pt-10 md:pt-28 pb-10 md:pb-16 bg-[#f8f9fb] light-bg-section -mt-10">
+    <section id="our-services" ref={sectionRef} className="pt-10 md:pt-24 pb-10 md:pb-16 bg-[#f8f9fb] light-bg-section">
       <div className="container mx-auto px-4 md:px-10 lg:px-16 xl:px-24">
         <div className="text-center mb-4 md:mb-16 reveal">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 relative inline-block">

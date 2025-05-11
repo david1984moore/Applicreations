@@ -42,12 +42,7 @@ export default function Home() {
         <Hero />
       </div>
       {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 5, 
-        background: '#f8f9fb',
-        marginTop: '-80px' /* Negative margin to overlap with the gradient transition */
-      }}
+      <div style={{ position: 'relative', zIndex: 5, background: '#f8f9fb' }}>
         <OurServices />
         <WhatWeDo />
         <Contact />
