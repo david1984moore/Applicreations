@@ -47,13 +47,13 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <FileCode className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <FileCode className="h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
             <div className="md:col-span-8 px-1 md:px-2">
               <div className="bg-white bg-opacity-90 backdrop-blur-sm p-2 md:p-6 rounded-xl relative z-10 border-0 shadow-sm">
-                <h3 className="text-xl md:text-2xl font-semibold text-blue-600 mb-1 md:mb-4">Web Development</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-black mb-1 md:mb-4">Web Development</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-1 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
@@ -72,7 +72,7 @@ export function OurServices() {
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-2"></div>
             <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
               <div className="bg-white bg-opacity-90 backdrop-blur-sm p-2 md:p-6 rounded-xl relative z-10 border-0 shadow-sm">
-                <h3 className="text-xl md:text-2xl font-semibold text-blue-600 mb-1 md:mb-4">App Development</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-black mb-1 md:mb-4">App Development</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-1 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
@@ -88,7 +88,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Layers className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <Layers className="h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
@@ -101,13 +101,13 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <CloudCog className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <CloudCog className="h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
             <div className="md:col-span-8 px-1 md:px-2">
               <div className="bg-white bg-opacity-90 backdrop-blur-sm p-2 md:p-6 rounded-xl relative z-10 border-0 shadow-sm">
-                <h3 className="text-xl md:text-2xl font-semibold text-blue-600 mb-1 md:mb-4">Hosting Services</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-black mb-1 md:mb-4">Hosting Services</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-1 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
@@ -126,7 +126,7 @@ export function OurServices() {
             <div className="absolute -z-10 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] rounded-3xl transform -rotate-1"></div>
             <div className="md:col-span-8 md:order-1 order-2 px-1 md:px-2">
               <div className="bg-white bg-opacity-90 backdrop-blur-sm p-2 md:p-6 rounded-xl relative z-10 border-0 shadow-sm">
-                <h3 className="text-xl md:text-2xl font-semibold text-blue-600 mb-1 md:mb-4">Maintenance & Support</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-black mb-1 md:mb-4">Maintenance & Support</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-1 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
@@ -142,7 +142,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Hammer className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <Hammer className="h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
