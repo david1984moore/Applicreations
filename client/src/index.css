@@ -503,8 +503,16 @@
     font-family: 'Inter', sans-serif;
     color: #333333;
     scroll-behavior: smooth;
-    /* Using the mobile gradient for all screen sizes */
-    background: linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff) fixed;
+    /* Enhanced gradient with more smooth color transitions */
+    background: linear-gradient(110deg, 
+      #6b48ff 0%, 
+      #6551ff 15%, 
+      #5e5aff 30%, 
+      #576aff 45%, 
+      #4f77ff 60%, 
+      #4780ff 75%, 
+      #3e89ff 90%, 
+      #3881ff 100%) fixed;
     background-size: 100% 100vh;
     margin: 0;
     padding: 0;
@@ -625,27 +633,37 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 350px; /* Control the height of the gradient fade - increased for smoother transition */
+    height: 450px; /* Increased height for more gradual transition */
     background: linear-gradient(to bottom, 
       rgba(107, 72, 255, 0) 0%,
-      rgba(115, 85, 255, 0.02) 10%,
-      rgba(123, 98, 255, 0.05) 20%,
-      rgba(136, 116, 252, 0.08) 30%,
-      rgba(150, 135, 250, 0.12) 40%,
-      rgba(164, 159, 250, 0.2) 50%,
-      rgba(183, 183, 248, 0.3) 60%, 
-      rgba(202, 208, 246, 0.4) 70%,
-      rgba(220, 232, 244, 0.65) 80%,
-      rgba(238, 246, 252, 0.85) 90%,
-      rgba(246, 250, 253, 0.95) 95%,
+      rgba(110, 75, 255, 0.005) 5%,
+      rgba(113, 78, 255, 0.01) 10%,
+      rgba(116, 82, 255, 0.02) 15%,
+      rgba(119, 85, 255, 0.03) 20%,
+      rgba(122, 88, 255, 0.04) 25%,
+      rgba(125, 92, 255, 0.06) 30%,
+      rgba(130, 100, 255, 0.08) 35%,
+      rgba(135, 110, 255, 0.10) 40%,
+      rgba(145, 120, 255, 0.12) 45%,
+      rgba(155, 130, 255, 0.15) 50%,
+      rgba(165, 140, 255, 0.18) 55%,
+      rgba(175, 160, 255, 0.22) 60%,
+      rgba(188, 178, 255, 0.28) 65%,
+      rgba(202, 198, 255, 0.35) 70%,
+      rgba(215, 220, 255, 0.45) 75%,
+      rgba(225, 235, 255, 0.55) 80%,
+      rgba(235, 242, 255, 0.68) 85%,
+      rgba(242, 246, 255, 0.80) 90%,
+      rgba(248, 250, 255, 0.90) 95%,
       rgba(255, 255, 255, 1) 100%);
     pointer-events: none;
     z-index: 1;
-    opacity: 0.999; /* Prevent pixel rounding issues */
-    will-change: opacity; /* Optimize for animations */
+    opacity: 1; /* Full opacity for smooth rendering */
+    will-change: opacity, transform; /* Optimize for animations */
     -webkit-backface-visibility: hidden; /* Prevent artifacts */
     -moz-backface-visibility: hidden;
     transform: translateZ(0); /* Force GPU rendering */
+    transition: opacity 0.3s ease; /* Smooth transition for any changes */
   }
   
   /* Remove any visible separation between navbar and hero */
