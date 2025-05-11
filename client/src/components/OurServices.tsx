@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Globe, Smartphone, Server, Settings } from "lucide-react";
+import { FileCode, Layers, CloudCog, Hammer } from "lucide-react";
 
 // Add more compact styles for mobile
 const iconContainerClass = "h-16 w-16 md:h-28 md:w-28 text-blue-600 drop-shadow-md";
@@ -47,7 +47,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Globe className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <FileCode className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
@@ -88,7 +88,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Smartphone className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <Layers className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Server className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <CloudCog className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ export function OurServices() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-20 blur-xl transform scale-125"></div>
                 <div className="relative z-10">
-                  <Settings className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
+                  <Hammer className="h-16 w-16 md:h-28 md:w-28 text-black drop-shadow-md" strokeWidth={1.5} />
                 </div>
               </div>
             </div>
