@@ -626,36 +626,48 @@
     background-clip: padding-box;
   }
   
-  /* This empty pseudo-element creates a perfect gradient overlay with ultra-smooth transition */
+  /* This creates the perfectly seamless gradient overlay */
   .navbar-hero-container::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 450px; /* Increased height for more gradual transition */
+    bottom: -1px; /* Negative value to ensure no gap */
+    height: 500px; /* Further increased height for more gradual transition */
     background: linear-gradient(to bottom, 
+      /* Start with completely transparent purple that matches the background */
       rgba(107, 72, 255, 0) 0%,
-      rgba(110, 75, 255, 0.005) 5%,
-      rgba(113, 78, 255, 0.01) 10%,
-      rgba(116, 82, 255, 0.02) 15%,
-      rgba(119, 85, 255, 0.03) 20%,
-      rgba(122, 88, 255, 0.04) 25%,
-      rgba(125, 92, 255, 0.06) 30%,
-      rgba(130, 100, 255, 0.08) 35%,
-      rgba(135, 110, 255, 0.10) 40%,
-      rgba(145, 120, 255, 0.12) 45%,
-      rgba(155, 130, 255, 0.15) 50%,
-      rgba(165, 140, 255, 0.18) 55%,
-      rgba(175, 160, 255, 0.22) 60%,
-      rgba(188, 178, 255, 0.28) 65%,
-      rgba(202, 198, 255, 0.35) 70%,
-      rgba(215, 220, 255, 0.45) 75%,
-      rgba(225, 235, 255, 0.55) 80%,
-      rgba(235, 242, 255, 0.68) 85%,
-      rgba(242, 246, 255, 0.80) 90%,
-      rgba(248, 250, 252, 0.95) 97%,
-      rgba(248, 249, 251, 1) 100%);
+      /* Very subtle initial gradient to prevent banding */
+      rgba(110, 76, 255, 0.001) 2%,
+      rgba(112, 78, 255, 0.003) 5%,
+      rgba(115, 81, 255, 0.005) 8%,
+      rgba(118, 84, 255, 0.01) 12%,
+      rgba(121, 87, 255, 0.015) 16%,
+      rgba(124, 90, 255, 0.02) 20%,
+      rgba(127, 93, 255, 0.03) 24%,
+      rgba(130, 96, 255, 0.04) 28%,
+      rgba(135, 105, 255, 0.06) 32%,
+      rgba(140, 110, 255, 0.08) 36%,
+      rgba(145, 120, 255, 0.10) 40%,
+      rgba(150, 130, 255, 0.13) 44%,
+      rgba(160, 140, 255, 0.16) 48%,
+      rgba(170, 150, 255, 0.20) 52%,
+      rgba(180, 165, 255, 0.25) 56%,
+      rgba(190, 180, 255, 0.30) 60%,
+      rgba(200, 195, 255, 0.37) 64%,
+      rgba(210, 210, 255, 0.45) 68%,
+      rgba(220, 225, 255, 0.54) 72%,
+      rgba(230, 235, 255, 0.63) 76%,
+      rgba(235, 240, 255, 0.72) 80%,
+      rgba(240, 245, 255, 0.81) 84%,
+      rgba(243, 247, 255, 0.90) 88%,
+      rgba(245, 247, 252, 0.96) 92%,
+      /* Final steps perfectly match the background color of #f8f9fb with extra precision */
+      rgba(247, 248, 251, 0.985) 94%,
+      rgba(247.5, 249, 251, 0.992) 96%,
+      rgba(248, 249, 251, 0.997) 98%, 
+      rgb(248, 249, 251) 99%,
+      rgb(248, 249, 251) 100%);
     pointer-events: none;
     z-index: 1;
     opacity: 1; /* Full opacity for smooth rendering */
@@ -663,7 +675,7 @@
     -webkit-backface-visibility: hidden; /* Prevent artifacts */
     -moz-backface-visibility: hidden;
     transform: translateZ(0); /* Force GPU rendering */
-    transition: opacity 0.3s ease; /* Smooth transition for any changes */
+    transition: opacity 0.5s ease; /* Smooth transition for any changes */
   }
   
   /* Remove any visible separation between navbar and hero */
