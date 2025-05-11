@@ -781,7 +781,7 @@
   
   /* Faster transition for the white dot expansion (initial hover) */
   .animated-button:hover {
-    border: none;
+    border: 2px solid black; /* Added thicker border on hover */
     outline: none;
     box-shadow: none;
   }
