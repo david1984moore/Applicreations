@@ -73,7 +73,7 @@ export function Navbar() {
   const navbarBackground = '#000000';
   
   return (
-    <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
+    <div className="sticky top-0 left-0 right-0 w-full z-[1000]">
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
@@ -170,10 +170,10 @@ export function Navbar() {
       {/* Very Simple Static Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="fixed left-0 right-0 w-full z-[999]"
+          className="sticky left-0 right-0 w-full z-[999]"
           style={{
             background: navbarBackground, // Uses black background from navbar
-            top: '70px', // Fixed position calculated from navbar height
+            top: '70px', // Position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
             paddingTop: 'env(safe-area-inset-top, 0)'
