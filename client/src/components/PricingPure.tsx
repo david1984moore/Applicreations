@@ -52,7 +52,7 @@ function IndependentPricingCard({
       <div className={`pb-6 ${highlighted ? 'bg-primary/5' : ''}`}>
         <div className="p-6">
           <h3 className="text-2xl font-bold text-black">{title}</h3>
-          <p className="text-sm text-gray-600">{description}</p>
+          <p className="text-sm text-gray-600 mt-2">{description}</p>
         </div>
       </div>
       
