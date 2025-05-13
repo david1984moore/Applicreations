@@ -966,14 +966,17 @@ body {
     transition: none !important;
   }
 
-  /* Hide the white circle/dot completely on mobile */
+  /* Show the white circle/dot on mobile but prevent animation */
   .animated-button-mobile::before {
-    opacity: 0 !important;
+    opacity: 1 !important;
     width: 12px !important;
     height: 12px !important;
     left: 15px !important;
     transform: translateY(-50%) !important;
     transition: none !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    z-index: 1 !important;
   }
   
   /* Hide the black dot on hover for mobile */
@@ -1012,14 +1015,25 @@ body {
     display: none !important;
   }
   
-  /* Ensure no expansion animation on hover/active for mobile */
+  /* Ensure no expansion animation on hover/active for mobile but keep white dot visible */
   .animated-button-mobile:hover::before,
-  .animated-button-mobile:active::before,
+  .animated-button-mobile:active::before {
+    width: 12px !important;
+    height: 12px !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    transition: none !important;
+    opacity: 1 !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+  }
+  
+  /* Keep black dot hidden */
   .animated-button-mobile:hover::after,
   .animated-button-mobile:active::after {
     width: 12px !important;
     height: 12px !important;
-    transform: translateY(-50%) !important;
+    transform: translateY(-50%) scale(0) !important;
     transition: none !important;
     opacity: 0 !important;
   }
