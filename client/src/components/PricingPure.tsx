@@ -1,41 +1,31 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
+import { Check, ChevronRight } from 'lucide-react';
 
-interface PricingCardProps {
-  title: string;
-  description: string;
-  price: string;
-  monthlyCost: string;
-  features: string[];
-  targetAudience: string;
-  appAddOnPrice: string;
-  highlighted?: boolean;
-  cardId: string;
-  expandedCardId: string | null;
-  onToggleExpand: (id: string) => void;
-}
-
-function PricingCard({ 
-  title, 
-  description, 
-  price, 
-  monthlyCost, 
-  features, 
-  targetAudience, 
+// Individual stand-alone pricing card component with internal state management
+const StandalonePricingCard = ({
+  title,
+  description,
+  price,
+  monthlyCost,
+  features,
+  targetAudience,
   appAddOnPrice,
-  highlighted = false,
-  cardId,
-  expandedCardId,
-  onToggleExpand
-}: PricingCardProps) {
-  const isExpanded = expandedCardId === cardId;
-
+  highlighted = false
+}) => {
+  // Each card manages its own expanded state
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Toggle function specific to this card only
+  const toggleExpanded = () => {
+    setIsExpanded(prev => !prev);
+  };
+  
   return (
-    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
-      highlighted 
-        ? 'border-2 border-primary shadow-lg shadow-primary/20' 
-        : 'border border-gray-200'
-      } bg-white`}>
+    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg 
+      ${highlighted ? 'border-2 border-primary shadow-lg shadow-primary/20' : 'border border-gray-200'} 
+      bg-white`}
+    >
       {highlighted && (
         <div className="absolute top-0 right-0">
           <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
@@ -63,38 +53,28 @@ function PricingCard({
           {features.map((feature, index) => (
             <div key={index} className="flex items-start">
               <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+                <Check size={20} />
               </div>
               <p className="ml-3 text-sm text-gray-700">{feature}</p>
             </div>
           ))}
         </div>
         
-        {/* Expandable details */}
+        {/* Expandable details section */}
         <div className="mt-6">
           <button 
             className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={() => onToggleExpand(cardId)}
+            onClick={toggleExpanded}
+            aria-expanded={isExpanded}
           >
             <span>{isExpanded ? 'View less' : 'View details'}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
+            <ChevronRight 
+              size={16} 
               className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
+            />
           </button>
           
+          {/* Content only renders when expanded */}
           {isExpanded && (
             <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
               <p className="font-medium mb-2">Target Audience:</p>
@@ -124,18 +104,11 @@ function PricingCard({
       </div>
     </div>
   );
-}
+};
 
 export function Pricing() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
   const isMobile = useMobile();
-  // Track which card is expanded (if any)
-  const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
-
-  // Toggle expansion for a specific card
-  const handleToggleExpand = (cardId: string) => {
-    setExpandedCardId(prevId => prevId === cardId ? null : cardId);
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -212,7 +185,7 @@ export function Pricing() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
           <div className="reveal" style={{ transitionDelay: "0s" }}>
-            <PricingCard
+            <StandalonePricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
               price="$2,000+"
@@ -220,14 +193,11 @@ export function Pricing() {
               features={starterFeatures}
               targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
               appAddOnPrice="$2,000+"
-              cardId="starter"
-              expandedCardId={expandedCardId}
-              onToggleExpand={handleToggleExpand}
             />
           </div>
           
           <div className="reveal" style={{ transitionDelay: "0.2s" }}>
-            <PricingCard
+            <StandalonePricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
               price="$5,000+"
@@ -235,10 +205,7 @@ export function Pricing() {
               features={growthFeatures}
               targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
               appAddOnPrice="$5,000+"
-              highlighted
-              cardId="growth"
-              expandedCardId={expandedCardId}
-              onToggleExpand={handleToggleExpand}
+              highlighted={true}
             />
           </div>
         </div>
