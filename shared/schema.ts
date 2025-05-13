@@ -36,7 +36,7 @@ export const contactFormSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
-  organizationName: z.string().optional(),
+  businessName: z.string().optional(), // Changed from organizationName
   projectDescription: z.string().min(1, 'Please tell us about your project')
 });
 
