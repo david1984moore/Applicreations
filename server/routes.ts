@@ -18,14 +18,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Setup Nodemailer with Hostinger SMTP
       console.log('Setting up Hostinger SMTP connection');
       
+      // Print email credentials for debugging (without showing the actual password)
+      console.log('Email authentication:', {
+        user: 'solutions@applicreations.com',
+        pass: process.env.EMAIL_PASS ? '****' : 'not set'
+      });
+      
       const transporter = nodemailer.createTransport({
         host: 'smtp.hostinger.com',
-        port: 465,
-        secure: true, // Use SSL for port 465
+        port: 587, // Try the alternative port
+        secure: false, // Use TLS for port 587
         auth: {
           user: 'solutions@applicreations.com', // Use your actual email address
           pass: process.env.EMAIL_PASS, // Your password from environment variable
         },
+        tls: {
+          rejectUnauthorized: false // Important for some secure connections
+        },
+        debug: true
       });
       
       // Prepare email content
@@ -57,8 +67,14 @@ ${validatedData.projectDescription}
         `
       };
       
-      // Send email
+      // Verify connection first
       try {
+        // Verify SMTP connection
+        console.log('Verifying SMTP connection...');
+        await transporter.verify();
+        console.log('SMTP connection verified successfully');
+        
+        // Send email
         await transporter.sendMail(mailOptions);
         console.log('Email sent successfully via Hostinger SMTP');
       } catch (emailError) {
