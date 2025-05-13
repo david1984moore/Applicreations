@@ -1,3 +1,59 @@
+
+import { useMobile } from '@/hooks/use-mobile';
+import { useState, useEffect } from 'react';
+
+export function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useMobile();
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  return (
+    <section
+      id="hero"
+      className="relative flex items-center justify-center overflow-hidden bg-primary py-20 md:py-28"
+      style={{
+        background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+      }}
+    >
+      <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]"></div>
+      
+      <div className="container relative z-10 mx-auto px-4 text-center">
+        <h1 
+          className={`text-5xl md:text-7xl font-bold text-white mb-6 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          } transition-all duration-1000 ease-out`}
+          style={{ transitionDelay: '0.1s' }}
+        >
+          We turn problems into <span className="text-yellow-300">solutions</span>
+        </h1>
+        
+        <p
+          className={`text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          } transition-all duration-1000 ease-out`}
+          style={{ transitionDelay: '0.3s' }}
+        >
+          We build custom apps and websites that help your business thrive in the digital world
+        </p>
+        
+        <a
+          href="#contact"
+          className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
+          style={{ 
+            transitionDelay: '0.6s'
+          }}
+        >
+          <span className="button-text relative z-10 ml-5">Get Started Now</span>
+          <span className="button-text-hover absolute z-10 ml-5">Get Started Now</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 import { useRef, useEffect, useState } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
 
