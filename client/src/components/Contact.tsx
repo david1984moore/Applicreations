@@ -198,7 +198,7 @@ export function Contact() {
                   name="organizationName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="block text-sm font-medium text-neutral-dark mb-1">Organization Name</FormLabel>
+                      <FormLabel className="block text-sm font-medium text-neutral-dark mb-1">Organization</FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
