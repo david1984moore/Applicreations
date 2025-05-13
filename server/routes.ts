@@ -15,22 +15,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Setup Nodemailer with Hostinger SMTP (using TLS)
-      console.log('Attempting to send email with user:', process.env.EMAIL_USER);
+      // Setup Nodemailer with Hostinger SMTP
+      console.log('Setting up Hostinger SMTP connection');
       
       const transporter = nodemailer.createTransport({
         host: 'smtp.hostinger.com',
-        port: 587,
-        secure: false, // Use TLS
+        port: 465,
+        secure: true, // Use SSL for port 465
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
+          user: 'solutions@applicreations.com', // Use your actual email address
+          pass: process.env.EMAIL_PASS, // Your password from environment variable
         },
-        tls: {
-          rejectUnauthorized: false
-        },
-        debug: true, // Show debug information
-        logger: true // Log information about the mail transaction
       });
       
       // Prepare email content
@@ -65,9 +60,9 @@ ${validatedData.projectDescription}
       // Send email
       try {
         await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
+        console.log('Email sent successfully via Hostinger SMTP');
       } catch (emailError) {
-        console.error('Error sending email:', emailError);
+        console.error('Error sending email via Hostinger SMTP:', emailError);
         // We still return success if the database insert worked
         // Just log the email error but don't fail the request
       }
