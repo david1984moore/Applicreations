@@ -170,7 +170,7 @@ export function WhatWeDo() {
         <div className="hidden md:flex gap-8 reveal">
           {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
           <div 
-            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer"
+            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const lightbulbContainer = document.querySelector('.desktop-lightbulb');
               if (lightbulbContainer) {
@@ -182,7 +182,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <LightBulbContainer>
                   <div className="desktop-lightbulb" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -194,7 +194,7 @@ export function WhatWeDo() {
                 </LightBulbContainer>
               </div>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Ideate</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg mb-4">
                 We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
               </p>
             </div>
@@ -202,7 +202,7 @@ export function WhatWeDo() {
 
           {/* Card 2: Iterate - Green Color Scheme with Roof */}
           <div 
-            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer"
+            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const roofContainer = document.querySelector('.desktop-roof');
               if (roofContainer) {
@@ -214,7 +214,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <RoofContainer>
                   <div className="desktop-roof" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -226,7 +226,7 @@ export function WhatWeDo() {
                 </RoofContainer>
               </div>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Iterate</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg mb-4">
                 We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
               </p>
             </div>
@@ -234,7 +234,7 @@ export function WhatWeDo() {
 
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div 
-            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer"
+            className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg transition-all duration-300 cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const confettiContainer = document.querySelector('.desktop-confetti');
               if (confettiContainer) {
@@ -246,7 +246,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <ConfettiContainer>
                   <div className="desktop-confetti" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -258,7 +258,7 @@ export function WhatWeDo() {
                 </ConfettiContainer>
               </div>
               <h3 className="text-2xl font-bold text-white mt-6 mb-4">Congratulate</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg mb-4">
                 We deliver your polished product and celebrate your success as your digital solution reaches its audience.
               </p>
             </div>
@@ -269,7 +269,7 @@ export function WhatWeDo() {
         <div className="md:hidden space-y-6 reveal">
           {/* Card 1: Ideate - Orange/Red Color Scheme with Light Bulb */}
           <div 
-            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer"
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const lightbulbContainer = document.querySelector('.mobile-lightbulb');
               if (lightbulbContainer) {
@@ -281,7 +281,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <LightBulbContainer>
                   <div className="mobile-lightbulb" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -293,7 +293,7 @@ export function WhatWeDo() {
                 </LightBulbContainer>
               </div>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Ideate</h3>
-              <p className="text-white/90">
+              <p className="text-white/90 mb-4">
                 We collaborate closely with you to understand your goals, challenges, and vision to create the perfect plan.
               </p>
             </div>
@@ -301,7 +301,7 @@ export function WhatWeDo() {
 
           {/* Card 2: Iterate - Green Color Scheme with Roof */}
           <div 
-            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer"
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const roofContainer = document.querySelector('.mobile-roof');
               if (roofContainer) {
@@ -313,7 +313,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <RoofContainer>
                   <div className="mobile-roof" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -325,7 +325,7 @@ export function WhatWeDo() {
                 </RoofContainer>
               </div>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Iterate</h3>
-              <p className="text-white/90">
+              <p className="text-white/90 mb-4">
                 We build, test, and refine your product through collaborative feedback cycles to ensure exceptional quality.
               </p>
             </div>
@@ -333,7 +333,7 @@ export function WhatWeDo() {
 
           {/* Card 3: Congratulate - Pink Color Scheme with Confetti */}
           <div 
-            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer"
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg cursor-pointer flex flex-col"
             onMouseEnter={() => {
               const confettiContainer = document.querySelector('.mobile-confetti');
               if (confettiContainer) {
@@ -345,7 +345,7 @@ export function WhatWeDo() {
               }
             }}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <div className="relative">
                 <ConfettiContainer>
                   <div className="mobile-confetti" style={{position: 'absolute', width: '1px', height: '1px', opacity: 0}}></div>
@@ -357,7 +357,7 @@ export function WhatWeDo() {
                 </ConfettiContainer>
               </div>
               <h3 className="text-xl font-bold text-white mt-4 mb-2">Congratulate</h3>
-              <p className="text-white/90">
+              <p className="text-white/90 mb-4">
                 We deliver your polished product and celebrate your success as your digital solution reaches its audience.
               </p>
             </div>
