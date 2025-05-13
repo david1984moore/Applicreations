@@ -44,15 +44,14 @@ export default function Home() {
     <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <Navbar />
       
-      {/* Continuous gradient container for Navbar, Hero and WhatWeDo sections */}
+      {/* Continuous gradient container for Hero and WhatWeDo sections */}
       <div 
         className="gradient-container" 
         style={{ 
           background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)',
-          marginTop: '-70px', /* Pull up to cover the navbar area */
-          paddingTop: '70px', /* Add padding to account for navbar height */
+          marginTop: '-70px',
           position: 'relative',
-          zIndex: 1, /* Lower z-index so navbar appears above it */
+          zIndex: 3,
           overflow: 'hidden',
           border: 'none',
           outline: 'none'
