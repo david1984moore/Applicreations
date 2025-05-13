@@ -795,20 +795,23 @@ body {
     border-left: 4px solid #F56565;
   }
   
-  /* Animated Button with Dot Expand Effect */
+  /* Animated Button with Dot Expand Effect (Microfeller style) */
   .animated-button {
     position: relative;
     background-color: #000;
     color: white;
     overflow: hidden;
+    /* Fast transition when leaving hover state */
     transition: color 0.4s ease;
-    border-radius: 50px;
+    border-radius: 50px; /* Ensure border radius is set */
     border: none !important;
-    outline: none !important;
+    outline: none;
     box-shadow: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
   }
   
-  /* White dot in initial state */
   .animated-button::before {
     content: '';
     position: absolute;
@@ -818,13 +821,15 @@ body {
     width: 12px;
     height: 12px;
     background-color: white;
-    border-radius: 50px;
+    border-radius: 50px; /* Match button's border radius */
+    /* Fast transition when leaving hover state */
     transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
     z-index: 1;
     border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
   
-  /* Black dot in initial state (hidden) */
   .animated-button::after {
     content: '';
     position: absolute;
@@ -835,33 +840,40 @@ body {
     height: 12px;
     background-color: black;
     border-radius: 50%;
+    /* Fast transition when leaving hover state */
     transition: transform 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
     z-index: 2;
   }
   
-  /* Base button hover state */
+  /* Restored dot expansion animation but without borders */
   .animated-button:hover {
-    border: none !important;
+    border: none !important; /* Remove border completely */
     outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important; /* Keep transparent to allow our animation to work */
+  }
+  
+  /* Restore growing animation but ensure no borders */
+  .animated-button:hover::before {
+    width: 103%; /* Slightly larger than 100% to ensure coverage */
+    height: 103%; /* Slightly larger than 100% to ensure coverage */
+    top: -1.5%; /* Negative offset to avoid any gaps */
+    left: -1.5%; /* Negative offset to avoid any gaps */
+    border-radius: 50px;
+    transform: none;
+    transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
+    background-color: white !important;
+    border: none !important;
     box-shadow: none !important;
   }
   
-  /* White dot expansion on hover - this creates the growing effect */
-  .animated-button:hover::before {
-    width: 110%; /* Oversized to prevent any border showing */
-    height: 110%; /* Oversized to prevent any border showing */
-    left: -5%; /* Negative offset to ensure complete coverage */
-    top: -5%; /* Negative offset to ensure complete coverage */
-    border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
-    border: none !important;
-  }
-  
-  /* Black dot appearance on hover */
+  /* Keep the black dot animation */
   .animated-button:hover::after {
     transform: translateY(-50%) scale(1);
     transition: transform 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
     border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
   
   .animated-button:hover .button-text {
