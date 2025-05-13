@@ -526,6 +526,20 @@ body {
     backface-visibility: hidden;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    /* Ensure the gradient starts from the very top of the page, behind the navbar */
+    background-attachment: fixed;
+  }
+  
+  /* Navbar transparent background styling */
+  header, nav {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+  }
+  
+  /* Ensure the hero content has the right padding and spacing for the navbar */
+  .hero {
+    padding-top: calc(90px + 40px) !important; /* Add additional padding to account for navbar */
   }
   
   body {
