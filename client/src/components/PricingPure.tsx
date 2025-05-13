@@ -34,7 +34,7 @@ function IndependentPricingCard({
 
   return (
     <div
-      className={`h-full flex flex-col relative overflow-hidden transition-all duration-300 rounded-lg ${
+      className={`h-full flex flex-col relative overflow-hidden transition-all duration-300 rounded-lg mb-4 ${
         highlighted
           ? 'border-2 border-primary shadow-lg shadow-primary/20'
           : 'border border-gray-200'
@@ -115,7 +115,7 @@ function IndependentPricingCard({
         )}
       </div>
       
-      <div className="px-5 pt-2 pb-4 mt-auto">
+      <div className="px-5 pt-4 pb-8 mt-auto">
         <a
           href="#contact"
           className="block w-full bg-primary hover:bg-primary/90 text-white py-3.5 px-6 rounded-full font-medium text-center transition-all duration-300"
@@ -283,7 +283,7 @@ export function Pricing() {
           </div>
         </div>
         
-        <div className="mt-16 text-center">
+        <div className="mt-16 mb-8 text-center">
           <a
             href="#contact"
             className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[14px] px-[32px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto`}
