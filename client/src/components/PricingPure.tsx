@@ -1,80 +1,266 @@
-import React, { useState } from 'react';
+import { useRef, useEffect } from 'react';
+import { useMobile } from '@/hooks/use-mobile';
+import React from 'react';
 
-// Super simple card component that only focuses on the expand/collapse functionality
-// without any styling conflicts
-function SimpleCard({ title, content }) {
-  // Each card has its own independent state
-  const [isExpanded, setIsExpanded] = useState(false);
+function PricingCard({ 
+  title, 
+  description, 
+  price, 
+  monthlyCost, 
+  features, 
+  targetAudience, 
+  appAddOnPrice,
+  highlighted = false
+}: {
+  title: string;
+  description: string;
+  price: string;
+  monthlyCost: string;
+  features: string[];
+  targetAudience: string;
+  appAddOnPrice: string;
+  highlighted?: boolean;
+}) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
   
   return (
-    <div style={{ 
-      border: '1px solid #ccc', 
-      padding: '20px',
-      borderRadius: '8px',
-      marginBottom: '20px',
-      backgroundColor: 'white'
-    }}>
-      <h3 style={{ margin: '0 0 10px 0' }}>{title}</h3>
-      
-      <button 
-        onClick={() => setIsExpanded(!isExpanded)}
-        style={{
-          background: 'none',
-          border: 'none',
-          padding: '8px 16px',
-          cursor: 'pointer',
-          color: '#3E8BFF',
-          fontWeight: 'bold'
-        }}
-      >
-        {isExpanded ? 'Hide Details' : 'Show Details'}
-      </button>
-      
-      {isExpanded && (
-        <div style={{ 
-          marginTop: '10px',
-          padding: '10px',
-          backgroundColor: '#f5f5f5',
-          borderRadius: '4px'
-        }}>
-          {content}
+    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+      highlighted 
+        ? 'border-2 border-primary shadow-lg shadow-primary/20' 
+        : 'border border-gray-200'
+      } bg-white`}>
+      {highlighted && (
+        <div className="absolute top-0 right-0">
+          <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
+            Popular
+          </div>
         </div>
       )}
+      
+      <div className={`pb-6 ${highlighted ? 'bg-primary/5' : ''}`}>
+        <div className="p-6">
+          <h3 className="text-2xl font-bold text-black">{title}</h3>
+          <p className="text-sm text-gray-600">{description}</p>
+        </div>
+      </div>
+      
+      <div className="px-6 pt-4">
+        <div className="mb-6">
+          <p className="text-3xl font-bold text-black">{price}</p>
+          <p className="text-sm text-gray-500">One-time development fee</p>
+          <p className="text-lg font-semibold text-black mt-2">{monthlyCost}</p>
+          <p className="text-sm text-gray-500">Hosting & maintenance</p>
+        </div>
+        
+        <div className="space-y-3">
+          {features.map((feature, index) => (
+            <div key={index} className="flex items-start">
+              <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <p className="ml-3 text-sm text-gray-700">{feature}</p>
+            </div>
+          ))}
+        </div>
+        
+        {/* Expandable details */}
+        <div className="mt-6">
+          <button 
+            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <span>{isExpanded ? 'View less' : 'View details'}</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="16" height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          
+          {isExpanded && (
+            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+              <p className="font-medium mb-2">Target Audience:</p>
+              <p className="mb-4">{targetAudience}</p>
+              
+              <p className="font-medium mb-2">App Add-On:</p>
+              <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
+              
+              <p className="font-medium mb-2">Customization Options:</p>
+              <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      <div className="px-6 pt-2 pb-6 mt-8">
+        <a
+          href="#contact"
+          className={`block w-full ${
+            highlighted 
+              ? 'btn-gradient text-white' 
+              : 'bg-white hover:bg-gray-50 text-primary border border-primary'
+          } py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300`}
+        >
+          Get Started
+        </a>
+      </div>
     </div>
   );
 }
 
-// Main pricing component
 export function Pricing() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isMobile = useMobile();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const revealElements = sectionRef.current?.querySelectorAll('.reveal');
+    revealElements?.forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => {
+      revealElements?.forEach(el => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  const starterFeatures = [
+    "Professional website with up to 5 pages",
+    "Customizable template design",
+    "Reliable shared hosting with 5GB storage",
+    "SSL certificate for security",
+    "2 hours monthly maintenance",
+    "Up to 5 professional email accounts",
+    "Optional basic mobile app for one platform (iOS or Android)"
+  ];
+  
+  const growthFeatures = [
+    "Custom website with up to 10 pages",
+    "Advanced functionality (e-commerce, booking systems)",
+    "VPS hosting with 20GB storage",
+    "Daily backups and dedicated resources",
+    "5 hours monthly maintenance",
+    "Up to 10 professional email accounts",
+    "Optional cross-platform mobile app (iOS and Android)"
+  ];
+  
   return (
-    <section id="pricing" style={{ padding: '40px 20px', backgroundColor: '#f4f7ff' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Pricing Packages</h2>
-        
-        <div style={{ 
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '20px'
-        }}>
-          <SimpleCard 
-            title="Starter Package - $2,000+"
-            content={
-              <div>
-                <p>The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses.</p>
-                <p>It's ideal for those seeking an affordable, professional online presence with essential features.</p>
-              </div>
-            }
-          />
+    <section 
+      id="pricing" 
+      ref={sectionRef} 
+      className="relative py-20 md:py-28 overflow-hidden"
+      style={{ 
+        background: 'linear-gradient(135deg, #f4f7ff 0%, #edf3ff 100%)',
+        position: 'relative'
+      }}
+    >
+      {/* Add a subtle gradient accent */}
+      <div 
+        className="absolute inset-0 opacity-10" 
+        style={{ 
+          background: 'linear-gradient(135deg, #6b48ff 0%, #3E8BFF 100%)'
+        }}
+      ></div>
+      
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 reveal">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative inline-block text-black">
+            Pricing Packages
+          </h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            At Applicreations, we provide tailored digital solutions for businesses of all sizes. 
+            Each package is a starting point, fully customizable to meet your unique needs and budget.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
+          <div className="reveal" style={{ transitionDelay: "0s" }}>
+            <PricingCard
+              title="Starter"
+              description="For freelancers, solo entrepreneurs, and small local businesses"
+              price="$2,000+"
+              monthlyCost="$50/month"
+              features={starterFeatures}
+              targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
+              appAddOnPrice="$2,000+"
+            />
+          </div>
           
-          <SimpleCard 
-            title="Growth Package - $5,000+"
-            content={
-              <div>
-                <p>The Growth package is perfect for growing local businesses and small-to-medium enterprises.</p>
-                <p>It's designed for businesses ready to scale with advanced digital solutions.</p>
-              </div>
-            }
-          />
+          <div className="reveal" style={{ transitionDelay: "0.2s" }}>
+            <PricingCard
+              title="Growth"
+              description="For growing local businesses and small-to-medium enterprises"
+              price="$5,000+"
+              monthlyCost="$150/month"
+              features={growthFeatures}
+              targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
+              appAddOnPrice="$5,000+"
+              highlighted
+            />
+          </div>
+        </div>
+        
+        <div className="mt-16 max-w-4xl mx-auto text-center reveal">
+          <h3 className="text-xl md:text-2xl font-semibold mb-4 text-black">Optional Add-Ons and Enhancements</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-left">
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
+              <p className="font-medium text-black mb-1">SEO Optimization</p>
+              <p className="text-sm text-gray-600">Boost search engine visibility (starting at $500)</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
+              <p className="font-medium text-black mb-1">Social Media Integration</p>
+              <p className="text-sm text-gray-600">Connect your site to social platforms (starting at $300)</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
+              <p className="font-medium text-black mb-1">Additional Email Accounts</p>
+              <p className="text-sm text-gray-600">Expand beyond included accounts ($1/month per mailbox)</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm md:col-span-2">
+              <p className="font-medium text-black mb-1">Premium Support</p>
+              <p className="text-sm text-gray-600">Priority assistance for faster response times (starting at $100/month)</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
+              <p className="font-medium text-black mb-1">Mobile App Development</p>
+              <p className="text-sm text-gray-600">Starting at $2,000 (Starter) or $5,000 (Growth)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-16 text-center">
+          <a
+            href="#contact"
+            className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto`}
+          >
+            <span className="button-text relative z-10 ml-5">
+              Contact Us For Custom Quote
+            </span>
+            <span className="button-text-hover absolute z-10 ml-5">
+              Contact Us For Custom Quote
+            </span>
+          </a>
         </div>
       </div>
     </section>
