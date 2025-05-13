@@ -444,7 +444,7 @@ body {
     max-height: 30px;
     overflow: visible;
   }
-  
+
   .navbar-logo svg {
     height: 30px !important;
     width: auto !important;
@@ -453,12 +453,12 @@ body {
     overflow: visible !important;
     display: block !important;
   }
-  
+
   nav {
     height: 70px;
     overflow: visible;
   }
-  
+
   nav ul {
     display: flex;
     justify-content: flex-end;
@@ -466,7 +466,7 @@ body {
     padding: 0;
     margin: 0;
   }
-  
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -502,7 +502,7 @@ body {
   * {
     @apply border-border;
   }
-  
+
   /* Remove borders from navbar elements */
   nav, nav *, header, header * {
     @apply border-none;
@@ -517,7 +517,7 @@ body {
     position: relative;
     box-sizing: border-box;
   }
-  
+
   html {
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -526,12 +526,12 @@ body {
     height: 100%; /* Ensure full height */
     touch-action: manipulation; /* Improves touch responsiveness */
   }
-  
+
   /* Section anchor points */
   section[id] {
     scroll-margin-top: calc(80px + env(safe-area-inset-top, 0)); /* Increased with safe area for sticky navbar */
   }
-  
+
   /* Gradient container styling for seamless transitions */
   .gradient-container {
     position: relative;
@@ -548,7 +548,7 @@ body {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
-  
+
   body {
     @apply font-sans antialiased text-foreground;
     font-family: 'Inter', sans-serif;
@@ -581,12 +581,12 @@ body {
   .bg-gradient {
     background: linear-gradient(135deg, #8A4FFF 0%, #3E8BFF 100%);
   }
-  
+
   .btn-gradient {
     background: linear-gradient(135deg, #6035D1 0%, #2D6BCE 100%);
     transition: all 0.3s ease;
   }
-  
+
   .btn-gradient:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(96, 53, 209, 0.2);
@@ -595,18 +595,18 @@ body {
   .nav-link {
     position: relative;
   }
-  
+
   :root {
     /* Add custom CSS variable for nav link hover color */
     --nav-link-hover: #f0f0f0;
-    
+
     /* iOS safe area insets as CSS variables with fallbacks */
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
     --safe-area-inset-left: env(safe-area-inset-left, 0px);
     --safe-area-inset-right: env(safe-area-inset-right, 0px);
   }
-  
+
   .nav-link::after {
     content: '';
     position: absolute;
@@ -617,13 +617,13 @@ body {
     background: var(--nav-link-hover, #ffffff);
     transition: width 0.3s ease;
   }
-  
+
   .nav-link:hover::after {
     width: 100%;
   }
-  
+
   /* The navbar-logo styling is now defined above */
-  
+
   /* Navbar styles */
   header {
     position: relative !important; /* Changed from fixed to relative to work with sticky parent */
@@ -640,7 +640,7 @@ body {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
-  
+
   /* Desktop-specific navbar styles */
   @media (min-width: 768px) {
     header {
@@ -648,16 +648,16 @@ body {
       transition: all 0.3s ease;
       height: 70px !important;
     }
-    
+
     nav {
       padding: 0 !important; /* Remove padding from nav since header has it */
     }
-    
+
     .nav-link {
-      font-size: 1.1rem !important; /* Larger font size on desktop */
+      font-size: 0.875rem !important; /* Smaller font size on desktop */
     }
   }
-  
+
   /* Fix for navbar spilling over scrollbar */
   body {
     overflow-x: hidden; 
@@ -669,7 +669,7 @@ body {
     position: relative;
     height: auto;
   }
-  
+
   nav {
     height: 70px;
     display: flex;
@@ -682,7 +682,7 @@ body {
     outline: none;
     width: 100%;
   }
-  
+
   /* Hero section styling for seamless transition */
   .hero {
     margin: 0;
@@ -695,14 +695,14 @@ body {
     z-index: 1;
     border-bottom: 0 !important;
   }
-  
+
   /* Ensure WhatWeDo section has no borders or margins that could create lines */
   #what-we-do {
     border-top: 0 !important;
     margin-top: 0 !important;
     padding-top: 3rem;
   }
-  
+
   /* Navbar-Hero Container - completely redesigned fade for perfect transition */
   .navbar-hero-container {
     position: relative;
@@ -724,7 +724,7 @@ body {
     /* Explicitly no dividing lines */
     background-clip: padding-box;
   }
-  
+
   /* This creates the perfectly seamless gradient overlay */
   .navbar-hero-container::after {
     content: '';
@@ -776,7 +776,7 @@ body {
     transform: translateZ(0); /* Force GPU rendering */
     transition: opacity 0.5s ease; /* Smooth transition for any changes */
   }
-  
+
   /* Remove any visible separation between navbar and hero */
   header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before,
   header *, nav *, .hero * {
@@ -793,7 +793,7 @@ body {
     margin-top: 0 !important;
     border-top: none !important;
   }
-  
+
   /* Ensure header has smooth transitions and absolutely no borders or lines */
   header {
     transition: background-color 0.3s ease !important;
@@ -804,7 +804,7 @@ body {
     -moz-box-shadow: none !important;
     background-clip: padding-box !important;
   }
-  
+
   nav ul {
     display: flex;
     justify-content: flex-end;
@@ -813,18 +813,18 @@ body {
     padding: 0;
     border: none;
   }
-  
+
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
   }
-  
+
   .reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   /* Mobile menu styling */
   @media (max-width: 768px) {
     /* Adjustments for mobile devices and WebViews */
@@ -832,13 +832,13 @@ body {
       height: 70px !important;
       padding-top: env(safe-area-inset-top, 0) !important;
     }
-    
+
     /* Make sure the navbar is always visible */
     header.fixed {
       position: fixed !important;
       top: 0 !important;
     }
-    
+
     /* Mobile menu positioning - simplified */
     header + div[class*="fixed"] {
       top: calc(70px) !important; /* Fixed distance from top */
@@ -849,12 +849,12 @@ body {
     background-color: rgba(72, 187, 120, 0.1);
     border-left: 4px solid #48BB78;
   }
-  
+
   .error-message {
     background-color: rgba(245, 101, 101, 0.1);
     border-left: 4px solid #F56565;
   }
-  
+
   /* Animated Button with Dot Expand Effect (Microfeller style) */
   .animated-button {
     position: relative;
@@ -871,7 +871,7 @@ body {
     -moz-appearance: none !important;
     appearance: none !important;
   }
-  
+
   .animated-button::before {
     content: '';
     position: absolute;
@@ -889,7 +889,7 @@ body {
     box-shadow: none !important;
     outline: none !important;
   }
-  
+
   .animated-button::after {
     content: '';
     position: absolute;
@@ -904,7 +904,7 @@ body {
     transition: transform 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
     z-index: 2;
   }
-  
+
   /* Restored dot expansion animation but without borders */
   .animated-button:hover {
     border: none !important; /* Remove border completely */
@@ -912,7 +912,7 @@ body {
     box-shadow: none !important;
     background-color: transparent !important; /* Keep transparent to allow our animation to work */
   }
-  
+
   /* Restore growing animation but ensure no borders */
   .animated-button:hover::before {
     width: 103%; /* Slightly larger than 100% to ensure coverage */
@@ -926,7 +926,7 @@ body {
     border: none !important;
     box-shadow: none !important;
   }
-  
+
   /* Keep the black dot animation */
   .animated-button:hover::after {
     transform: translateY(-50%) scale(1);
@@ -935,14 +935,14 @@ body {
     box-shadow: none !important;
     outline: none !important;
   }
-  
+
   .animated-button:hover .button-text {
     color: #000;
     transition: color 0.4s ease, transform 0.15s ease, opacity 0.15s ease;
     transform: translateY(-30px);
     opacity: 0;
   }
-  
+
   .button-text {
     transition: color 0.4s ease, transform 0.2s ease, opacity 0.2s ease;
     position: relative;
@@ -950,7 +950,7 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
-  
+
   /* The text that appears from the top */
   .button-text-hover {
     color: #000;
@@ -958,36 +958,36 @@ body {
     opacity: 0;
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
-  
+
   /* Make the hover text appear on hover */
   .animated-button:hover .button-text-hover {
     transform: translateY(0);
     opacity: 1;
     transition: transform 0.15s ease 0.05s, opacity 0.15s ease 0.05s;
   }
-  
+
   /* Disabled button state */
   .animated-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  
+
   /* Don't show hover effects on disabled buttons */
   .animated-button:disabled:hover::before,
   .animated-button:disabled:hover::after {
     display: none;
   }
-  
+
   .animated-button:disabled:hover .button-text {
     transform: translateY(0);
     opacity: 1;
     color: white;
   }
-  
+
   .animated-button:disabled:hover .button-text-hover {
     opacity: 0;
   }
-  
+
   /* Mobile-specific styles - completely different styling for mobile buttons */
   .animated-button-mobile {
     background-color: #000 !important;
@@ -1017,14 +1017,14 @@ body {
     z-index: 1 !important;
     pointer-events: none !important;
   }
-  
+
   /* Hide the black dot on hover for mobile */
   .animated-button-mobile::after {
     opacity: 0 !important;
     transform: translateY(-50%) scale(0) !important;
     transition: none !important;
   }
-  
+
   /* Prevent any hover/active state changes on mobile */
   .animated-button-mobile:hover,
   .animated-button-mobile:active {
@@ -1034,7 +1034,7 @@ body {
     transform: none !important;
     transition: none !important;
   }
-  
+
   /* Keep text completely static with no movement or transitions on mobile */
   .animated-button-mobile .button-text {
     color: white !important;
@@ -1044,7 +1044,7 @@ body {
     transform-style: flat !important;
     backface-visibility: visible !important;
   }
-  
+
   .animated-button-mobile:hover .button-text,
   .animated-button-mobile:active .button-text,
   .animated-button-mobile:focus .button-text {
@@ -1054,7 +1054,7 @@ body {
     transition: none !important;
     animation: none !important;
   }
-  
+
   /* Keep hover text hidden on mobile */
   .animated-button-mobile .button-text-hover,
   .animated-button-mobile:hover .button-text-hover,
@@ -1064,7 +1064,7 @@ body {
     transition: none !important;
     display: none !important;
   }
-  
+
   /* Completely disable any movement on hover/active for mobile */
   .animated-button-mobile:hover::before,
   .animated-button-mobile:active::before,
@@ -1081,7 +1081,7 @@ body {
     animation: none !important;
     pointer-events: none !important;
   }
-  
+
   /* Keep black dot hidden */
   .animated-button-mobile:hover::after,
   .animated-button-mobile:active::after {

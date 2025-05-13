@@ -119,7 +119,7 @@ export function Navbar() {
             <li>
               <a 
                 href="#home" 
-                className="nav-link font-medium text-md transition-colors duration-300 text-white"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('home');
@@ -131,7 +131,7 @@ export function Navbar() {
             <li>
               <a 
                 href="#what-we-do" 
-                className="nav-link font-medium text-md transition-colors duration-300 text-white"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('what-we-do');
@@ -143,7 +143,7 @@ export function Navbar() {
             <li>
               <a 
                 href="#our-services" 
-                className="nav-link font-medium text-md transition-colors duration-300 text-white"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('our-services');
@@ -155,7 +155,7 @@ export function Navbar() {
             <li>
               <a 
                 href="#contact" 
-                className="nav-link font-medium text-md transition-colors duration-300 text-white"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('contact');
