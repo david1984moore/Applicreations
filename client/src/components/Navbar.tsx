@@ -36,16 +36,24 @@ export function Navbar() {
     const section = document.getElementById(sectionId);
     
     if (section) {
+      // Get safe area inset top value (or 0 if not supported)
+      const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
+      
+      // Calculate offset with safe area considerations
+      const navbarHeight = 70;
+      const totalOffset = navbarHeight + safeAreaTop;
+      
       section.scrollIntoView({ behavior: 'smooth' });
       
       setTimeout(() => {
         window.scrollBy({
-          top: -70,
+          top: -totalOffset,
           behavior: 'smooth'
         });
       }, 50);
       
-      history.pushState(null, '', `#${sectionId}`);
+      // Use replaceState instead of pushState to prevent navigation issues in WebViews
+      history.replaceState(null, '', `#${sectionId}`);
     } else {
       console.error("Section not found:", sectionId);
     }
@@ -64,6 +72,9 @@ export function Navbar() {
           borderBottom: 'none',
           boxShadow: 'none',
           transition: 'all 0.3s ease',
+          paddingTop: 'env(safe-area-inset-top, 0)',
+          paddingLeft: 'env(safe-area-inset-left, 0)',
+          paddingRight: 'env(safe-area-inset-right, 0)',
         }}
       >
         <nav className="w-full px-4 flex items-center justify-between h-full">
@@ -154,6 +165,10 @@ export function Navbar() {
           className="fixed top-[70px] left-0 w-full bg-black z-[999]"
           style={{
             background: '#000000',
+            paddingTop: 'env(safe-area-inset-top, 0)',
+            paddingLeft: 'env(safe-area-inset-left, 0)',
+            paddingRight: 'env(safe-area-inset-right, 0)',
+            paddingBottom: 'env(safe-area-inset-bottom, 0)',
           }}
         >
           <div className="py-2 px-4 flex flex-col items-end">

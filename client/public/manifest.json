@@ -1,0 +1,23 @@
+{
+  "name": "Applicreations",
+  "short_name": "Applicreations",
+  "description": "Applicreations - Web and app development services. Digital solutions to real world problems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#6b48ff",
+  "theme_color": "#6b48ff",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
