@@ -153,7 +153,7 @@ export function WhatWeDo() {
       ref={sectionRef} 
       className="py-24 relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)',
+        background: 'linear-gradient(110deg, #4bc9ff 20%, #40c0ff 80%, #36b8ff)',
         position: 'relative'
       }}
     >
