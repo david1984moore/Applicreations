@@ -3,7 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
-import { IsolatedPricing } from '@/components/IsolatedPricing';
+import { IsolatedPricingSimple } from '@/components/IsolatedPricingSimple';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { ScrollToTop } from '@/components/ScrollToTop';
@@ -70,7 +70,7 @@ export default function Home() {
         marginTop: '-1px' /* Eliminate any possible gap */
       }}>
         <OurServices />
-        <IsolatedPricing />
+        <IsolatedPricingSimple />
         <Contact />
         <Footer />
       </div>
