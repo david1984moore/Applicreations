@@ -840,15 +840,15 @@ body {
   
   /* Faster transition for the white dot expansion (initial hover) */
   .animated-button:hover {
-    border: 1.5px solid black !important; /* Thinner border with !important to override inline styles */
+    border: none !important; /* Remove border completely */
     outline: none;
     box-shadow: none;
   }
   
   .animated-button:hover::before {
-    width: 96%; /* Adjusted width for thinner border */
-    height: 90%; /* Adjusted height for thinner border */
-    left: 2%; /* Centered to accommodate the thinner border */
+    width: 100%; /* Full width to completely fill the button */
+    height: 100%; /* Full height to completely fill the button */
+    left: 0; /* No offset needed for full coverage */
     transform: translateY(-50%);
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.2, 0.85, 0.4, 1);
