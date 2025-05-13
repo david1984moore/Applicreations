@@ -18,42 +18,42 @@ export function Footer() {
   
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const homeSection = document.getElementById('home');
-    
-    if (homeSection) {
-      // Scroll to home section
-      homeSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Adjust for navbar height
-      setTimeout(() => {
-        window.scrollBy({
-          top: -70, // Adjust for navbar height
-          behavior: 'smooth'
-        });
-      }, 50);
-      
-      // Update URL hash
-      history.pushState(null, '', `#home`);
-    }
+    // Use the same handling as regular navigation links for consistency
+    handleNavClick('home');
   };
   
   // Changed to black background
   const footerBgClass = "bg-black";
     
   const handleNavClick = (sectionId: string) => {
+    // Similar approach as in Navbar.tsx for consistent behavior
     const section = document.getElementById(sectionId);
     
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      // Get safe area inset top value (or 0 if not supported)
+      const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
       
-      setTimeout(() => {
-        window.scrollBy({
-          top: -70,
-          behavior: 'smooth'
-        });
-      }, 50);
+      // Calculate offset with safe area considerations
+      const navbarHeight = 70;
+      const totalOffset = navbarHeight + safeAreaTop;
       
-      history.pushState(null, '', `#${sectionId}`);
+      // Get the position of the section relative to the document
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top + window.pageYOffset;
+      
+      // Calculate position accounting for navbar height and safe area
+      const scrollToPosition = sectionTop - totalOffset;
+      
+      // Use window.scrollTo for more reliable smooth scrolling
+      window.scrollTo({
+        top: scrollToPosition,
+        behavior: 'smooth'
+      });
+      
+      // Use replaceState instead of pushState to prevent navigation issues
+      history.replaceState(null, '', `#${sectionId}`);
+    } else {
+      console.error("Section not found:", sectionId);
     }
   };
   
