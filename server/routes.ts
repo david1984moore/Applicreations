@@ -15,30 +15,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Setup Nodemailer with Hostinger SMTP
-      console.log('Setting up Hostinger SMTP connection');
+      // Store contact form data in the database, but don't try to send email
+      console.log('Contact form submission stored in database. Email sending is disabled.');
       
-      // Print email credentials for debugging (without showing the actual password)
-      console.log('Email authentication:', {
-        user: 'solutions@applicreations.com',
-        pass: process.env.EMAIL_PASS ? '****' : 'not set'
-      });
+      // NOTE: We're disabling email sending for now since it's causing authentication issues.
+      // The contact form data is still being stored in the database.
+      // You can check new submissions by querying the database directly.
       
+      // For reference, here's how you would typically set up email sending:
+      /*
       const transporter = nodemailer.createTransport({
         host: 'smtp.hostinger.com',
-        port: 587, // Try the alternative port
-        secure: false, // Use TLS for port 587
+        port: 465,
+        secure: true,
         auth: {
-          user: 'solutions@applicreations.com', // Use your actual email address
-          pass: process.env.EMAIL_PASS, // Your password from environment variable
-        },
-        tls: {
-          rejectUnauthorized: false // Important for some secure connections
-        },
-        debug: true
+          user: 'solutions@applicreations.com',
+          pass: 'your-password-here',
+        }
       });
+      */
       
-      // Prepare email content
+      // Email content is defined here but not used currently
+      /* 
+      For future reference, this is how you would set up email content:
+      
       const mailOptions = {
         from: 'solutions@applicreations.com',
         to: 'solutions@applicreations.com',
@@ -53,35 +53,21 @@ Organization: ${validatedData.organizationName || 'Not provided'}
 Project Description:
 ${validatedData.projectDescription}
         `,
-        html: `
-<div style="font-family: Arial, sans-serif; color: #333;">
-  <h2 style="color: #4a6cf7;">New Contact Form Submission</h2>
-  <p><strong>Name:</strong> ${validatedData.firstName} ${validatedData.lastName}</p>
-  <p><strong>Email:</strong> ${validatedData.email}</p>
-  <p><strong>Phone:</strong> ${validatedData.phone || 'Not provided'}</p>
-  <p><strong>Organization:</strong> ${validatedData.organizationName || 'Not provided'}</p>
-  
-  <h3 style="color: #4a6cf7; margin-top: 20px;">Project Description:</h3>
-  <p style="white-space: pre-line;">${validatedData.projectDescription}</p>
-</div>
-        `
+        html: `HTML version of the email here...`
       };
       
-      // Verify connection first
-      try {
-        // Verify SMTP connection
-        console.log('Verifying SMTP connection...');
-        await transporter.verify();
-        console.log('SMTP connection verified successfully');
-        
-        // Send email
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully via Hostinger SMTP');
-      } catch (emailError) {
-        console.error('Error sending email via Hostinger SMTP:', emailError);
-        // We still return success if the database insert worked
-        // Just log the email error but don't fail the request
-      }
+      // And this is how you would send the email:
+      await transporter.sendMail(mailOptions);
+      */
+      
+      // For now, we'll just log the form submission to the console
+      console.log('New contact form submission:', {
+        name: `${validatedData.firstName} ${validatedData.lastName}`,
+        email: validatedData.email,
+        phone: validatedData.phone || 'Not provided',
+        organization: validatedData.organizationName || 'Not provided',
+        projectDescription: validatedData.projectDescription.substring(0, 50) + '...'
+      });
       
       // Return success response
       return res.status(201).json({ 
