@@ -226,7 +226,7 @@ export function Pricing() {
                 </div>
                 <p className="font-semibold text-black">SEO Optimization</p>
               </div>
-              <p className="text-gray-600">Boost search engine visibility <span className="font-medium text-primary">(starting at $500)</span></p>
+              <p className="text-black">Boost search engine visibility <span className="font-bold text-black">(starting at $500)</span></p>
             </div>
             
             <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
@@ -239,7 +239,7 @@ export function Pricing() {
                 </div>
                 <p className="font-semibold text-black">Social Media Integration</p>
               </div>
-              <p className="text-gray-600">Connect your site to social platforms <span className="font-medium text-primary">(starting at $300)</span></p>
+              <p className="text-black">Connect your site to social platforms <span className="font-bold text-black">(starting at $300)</span></p>
             </div>
             
             <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
@@ -252,7 +252,7 @@ export function Pricing() {
                 </div>
                 <p className="font-semibold text-black">Additional Email Accounts</p>
               </div>
-              <p className="text-gray-600">Expand beyond included accounts <span className="font-medium text-primary">($1/month per mailbox)</span></p>
+              <p className="text-black">Expand beyond included accounts <span className="font-bold text-black">($1/month per mailbox)</span></p>
             </div>
             
             <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group md:col-span-2">
@@ -265,7 +265,7 @@ export function Pricing() {
                 </div>
                 <p className="font-semibold text-black">Premium Support</p>
               </div>
-              <p className="text-gray-600">Priority assistance for faster response times <span className="font-medium text-primary">(starting at $100/month)</span></p>
+              <p className="text-black">Priority assistance for faster response times <span className="font-bold text-black">(starting at $100/month)</span></p>
             </div>
             
             <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
@@ -278,7 +278,7 @@ export function Pricing() {
                 </div>
                 <p className="font-semibold text-black">Mobile App Development</p>
               </div>
-              <p className="text-gray-600">Native applications for iOS and Android <span className="font-medium text-primary">(starting at $2,000)</span></p>
+              <p className="text-black">Native applications for iOS and Android <span className="font-bold text-black">(starting at $2,000)</span></p>
             </div>
           </div>
         </div>
