@@ -116,7 +116,7 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 md:p-10 shadow-lg">
+          <div className="bg-white/40 backdrop-blur-sm rounded-lg p-8 md:p-10 shadow-lg">
             {submitStatus === 'success' && (
               <div className="success-message rounded-md p-4 mb-4">
                 Thank you for your submission! We will get back to you soon.
