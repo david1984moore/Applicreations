@@ -53,9 +53,7 @@ export function Hero() {
         href="#contact"
         className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
         style={{ 
-          transitionDelay: '0.6s',
-          border: 'none',
-          outline: 'none'
+          transitionDelay: '0.6s'
         }}
       >
         <span className="button-text relative z-10 ml-5">Get Started Now</span>
