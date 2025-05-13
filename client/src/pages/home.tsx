@@ -51,7 +51,8 @@ export default function Home() {
         position: 'relative', 
         zIndex: 5, 
         background: '#4ecdc4',
-        marginTop: '-1px' /* Eliminate any possible gap */
+        marginTop: '-2px', /* Ensure no gap between sections */
+        borderTop: 'none'
       }}>
         <WhatWeDo />
         <OurServices />

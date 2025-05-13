@@ -154,7 +154,8 @@ export function WhatWeDo() {
       className="py-24 relative overflow-hidden"
       style={{ 
         background: 'linear-gradient(110deg, #4ecdc4 20%, #33bbcf 80%, #27b0d8)',
-        position: 'relative'
+        position: 'relative',
+        marginTop: '-1px' /* Eliminate any gap with the Hero section */
       }}
     >
 
