@@ -21,7 +21,7 @@ const contactFormSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
-  businessName: z.string().optional(), // Changed from organizationName
+  organizationName: z.string().optional(),
   projectDescription: z.string().min(1, 'Please tell us about your project')
 });
 
@@ -41,7 +41,7 @@ export function Contact() {
       lastName: '',
       email: '',
       phone: '',
-      businessName: '', // Changed from organizationName
+      organizationName: '',
       projectDescription: ''
     }
   });
