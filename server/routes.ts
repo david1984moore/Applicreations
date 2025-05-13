@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactFormSchema } from "@shared/schema";
 import { z } from "zod";
+import nodemailer from 'nodemailer';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API route for contact form submissions
@@ -14,7 +15,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Email functionality has been removed
+      // Setup Nodemailer with Hostinger SMTP
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.hostinger.com',
+        port: 465,
+        secure: true, // Use SSL for port 465
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+      
+      // Prepare email content
+      const mailOptions = {
+        from: 'solutions@applicreations.com',
+        to: 'solutions@applicreations.com',
+        replyTo: validatedData.email,
+        subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
+        text: `
+Name: ${validatedData.firstName} ${validatedData.lastName}
+Email: ${validatedData.email}
+Phone: ${validatedData.phone || 'Not provided'}
+Organization: ${validatedData.organizationName || 'Not provided'}
+
+Project Description:
+${validatedData.projectDescription}
+        `,
+        html: `
+<div style="font-family: Arial, sans-serif; color: #333;">
+  <h2 style="color: #4a6cf7;">New Contact Form Submission</h2>
+  <p><strong>Name:</strong> ${validatedData.firstName} ${validatedData.lastName}</p>
+  <p><strong>Email:</strong> ${validatedData.email}</p>
+  <p><strong>Phone:</strong> ${validatedData.phone || 'Not provided'}</p>
+  <p><strong>Organization:</strong> ${validatedData.organizationName || 'Not provided'}</p>
+  
+  <h3 style="color: #4a6cf7; margin-top: 20px;">Project Description:</h3>
+  <p style="white-space: pre-line;">${validatedData.projectDescription}</p>
+</div>
+        `
+      };
+      
+      // Send email
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // We still return success if the database insert worked
+        // Just log the email error but don't fail the request
+      }
       
       // Return success response
       return res.status(201).json({ 
