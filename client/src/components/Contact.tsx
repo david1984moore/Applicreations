@@ -110,8 +110,8 @@ export function Contact() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block text-white">Let's Go!</h2>
-            <p className="text-lg text-white/80">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block text-black">Let's Go!</h2>
+            <p className="text-lg text-black">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
           </div>
@@ -137,7 +137,7 @@ export function Contact() {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="block text-sm font-medium text-white mb-1">First Name *</FormLabel>
+                        <FormLabel className="block text-sm font-medium text-black mb-1">First Name *</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -154,7 +154,7 @@ export function Contact() {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="block text-sm font-medium text-white mb-1">Last Name *</FormLabel>
+                        <FormLabel className="block text-sm font-medium text-black mb-1">Last Name *</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -173,7 +173,7 @@ export function Contact() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="block text-sm font-medium text-white mb-1">Email *</FormLabel>
+                        <FormLabel className="block text-sm font-medium text-black mb-1">Email *</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -191,7 +191,7 @@ export function Contact() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="block text-sm font-medium text-white mb-1">Phone Number</FormLabel>
+                        <FormLabel className="block text-sm font-medium text-black mb-1">Phone Number</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -210,7 +210,7 @@ export function Contact() {
                   name="organizationName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="block text-sm font-medium text-white mb-1">Organization</FormLabel>
+                      <FormLabel className="block text-sm font-medium text-black mb-1">Organization</FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
@@ -227,7 +227,7 @@ export function Contact() {
                   name="projectDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="block text-sm font-medium text-white mb-1">Tell us about your project *</FormLabel>
+                      <FormLabel className="block text-sm font-medium text-black mb-1">Tell us about your project *</FormLabel>
                       <FormControl>
                         <Textarea 
                           {...field} 
