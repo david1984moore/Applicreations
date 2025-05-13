@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <Navbar />
-      <div className="navbar-hero-container" style={{ marginTop: '0' }}>
+      <div className="navbar-hero-container" style={{ marginTop: '-70px' }}>
         <Hero />
       </div>
       {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
