@@ -498,11 +498,12 @@ html {
     scroll-padding-top: 70px; /* Adjusts all anchor links to account for fixed navbar */
     /* Safe insets should not be applied directly to HTML */
     height: 100%; /* Ensure full height */
+    touch-action: manipulation; /* Improves touch responsiveness */
   }
   
   /* Section anchor points */
   section[id] {
-    scroll-margin-top: 70px;
+    scroll-margin-top: 80px; /* Slightly increased to give more space below navbar */
   }
   
   body {

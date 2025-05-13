@@ -33,33 +33,40 @@ export function Navbar() {
   }, []);
   
   const handleNavClick = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    
-    if (section) {
-      // Get safe area inset top value (or 0 if not supported)
-      const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
-      
-      // Calculate offset with safe area considerations
-      const navbarHeight = 70;
-      const totalOffset = navbarHeight + safeAreaTop;
-      
-      // Scroll the element into view
-      const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - totalOffset;
-      
-      // Use window.scrollTo for more reliable smooth scrolling
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      
-      // Use replaceState instead of pushState to prevent navigation issues in WebViews
-      history.replaceState(null, '', `#${sectionId}`);
-    } else {
-      console.error("Section not found:", sectionId);
-    }
-    
+    // Close mobile menu first for better UX
     setMobileMenuOpen(false);
+    
+    // Slight delay to allow menu to close before scrolling
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      
+      if (section) {
+        // Get safe area inset top value (or 0 if not supported)
+        const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
+        
+        // Calculate offset with safe area considerations
+        const navbarHeight = 70;
+        const totalOffset = navbarHeight + safeAreaTop;
+        
+        // Get the position of the section relative to the document
+        const sectionRect = section.getBoundingClientRect();
+        const sectionTop = sectionRect.top + window.pageYOffset;
+        
+        // Calculate position accounting for navbar height and safe area
+        const scrollToPosition = sectionTop - totalOffset;
+        
+        // Use window.scrollTo for more reliable smooth scrolling
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: 'smooth'
+        });
+        
+        // Use replaceState instead of pushState to prevent navigation issues in WebViews
+        history.replaceState(null, '', `#${sectionId}`);
+      } else {
+        console.error("Section not found:", sectionId);
+      }
+    }, 10);
   };
 
   const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
