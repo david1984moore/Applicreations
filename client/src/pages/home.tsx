@@ -42,13 +42,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
-      {/* Create a single seamless container for navbar and hero */}
-      <div className="unified-header" style={{ 
-        background: 'linear-gradient(110deg, #6b48ff 0%, #6551ff 15%, #5e5aff 30%, #576aff 45%, #4f77ff 60%, #4780ff 75%, #3e89ff 90%, #3881ff 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <Navbar />
+      <Navbar />
+      <div className="navbar-hero-container" style={{ marginTop: '-70px' }}>
         <Hero />
       </div>
       {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}

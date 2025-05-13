@@ -69,15 +69,15 @@ export function Navbar() {
     }, 10);
   };
 
+  const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
+  
   return (
     <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
-          // Fully transparent background - parent container already has the gradient
-          background: 'transparent',
+          background: scrolled ? navbarBackground : 'transparent',
           borderBottom: 'none',
-          // Only show shadow when scrolled
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
           // Ensure status bar area isn't blocked for tap-to-top functionality

@@ -22,7 +22,7 @@ export function Hero() {
       className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
         background: 'transparent',
-        paddingTop: '70px', /* Match navbar height for seamless transition */
+        paddingTop: '120px', /* Increased from 70px to 120px to create more space between navbar and hero */
         paddingBottom: '180px', 
         border: 'none',
         borderTop: 'none',
