@@ -39,10 +39,10 @@ export function Hero() {
         className={`text-center transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-[40px] mt-[100px]`}
         style={{ transitionDelay: '0.4s' }}
       >
-        <p className="text-[1.65rem] md:text-[1.8rem] font-bold text-white leading-tight">
+        <p className="text-[1.65rem] md:text-[2.5rem] font-bold text-white leading-tight">
           We turn <span className="text-white">problems</span> into <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-400">solutions</span>
         </p>
-        <p className="text-[1.3rem] md:text-[1.5rem] font-medium text-white/90 mt-2">
+        <p className="text-[1.3rem] md:text-[1.8rem] font-medium text-white/90 mt-2">
           with custom apps and websites.
         </p>
       </div>
