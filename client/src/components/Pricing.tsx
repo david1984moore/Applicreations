@@ -68,11 +68,8 @@ const plans: PricingPlan[] = [
 ];
 
 export function Pricing() {
-  // Separate state for each card expansion
-  const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({
-    basic: false,
-    professional: false
-  });
+  // Instead of an object, use a single string to track which card is expanded (if any)
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
 
@@ -98,10 +95,8 @@ export function Pricing() {
   }, []);
 
   const toggleCardExpansion = (name: string) => {
-    setExpandedCards(prev => ({
-      ...prev,
-      [name]: !prev[name]
-    }));
+    // If the card is already expanded, close it, otherwise open this one
+    setExpandedCard(expandedCard === name ? null : name);
   };
 
   return (
@@ -182,13 +177,13 @@ export function Pricing() {
                       onClick={() => toggleCardExpansion(plan.name)}
                       className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
                     >
-                      {expandedCards[plan.name] ? 'View less' : 'View details'}
+                      {expandedCard === plan.name ? 'View less' : 'View details'}
                       <ArrowRight className={`h-4 w-4 transition-transform duration-300 ${
-                        expandedCards[plan.name] ? 'rotate-90' : ''
+                        expandedCard === plan.name ? 'rotate-90' : ''
                       }`} />
                     </button>
                     
-                    {expandedCards[plan.name] && (
+                    {expandedCard === plan.name && (
                       <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
                         <p className="font-medium mb-2">Target Audience:</p>
                         <p className="mb-4">{plan.targetAudience}</p>
