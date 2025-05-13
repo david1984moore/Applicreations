@@ -953,46 +953,74 @@ body {
     opacity: 0;
   }
   
-  /* Mobile-specific styles - prevent hover effects on touch devices */
-  .animated-button-mobile:active::before,
-  .animated-button-mobile:active::after,
-  .animated-button-mobile:hover::before,
-  .animated-button-mobile:hover::after {
-    /* Prevent the expansion animation on mobile */
+  /* Mobile-specific styles - completely different styling for mobile buttons */
+  .animated-button-mobile {
+    background-color: #000 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: none !important;
+  }
+
+  /* Hide the white circle/dot completely on mobile */
+  .animated-button-mobile::before {
+    opacity: 0 !important;
     width: 12px !important;
     height: 12px !important;
     left: 15px !important;
     transform: translateY(-50%) !important;
-    border-radius: 50px !important;
     transition: none !important;
   }
   
-  .animated-button-mobile:active .button-text,
-  .animated-button-mobile:hover .button-text {
-    /* Prevent text from moving or changing color on mobile */
+  /* Hide the black dot on hover for mobile */
+  .animated-button-mobile::after {
+    opacity: 0 !important;
+    transform: translateY(-50%) scale(0) !important;
+    transition: none !important;
+  }
+  
+  /* Prevent any hover/active state changes on mobile */
+  .animated-button-mobile:hover,
+  .animated-button-mobile:active {
+    background-color: #000 !important;
+    color: white !important;
+    border: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Keep text visible and prevent any movement on hover/active */
+  .animated-button-mobile:hover .button-text,
+  .animated-button-mobile:active .button-text {
     color: white !important;
     transform: translateY(0) !important;
     opacity: 1 !important;
     transition: none !important;
   }
   
-  .animated-button-mobile:active .button-text-hover,
-  .animated-button-mobile:hover .button-text-hover {
-    /* Keep hover text hidden on mobile */
+  /* Keep hover text hidden on mobile */
+  .animated-button-mobile .button-text-hover,
+  .animated-button-mobile:hover .button-text-hover,
+  .animated-button-mobile:active .button-text-hover {
     transform: translateY(-30px) !important;
     opacity: 0 !important;
     transition: none !important;
+    display: none !important;
   }
   
-  .animated-button-mobile:active,
-  .animated-button-mobile:hover {
-    /* Prevent border changes on mobile */
-    border: none !important;
-  }
-  
-  /* Keep the black dot hidden on mobile */
-  .animated-button-mobile:active::after,
-  .animated-button-mobile:hover::after {
-    transform: translateY(-50%) scale(0) !important;
+  /* Ensure no expansion animation on hover/active for mobile */
+  .animated-button-mobile:hover::before,
+  .animated-button-mobile:active::before,
+  .animated-button-mobile:hover::after,
+  .animated-button-mobile:active::after {
+    width: 12px !important;
+    height: 12px !important;
+    transform: translateY(-50%) !important;
+    transition: none !important;
+    opacity: 0 !important;
   }
 }
