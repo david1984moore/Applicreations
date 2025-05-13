@@ -173,27 +173,76 @@ export function Pricing() {
         </div>
         
         <div className="mt-16 max-w-4xl mx-auto text-center">
-          <h3 className="text-xl md:text-2xl font-semibold mb-4 text-black">Optional Add-Ons and Enhancements</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-left">
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-              <p className="font-medium text-black mb-1">SEO Optimization</p>
-              <p className="text-sm text-gray-600">Boost search engine visibility (starting at $500)</p>
+          <h3 className="text-xl md:text-2xl font-bold mb-8 text-black text-center relative">
+            <span className="relative inline-block">
+              Optional Add-Ons and Enhancements
+              <span className="absolute bottom-[-8px] left-0 w-full h-[3px] bg-gradient-to-r from-primary/50 to-primary opacity-75 rounded-full"></span>
+            </span>
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 text-left">
+            <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 rounded-full bg-primary/10 mr-3">
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                  </svg>
+                </div>
+                <p className="font-semibold text-black">SEO Optimization</p>
+              </div>
+              <p className="text-gray-600">Boost search engine visibility <span className="font-medium text-primary">(starting at $500)</span></p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-              <p className="font-medium text-black mb-1">Social Media Integration</p>
-              <p className="text-sm text-gray-600">Connect your site to social platforms (starting at $300)</p>
+            
+            <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 rounded-full bg-primary/10 mr-3">
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <p className="font-semibold text-black">Social Media Integration</p>
+              </div>
+              <p className="text-gray-600">Connect your site to social platforms <span className="font-medium text-primary">(starting at $300)</span></p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-              <p className="font-medium text-black mb-1">Additional Email Accounts</p>
-              <p className="text-sm text-gray-600">Expand beyond included accounts ($1/month per mailbox)</p>
+            
+            <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 rounded-full bg-primary/10 mr-3">
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <p className="font-semibold text-black">Additional Email Accounts</p>
+              </div>
+              <p className="text-gray-600">Expand beyond included accounts <span className="font-medium text-primary">($1/month per mailbox)</span></p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm md:col-span-2">
-              <p className="font-medium text-black mb-1">Premium Support</p>
-              <p className="text-sm text-gray-600">Priority assistance for faster response times (starting at $100/month)</p>
+            
+            <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group md:col-span-2">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 rounded-full bg-primary/10 mr-3">
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                </div>
+                <p className="font-semibold text-black">Premium Support</p>
+              </div>
+              <p className="text-gray-600">Priority assistance for faster response times <span className="font-medium text-primary">(starting at $100/month)</span></p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-              <p className="font-medium text-black mb-1">Mobile App Development</p>
-              <p className="text-sm text-gray-600">Starting at $2,000 (Starter) or $5,000 (Growth)</p>
+            
+            <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 rounded-full bg-primary/10 mr-3">
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <p className="font-semibold text-black">Mobile App Development</p>
+              </div>
+              <p className="text-gray-600">Native applications for iOS and Android <span className="font-medium text-primary">(starting at $2,000)</span></p>
             </div>
           </div>
         </div>
