@@ -15,30 +15,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Store contact form data in the database, but don't try to send email
-      console.log('Contact form submission stored in database. Email sending is disabled.');
+      // Setup Nodemailer with Hostinger SMTP
+      console.log('Setting up Hostinger SMTP connection');
       
-      // NOTE: We're disabling email sending for now since it's causing authentication issues.
-      // The contact form data is still being stored in the database.
-      // You can check new submissions by querying the database directly.
-      
-      // For reference, here's how you would typically set up email sending:
-      /*
       const transporter = nodemailer.createTransport({
-        host: 'smtp.hostinger.com',
-        port: 465,
-        secure: true,
+        host: 'smtp.hostinger.com', // Hostinger's SMTP server
+        port: 465, // Port for SSL
+        secure: true, // Use SSL
         auth: {
-          user: 'solutions@applicreations.com',
-          pass: 'your-password-here',
-        }
+          user: 'solutions@applicreations.com', // Your full email address
+          pass: process.env.EMAIL_PASS, // Your email password
+        },
+        pool: true, // Use connection pool
+        maxConnections: 1, // Use max 1 connection
+        maxMessages: 10, // Send at most 10 messages per connection
+        rateDelta: 1000, // Wait for 1000ms between messages
+        rateLimit: 5, // Limit to 5 messages per rateDelta
       });
-      */
       
-      // Email content is defined here but not used currently
-      /* 
-      For future reference, this is how you would set up email content:
-      
+      // Prepare email content
       const mailOptions = {
         from: 'solutions@applicreations.com',
         to: 'solutions@applicreations.com',
@@ -53,21 +48,35 @@ Organization: ${validatedData.organizationName || 'Not provided'}
 Project Description:
 ${validatedData.projectDescription}
         `,
-        html: `HTML version of the email here...`
+        html: `
+<div style="font-family: Arial, sans-serif; color: #333;">
+  <h2 style="color: #4a6cf7;">New Contact Form Submission</h2>
+  <p><strong>Name:</strong> ${validatedData.firstName} ${validatedData.lastName}</p>
+  <p><strong>Email:</strong> ${validatedData.email}</p>
+  <p><strong>Phone:</strong> ${validatedData.phone || 'Not provided'}</p>
+  <p><strong>Organization:</strong> ${validatedData.organizationName || 'Not provided'}</p>
+  
+  <h3 style="color: #4a6cf7; margin-top: 20px;">Project Description:</h3>
+  <p style="white-space: pre-line;">${validatedData.projectDescription}</p>
+</div>
+        `
       };
       
-      // And this is how you would send the email:
-      await transporter.sendMail(mailOptions);
-      */
-      
-      // For now, we'll just log the form submission to the console
+      // Log form submission
       console.log('New contact form submission:', {
         name: `${validatedData.firstName} ${validatedData.lastName}`,
-        email: validatedData.email,
-        phone: validatedData.phone || 'Not provided',
-        organization: validatedData.organizationName || 'Not provided',
-        projectDescription: validatedData.projectDescription.substring(0, 50) + '...'
+        email: validatedData.email
       });
+      
+      // Send email
+      try {
+        console.log('Attempting to send email...');
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully!');
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // We still return success if the database insert worked
+      }
       
       // Return success response
       return res.status(201).json({ 
