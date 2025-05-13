@@ -482,6 +482,16 @@ body {
     @apply border-border;
   }
   
+  /* Parent container gradient from cyan at bottom to purple at top */
+  .gradient-container {
+    background: linear-gradient(to top, #00FFFF, #800080);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure it covers the full height */
+    position: relative;
+    overflow: hidden;
+  }
+  
   /* Remove borders from navbar elements */
   nav, nav *, header, header * {
     @apply border-none;
@@ -649,8 +659,7 @@ body {
   /* Navbar-Hero Container - completely redesigned fade for perfect transition */
   .navbar-hero-container {
     position: relative;
-    background: linear-gradient(to bottom, #6b48ff 0%, #6b48ff 50%, #52a7a1 95%, #4ecdc4 100%);
-    background-attachment: fixed;
+    background: transparent; /* Transparent to let parent gradient show through */
     display: block;
     border: none !important;
     margin: 0 !important;
@@ -669,60 +678,9 @@ body {
   }
   
   /* This creates the perfectly seamless gradient overlay */
+  /* Removed overlay to let parent gradient show through directly */
   .navbar-hero-container::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px; /* Overlap slightly with the next section to prevent any hairline gaps */
-    height: 600px; /* Increased height for an even more gradual transition */
-    background: linear-gradient(to bottom, 
-      /* Start completely transparent */
-      rgba(107, 72, 255, 0) 0%,
-      rgba(107, 72, 255, 0) 20%,
-      /* Very subtle initial gradient to prevent banding */
-      rgba(107, 72, 255, 0.001) 30%,
-      rgba(105, 75, 255, 0.002) 35%,
-      rgba(103, 78, 255, 0.003) 40%,
-      /* Extremely gradual color shift to turquoise */
-      rgba(100, 85, 250, 0.005) 45%,
-      rgba(95, 95, 245, 0.01) 50%,
-      rgba(90, 105, 240, 0.02) 52%,
-      rgba(85, 115, 235, 0.03) 54%,
-      rgba(80, 125, 230, 0.04) 56%,
-      rgba(75, 135, 225, 0.05) 58%,
-      rgba(70, 145, 220, 0.06) 60%,
-      rgba(65, 155, 215, 0.08) 62%,
-      rgba(60, 165, 210, 0.10) 64%,
-      rgba(55, 175, 205, 0.12) 66%,
-      rgba(50, 185, 200, 0.15) 68%,
-      /* Begin clear transition to turquoise */
-      rgba(60, 190, 198, 0.20) 70%,
-      rgba(65, 195, 197, 0.25) 72%,
-      rgba(70, 200, 196, 0.30) 74%,
-      rgba(74, 202, 196, 0.35) 76%,
-      rgba(76, 204, 196, 0.40) 78%,
-      rgba(78, 205, 196, 0.50) 80%,
-      rgba(78, 205, 196, 0.60) 82%,
-      rgba(78, 205, 196, 0.70) 84%,
-      rgba(78, 205, 196, 0.80) 86%,
-      rgba(78, 205, 196, 0.85) 88%,
-      rgba(78, 205, 196, 0.90) 90%,
-      rgba(78, 205, 196, 0.95) 92%,
-      /* Final steps perfectly match the turquoise background color */
-      rgba(78, 205, 196, 0.98) 95%,
-      rgba(78, 205, 196, 0.99) 97%,
-      rgba(78, 205, 196, 1) 98%,
-      rgba(78, 205, 196, 1) 99%,
-      rgb(78, 205, 196) 100%);
-    pointer-events: none;
-    z-index: 2; /* Positioned below the hero content but above other elements */
-    opacity: 1; /* Full opacity for smooth rendering */
-    will-change: opacity, transform; /* Optimize for animations */
-    -webkit-backface-visibility: hidden; /* Prevent artifacts */
-    -moz-backface-visibility: hidden;
-    transform: translateZ(0); /* Force GPU rendering */
-    transition: opacity 0.5s ease; /* Smooth transition for any changes */
+    display: none;
   }
   
   /* Remove any visible separation between navbar and hero */

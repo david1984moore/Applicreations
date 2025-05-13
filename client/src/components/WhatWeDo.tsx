@@ -153,7 +153,7 @@ export function WhatWeDo() {
       ref={sectionRef} 
       className="py-24 relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(110deg, #4ecdc4 20%, #33bbcf 80%, #27b0d8)',
+        background: 'transparent', /* Transparent to let parent gradient show through */
         position: 'relative',
         marginTop: '-1px' /* Eliminate any gap with the Hero section */
       }}
