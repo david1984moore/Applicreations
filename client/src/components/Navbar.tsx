@@ -72,9 +72,12 @@ export function Navbar() {
           borderBottom: 'none',
           boxShadow: 'none',
           transition: 'all 0.3s ease',
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          top: 0,
+          // Only add padding-top for safe area
           paddingTop: 'env(safe-area-inset-top, 0)',
-          paddingLeft: 'env(safe-area-inset-left, 0)',
-          paddingRight: 'env(safe-area-inset-right, 0)',
         }}
       >
         <nav className="w-full px-4 flex items-center justify-between h-full">
@@ -162,12 +165,10 @@ export function Navbar() {
       {/* Very Simple Static Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="fixed top-[70px] left-0 w-full bg-black z-[999]"
+          className="fixed left-0 w-full bg-black z-[999]"
           style={{
             background: '#000000',
-            paddingTop: 'env(safe-area-inset-top, 0)',
-            paddingLeft: 'env(safe-area-inset-left, 0)',
-            paddingRight: 'env(safe-area-inset-right, 0)',
+            top: '70px', // Fixed position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
           }}
         >
