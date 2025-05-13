@@ -81,13 +81,13 @@ function IndependentPricingCard({
           
           <div>
             <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
-              <p className="font-medium mb-2">Target Audience:</p>
+              <p className="font-bold mb-2">Target Audience:</p>
               <p className="mb-4">{targetAudience}</p>
               
-              <p className="font-medium mb-2">App Add-On:</p>
+              <p className="font-bold mb-2">App Add-On:</p>
               <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
               
-              <p className="font-medium mb-2">Customization Options:</p>
+              <p className="font-bold mb-2">Customization Options:</p>
               <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
             </div>
           </div>
