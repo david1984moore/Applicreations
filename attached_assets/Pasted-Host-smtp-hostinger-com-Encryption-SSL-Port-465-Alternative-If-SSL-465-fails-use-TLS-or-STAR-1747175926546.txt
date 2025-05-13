@@ -1,0 +1,73 @@
+Host: smtp.hostinger.com
+Encryption: SSL
+Port: 465
+Alternative: If SSL/465 fails, use TLS or STARTTLS with port 587 (as noted in the instructions)
+You’ll also need:
+
+Username: solutions@applicreations.com
+Password: Abilene282!
+2. Update the Backend with SMTP Settings
+Modify your index.js in Replit to use the SMTP settings from Hostinger:
+
+javascript
+
+Copy
+const express = require('express');
+const nodemailer = require('nodemailer');
+const app = express();
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve the form
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html'); // Adjust path
+});
+
+// Handle form submission
+app.post('/send-email', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  // Nodemailer setup with Hostinger SMTP
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.hostinger.com',
+    port: 465,
+    secure: true, // Use SSL for port 465
+    auth: {
+      user: process.env.EMAIL_USER, // solutions@applicreations.com
+      pass: process.env.EMAIL_PASS, // Your password
+    },
+  });
+
+  // Email options
+  const mailOptions = {
+    from: 'solutions@applicreations.com',
+    to: 'solutions@applicreations.com',
+    replyTo: email,
+    subject: `New Contact Form Submission from ${name}`,
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+    html: `<p><strong>Name:</strong> ${name}</p>
+           <p><strong>Email:</strong> ${email}</p>
+           <p><strong>Message:</strong> ${message}</p>`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.send('Message sent successfully!');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Error sending message.');
+  }
+});
+
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server on port ${port}`));
+Notes:
+
+Ensure nodemailer and express are installed (npm install nodemailer express).
+Store credentials in Replit Secrets:
+Go to the Secrets tab.
+Add EMAIL_USER as solutions@applicreations.com and EMAIL_PASS as your password.
+The secure: true setting matches the SSL encryption for port 465. If you encounter issues, try port 587 with secure: false and tls: { rejectUnauthorized: false }.
