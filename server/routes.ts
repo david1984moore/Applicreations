@@ -15,15 +15,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Setup Nodemailer with Hostinger SMTP
+      // Setup Nodemailer with Hostinger SMTP (using TLS)
+      console.log('Attempting to send email with user:', process.env.EMAIL_USER);
+      
       const transporter = nodemailer.createTransport({
         host: 'smtp.hostinger.com',
-        port: 465,
-        secure: true, // Use SSL for port 465
+        port: 587,
+        secure: false, // Use TLS
         auth: {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASS,
         },
+        tls: {
+          rejectUnauthorized: false
+        },
+        debug: true, // Show debug information
+        logger: true // Log information about the mail transaction
       });
       
       // Prepare email content
