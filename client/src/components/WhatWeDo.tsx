@@ -151,11 +151,9 @@ export function WhatWeDo() {
     <section 
       id="what-we-do" 
       ref={sectionRef} 
-      className="py-24 relative overflow-hidden"
+      className="py-24 relative overflow-hidden page-gradient-bg"
       style={{ 
-        background: 'linear-gradient(110deg, #4bc9ff 0%, #44c3ff 40%, #40c0ff 80%, #36b8ff 100%)',
-        position: 'relative',
-        marginTop: '-2px' /* Remove tiny gap between sections */
+        position: 'relative'
       }}
     >
 
