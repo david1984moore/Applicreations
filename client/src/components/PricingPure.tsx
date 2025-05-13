@@ -58,10 +58,10 @@ function IndependentPricingCard({
       
       <div className="px-6 pt-4 flex-grow">
         <div className="mb-6">
-          <p className="text-3xl font-bold text-black mb-0 leading-tight">{price}</p>
-          <p className="text-sm text-gray-500 mt-[-5px]">One-time development fee</p>
-          <p className="text-lg font-semibold text-black mt-2 mb-0 leading-tight">{monthlyCost}</p>
-          <p className="text-sm text-gray-500 mt-[-5px]">Hosting & maintenance</p>
+          <p className="text-3xl font-bold text-black">{price}</p>
+          <p className="text-sm text-gray-500">One-time development fee</p>
+          <p className="text-lg font-semibold text-black mt-2">{monthlyCost}</p>
+          <p className="text-sm text-gray-500">Hosting & maintenance</p>
         </div>
         
         {/* Content that toggles on mobile */}
