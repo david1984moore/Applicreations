@@ -1,5 +1,123 @@
 import { useRef, useEffect } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
+import React from 'react';
+
+function PricingCard({ 
+  title, 
+  description, 
+  price, 
+  monthlyCost, 
+  features, 
+  targetAudience, 
+  appAddOnPrice,
+  highlighted = false
+}: {
+  title: string;
+  description: string;
+  price: string;
+  monthlyCost: string;
+  features: string[];
+  targetAudience: string;
+  appAddOnPrice: string;
+  highlighted?: boolean;
+}) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  
+  return (
+    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+      highlighted 
+        ? 'border-2 border-primary shadow-lg shadow-primary/20' 
+        : 'border border-gray-200'
+      } bg-white`}>
+      {highlighted && (
+        <div className="absolute top-0 right-0">
+          <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
+            Popular
+          </div>
+        </div>
+      )}
+      
+      <div className={`pb-6 ${highlighted ? 'bg-primary/5' : ''}`}>
+        <div className="p-6">
+          <h3 className="text-2xl font-bold text-black">{title}</h3>
+          <p className="text-sm text-gray-600">{description}</p>
+        </div>
+      </div>
+      
+      <div className="px-6 pt-4">
+        <div className="mb-6">
+          <p className="text-3xl font-bold text-black">{price}</p>
+          <p className="text-sm text-gray-500">One-time development fee</p>
+          <p className="text-lg font-semibold text-black mt-2">{monthlyCost}</p>
+          <p className="text-sm text-gray-500">Hosting & maintenance</p>
+        </div>
+        
+        <div className="space-y-3">
+          {features.map((feature, index) => (
+            <div key={index} className="flex items-start">
+              <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <p className="ml-3 text-sm text-gray-700">{feature}</p>
+            </div>
+          ))}
+        </div>
+        
+        {/* Expandable details */}
+        <div className="mt-6">
+          <button 
+            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <span>{isExpanded ? 'View less' : 'View details'}</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="16" height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          
+          {isExpanded && (
+            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+              <p className="font-medium mb-2">Target Audience:</p>
+              <p className="mb-4">{targetAudience}</p>
+              
+              <p className="font-medium mb-2">App Add-On:</p>
+              <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
+              
+              <p className="font-medium mb-2">Customization Options:</p>
+              <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      <div className="px-6 pt-2 pb-6 mt-8">
+        <a
+          href="#contact"
+          className={`block w-full ${
+            highlighted 
+              ? 'btn-gradient text-white' 
+              : 'bg-white hover:bg-gray-50 text-primary border border-primary'
+          } py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300`}
+        >
+          Get Started
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -26,6 +144,26 @@ export function Pricing() {
     };
   }, []);
 
+  const starterFeatures = [
+    "Professional website with up to 5 pages",
+    "Customizable template design",
+    "Reliable shared hosting with 5GB storage",
+    "SSL certificate for security",
+    "2 hours monthly maintenance",
+    "Up to 5 professional email accounts",
+    "Optional basic mobile app for one platform (iOS or Android)"
+  ];
+  
+  const growthFeatures = [
+    "Custom website with up to 10 pages",
+    "Advanced functionality (e-commerce, booking systems)",
+    "VPS hosting with 20GB storage",
+    "Daily backups and dedicated resources",
+    "5 hours monthly maintenance",
+    "Up to 10 professional email accounts",
+    "Optional cross-platform mobile app (iOS and Android)"
+  ];
+  
   return (
     <section 
       id="pricing" 
@@ -59,236 +197,29 @@ export function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
-          {/* Starter Package */}
-          <div className="reveal pricing-card" style={{ transitionDelay: "0s" }}>
-            <div className="h-full relative overflow-hidden transition-all duration-300 rounded-lg border border-gray-200 bg-white">
-              <div className="pb-6">
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-black">Starter</h3>
-                  <p className="text-sm text-gray-600">For freelancers, solo entrepreneurs, and small local businesses</p>
-                </div>
-              </div>
-              
-              <div className="px-6 pt-4">
-                <div className="mb-6">
-                  <p className="text-3xl font-bold text-black">$2,000+</p>
-                  <p className="text-sm text-gray-500">One-time development fee</p>
-                  <p className="text-lg font-semibold text-black mt-2">$50/month</p>
-                  <p className="text-sm text-gray-500">Hosting & maintenance</p>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Professional website with up to 5 pages</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Customizable template design</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Reliable shared hosting with 5GB storage</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">SSL certificate for security</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">2 hours monthly maintenance</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Up to 5 professional email accounts</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Optional basic mobile app for one platform</p>
-                  </div>
-                </div>
-                
-                {/* Expandable details */}
-                <div className="mt-6">
-                  <button 
-                    id="basic-toggle"
-                    className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors toggle-details"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const content = document.getElementById('basic-details');
-                      const btn = document.getElementById('basic-toggle');
-                      const arrow = document.getElementById('basic-arrow');
-                      
-                      if (content && btn && arrow) {
-                        const isHidden = content.style.display === 'none' || content.style.display === '';
-                        content.style.display = isHidden ? 'block' : 'none';
-                        btn.querySelector('.button-text')!.textContent = isHidden ? 'View less' : 'View details';
-                        arrow.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
-                      }
-                    }}
-                  >
-                    <span className="button-text">View details</span>
-                    <svg id="basic-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </button>
-                  
-                  <div id="basic-details" className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md" style={{ display: 'none' }}>
-                    <p className="font-medium mb-2">Target Audience:</p>
-                    <p className="mb-4">The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features.</p>
-                    
-                    <p className="font-medium mb-2">App Add-On:</p>
-                    <p className="mb-4">Optional mobile app development starting at $2,000+, customized based on features.</p>
-                    
-                    <p className="font-medium mb-2">Customization Options:</p>
-                    <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="px-6 pt-2 pb-6 mt-8">
-                <a
-                  href="#contact"
-                  className="block w-full bg-white hover:bg-gray-50 text-primary border border-primary py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
+          <div className="reveal" style={{ transitionDelay: "0s" }}>
+            <PricingCard
+              title="Starter"
+              description="For freelancers, solo entrepreneurs, and small local businesses"
+              price="$2,000+"
+              monthlyCost="$50/month"
+              features={starterFeatures}
+              targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
+              appAddOnPrice="$2,000+"
+            />
           </div>
-
-          {/* Growth Package */}
-          <div className="reveal pricing-card" style={{ transitionDelay: "0.2s" }}>
-            <div className="h-full relative overflow-hidden transition-all duration-300 rounded-lg border-2 border-primary shadow-lg shadow-primary/20 bg-white">
-              <div className="absolute top-0 right-0">
-                <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
-                  Popular
-                </div>
-              </div>
-              
-              <div className="pb-6 bg-primary/5">
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-black">Growth</h3>
-                  <p className="text-sm text-gray-600">For growing local businesses and small-to-medium enterprises</p>
-                </div>
-              </div>
-              
-              <div className="px-6 pt-4">
-                <div className="mb-6">
-                  <p className="text-3xl font-bold text-black">$5,000+</p>
-                  <p className="text-sm text-gray-500">One-time development fee</p>
-                  <p className="text-lg font-semibold text-black mt-2">$150/month</p>
-                  <p className="text-sm text-gray-500">Hosting & maintenance</p>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Custom website with up to 10 pages</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Advanced functionality (e-commerce, booking systems)</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">VPS hosting with 20GB storage</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Daily backups and dedicated resources</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">5 hours monthly maintenance</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Up to 10 professional email accounts</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <p className="ml-3 text-sm text-gray-700">Optional cross-platform mobile app (iOS and Android)</p>
-                  </div>
-                </div>
-                
-                {/* Expandable details */}
-                <div className="mt-6">
-                  <button 
-                    id="pro-toggle"
-                    className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors toggle-details"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const content = document.getElementById('pro-details');
-                      const btn = document.getElementById('pro-toggle');
-                      const arrow = document.getElementById('pro-arrow');
-                      
-                      if (content && btn && arrow) {
-                        const isHidden = content.style.display === 'none' || content.style.display === '';
-                        content.style.display = isHidden ? 'block' : 'none';
-                        btn.querySelector('.button-text')!.textContent = isHidden ? 'View less' : 'View details';
-                        arrow.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
-                      }
-                    }}
-                  >
-                    <span className="button-text">View details</span>
-                    <svg id="pro-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </button>
-                  
-                  <div id="pro-details" className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md" style={{ display: 'none' }}>
-                    <p className="font-medium mb-2">Target Audience:</p>
-                    <p className="mb-4">The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions.</p>
-                    
-                    <p className="font-medium mb-2">App Add-On:</p>
-                    <p className="mb-4">Optional mobile app development starting at $5,000+, customized based on features.</p>
-                    
-                    <p className="font-medium mb-2">Customization Options:</p>
-                    <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="px-6 pt-2 pb-6 mt-8">
-                <a
-                  href="#contact"
-                  className="block w-full btn-gradient text-white py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
+          
+          <div className="reveal" style={{ transitionDelay: "0.2s" }}>
+            <PricingCard
+              title="Growth"
+              description="For growing local businesses and small-to-medium enterprises"
+              price="$5,000+"
+              monthlyCost="$150/month"
+              features={growthFeatures}
+              targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
+              appAddOnPrice="$5,000+"
+              highlighted
+            />
           </div>
         </div>
         
