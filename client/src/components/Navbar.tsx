@@ -74,18 +74,16 @@ export function Navbar() {
   return (
     <div className="relative">
       <header 
-        className="z-[1000] flex items-center h-[70px] fixed top-0 w-full"
+        className="z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0 w-full"
         style={{ 
           background: scrolled ? navbarBackground : 'transparent',
           borderBottom: 'none',
-          boxShadow: 'none',
+          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
-          position: 'fixed',
-          left: 0,
-          right: 0,
-          top: 0,
           // Ensure status bar area isn't blocked for tap-to-top functionality
           paddingTop: 'env(safe-area-inset-top, 0)',
+          position: 'fixed',
+          width: '100%'
         }}
       >
         <nav className="w-full px-4 flex items-center justify-between h-full">
@@ -173,11 +171,12 @@ export function Navbar() {
       {/* Very Simple Static Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="fixed left-0 w-full bg-black z-[999]"
+          className="fixed left-0 right-0 w-full bg-black z-[999]"
           style={{
             background: '#000000',
             top: '70px', // Fixed position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
           }}
         >
           <div className="py-2 px-4 flex flex-col items-end">
