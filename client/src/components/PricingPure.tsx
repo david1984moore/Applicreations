@@ -118,7 +118,7 @@ function IndependentPricingCard({
       <div className="px-5 pt-2 pb-4 mt-auto">
         <a
           href="#contact"
-          className="block w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-full font-medium text-center transition-all duration-300"
+          className="block w-full bg-primary hover:bg-primary/90 text-white py-3.5 px-6 rounded-full font-medium text-center transition-all duration-300"
           onClick={(e) => e.stopPropagation()} // Prevent clicking the button from toggling the card
         >
           Get Started
@@ -286,7 +286,7 @@ export function Pricing() {
         <div className="mt-16 text-center">
           <a
             href="#contact"
-            className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto`}
+            className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[14px] px-[32px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto`}
           >
             <span className="button-text relative z-10 ml-5">
               Contact Us For Custom Quote
