@@ -154,6 +154,18 @@ export function Navbar() {
             </li>
             <li>
               <a 
+                href="#pricing" 
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('pricing');
+                }}
+              >
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a 
                 href="#contact" 
                 className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
@@ -226,6 +238,16 @@ export function Navbar() {
               }}
             >
               Services
+            </a>
+            <a 
+              href="#pricing"
+              className="block py-1.5 text-white text-base font-medium"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('pricing');
+              }}
+            >
+              Pricing
             </a>
             <a 
               href="#contact"
