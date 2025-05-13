@@ -116,18 +116,6 @@ export function Navbar() {
             </li>
             <li>
               <a 
-                href="#our-services" 
-                className="nav-link font-medium text-md transition-colors duration-300 text-white"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('our-services');
-                }}
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a 
                 href="#what-we-do" 
                 className="nav-link font-medium text-md transition-colors duration-300 text-white"
                 onClick={(e) => {
@@ -136,6 +124,18 @@ export function Navbar() {
                 }}
               >
                 Our Process
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#our-services" 
+                className="nav-link font-medium text-md transition-colors duration-300 text-white"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('our-services');
+                }}
+              >
+                Services
               </a>
             </li>
             <li>
@@ -192,16 +192,6 @@ export function Navbar() {
               Home
             </a>
             <a 
-              href="#our-services"
-              className="block py-1.5 text-white text-base font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('our-services');
-              }}
-            >
-              Services
-            </a>
-            <a 
               href="#what-we-do"
               className="block py-1.5 text-white text-base font-medium"
               onClick={(e) => {
@@ -210,6 +200,16 @@ export function Navbar() {
               }}
             >
               Our Process
+            </a>
+            <a 
+              href="#our-services"
+              className="block py-1.5 text-white text-base font-medium"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('our-services');
+              }}
+            >
+              Services
             </a>
             <a 
               href="#contact"
