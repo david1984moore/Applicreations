@@ -268,12 +268,12 @@ export function Contact() {
               <span>Message Sent Successfully!</span>
             </DialogTitle>
             <DialogDescription className="pt-4 text-center">
-              <p className="text-base text-black dark:text-white">
+              <div className="text-base text-black dark:text-white">
                 Thank you for your submission! We will get back to you soon.
-              </p>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              </div>
+              <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                 Your message has been sent to our team and we'll respond within 24 hours.
-              </p>
+              </div>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
