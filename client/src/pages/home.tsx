@@ -50,7 +50,7 @@ export default function Home() {
       <div style={{ 
         position: 'relative', 
         zIndex: 5, 
-        background: '#f8f9fb',
+        background: '#4ecdc4',
         marginTop: '-1px' /* Eliminate any possible gap */
       }}>
         <WhatWeDo />
