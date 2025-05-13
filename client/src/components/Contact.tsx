@@ -141,7 +141,7 @@ export function Contact() {
                         <FormControl>
                           <Input 
                             {...field} 
-                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-neutral-dark"
+                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                           />
                         </FormControl>
                         <FormMessage className="text-red-200 text-sm mt-1" />
@@ -158,7 +158,7 @@ export function Contact() {
                         <FormControl>
                           <Input 
                             {...field} 
-                            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                           />
                         </FormControl>
                         <FormMessage className="text-red-200 text-sm mt-1" />
@@ -178,7 +178,7 @@ export function Contact() {
                           <Input 
                             {...field} 
                             type="email" 
-                            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                           />
                         </FormControl>
                         <FormMessage className="text-red-200 text-sm mt-1" />
@@ -196,7 +196,7 @@ export function Contact() {
                           <Input 
                             {...field} 
                             type="tel" 
-                            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                           />
                         </FormControl>
                         <FormMessage className="text-red-200 text-sm mt-1" />
@@ -214,7 +214,7 @@ export function Contact() {
                       <FormControl>
                         <Input 
                           {...field} 
-                          className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                          className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                         />
                       </FormControl>
                       <FormMessage className="text-red-200 text-sm mt-1" />
@@ -232,7 +232,7 @@ export function Contact() {
                         <Textarea 
                           {...field} 
                           rows={5}
-                          className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                          className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-black"
                         />
                       </FormControl>
                       <FormMessage className="text-red-200 text-sm mt-1" />
