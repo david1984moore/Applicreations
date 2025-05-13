@@ -41,18 +41,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0 gradient-container">
+    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <Navbar />
       <div className="navbar-hero-container" style={{ marginTop: '-70px' }}>
         <Hero />
       </div>
-      {/* Content container with transparent background to let parent gradient show through */}
+      {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
       <div style={{ 
         position: 'relative', 
         zIndex: 5, 
-        background: 'transparent',
-        marginTop: '-2px', /* Ensure no gap between sections */
-        borderTop: 'none'
+        background: '#f8f9fb',
+        marginTop: '-1px' /* Eliminate any possible gap */
       }}>
         <WhatWeDo />
         <OurServices />

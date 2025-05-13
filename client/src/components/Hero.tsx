@@ -21,7 +21,7 @@ export function Hero() {
       ref={heroRef}
       className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
-        background: 'transparent', /* Transparent to let parent gradient show through */
+        background: '#6b48ff',
         paddingTop: 'calc(70px + 50px)', /* Account for navbar height (70px) plus some extra space */
         paddingBottom: '180px', 
         border: 'none',
@@ -30,8 +30,7 @@ export function Hero() {
         outline: 'none',
         marginTop: 0,
         position: 'relative',
-        zIndex: 3, /* Position hero content above the gradient overlay */
-        marginBottom: '-2px' /* Eliminate any gap between sections */
+        zIndex: 3 /* Position hero content above the gradient overlay */
       }}
     >
       
