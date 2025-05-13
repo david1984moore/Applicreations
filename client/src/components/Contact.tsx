@@ -93,17 +93,17 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-24 pb-20 relative overflow-hidden text-white"
+      className="pt-24 pb-20 relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(135deg, #6b48ff 0%, #3E8BFF 100%)',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,245,255,0.92) 100%)',
         position: 'relative'
       }}
     >
-      {/* Add a subtle gradient overlay */}
+      {/* Add a subtle gradient accent */}
       <div 
-        className="absolute inset-0 opacity-30" 
+        className="absolute inset-0 opacity-20" 
         style={{ 
-          background: 'radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 70%)'
+          background: 'linear-gradient(135deg, #6b48ff 0%, #3E8BFF 100%)'
         }}
       ></div>
       
@@ -116,21 +116,21 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="bg-white/40 backdrop-blur-sm rounded-lg p-8 md:p-10 shadow-lg">
+          <div className="mt-10">
             {submitStatus === 'success' && (
-              <div className="success-message rounded-md p-4 mb-4">
+              <div className="success-message rounded-md p-4 mb-6 mx-auto max-w-xl">
                 Thank you for your submission! We will get back to you soon.
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="error-message rounded-md p-4 mb-4">
+              <div className="error-message rounded-md p-4 mb-6 mx-auto max-w-xl">
                 {errorMessage || 'Please fill in all required fields correctly.'}
               </div>
             )}
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-3xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
