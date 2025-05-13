@@ -1,0 +1,58 @@
+When I select view more, both sections expand. I only want the section that I select to expand. Act as a senior programmer and suggestion a solution to this problem.
+
+
+
+The issue you're describing suggests that both sections are expanding when "View more" is clicked because the event handler is likely applied to a shared class or element, causing all sections to respond. To fix this, you need to ensure that only the specific section tied to the clicked "View more" button expands. Here's a solution using JavaScript, assuming a typical HTML structure.
+
+Suggested Solution
+HTML Structure: Ensure each section has a unique identifier or a clear parent-child relationship so you can target the specific section. For example:
+
+html
+
+Copy
+<div class="section">
+    <div class="content" style="display: none;">
+        <!-- Hidden content -->
+        <p>Target Audience: The Starter package is designed...</p>
+    </div>
+    <button class="view-toggle">View more ↓</button>
+</div>
+
+<div class="section">
+    <div class="content" style="display: none;">
+        <!-- Hidden content -->
+        <p>Another section's content...</p>
+    </div>
+    <button class="view-toggle">View more ↓</button>
+</div>
+JavaScript: Add an event listener to each "View more" button that toggles only its corresponding content section. Use event delegation or direct targeting to ensure specificity.
+
+javascript
+
+Copy
+document.querySelectorAll('.view-toggle').forEach(button => {
+    button.addEventListener('click', function () {
+        // Find the closest parent section and then the content within it
+        const section = this.closest('.section');
+        const content = section.querySelector('.content');
+
+        // Toggle visibility of the content
+        const isHidden = content.style.display === 'none' || content.style.display === '';
+        content.style.display = isHidden ? 'block' : 'none';
+
+        // Update button text
+        this.textContent = isHidden ? 'View less ↑' : 'View more ↓';
+    });
+});
+CSS: Ensure the content is initially hidden and styled appropriately.
+
+css
+
+Copy
+.content {
+    display: none;
+}
+Explanation
+Targeting Specificity: this.closest('.section') ensures you're only working with the section containing the clicked button. Then, section.querySelector('.content') targets only that section's content.
+Toggle Logic: The isHidden check determines the current state of the content (hidden or visible) and toggles it accordingly.
+Button Text Update: The button text changes based on the content's visibility state.
