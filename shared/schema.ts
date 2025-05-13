@@ -25,7 +25,7 @@ export const contacts = pgTable("contacts", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone"),
-  businessName: text("business_name"),
+  organizationName: text("organization_name"),
   projectDescription: text("project_description").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull()
 });
@@ -36,7 +36,7 @@ export const contactFormSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
-  businessName: z.string().optional(),
+  organizationName: z.string().optional(),
   projectDescription: z.string().min(1, 'Please tell us about your project')
 });
 

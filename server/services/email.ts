@@ -27,7 +27,7 @@ export async function sendContactFormNotification(
     lastName: string;
     email: string;
     phone?: string;
-    businessName?: string;
+    organizationName?: string;
     projectDescription: string;
   },
   toEmail: string,

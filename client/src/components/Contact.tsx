@@ -20,7 +20,7 @@ const contactFormSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
-  businessName: z.string().optional(),
+  organizationName: z.string().optional(),
   projectDescription: z.string().min(1, 'Please tell us about your project')
 });
 
@@ -39,7 +39,7 @@ export function Contact() {
       lastName: '',
       email: '',
       phone: '',
-      businessName: '',
+      organizationName: '',
       projectDescription: ''
     }
   });
@@ -193,10 +193,10 @@ export function Contact() {
                 
                 <FormField
                   control={form.control}
-                  name="businessName"
+                  name="organizationName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="block text-sm font-medium text-neutral-dark mb-1">Business Name</FormLabel>
+                      <FormLabel className="block text-sm font-medium text-neutral-dark mb-1">Organization Name</FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
