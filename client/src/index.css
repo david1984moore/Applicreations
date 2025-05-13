@@ -505,7 +505,7 @@ body {
     /* Safe insets should not be applied directly to HTML */
     height: 100%; /* Ensure full height */
     touch-action: manipulation; /* Improves touch responsiveness */
-    overscroll-behavior-y: contain; /* Better pull-to-refresh handling */
+    overscroll-behavior-y: auto; /* Allow natural pull-to-refresh behavior */
   }
   
   /* Section anchor points */
@@ -807,9 +807,9 @@ body {
       top: 0 !important;
     }
     
-    /* Mobile menu positioning - simplified */
-    header + div[class*="sticky"] {
-      top: calc(70px) !important; /* Position after the header */
+    /* Remove any margins that could create the blue gap */
+    .gradient-container {
+      margin-top: 0 !important;
     }
     
     /* Ensure pull-to-refresh works properly on iOS */
@@ -821,6 +821,11 @@ body {
     .sticky {
       position: -webkit-sticky !important;
       position: sticky !important;
+    }
+    
+    /* Hero spacing adjustments */
+    .hero {
+      padding-top: 50px !important;
     }
   }
 

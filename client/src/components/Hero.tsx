@@ -22,7 +22,7 @@ export function Hero() {
       className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
         background: 'none', /* Remove individual background */
-        paddingTop: 'calc(70px + 50px)', /* Account for navbar height (70px) plus some extra space */
+        paddingTop: '50px', /* Just some padding at the top since navbar is now sticky */
         paddingBottom: '180px',
         margin: 0,
         border: 'none',

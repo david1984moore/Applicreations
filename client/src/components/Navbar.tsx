@@ -73,7 +73,11 @@ export function Navbar() {
   const navbarBackground = '#000000';
   
   return (
-    <div className="sticky top-0 left-0 right-0 w-full z-[1000]">
+    <div className="sticky top-0 left-0 right-0 w-full z-[1000]" 
+         style={{ 
+           WebkitOverflowScrolling: 'touch',
+           overscrollBehaviorY: 'contain'
+         }}>
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
