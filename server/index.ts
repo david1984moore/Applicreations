@@ -1,11 +1,17 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { securityMiddleware } from "./security";
+import { securityMiddleware, httpsRedirectMiddleware } from "./security";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// First apply HTTPS redirect in production environments
+app.use(httpsRedirectMiddleware);
+
+// Then apply security headers to all responses
+app.use(securityMiddleware);
 
 app.use((req, res, next) => {
   const start = Date.now();
