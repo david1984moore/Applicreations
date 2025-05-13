@@ -2,8 +2,20 @@ import { useState, useRef, useEffect } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
 import { Check, ChevronRight } from 'lucide-react';
 
-// Individual stand-alone pricing card component with internal state management
-const StandalonePricingCard = ({
+// TypeScript interface for the pricing card props
+interface PricingCardProps {
+  title: string;
+  description: string;
+  price: string;
+  monthlyCost: string;
+  features: string[];
+  targetAudience: string;
+  appAddOnPrice: string;
+  highlighted?: boolean;
+}
+
+// Completely standalone pricing card component with NO shared state
+function PricingCardStandalone({
   title,
   description,
   price,
@@ -12,20 +24,16 @@ const StandalonePricingCard = ({
   targetAudience,
   appAddOnPrice,
   highlighted = false
-}) => {
-  // Each card manages its own expanded state
-  const [isExpanded, setIsExpanded] = useState(false);
-  
-  // Toggle function specific to this card only
-  const toggleExpanded = () => {
-    setIsExpanded(prev => !prev);
-  };
+}: PricingCardProps) {
+  // Local state for this card only
+  const [expanded, setExpanded] = useState(false);
   
   return (
-    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg 
-      ${highlighted ? 'border-2 border-primary shadow-lg shadow-primary/20' : 'border border-gray-200'} 
-      bg-white`}
-    >
+    <div className={`standalone-pricing-card h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+      highlighted 
+        ? 'border-2 border-primary shadow-lg shadow-primary/20' 
+        : 'border border-gray-200'
+      } bg-white`}>
       {highlighted && (
         <div className="absolute top-0 right-0">
           <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
@@ -60,23 +68,21 @@ const StandalonePricingCard = ({
           ))}
         </div>
         
-        {/* Expandable details section */}
         <div className="mt-6">
           <button 
-            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={toggleExpanded}
-            aria-expanded={isExpanded}
+            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors standalone-toggle"
+            onClick={() => setExpanded(!expanded)}
+            aria-expanded={expanded}
           >
-            <span>{isExpanded ? 'View less' : 'View details'}</span>
+            <span>{expanded ? 'View less' : 'View details'}</span>
             <ChevronRight 
               size={16} 
-              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
+              className={`transition-transform duration-300 ${expanded ? 'rotate-90' : ''}`}
             />
           </button>
           
-          {/* Content only renders when expanded */}
-          {isExpanded && (
-            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+          {expanded && (
+            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md standalone-details">
               <p className="font-medium mb-2">Target Audience:</p>
               <p className="mb-4">{targetAudience}</p>
               
@@ -104,10 +110,10 @@ const StandalonePricingCard = ({
       </div>
     </div>
   );
-};
+}
 
 export function Pricing() {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const isMobile = useMobile();
 
   useEffect(() => {
@@ -184,8 +190,9 @@ export function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
+          {/* First card */}
           <div className="reveal" style={{ transitionDelay: "0s" }}>
-            <StandalonePricingCard
+            <PricingCardStandalone
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
               price="$2,000+"
@@ -196,8 +203,9 @@ export function Pricing() {
             />
           </div>
           
+          {/* Second card */}
           <div className="reveal" style={{ transitionDelay: "0.2s" }}>
-            <StandalonePricingCard
+            <PricingCardStandalone
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
               price="$5,000+"
@@ -210,6 +218,7 @@ export function Pricing() {
           </div>
         </div>
         
+        {/* Add-ons section */}
         <div className="mt-16 max-w-4xl mx-auto text-center reveal">
           <h3 className="text-xl md:text-2xl font-semibold mb-4 text-black">Optional Add-Ons and Enhancements</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-left">
@@ -236,6 +245,7 @@ export function Pricing() {
           </div>
         </div>
         
+        {/* CTA button */}
         <div className="mt-16 text-center">
           <a
             href="#contact"

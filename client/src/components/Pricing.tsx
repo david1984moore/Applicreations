@@ -66,7 +66,7 @@ const plans: PricingPlan[] = [
   },
 ];
 
-export function Pricing() {
+export function PricingUnused() { // Renamed to avoid conflicts
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
 
