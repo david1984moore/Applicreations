@@ -77,7 +77,8 @@ export function Navbar() {
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
-          background: scrolled ? navbarBackground : 'transparent',
+          // Always show the gradient for seamless blending with hero section
+          background: navbarBackground,
           borderBottom: 'none',
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',

@@ -635,7 +635,7 @@ body {
   .hero {
     margin: 0;
     padding: 40px;
-    padding-top: calc(90px + env(safe-area-inset-top, 0)); /* Account for fixed navbar and iOS safe area */
+    padding-top: calc(70px + env(safe-area-inset-top, 0)); /* Match navbar height exactly for seamless transition */
     padding-left: calc(40px + env(safe-area-inset-left, 0));
     padding-right: calc(40px + env(safe-area-inset-right, 0));
     background: none;
@@ -646,7 +646,16 @@ body {
   /* Navbar-Hero Container - completely redesigned fade for perfect transition */
   .navbar-hero-container {
     position: relative;
-    background: #6b48ff;
+    /* Match exact gradient from body background for perfect seamless transition */
+    background: linear-gradient(110deg, 
+      #6b48ff 0%, 
+      #6551ff 15%, 
+      #5e5aff 30%, 
+      #576aff 45%, 
+      #4f77ff 60%, 
+      #4780ff 75%, 
+      #3e89ff 90%, 
+      #3881ff 100%);
     background-attachment: fixed;
     display: block;
     border: none !important;
