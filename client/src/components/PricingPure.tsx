@@ -187,11 +187,11 @@ export function Pricing() {
             <IndependentPricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
-              price="$2,000+"
+              price="$2,000"
               monthlyCost="$50/month"
               features={starterFeatures}
               targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
-              appAddOnPrice="$2,000+"
+              appAddOnPrice="$2,000"
               isMobile={isMobile}
             />
           </div>
@@ -200,11 +200,11 @@ export function Pricing() {
             <IndependentPricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
-              price="$5,000+"
+              price="$5,000"
               monthlyCost="$150/month"
               features={growthFeatures}
               targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
-              appAddOnPrice="$5,000+"
+              appAddOnPrice="$5,000"
               highlighted
               isMobile={isMobile}
             />
