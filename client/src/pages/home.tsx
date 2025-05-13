@@ -49,7 +49,7 @@ export default function Home() {
         className="gradient-container" 
         style={{ 
           background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)',
-          marginTop: '0',
+          marginTop: '-70px',
           position: 'relative',
           zIndex: 3,
           overflow: 'hidden',
