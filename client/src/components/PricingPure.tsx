@@ -49,45 +49,45 @@ function IndependentPricingCard({
         </div>
       )}
       
-      <div className={`pb-6 ${highlighted ? 'bg-primary/5' : ''}`}>
-        <div className="p-6">
+      <div className={`pb-2 ${highlighted ? 'bg-primary/5' : ''}`}>
+        <div className="p-4 pb-2">
           <h3 className="text-2xl font-bold text-black">{title}</h3>
-          <p className="text-sm text-gray-600 mt-2">{description}</p>
+          <p className="text-sm text-gray-600 mt-1">{description}</p>
         </div>
       </div>
       
-      <div className="px-6 pt-4 flex-grow">
-        <div className="mb-6">
+      <div className="px-5 pt-2 flex-grow">
+        <div className="mb-4">
           <p className="text-3xl font-bold text-black">{price}</p>
           <p className="text-sm text-gray-500">One-time development fee</p>
-          <p className="text-lg font-semibold text-black mt-2">{monthlyCost}</p>
+          <p className="text-lg font-semibold text-black mt-1">{monthlyCost}</p>
           <p className="text-sm text-gray-500">Hosting & maintenance</p>
         </div>
         
         {/* Content that toggles on mobile */}
         <div className={`${isMobile && !isExpanded ? 'hidden' : 'block'} transition-all duration-300`}>
-          <div className="space-y-3 mb-6">
+          <div className="space-y-2 mb-4">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start">
                 <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <p className="ml-3 text-sm text-gray-700">{feature}</p>
+                <p className="ml-2 text-sm text-gray-700">{feature}</p>
               </div>
             ))}
           </div>
           
           <div>
-            <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
-              <p className="font-bold mb-2">Target Audience:</p>
-              <p className="mb-4">{targetAudience}</p>
+            <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
+              <p className="font-bold mb-1">Target Audience:</p>
+              <p className="mb-2">{targetAudience}</p>
               
-              <p className="font-bold mb-2">App Add-On:</p>
-              <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
+              <p className="font-bold mb-1">App Add-On:</p>
+              <p className="mb-2">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
               
-              <p className="font-bold mb-2">Customization Options:</p>
+              <p className="font-bold mb-1">Customization Options:</p>
               <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
             </div>
           </div>
@@ -95,8 +95,8 @@ function IndependentPricingCard({
         
         {/* Show toggle indicator on mobile */}
         {isMobile && (
-          <div className="flex justify-center items-center my-4">
-            <div className="h-6 w-6 text-primary mr-2">
+          <div className="flex justify-center items-center my-3">
+            <div className="h-5 w-5 text-primary mr-1">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
@@ -115,10 +115,10 @@ function IndependentPricingCard({
         )}
       </div>
       
-      <div className="px-6 pt-2 pb-6 mt-auto">
+      <div className="px-5 pt-2 pb-4 mt-auto">
         <a
           href="#contact"
-          className="block w-full bg-primary hover:bg-primary/90 text-white py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
+          className="block w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-full font-medium text-center transition-all duration-300"
           onClick={(e) => e.stopPropagation()} // Prevent clicking the button from toggling the card
         >
           Get Started
