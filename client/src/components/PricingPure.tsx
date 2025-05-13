@@ -1,6 +1,7 @@
 import { useMobile } from '@/hooks/use-mobile';
+import { useState } from 'react';
 
-// Simple, self-contained pricing card component with all details always visible
+// Pricing card component with collapsible details on mobile
 function IndependentPricingCard({
   title,
   description,
@@ -9,7 +10,8 @@ function IndependentPricingCard({
   features,
   targetAudience,
   appAddOnPrice,
-  highlighted = false
+  highlighted = false,
+  isMobile = false
 }: {
   title: string;
   description: string;
@@ -19,14 +21,25 @@ function IndependentPricingCard({
   targetAudience: string;
   appAddOnPrice: string;
   highlighted?: boolean;
+  isMobile?: boolean;
 }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Toggle expanded state for mobile
+  const toggleExpand = () => {
+    if (isMobile) {
+      setIsExpanded(!isExpanded);
+    }
+  };
+
   return (
     <div
       className={`h-full flex flex-col relative overflow-hidden transition-all duration-300 rounded-lg ${
         highlighted
           ? 'border-2 border-primary shadow-lg shadow-primary/20'
           : 'border border-gray-200'
-      } bg-white`}
+      } bg-white ${isMobile ? 'cursor-pointer' : ''}`}
+      onClick={toggleExpand}
     >
       {highlighted && (
         <div className="absolute top-0 right-0">
@@ -51,38 +64,62 @@ function IndependentPricingCard({
           <p className="text-sm text-gray-500">Hosting & maintenance</p>
         </div>
         
-        <div className="space-y-3 mb-6">
-          {features.map((feature, index) => (
-            <div key={index} className="flex items-start">
-              <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+        {/* Content that toggles on mobile */}
+        <div className={`${isMobile && !isExpanded ? 'hidden' : 'block'} transition-all duration-300`}>
+          <div className="space-y-3 mb-6">
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-start">
+                <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <p className="ml-3 text-sm text-gray-700">{feature}</p>
               </div>
-              <p className="ml-3 text-sm text-gray-700">{feature}</p>
+            ))}
+          </div>
+          
+          <div>
+            <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+              <p className="font-medium mb-2">Target Audience:</p>
+              <p className="mb-4">{targetAudience}</p>
+              
+              <p className="font-medium mb-2">App Add-On:</p>
+              <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
+              
+              <p className="font-medium mb-2">Customization Options:</p>
+              <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
             </div>
-          ))}
-        </div>
-        
-        {/* Always visible details section */}
-        <div>
-          <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
-            <p className="font-medium mb-2">Target Audience:</p>
-            <p className="mb-4">{targetAudience}</p>
-            
-            <p className="font-medium mb-2">App Add-On:</p>
-            <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
-            
-            <p className="font-medium mb-2">Customization Options:</p>
-            <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
           </div>
         </div>
+        
+        {/* Show toggle indicator on mobile */}
+        {isMobile && (
+          <div className="flex justify-center items-center my-4">
+            <div className="h-6 w-6 text-primary mr-2">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <span className="text-sm text-primary font-medium">
+              {isExpanded ? "Show less" : "View details"}
+            </span>
+          </div>
+        )}
       </div>
       
       <div className="px-6 pt-2 pb-6 mt-auto">
         <a
           href="#contact"
           className="block w-full bg-primary hover:bg-primary/90 text-white py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
+          onClick={(e) => e.stopPropagation()} // Prevent clicking the button from toggling the card
         >
           Get Started
         </a>
@@ -155,6 +192,7 @@ export function Pricing() {
               features={starterFeatures}
               targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
               appAddOnPrice="$2,000+"
+              isMobile={isMobile}
             />
           </div>
           
@@ -168,6 +206,7 @@ export function Pricing() {
               targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
               appAddOnPrice="$5,000+"
               highlighted
+              isMobile={isMobile}
             />
           </div>
         </div>
