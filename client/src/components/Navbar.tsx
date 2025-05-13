@@ -73,7 +73,7 @@ export function Navbar() {
   const navbarBackground = '#000000';
   
   return (
-    <div className="sticky left-0 right-0 w-full z-[1000]">
+    <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 

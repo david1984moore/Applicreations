@@ -13,16 +13,18 @@ html {
   overscroll-behavior-y: contain; /* Improves refresh behavior */
 }
 
-/* Remove padding for body since we're using sticky nav */
+/* Add padding for body with fixed navbar */
 body {
-  padding-top: 0; /* No padding needed with sticky navbar */
+  padding-top: 70px; /* Add padding for fixed navbar height */
   min-height: 100%; /* Ensure body takes full height */
 }
 
 /* Sticky navbar wrapper rules */
 .sticky {
-  position: sticky !important;
+  position: fixed !important;
   top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
   z-index: 1000 !important;
   width: 100% !important;
   transform: translateZ(0);
