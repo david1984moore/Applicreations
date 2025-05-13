@@ -104,7 +104,7 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-700/90 to-indigo-800/90 rounded-lg p-8 md:p-10 shadow-md backdrop-blur-sm">
+          <div className="bg-blue-700/70 rounded-lg p-8 md:p-10 shadow-md">
             {submitStatus === 'success' && (
               <div className="success-message rounded-md p-4 mb-4 bg-green-100 text-green-700">
                 Thank you for your submission! We will get back to you soon.
