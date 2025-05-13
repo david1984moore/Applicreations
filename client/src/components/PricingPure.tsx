@@ -1,13 +1,15 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
 
-function PricingCard({ 
-  title, 
-  description, 
-  price, 
-  monthlyCost, 
-  features, 
-  targetAudience, 
+// This component is completely self-contained with no dependencies on other components
+// Each card maintains its own state independently
+function IndependentPricingCard({
+  title,
+  description,
+  price,
+  monthlyCost,
+  features,
+  targetAudience,
   appAddOnPrice,
   highlighted = false
 }: {
@@ -20,37 +22,16 @@ function PricingCard({
   appAddOnPrice: string;
   highlighted?: boolean;
 }) {
-  // Each card manages its own expanded state
+  // Local state for this card only
   const [isExpanded, setIsExpanded] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-  
-  // Add special cleanup effect to remove any DOM-based event listeners
-  useEffect(() => {
-    // This cleanup function will run when the component unmounts
-    return () => {
-      // Ensure we don't have DOM element conflicts
-      const cardElement = cardRef.current;
-      if (cardElement) {
-        const buttons = cardElement.querySelectorAll('button');
-        buttons.forEach(button => {
-          // Clone and replace to remove event listeners
-          const newButton = button.cloneNode(true);
-          if (button.parentNode) {
-            button.parentNode.replaceChild(newButton, button);
-          }
-        });
-      }
-    };
-  }, []);
   
   return (
-    <div 
-      ref={cardRef}
-      className={`pricing-card-pure h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
-        highlighted 
-          ? 'border-2 border-primary shadow-lg shadow-primary/20' 
+    <div
+      className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+        highlighted
+          ? 'border-2 border-primary shadow-lg shadow-primary/20'
           : 'border border-gray-200'
-        } bg-white`}
+      } bg-white`}
     >
       {highlighted && (
         <div className="absolute top-0 right-0">
@@ -88,17 +69,13 @@ function PricingCard({
           ))}
         </div>
         
-        {/* Expandable details */}
+        {/* Expandable details with self-contained state */}
         <div className="mt-6">
           <button 
-            className="toggle-details-pure text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setIsExpanded(!isExpanded);
-            }}
+            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
+            onClick={() => setIsExpanded(!isExpanded)}
           >
-            <span className="button-text-pure">{isExpanded ? 'View less' : 'View details'}</span>
+            <span>{isExpanded ? 'View less' : 'View details'}</span>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="16" height="16" 
@@ -108,7 +85,7 @@ function PricingCard({
               strokeWidth="2" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
-              className={`arrow-icon-pure transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
+              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
             >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -116,7 +93,7 @@ function PricingCard({
           </button>
           
           {isExpanded && (
-            <div className="card-details-pure mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
               <p className="font-medium mb-2">Target Audience:</p>
               <p className="mb-4">{targetAudience}</p>
               
@@ -147,29 +124,7 @@ function PricingCard({
 }
 
 export function Pricing() {
-  const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const revealElements = sectionRef.current?.querySelectorAll('.reveal');
-    revealElements?.forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => {
-      revealElements?.forEach(el => {
-        observer.unobserve(el);
-      });
-    };
-  }, []);
 
   const starterFeatures = [
     "Professional website with up to 5 pages",
@@ -194,7 +149,6 @@ export function Pricing() {
   return (
     <section 
       id="pricing" 
-      ref={sectionRef} 
       className="relative py-20 md:py-28 overflow-hidden"
       style={{ 
         background: 'linear-gradient(135deg, #f4f7ff 0%, #edf3ff 100%)',
@@ -213,7 +167,7 @@ export function Pricing() {
       <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 reveal">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 relative inline-block text-black">
             Pricing Packages
           </h2>
@@ -224,8 +178,8 @@ export function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
-          <div className="reveal pricing-reveal-pure" style={{ transitionDelay: "0s" }}>
-            <PricingCard
+          <div style={{ transitionDelay: "0s" }}>
+            <IndependentPricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
               price="$2,000+"
@@ -236,8 +190,8 @@ export function Pricing() {
             />
           </div>
           
-          <div className="reveal pricing-reveal-pure" style={{ transitionDelay: "0.2s" }}>
-            <PricingCard
+          <div style={{ transitionDelay: "0.2s" }}>
+            <IndependentPricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
               price="$5,000+"
@@ -250,7 +204,7 @@ export function Pricing() {
           </div>
         </div>
         
-        <div className="mt-16 max-w-4xl mx-auto text-center reveal pricing-addons-pure">
+        <div className="mt-16 max-w-4xl mx-auto text-center">
           <h3 className="text-xl md:text-2xl font-semibold mb-4 text-black">Optional Add-Ons and Enhancements</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-left">
             <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
