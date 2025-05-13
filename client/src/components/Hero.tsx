@@ -30,7 +30,7 @@ export function Hero() {
         outline: 'none',
         marginTop: 0,
         position: 'relative',
-        zIndex: 2 /* Ensure the content is above the gradient, but not covering it */
+        zIndex: 3 /* Position hero content above the gradient overlay */
       }}
     >
       

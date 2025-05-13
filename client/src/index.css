@@ -671,7 +671,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px; /* Negative value to ensure no gap */
+    bottom: 0; /* Position at the bottom */
     height: 500px; /* Further increased height for more gradual transition */
     background: linear-gradient(to bottom, 
       /* Start with completely transparent purple that matches the background */
@@ -708,7 +708,7 @@ body {
       rgb(248, 249, 251) 99%,
       rgb(248, 249, 251) 100%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2; /* Positioned below the hero content but above other elements */
     opacity: 1; /* Full opacity for smooth rendering */
     will-change: opacity, transform; /* Optimize for animations */
     -webkit-backface-visibility: hidden; /* Prevent artifacts */
@@ -719,7 +719,7 @@ body {
   
   /* Remove any visible separation between navbar and hero */
   header, nav, .hero, header::before, header::after, nav::after, nav::before, .hero::after, .hero::before,
-  header *, nav *, .hero *, .navbar-hero-container, .navbar-hero-container::before, .navbar-hero-container::after {
+  header *, nav *, .hero * {
     border: none !important;
     border-bottom: none !important;
     border-top: none !important;
