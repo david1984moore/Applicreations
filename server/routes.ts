@@ -24,7 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Prepare email content
       const msg = {
         to: 'solutions@applicreations.com', // Your email
-        from: 'solutions@applicreations.com', // Your verified sender in SendGrid
+        from: process.env.EMAIL_USER || 'solutions@applicreations.com', // Use EMAIL_USER which should be a verified sender
         replyTo: validatedData.email, // User's email for replies
         subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
         text: `
@@ -59,10 +59,28 @@ ${validatedData.projectDescription}
       // Send email
       try {
         console.log('Attempting to send email via SendGrid...');
-        await sgMail.send(msg);
-        console.log('Email sent successfully via SendGrid!');
-      } catch (emailError) {
-        console.error('Error sending email via SendGrid:', emailError);
+        console.log('Email details:', {
+          to: msg.to,
+          from: msg.from,
+          subject: msg.subject
+        });
+        
+        const [response] = await sgMail.send(msg);
+        console.log('SendGrid API response:', {
+          statusCode: response.statusCode,
+          headers: response.headers,
+          body: response.body
+        });
+        
+        console.log('Email accepted by SendGrid!');
+      } catch (error: any) {
+        console.error('Error sending email via SendGrid:', error);
+        if (error.response) {
+          console.error('SendGrid error details:', {
+            body: error.response.body,
+            statusCode: error.response.statusCode
+          });
+        }
         // We still return success if the database insert worked
       }
       
