@@ -491,6 +491,11 @@
     overflow-y: scroll;
     scroll-behavior: smooth;
     scroll-padding-top: 70px; /* Adjusts all anchor links to account for fixed navbar */
+    /* iOS safe area insets */
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
   }
   
   /* Section anchor points */
@@ -574,11 +579,20 @@
     z-index: 1000 !important;
     overflow-x: hidden !important;
     box-sizing: border-box !important;
+    /* Add safe area insets for iOS devices */
+    padding-top: env(safe-area-inset-top, 0) !important;
+    padding-left: env(safe-area-inset-left, 0) !important;
+    padding-right: env(safe-area-inset-right, 0) !important;
   }
   
   /* Fix for navbar spilling over scrollbar */
   body {
     overflow-x: hidden;
+    /* iOS safe area insets with fallbacks */
+    padding-top: calc(70px + env(safe-area-inset-top, 0));
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
   }
   
   nav {
@@ -598,7 +612,9 @@
   .hero {
     margin: 0;
     padding: 40px;
-    padding-top: 90px; /* Increased padding to account for fixed navbar height with spacing */
+    padding-top: calc(90px + env(safe-area-inset-top, 0)); /* Account for fixed navbar and iOS safe area */
+    padding-left: calc(40px + env(safe-area-inset-left, 0));
+    padding-right: calc(40px + env(safe-area-inset-right, 0));
     background: none;
     position: relative;
     z-index: 1;
