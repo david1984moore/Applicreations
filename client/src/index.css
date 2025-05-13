@@ -13,10 +13,17 @@ html {
   overscroll-behavior-y: contain; /* Improves refresh behavior */
 }
 
-/* Remove padding for body since we're using sticky nav */
+/* Responsive body padding - Mobile vs Desktop */
 body {
-  padding-top: 0; /* No padding needed with sticky navbar */
+  padding-top: 0; /* No padding needed with sticky navbar on mobile */
   min-height: 100%; /* Ensure body takes full height */
+}
+
+/* For desktop screens, add padding to account for fixed navbar */
+@media (min-width: 768px) {
+  body {
+    padding-top: 70px; /* Account for fixed navbar height on desktop */
+  }
 }
 
 /* Sticky navbar wrapper rules */
@@ -632,6 +639,23 @@ body {
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+  
+  /* Desktop-specific navbar styles */
+  @media (min-width: 768px) {
+    header {
+      padding: 0 1.5rem !important; /* Larger padding on desktop */
+      transition: all 0.3s ease;
+      height: 70px !important;
+    }
+    
+    nav {
+      padding: 0 !important; /* Remove padding from nav since header has it */
+    }
+    
+    .nav-link {
+      font-size: 1.1rem !important; /* Larger font size on desktop */
+    }
   }
   
   /* Fix for navbar spilling over scrollbar */
