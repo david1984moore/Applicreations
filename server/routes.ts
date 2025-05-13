@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactFormSchema } from "@shared/schema";
 import { z } from "zod";
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API route for contact form submissions
@@ -15,29 +15,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Setup Nodemailer with Hostinger SMTP
-      console.log('Setting up Hostinger SMTP connection');
+      // Setup SendGrid API
+      console.log('Setting up SendGrid API');
       
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.hostinger.com', // Hostinger's SMTP server
-        port: 465, // Port for SSL
-        secure: true, // Use SSL
-        auth: {
-          user: 'solutions@applicreations.com', // Your full email address
-          pass: process.env.EMAIL_PASS, // Your email password
-        },
-        pool: true, // Use connection pool
-        maxConnections: 1, // Use max 1 connection
-        maxMessages: 10, // Send at most 10 messages per connection
-        rateDelta: 1000, // Wait for 1000ms between messages
-        rateLimit: 5, // Limit to 5 messages per rateDelta
-      });
+      // Set SendGrid API key
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
       
       // Prepare email content
-      const mailOptions = {
-        from: 'solutions@applicreations.com',
-        to: 'solutions@applicreations.com',
-        replyTo: validatedData.email,
+      const msg = {
+        to: 'solutions@applicreations.com', // Your email
+        from: 'solutions@applicreations.com', // Your verified sender in SendGrid
+        replyTo: validatedData.email, // User's email for replies
         subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
         text: `
 Name: ${validatedData.firstName} ${validatedData.lastName}
@@ -70,11 +58,11 @@ ${validatedData.projectDescription}
       
       // Send email
       try {
-        console.log('Attempting to send email...');
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully!');
+        console.log('Attempting to send email via SendGrid...');
+        await sgMail.send(msg);
+        console.log('Email sent successfully via SendGrid!');
       } catch (emailError) {
-        console.error('Error sending email:', emailError);
+        console.error('Error sending email via SendGrid:', emailError);
         // We still return success if the database insert worked
       }
       
