@@ -4,15 +4,27 @@ import { Logo } from './Logo';
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Check for scroll position on component mount and when scrolling
+  // Check for scroll position and device type on component mount
   useEffect(() => {
+    // Function to check if device is mobile
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Function to check scroll position
     const checkScrollPosition = () => {
       setScrolled(window.scrollY > 0);
     };
     
+    // Initial checks
+    checkIfMobile();
     checkScrollPosition();
+    
+    // Event listeners
     window.addEventListener('scroll', checkScrollPosition);
+    window.addEventListener('resize', checkIfMobile);
     
     // Update text colors in SVG logo
     const updateLogoColors = () => {
@@ -29,6 +41,7 @@ export function Navbar() {
     
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
+      window.removeEventListener('resize', checkIfMobile);
     };
   }, []);
   
@@ -73,7 +86,7 @@ export function Navbar() {
   const navbarBackground = '#000000';
   
   return (
-    <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
+    <div className={`${isMobile ? 'mobile-navbar' : 'fixed'} top-0 left-0 right-0 w-full z-[1000]`}>
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
