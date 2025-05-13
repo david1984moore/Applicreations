@@ -43,14 +43,15 @@ export function Navbar() {
       const navbarHeight = 70;
       const totalOffset = navbarHeight + safeAreaTop;
       
-      section.scrollIntoView({ behavior: 'smooth' });
+      // Scroll the element into view
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - totalOffset;
       
-      setTimeout(() => {
-        window.scrollBy({
-          top: -totalOffset,
-          behavior: 'smooth'
-        });
-      }, 50);
+      // Use window.scrollTo for more reliable smooth scrolling
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       
       // Use replaceState instead of pushState to prevent navigation issues in WebViews
       history.replaceState(null, '', `#${sectionId}`);
