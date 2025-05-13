@@ -69,14 +69,15 @@ export function Navbar() {
     }, 10);
   };
 
-  const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
+  // Use the same background color as the hero section (purple)
+  const navbarBackground = '#6b48ff';
   
   return (
     <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
-          background: scrolled ? navbarBackground : 'transparent',
+          background: navbarBackground,
           borderBottom: 'none',
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
@@ -169,9 +170,9 @@ export function Navbar() {
       {/* Very Simple Static Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="fixed left-0 right-0 w-full bg-black z-[999]"
+          className="fixed left-0 right-0 w-full z-[999]"
           style={{
-            background: '#000000',
+            background: navbarBackground, // Use the same background as navbar
             top: '70px', // Fixed position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',

@@ -21,8 +21,8 @@ export function Hero() {
       ref={heroRef}
       className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
-        background: 'transparent',
-        paddingTop: '120px', /* Increased from 70px to 120px to create more space between navbar and hero */
+        background: '#6b48ff',
+        paddingTop: 'calc(70px + 50px)', /* Account for navbar height (70px) plus some extra space */
         paddingBottom: '180px', 
         border: 'none',
         borderTop: 'none',
