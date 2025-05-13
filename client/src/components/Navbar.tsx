@@ -69,8 +69,8 @@ export function Navbar() {
     }, 10);
   };
 
-  // Use the same background color as the hero section (purple)
-  const navbarBackground = '#6b48ff';
+  // Change background color to black
+  const navbarBackground = '#000000';
   
   return (
     <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
@@ -172,7 +172,7 @@ export function Navbar() {
         <div 
           className="fixed left-0 right-0 w-full z-[999]"
           style={{
-            background: navbarBackground, // Use the same background as navbar
+            background: navbarBackground, // Uses black background from navbar
             top: '70px', // Fixed position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
