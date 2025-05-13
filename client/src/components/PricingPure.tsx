@@ -82,11 +82,7 @@ function IndependentPricingCard({
       <div className="px-6 pt-2 pb-6 mt-8">
         <a
           href="#contact"
-          className={`block w-full ${
-            highlighted 
-              ? 'btn-gradient text-white' 
-              : 'bg-white hover:bg-gray-50 text-primary border border-primary'
-          } py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300`}
+          className="block w-full bg-primary hover:bg-primary/90 text-white py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
         >
           Get Started
         </a>
