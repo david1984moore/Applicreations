@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactFormSchema } from "@shared/schema";
 import { z } from "zod";
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API route for contact form submissions
@@ -15,19 +15,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store contact form submission in database
       const newContact = await storage.insertContactForm(validatedData);
       
-      // Setup SendGrid API
-      console.log('Setting up SendGrid API');
+      // Log form submission
+      console.log('New contact form submission:', {
+        name: `${validatedData.firstName} ${validatedData.lastName}`,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        organization: validatedData.organizationName,
+        projectDescription: validatedData.projectDescription.substring(0, 50) + '...'
+      });
       
-      // Set SendGrid API key
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
-      
-      // Prepare email content
-      const msg = {
-        to: 'solutions@applicreations.com', // Your email
-        from: process.env.EMAIL_USER || 'solutions@applicreations.com', // Use EMAIL_USER which should be a verified sender
-        replyTo: validatedData.email, // User's email for replies
-        subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
-        text: `
+      // Setup Nodemailer with Hostinger SMTP details
+      console.log('Setting up Hostinger SMTP...');
+      try {
+        // Create reusable transporter object using Hostinger SMTP server
+        let transporter = nodemailer.createTransport({
+          host: 'smtp.hostinger.com',
+          port: 465, 
+          secure: true, // true for port 465, false for other ports
+          auth: {
+            user: process.env.EMAIL_USER || 'solutions@applicreations.com',
+            pass: process.env.EMAIL_PASS,
+          },
+          debug: true, // Show debug output
+          logger: true, // Log information into the console
+        });
+        
+        console.log('SMTP Configuration:', {
+          host: 'smtp.hostinger.com',
+          port: 465,
+          secure: true,
+          user: process.env.EMAIL_USER ? process.env.EMAIL_USER.substring(0, 5) + '...' : 'not set',
+          pass: process.env.EMAIL_PASS ? '********' : 'not set'
+        });
+        
+        // Prepare email content
+        let mailOptions = {
+          from: `"Applicreations" <${process.env.EMAIL_USER || 'solutions@applicreations.com'}>`,
+          to: 'solutions@applicreations.com',
+          replyTo: validatedData.email,
+          subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
+          text: `
 Name: ${validatedData.firstName} ${validatedData.lastName}
 Email: ${validatedData.email}
 Phone: ${validatedData.phone || 'Not provided'}
@@ -35,8 +62,8 @@ Organization: ${validatedData.organizationName || 'Not provided'}
 
 Project Description:
 ${validatedData.projectDescription}
-        `,
-        html: `
+          `,
+          html: `
 <div style="font-family: Arial, sans-serif; color: #333;">
   <h2 style="color: #4a6cf7;">New Contact Form Submission</h2>
   <p><strong>Name:</strong> ${validatedData.firstName} ${validatedData.lastName}</p>
@@ -47,41 +74,30 @@ ${validatedData.projectDescription}
   <h3 style="color: #4a6cf7; margin-top: 20px;">Project Description:</h3>
   <p style="white-space: pre-line;">${validatedData.projectDescription}</p>
 </div>
-        `
-      };
-      
-      // Log form submission
-      console.log('New contact form submission:', {
-        name: `${validatedData.firstName} ${validatedData.lastName}`,
-        email: validatedData.email
-      });
-      
-      // Send email
-      try {
-        console.log('Attempting to send email via SendGrid...');
-        console.log('Email details:', {
-          to: msg.to,
-          from: msg.from,
-          subject: msg.subject
-        });
+          `
+        };
         
-        const [response] = await sgMail.send(msg);
-        console.log('SendGrid API response:', {
-          statusCode: response.statusCode,
-          headers: response.headers,
-          body: response.body
-        });
+        console.log('Attempting to send email...');
+        // Send mail with defined transport object
+        const info = await transporter.sendMail(mailOptions);
         
-        console.log('Email accepted by SendGrid!');
+        console.log('Email sent successfully!', {
+          messageId: info.messageId,
+          response: info.response
+        });
       } catch (error: any) {
-        console.error('Error sending email via SendGrid:', error);
-        if (error.response) {
-          console.error('SendGrid error details:', {
-            body: error.response.body,
-            statusCode: error.response.statusCode
-          });
+        console.error('Error sending email:', error);
+        
+        if (error.code === 'EAUTH') {
+          console.error('Authentication error. Check EMAIL_USER and EMAIL_PASS environment variables.');
+        } else if (error.code === 'ESOCKET') {
+          console.error('Socket error. Check your network connection and firewall settings.');
+        } else if (error.code === 'ECONNECTION') {
+          console.error('Connection error. Make sure SMTP server is reachable.');
         }
+        
         // We still return success if the database insert worked
+        console.log('Contact form submission stored in database. Email sending failed.');
       }
       
       // Return success response
