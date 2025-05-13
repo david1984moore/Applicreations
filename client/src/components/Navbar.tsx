@@ -69,7 +69,8 @@ export function Navbar() {
     }, 10);
   };
 
-  const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
+  // Use the exact same gradient as the body background for seamless blending
+  const navbarBackground = 'linear-gradient(110deg, #6b48ff 0%, #6551ff 15%, #5e5aff 30%, #576aff 45%, #4f77ff 60%, #4780ff 75%, #3e89ff 90%, #3881ff 100%)';
   
   return (
     <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
