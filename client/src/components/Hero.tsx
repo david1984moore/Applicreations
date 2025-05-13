@@ -1,8 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
+import { useMobile } from '@/hooks/use-mobile';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useMobile();
 
   useEffect(() => {
     // Trigger animation after component mount
@@ -46,10 +48,10 @@ export function Hero() {
         </p>
       </div>
       
-      {/* CTA Button with animation - Microfeller style dot expand effect - SMALLER SIZE */}
+      {/* CTA Button with animation - Modified for mobile to prevent hover state */}
       <a 
         href="#contact"
-        className={`animated-button relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
+        className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[10px] px-[26px] font-[500] text-[0.95rem] rounded-[50px] border-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none`}
         style={{ 
           transitionDelay: '0.6s',
           border: 'none',

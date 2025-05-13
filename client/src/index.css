@@ -915,4 +915,47 @@ body {
   .animated-button:disabled:hover .button-text-hover {
     opacity: 0;
   }
+  
+  /* Mobile-specific styles - prevent hover effects on touch devices */
+  .animated-button-mobile:active::before,
+  .animated-button-mobile:active::after,
+  .animated-button-mobile:hover::before,
+  .animated-button-mobile:hover::after {
+    /* Prevent the expansion animation on mobile */
+    width: 12px !important;
+    height: 12px !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    border-radius: 50px !important;
+    transition: none !important;
+  }
+  
+  .animated-button-mobile:active .button-text,
+  .animated-button-mobile:hover .button-text {
+    /* Prevent text from moving or changing color on mobile */
+    color: white !important;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  
+  .animated-button-mobile:active .button-text-hover,
+  .animated-button-mobile:hover .button-text-hover {
+    /* Keep hover text hidden on mobile */
+    transform: translateY(-30px) !important;
+    opacity: 0 !important;
+    transition: none !important;
+  }
+  
+  .animated-button-mobile:active,
+  .animated-button-mobile:hover {
+    /* Prevent border changes on mobile */
+    border: none !important;
+  }
+  
+  /* Keep the black dot hidden on mobile */
+  .animated-button-mobile:active::after,
+  .animated-button-mobile:hover::after {
+    transform: translateY(-50%) scale(0) !important;
+  }
 }
