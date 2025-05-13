@@ -48,8 +48,8 @@ export default function Home() {
         background: '#f8f9fb',
         marginTop: '-1px' /* Eliminate any possible gap */
       }}>
-        <OurServices />
         <WhatWeDo />
+        <OurServices />
         <Contact />
         <Footer />
       </div>
