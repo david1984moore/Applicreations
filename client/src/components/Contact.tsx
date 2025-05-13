@@ -15,6 +15,14 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { 
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog';
+import { CheckCircle } from 'lucide-react';
 
 const contactFormSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -31,6 +39,7 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
 
@@ -75,17 +84,18 @@ export function Contact() {
     try {
       await apiRequest('POST', '/api/contact', data);
       setSubmitStatus('success');
+      setShowSuccessModal(true); // Show success modal
       form.reset();
+      
+      // Automatically close the modal after 5 seconds
+      setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 5000);
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
-
-      // Hide the message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
     }
   }
 
@@ -110,12 +120,6 @@ export function Contact() {
           </div>
 
           <div className="mt-10">
-            {submitStatus === 'success' && (
-              <div className="success-message rounded-md p-4 mb-6 mx-auto max-w-xl">
-                Thank you for your submission! We will get back to you soon.
-              </div>
-            )}
-
             {submitStatus === 'error' && (
               <div className="error-message rounded-md p-4 mb-6 mx-auto max-w-xl">
                 {errorMessage || 'Please fill in all required fields correctly.'}
@@ -254,6 +258,26 @@ export function Contact() {
           </div>
         </div>
       </div>
+      
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-primary">
+              <CheckCircle className="h-6 w-6 text-green-500" />
+              <span>Message Sent Successfully!</span>
+            </DialogTitle>
+            <DialogDescription className="pt-4 text-center">
+              <p className="text-base text-black dark:text-white">
+                Thank you for your submission! We will get back to you soon.
+              </p>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Your message has been sent to our team and we'll respond within 24 hours.
+              </p>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
