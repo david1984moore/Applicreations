@@ -968,15 +968,19 @@ body {
 
   /* Show the white circle/dot on mobile but prevent animation */
   .animated-button-mobile::before {
+    content: "" !important;
+    position: absolute !important;
     opacity: 1 !important;
     width: 12px !important;
     height: 12px !important;
     left: 15px !important;
+    top: 50% !important;
     transform: translateY(-50%) !important;
     transition: none !important;
     background-color: white !important;
     border-radius: 50% !important;
     z-index: 1 !important;
+    pointer-events: none !important;
   }
   
   /* Hide the black dot on hover for mobile */
@@ -996,13 +1000,24 @@ body {
     transition: none !important;
   }
   
-  /* Keep text visible and prevent any movement on hover/active */
-  .animated-button-mobile:hover .button-text,
-  .animated-button-mobile:active .button-text {
+  /* Keep text completely static with no movement or transitions on mobile */
+  .animated-button-mobile .button-text {
     color: white !important;
-    transform: translateY(0) !important;
+    transform: none !important;
     opacity: 1 !important;
     transition: none !important;
+    transform-style: flat !important;
+    backface-visibility: visible !important;
+  }
+  
+  .animated-button-mobile:hover .button-text,
+  .animated-button-mobile:active .button-text,
+  .animated-button-mobile:focus .button-text {
+    color: white !important;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
   }
   
   /* Keep hover text hidden on mobile */
@@ -1015,17 +1030,21 @@ body {
     display: none !important;
   }
   
-  /* Ensure no expansion animation on hover/active for mobile but keep white dot visible */
+  /* Completely disable any movement on hover/active for mobile */
   .animated-button-mobile:hover::before,
-  .animated-button-mobile:active::before {
+  .animated-button-mobile:active::before,
+  .animated-button-mobile:focus::before {
     width: 12px !important;
     height: 12px !important;
     left: 15px !important;
+    top: 50% !important;
     transform: translateY(-50%) !important;
     transition: none !important;
     opacity: 1 !important;
     background-color: white !important;
     border-radius: 50% !important;
+    animation: none !important;
+    pointer-events: none !important;
   }
   
   /* Keep black dot hidden */
