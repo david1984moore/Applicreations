@@ -93,26 +93,38 @@ export function Contact() {
     <section 
       id="contact" 
       ref={sectionRef} 
-      className="pt-24 pb-20 relative overflow-hidden bg-blue-600 text-white"
+      className="pt-24 pb-20 relative overflow-hidden text-white"
+      style={{ 
+        background: 'linear-gradient(135deg, #6b48ff 0%, #3E8BFF 100%)',
+        position: 'relative'
+      }}
     >
-      <div className="container mx-auto px-6">
+      {/* Add a subtle gradient overlay */}
+      <div 
+        className="absolute inset-0 opacity-30" 
+        style={{ 
+          background: 'radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 70%)'
+        }}
+      ></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold  mb-3 relative inline-block text-white">Let's Go!</h2>
-            <p className="text-lg text-white/70">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block text-white">Let's Go!</h2>
+            <p className="text-lg text-white/80">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
           </div>
 
-          <div className="bg-blue-700/70 rounded-lg p-8 md:p-10 shadow-md">
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 md:p-10 shadow-lg">
             {submitStatus === 'success' && (
-              <div className="success-message rounded-md p-4 mb-4 bg-green-100 text-green-700">
+              <div className="success-message rounded-md p-4 mb-4">
                 Thank you for your submission! We will get back to you soon.
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="error-message rounded-md p-4 mb-4 bg-red-100 text-red-700">
+              <div className="error-message rounded-md p-4 mb-4">
                 {errorMessage || 'Please fill in all required fields correctly.'}
               </div>
             )}
@@ -129,7 +141,7 @@ export function Contact() {
                         <FormControl>
                           <Input 
                             {...field} 
-                            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple transition-colors text-neutral-dark"
+                            className="w-full px-4 py-2 rounded-md border-0 bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-neutral-dark"
                           />
                         </FormControl>
                         <FormMessage className="text-red-200 text-sm mt-1" />
