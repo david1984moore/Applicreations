@@ -22,7 +22,7 @@ function IndependentPricingCard({
 }) {
   return (
     <div
-      className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+      className={`h-full flex flex-col relative overflow-hidden transition-all duration-300 rounded-lg ${
         highlighted
           ? 'border-2 border-primary shadow-lg shadow-primary/20'
           : 'border border-gray-200'
@@ -43,7 +43,7 @@ function IndependentPricingCard({
         </div>
       </div>
       
-      <div className="px-6 pt-4">
+      <div className="px-6 pt-4 flex-grow">
         <div className="mb-6">
           <p className="text-3xl font-bold text-black">{price}</p>
           <p className="text-sm text-gray-500">One-time development fee</p>
@@ -51,7 +51,7 @@ function IndependentPricingCard({
           <p className="text-sm text-gray-500">Hosting & maintenance</p>
         </div>
         
-        <div className="space-y-3">
+        <div className="space-y-3 mb-6">
           {features.map((feature, index) => (
             <div key={index} className="flex items-start">
               <div className="flex-shrink-0 h-5 w-5 mt-0.5 text-primary">
@@ -65,7 +65,7 @@ function IndependentPricingCard({
         </div>
         
         {/* Always visible details section */}
-        <div className="mt-6">
+        <div>
           <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
             <p className="font-medium mb-2">Target Audience:</p>
             <p className="mb-4">{targetAudience}</p>
@@ -79,7 +79,7 @@ function IndependentPricingCard({
         </div>
       </div>
       
-      <div className="px-6 pt-2 pb-6 mt-8">
+      <div className="px-6 pt-2 pb-6 mt-auto">
         <a
           href="#contact"
           className="block w-full bg-primary hover:bg-primary/90 text-white py-2.5 px-4 rounded-full font-medium text-center transition-all duration-300"
