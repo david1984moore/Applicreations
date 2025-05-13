@@ -853,6 +853,15 @@ body {
   .error-message {
     background-color: rgba(245, 101, 101, 0.1);
     border-left: 4px solid #F56565;
+    color: #E53E3E; /* Add text color for better visibility */
+    font-weight: 600; /* Make the text bold */
+  }
+
+  /* Form Error Message Styling */
+  .form-error-message {
+    color: #DC2626 !important; /* bright red */
+    font-weight: 600 !important;
+    text-shadow: 0px 0px 1px rgba(0,0,0,0.1); /* subtle text shadow for better visibility */
   }
 
   /* Animated Button with Dot Expand Effect (Microfeller style) */
