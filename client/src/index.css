@@ -11,6 +11,11 @@ html {
   -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
 }
 
+/* Add spacing for fixed navbar */
+body {
+  padding-top: 70px; /* Height of navbar */
+}
+
 /* Light Bulb Animation for Ideate Card */
 .lightbulb-container {
   position: relative;

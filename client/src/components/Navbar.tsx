@@ -72,18 +72,16 @@ export function Navbar() {
   const navbarBackground = 'linear-gradient(110deg, #6b48ff 20%, #4b79ff 80%, #3881ff)';
   
   return (
-    <div className="relative">
+    <div className="fixed top-0 left-0 right-0 w-full z-[1000]">
       <header 
-        className="z-[1000] flex items-center h-[70px] fixed top-0 left-0 right-0 w-full"
+        className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
           background: scrolled ? navbarBackground : 'transparent',
           borderBottom: 'none',
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
           // Ensure status bar area isn't blocked for tap-to-top functionality
-          paddingTop: 'env(safe-area-inset-top, 0)',
-          position: 'fixed',
-          width: '100%'
+          paddingTop: 'env(safe-area-inset-top, 0)'
         }}
       >
         <nav className="w-full px-4 flex items-center justify-between h-full">
@@ -176,7 +174,8 @@ export function Navbar() {
             background: '#000000',
             top: '70px', // Fixed position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+            boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+            paddingTop: 'env(safe-area-inset-top, 0)'
           }}
         >
           <div className="py-2 px-4 flex flex-col items-end">
