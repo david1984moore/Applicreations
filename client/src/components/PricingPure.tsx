@@ -1,9 +1,7 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
-import React from 'react';
 
 function PricingCard({ 
-  id,  // Add an id prop to identify which card is expanded
   title, 
   description, 
   price, 
@@ -11,11 +9,8 @@ function PricingCard({
   features, 
   targetAudience, 
   appAddOnPrice,
-  highlighted = false,
-  isExpanded = false,  // Get expanded state from parent
-  onToggleExpand  // Add callback to handle toggling
+  highlighted = false
 }: {
-  id: string;
   title: string;
   description: string;
   price: string;
@@ -24,9 +19,10 @@ function PricingCard({
   targetAudience: string;
   appAddOnPrice: string;
   highlighted?: boolean;
-  isExpanded: boolean;
-  onToggleExpand: (id: string) => void;
 }) {
+  // Each card manages its own expanded state
+  const [isExpanded, setIsExpanded] = useState(false);
+  
   return (
     <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
       highlighted 
@@ -73,7 +69,7 @@ function PricingCard({
         <div className="mt-6">
           <button 
             className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={() => onToggleExpand(id)}
+            onClick={() => setIsExpanded(!isExpanded)}
           >
             <span>{isExpanded ? 'View less' : 'View details'}</span>
             <svg 
@@ -126,19 +122,6 @@ function PricingCard({
 export function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
-  // Track expanded state for each card separately
-  const [expandedCards, setExpandedCards] = React.useState<{[key: string]: boolean}>({
-    starter: false,
-    growth: false
-  });
-
-  // Function to toggle a specific card's expanded state
-  const toggleCardExpanded = (cardKey: string) => {
-    setExpandedCards(prev => ({
-      ...prev,
-      [cardKey]: !prev[cardKey]
-    }));
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -216,7 +199,6 @@ export function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
           <div className="reveal" style={{ transitionDelay: "0s" }}>
             <PricingCard
-              id="starter"
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
               price="$2,000+"
@@ -224,14 +206,11 @@ export function Pricing() {
               features={starterFeatures}
               targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
               appAddOnPrice="$2,000+"
-              isExpanded={expandedCards.starter}
-              onToggleExpand={toggleCardExpanded}
             />
           </div>
           
           <div className="reveal" style={{ transitionDelay: "0.2s" }}>
             <PricingCard
-              id="growth"
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
               price="$5,000+"
@@ -240,8 +219,6 @@ export function Pricing() {
               targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
               appAddOnPrice="$5,000+"
               highlighted
-              isExpanded={expandedCards.growth}
-              onToggleExpand={toggleCardExpanded}
             />
           </div>
         </div>
