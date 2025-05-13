@@ -76,7 +76,7 @@ export function Navbar() {
           left: 0,
           right: 0,
           top: 0,
-          // Only add padding-top for safe area
+          // Ensure status bar area isn't blocked for tap-to-top functionality
           paddingTop: 'env(safe-area-inset-top, 0)',
         }}
       >

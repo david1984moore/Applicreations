@@ -5,6 +5,7 @@ import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { ScrollToTop } from '@/components/ScrollToTop';
 
 export default function Home() {
   useEffect(() => {
@@ -28,6 +29,10 @@ export default function Home() {
       observer.observe(el);
     });
     
+    // Ensure iOS tap-to-top functionality works
+    // Make sure we don't have any handlers that would interfere
+    // with the iOS native status bar tap behavior
+    
     return () => {
       revealElements.forEach(el => {
         observer.unobserve(el);
@@ -36,7 +41,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0 overflow-hidden" style={{ background: 'none' }}>
+    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <div className="navbar-hero-container">
         <Navbar />
         <Hero />
@@ -53,6 +58,8 @@ export default function Home() {
         <Contact />
         <Footer />
       </div>
+      {/* Scroll to top button for browsers/devices without native tap-to-top functionality */}
+      <ScrollToTop />
     </div>
   );
 }
