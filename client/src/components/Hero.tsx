@@ -19,10 +19,12 @@ export function Hero() {
     <section 
       id="home" 
       ref={heroRef}
-      className="hero page-gradient-bg min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
+      className="hero min-h-[85vh] flex flex-col justify-center items-center px-10 m-0 overflow-hidden"
       style={{ 
+        background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 65%, #4bacff 90%, #4bc9ff 100%)',
         paddingTop: 'calc(70px + 50px)', /* Account for navbar height (70px) plus some extra space */
         paddingBottom: '180px',
+        marginBottom: '-1px', /* Eliminate any possible pixel gap */
         border: 'none',
         borderTop: 'none',
         boxShadow: 'none',
