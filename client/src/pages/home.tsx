@@ -43,21 +43,36 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
       <Navbar />
-      <div className="navbar-hero-container" style={{ marginTop: '-70px' }}>
+      
+      {/* Continuous gradient container for Hero and WhatWeDo sections */}
+      <div 
+        className="gradient-container" 
+        style={{ 
+          background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)',
+          marginTop: '-70px',
+          position: 'relative',
+          zIndex: 3,
+          overflow: 'hidden',
+          border: 'none',
+          outline: 'none'
+        }}
+      >
         <Hero />
+        <WhatWeDo />
       </div>
-      {/* Our Services is positioned relative and has a high z-index to ensure it's above the gradient */}
+      
+      {/* Our Services and remaining sections */}
       <div style={{ 
         position: 'relative', 
         zIndex: 5, 
         background: '#f8f9fb',
         marginTop: '-1px' /* Eliminate any possible gap */
       }}>
-        <WhatWeDo />
         <OurServices />
         <Contact />
         <Footer />
       </div>
+      
       {/* Scroll to top button for browsers/devices without native tap-to-top functionality */}
       <ScrollToTop />
     </div>
