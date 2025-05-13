@@ -73,17 +73,16 @@ export function Navbar() {
   const navbarBackground = '#000000';
   
   return (
-    <div className="sticky top-0 left-0 right-0 w-full z-[1000]">
+    <div className="sticky left-0 right-0 w-full z-[1000]">
       <header 
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
           background: navbarBackground,
           borderBottom: 'none',
-          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.2)' : 'none',
+          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
           // Ensure status bar area isn't blocked for tap-to-top functionality
-          paddingTop: 'env(safe-area-inset-top, 0)',
-          position: 'relative' // Ensure position is relative within sticky container
+          paddingTop: 'env(safe-area-inset-top, 0)'
         }}
       >
         <nav className="w-full px-4 flex items-center justify-between h-full">
