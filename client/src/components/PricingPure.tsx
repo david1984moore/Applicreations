@@ -174,10 +174,7 @@ export function Pricing() {
         
         <div className="mt-16 max-w-4xl mx-auto text-center">
           <h3 className="text-xl md:text-2xl font-bold mb-8 text-black text-center relative">
-            <span className="relative inline-block">
-              Optional Add-Ons and Enhancements
-              <span className="absolute bottom-[-8px] left-0 w-full h-[3px] bg-gradient-to-r from-primary/50 to-primary opacity-75 rounded-full"></span>
-            </span>
+            Optional Add-Ons and Enhancements
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 text-left">
             <div className="bg-white backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10 relative overflow-hidden group">
