@@ -859,9 +859,9 @@ body {
 
   /* Form Error Message Styling */
   .form-error-message {
-    color: #DC2626 !important; /* bright red */
-    font-weight: 600 !important;
-    text-shadow: 0px 0px 1px rgba(0,0,0,0.1); /* subtle text shadow for better visibility */
+    color: #FF0000 !important; /* pure red for maximum visibility */
+    font-weight: 800 !important; 
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.2); /* stronger text shadow */
   }
 
   /* Animated Button with Dot Expand Effect (Microfeller style) */
