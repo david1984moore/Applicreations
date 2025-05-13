@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { useMobile } from '@/hooks/use-mobile';
 
-// This component is completely self-contained with no dependencies on other components
-// Each card maintains its own state independently
+// Simple, self-contained pricing card component with all details always visible
 function IndependentPricingCard({
   title,
   description,
@@ -22,9 +20,6 @@ function IndependentPricingCard({
   appAddOnPrice: string;
   highlighted?: boolean;
 }) {
-  // Local state for this card only
-  const [isExpanded, setIsExpanded] = useState(false);
-  
   return (
     <div
       className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
@@ -69,41 +64,18 @@ function IndependentPricingCard({
           ))}
         </div>
         
-        {/* Expandable details with self-contained state */}
+        {/* Always visible details section */}
         <div className="mt-6">
-          <button 
-            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <span>{isExpanded ? 'View less' : 'View details'}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
-          
-          {isExpanded && (
-            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
-              <p className="font-medium mb-2">Target Audience:</p>
-              <p className="mb-4">{targetAudience}</p>
-              
-              <p className="font-medium mb-2">App Add-On:</p>
-              <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
-              
-              <p className="font-medium mb-2">Customization Options:</p>
-              <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
-            </div>
-          )}
+          <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+            <p className="font-medium mb-2">Target Audience:</p>
+            <p className="mb-4">{targetAudience}</p>
+            
+            <p className="font-medium mb-2">App Add-On:</p>
+            <p className="mb-4">Optional mobile app development starting at {appAddOnPrice}, customized based on features.</p>
+            
+            <p className="font-medium mb-2">Customization Options:</p>
+            <p>Each package is flexible and can be tailored to fit your specific business needs.</p>
+          </div>
         </div>
       </div>
       
