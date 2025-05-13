@@ -10,11 +10,24 @@
 html {
   -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
   overflow-y: auto; /* Ensure content is scrollable */
+  overscroll-behavior-y: contain; /* Improves refresh behavior */
 }
 
 /* Remove padding for body since we're using sticky nav */
 body {
   padding-top: 0; /* No padding needed with sticky navbar */
+  min-height: 100%; /* Ensure body takes full height */
+}
+
+/* Sticky navbar wrapper rules */
+.sticky {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Light Bulb Animation for Ideate Card */
@@ -501,7 +514,7 @@ body {
   html {
     overflow-y: scroll;
     scroll-behavior: smooth;
-    scroll-padding-top: 70px; /* Adjusts all anchor links to account for fixed navbar */
+    scroll-padding-top: calc(70px + env(safe-area-inset-top, 0)); /* Adjusts for sticky navbar with safe area inset */
     /* Safe insets should not be applied directly to HTML */
     height: 100%; /* Ensure full height */
     touch-action: manipulation; /* Improves touch responsiveness */
@@ -509,7 +522,7 @@ body {
   
   /* Section anchor points */
   section[id] {
-    scroll-margin-top: 80px; /* Slightly increased to give more space below navbar */
+    scroll-margin-top: calc(80px + env(safe-area-inset-top, 0)); /* Increased with safe area for sticky navbar */
   }
   
   /* Gradient container styling for seamless transitions */
@@ -650,7 +663,7 @@ body {
   .hero {
     margin: 0;
     padding: 40px;
-    padding-top: calc(90px + env(safe-area-inset-top, 0)); /* Account for fixed navbar and iOS safe area */
+    padding-top: calc(40px + env(safe-area-inset-top, 0)); /* Modified for sticky navbar */
     padding-left: calc(40px + env(safe-area-inset-left, 0));
     padding-right: calc(40px + env(safe-area-inset-right, 0));
     background: none;
