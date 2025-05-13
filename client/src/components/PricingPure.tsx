@@ -22,13 +22,36 @@ function PricingCard({
 }) {
   // Each card manages its own expanded state
   const [isExpanded, setIsExpanded] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // Add special cleanup effect to remove any DOM-based event listeners
+  useEffect(() => {
+    // This cleanup function will run when the component unmounts
+    return () => {
+      // Ensure we don't have DOM element conflicts
+      const cardElement = cardRef.current;
+      if (cardElement) {
+        const buttons = cardElement.querySelectorAll('button');
+        buttons.forEach(button => {
+          // Clone and replace to remove event listeners
+          const newButton = button.cloneNode(true);
+          if (button.parentNode) {
+            button.parentNode.replaceChild(newButton, button);
+          }
+        });
+      }
+    };
+  }, []);
   
   return (
-    <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
-      highlighted 
-        ? 'border-2 border-primary shadow-lg shadow-primary/20' 
-        : 'border border-gray-200'
-      } bg-white`}>
+    <div 
+      ref={cardRef}
+      className={`pricing-card-pure h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
+        highlighted 
+          ? 'border-2 border-primary shadow-lg shadow-primary/20' 
+          : 'border border-gray-200'
+        } bg-white`}
+    >
       {highlighted && (
         <div className="absolute top-0 right-0">
           <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-bl-md">
@@ -68,10 +91,14 @@ function PricingCard({
         {/* Expandable details */}
         <div className="mt-6">
           <button 
-            className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={() => setIsExpanded(!isExpanded)}
+            className="toggle-details-pure text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
           >
-            <span>{isExpanded ? 'View less' : 'View details'}</span>
+            <span className="button-text-pure">{isExpanded ? 'View less' : 'View details'}</span>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="16" height="16" 
@@ -81,7 +108,7 @@ function PricingCard({
               strokeWidth="2" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
-              className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
+              className={`arrow-icon-pure transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}
             >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -89,7 +116,7 @@ function PricingCard({
           </button>
           
           {isExpanded && (
-            <div className="mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
+            <div className="card-details-pure mt-4 text-sm text-gray-700 bg-gray-50 p-4 rounded-md">
               <p className="font-medium mb-2">Target Audience:</p>
               <p className="mb-4">{targetAudience}</p>
               
@@ -197,7 +224,7 @@ export function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
-          <div className="reveal" style={{ transitionDelay: "0s" }}>
+          <div className="reveal pricing-reveal-pure" style={{ transitionDelay: "0s" }}>
             <PricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
@@ -209,7 +236,7 @@ export function Pricing() {
             />
           </div>
           
-          <div className="reveal" style={{ transitionDelay: "0.2s" }}>
+          <div className="reveal pricing-reveal-pure" style={{ transitionDelay: "0.2s" }}>
             <PricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
@@ -223,7 +250,7 @@ export function Pricing() {
           </div>
         </div>
         
-        <div className="mt-16 max-w-4xl mx-auto text-center reveal">
+        <div className="mt-16 max-w-4xl mx-auto text-center reveal pricing-addons-pure">
           <h3 className="text-xl md:text-2xl font-semibold mb-4 text-black">Optional Add-Ons and Enhancements</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-left">
             <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm">
