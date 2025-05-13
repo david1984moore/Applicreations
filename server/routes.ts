@@ -1,9 +1,10 @@
 import type { Express } from "express";
-import { createServer, type Server } from "http";
+import type { Server } from "http";
 import { storage } from "./storage";
 import { contactFormSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from 'nodemailer';
+import { createSecureServer } from "./https";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API route for contact form submissions
@@ -123,6 +124,12 @@ ${validatedData.projectDescription}
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  // Create a secure server (HTTPS if certificates are available, otherwise HTTP)
+  const server = createSecureServer(app, {
+    enabled: process.env.USE_HTTPS === 'true',
+    certPath: process.env.SSL_CERT_PATH,
+    keyPath: process.env.SSL_KEY_PATH
+  });
+  
+  return server;
 }
