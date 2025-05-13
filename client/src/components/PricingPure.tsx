@@ -10,7 +10,9 @@ function PricingCard({
   features, 
   targetAudience, 
   appAddOnPrice,
-  highlighted = false
+  highlighted = false,
+  isExpanded,
+  onToggleExpand
 }: {
   title: string;
   description: string;
@@ -20,9 +22,9 @@ function PricingCard({
   targetAudience: string;
   appAddOnPrice: string;
   highlighted?: boolean;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
 }) {
-  const [isExpanded, setIsExpanded] = React.useState(false);
-  
   return (
     <div className={`h-full relative overflow-hidden transition-all duration-300 rounded-lg ${
       highlighted 
@@ -69,7 +71,7 @@ function PricingCard({
         <div className="mt-6">
           <button 
             className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 transition-colors"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={onToggleExpand}
           >
             <span>{isExpanded ? 'View less' : 'View details'}</span>
             <svg 
@@ -122,6 +124,13 @@ function PricingCard({
 export function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useMobile();
+  // Track which card is expanded (if any)
+  const [expandedCardId, setExpandedCardId] = React.useState<string | null>(null);
+
+  // Toggle expansion for a specific card
+  const toggleCardExpansion = (cardId: string) => {
+    setExpandedCardId(expandedCardId === cardId ? null : cardId);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -206,6 +215,8 @@ export function Pricing() {
               features={starterFeatures}
               targetAudience="The Starter package is designed for freelancers, solo entrepreneurs, and small local businesses (e.g., cafes, retail shops, service providers). It's ideal for those seeking an affordable, professional online presence with essential features."
               appAddOnPrice="$2,000+"
+              isExpanded={expandedCardId === 'starter'}
+              onToggleExpand={() => toggleCardExpansion('starter')}
             />
           </div>
           
@@ -219,6 +230,8 @@ export function Pricing() {
               targetAudience="The Growth package is perfect for growing local businesses and small-to-medium enterprises (e.g., local chains, startups with 5–50 employees). It's designed for businesses ready to scale with advanced digital solutions."
               appAddOnPrice="$5,000+"
               highlighted
+              isExpanded={expandedCardId === 'growth'}
+              onToggleExpand={() => toggleCardExpansion('growth')}
             />
           </div>
         </div>
