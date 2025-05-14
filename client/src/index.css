@@ -556,17 +556,8 @@ body {
     scroll-behavior: smooth;
     overflow-y: auto; /* Ensure body is the scrollable element */
     min-height: 100%; /* Ensure body takes up at least full height */
-    /* Enhanced gradient with more smooth color transitions */
-    background: linear-gradient(110deg, 
-      #6b48ff 0%, 
-      #6551ff 15%, 
-      #5e5aff 30%, 
-      #576aff 45%, 
-      #4f77ff 60%, 
-      #4780ff 75%, 
-      #3e89ff 90%, 
-      #3881ff 100%) fixed;
-    background-size: 100% 100vh;
+    /* Remove the fixed background gradient that was causing the blue section */
+    background: none; /* Remove background gradient */
     margin: 0;
     padding: 0;
     min-height: 100vh;

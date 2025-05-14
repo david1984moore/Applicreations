@@ -62,12 +62,15 @@ export default function Home() {
         <WhatWeDo />
       </div>
       
-      {/* Our Services and remaining sections */}
+      {/* Our Services and remaining sections - ensure this container fills space to footer */}
       <div style={{ 
         position: 'relative', 
         zIndex: 5, 
         background: '#f8f9fb',
-        marginTop: '-1px' /* Eliminate any possible gap */
+        marginTop: '-1px', /* Eliminate any possible gap */
+        minHeight: '100vh', /* Ensure this container fills at least the full viewport height */
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         <OurServices />
         <Pricing />

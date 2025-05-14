@@ -58,7 +58,7 @@ export function Footer() {
   };
   
   return (
-    <footer className={`${footerBgClass} py-10 text-white`}>
+    <footer className={`${footerBgClass} py-10 text-white mt-auto`}>
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-center items-center mb-8">
           <div className="text-center">
