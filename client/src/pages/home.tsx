@@ -42,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'none' }}>
+    <div className="min-h-screen w-full m-0 p-0" style={{ background: '#fff' }}>
       <Navbar />
       
       {/* Continuous gradient container for Hero and WhatWeDo sections */}
