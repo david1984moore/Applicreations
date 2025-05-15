@@ -1,7 +1,15 @@
+import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityMiddleware, httpsRedirectMiddleware } from "./security";
+
+// Log environment variables for debugging SSL setup
+console.log('SSL Configuration:', {
+  useHTTPS: process.env.USE_HTTPS,
+  certPath: process.env.SSL_CERT_PATH,
+  keyPath: process.env.SSL_KEY_PATH
+});
 
 const app = express();
 app.use(express.json());
