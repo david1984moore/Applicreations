@@ -105,10 +105,10 @@ export function Footer() {
                 Services
               </a>
             </li>
-            <li>
+            <li data-test-id="footer-pricing-item">
               <a 
                 href="#pricing" 
-                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base font-medium"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick('pricing');
