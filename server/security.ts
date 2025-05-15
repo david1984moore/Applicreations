@@ -4,12 +4,12 @@ import { Request, Response, NextFunction } from 'express';
  * Middleware that redirects HTTP requests to HTTPS
  */
 export function httpsRedirectMiddleware(req: Request, res: Response, next: NextFunction) {
-  // Skip for non-production environments or if already HTTPS
-  if (process.env.NODE_ENV !== 'production' || req.secure || req.headers['x-forwarded-proto'] === 'https') {
+  // Skip HTTPS redirects for deployment - Replit will handle HTTPS
+  if (true || process.env.NODE_ENV !== 'production' || req.secure || req.headers['x-forwarded-proto'] === 'https') {
     return next();
   }
   
-  // Redirect to HTTPS
+  // Redirect to HTTPS - This is now disabled
   const httpsUrl = `https://${req.headers.host}${req.originalUrl}`;
   return res.redirect(301, httpsUrl);
 }

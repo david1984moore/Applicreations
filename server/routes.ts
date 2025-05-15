@@ -7,6 +7,11 @@ import nodemailer from 'nodemailer';
 import { createSecureServer } from "./https";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for root path - required for deployment
+  app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', message: 'Applicreations API is running' });
+  });
+
   // API route for contact form submissions
   app.post('/api/contact', async (req, res) => {
     try {
