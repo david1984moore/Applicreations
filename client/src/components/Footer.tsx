@@ -105,7 +105,7 @@ export function Footer() {
                 Services
               </a>
             </li>
-            <li data-test-id="footer-pricing-item">
+            <li>
               <a 
                 href="#pricing" 
                 className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base font-medium"
