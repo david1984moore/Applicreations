@@ -5,7 +5,7 @@ import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
 import { Pricing } from '@/components/PricingPure';
 import { Contact } from '@/components/Contact';
-import { Footer } from '@/components/Footer';
+import { Footer2 as Footer } from '@/components/Footer2';
 import { ScrollToTop } from '@/components/ScrollToTop';
 
 export default function Home() {
