@@ -3,7 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
-import { Pricing } from '@/components/PricingNew';
+import { Pricing } from '@/components/PricingBasic';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { ScrollToTop } from '@/components/ScrollToTop';
