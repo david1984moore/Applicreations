@@ -131,6 +131,15 @@ function IndependentPricingCard({
 export function Pricing() {
   const isMobile = useMobile();
 
+  const basicFeatures = [
+    "Simple 1-page website",
+    "Basic template design",
+    "Reliable hosting with 2GB storage",
+    "SSL certificate for security",
+    "1 hour monthly maintenance",
+    "1 professional email account"
+  ];
+
   const starterFeatures = [
     "Professional website with up to 5 pages",
     "Customizable template design",
@@ -182,8 +191,21 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-6xl mx-auto">
           <div style={{ transitionDelay: "0s" }}>
+            <IndependentPricingCard
+              title="Basic"
+              description="For individuals or startups on a budget"
+              price="$600"
+              monthlyCost="$50/month"
+              features={basicFeatures}
+              targetAudience="The Basic package is ideal for individuals or startups needing a simple online presence on a tight budget."
+              appAddOnPrice="$1,500"
+              isMobile={isMobile}
+            />
+          </div>
+          
+          <div style={{ transitionDelay: "0.1s" }}>
             <IndependentPricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
