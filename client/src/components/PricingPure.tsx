@@ -1,8 +1,8 @@
 import { useMobile } from '@/hooks/use-mobile';
 import { useState } from 'react';
 
-// Pricing card component with collapsible details on mobile
-function IndependentPricingCard({
+// Pricing card component
+function PricingCard({
   title,
   description,
   price,
@@ -25,7 +25,6 @@ function IndependentPricingCard({
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Toggle expanded state for mobile
   const toggleExpand = () => {
     if (isMobile) {
       setIsExpanded(!isExpanded);
@@ -131,6 +130,7 @@ function IndependentPricingCard({
 export function Pricing() {
   const isMobile = useMobile();
 
+  // Features for Basic package
   const basicFeatures = [
     "Simple 1-page website",
     "Basic template design",
@@ -140,6 +140,7 @@ export function Pricing() {
     "1 professional email account"
   ];
 
+  // Features for Starter package
   const starterFeatures = [
     "Professional website with up to 5 pages",
     "Customizable template design",
@@ -150,6 +151,7 @@ export function Pricing() {
     "Optional basic mobile app for one platform (iOS or Android)"
   ];
   
+  // Features for Growth package
   const growthFeatures = [
     "Custom website with up to 10 pages",
     "Advanced functionality (e-commerce, booking systems)",
@@ -169,7 +171,7 @@ export function Pricing() {
         position: 'relative'
       }}
     >
-      {/* Add a subtle gradient accent */}
+      {/* Background elements */}
       <div 
         className="absolute inset-0 opacity-10" 
         style={{ 
@@ -177,10 +179,10 @@ export function Pricing() {
         }}
       ></div>
       
-      {/* Background pattern */}
       <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTEyIDBoNnY2aC02di02em0xMiAwaDZ2NmgtNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* Section header */}
         <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 relative inline-block text-black">
             Pricing Packages
@@ -191,11 +193,11 @@ export function Pricing() {
           </p>
         </div>
 
-        {/* Mobile view: Basic, Starter, Growth stacked vertically */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Pricing cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Basic package */}
-          <div className="block" style={{ transitionDelay: "0s" }}>
-            <IndependentPricingCard
+          <div>
+            <PricingCard
               title="Basic"
               description="For individuals or startups on a budget"
               price="$600"
@@ -208,8 +210,8 @@ export function Pricing() {
           </div>
           
           {/* Starter package */}
-          <div className="block" style={{ transitionDelay: "0.1s" }}>
-            <IndependentPricingCard
+          <div>
+            <PricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
               price="$2,000"
@@ -222,8 +224,8 @@ export function Pricing() {
           </div>
           
           {/* Growth package */}
-          <div className="block" style={{ transitionDelay: "0.2s" }}>
-            <IndependentPricingCard
+          <div>
+            <PricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
               price="$5,000"
@@ -237,6 +239,7 @@ export function Pricing() {
           </div>
         </div>
         
+        {/* Add-ons section */}
         <div className="mt-16 max-w-4xl mx-auto text-center">
           <h3 className="text-xl md:text-2xl font-bold mb-8 text-black text-center relative">
             Optional Add-Ons and Enhancements
@@ -309,17 +312,13 @@ export function Pricing() {
           </div>
         </div>
         
+        {/* Contact button */}
         <div className="mt-16 mb-8 text-center">
           <a
             href="#contact"
-            className={`animated-button ${isMobile ? 'animated-button-mobile' : ''} relative inline-flex items-center justify-center py-[14px] px-[32px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto`}
+            className="relative inline-flex items-center justify-center py-[14px] px-[32px] font-[500] text-[0.95rem] rounded-[50px] border-0 transition-transform duration-700 ease-out overflow-hidden outline-none shadow-none mx-auto bg-primary hover:bg-primary/90 text-white"
           >
-            <span className="button-text relative z-10 ml-5">
-              Contact Us For Custom Quote
-            </span>
-            <span className="button-text-hover absolute z-10 ml-5">
-              Contact Us For Custom Quote
-            </span>
+            Contact Us For Custom Quote
           </a>
         </div>
       </div>
