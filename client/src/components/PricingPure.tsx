@@ -191,8 +191,10 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-6xl mx-auto">
-          <div style={{ transitionDelay: "0s" }}>
+        {/* Mobile view: Basic, Starter, Growth stacked vertically */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Basic package */}
+          <div className="block" style={{ transitionDelay: "0s" }}>
             <IndependentPricingCard
               title="Basic"
               description="For individuals or startups on a budget"
@@ -205,7 +207,8 @@ export function Pricing() {
             />
           </div>
           
-          <div style={{ transitionDelay: "0.1s" }}>
+          {/* Starter package */}
+          <div className="block" style={{ transitionDelay: "0.1s" }}>
             <IndependentPricingCard
               title="Starter"
               description="For freelancers, solo entrepreneurs, and small local businesses"
@@ -218,7 +221,8 @@ export function Pricing() {
             />
           </div>
           
-          <div style={{ transitionDelay: "0.2s" }}>
+          {/* Growth package */}
+          <div className="block" style={{ transitionDelay: "0.2s" }}>
             <IndependentPricingCard
               title="Growth"
               description="For growing local businesses and small-to-medium enterprises"
