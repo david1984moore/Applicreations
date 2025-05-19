@@ -46,14 +46,7 @@ export function Footer() {
                 Services
               </button>
             </li>
-            <li>
-              <button 
-                onClick={() => scrollToSection('pricing')}
-                className="text-white text-sm md:text-base hover:opacity-80 font-semibold"
-              >
-                Pricing
-              </button>
-            </li>
+
             <li>
               <button 
                 onClick={() => scrollToSection('contact')}
