@@ -3,7 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
-import { AllThreePackages } from '@/components/AllThreePackages';
+import { DirectInjectPricing } from '@/components/DirectInjectPricing';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { ScrollToTop } from '@/components/ScrollToTop';
@@ -73,7 +73,7 @@ export default function Home() {
         flexDirection: 'column'
       }}>
         <OurServices />
-        <AllThreePackages />
+        <DirectInjectPricing />
         <Contact />
         <Footer />
       </div>
