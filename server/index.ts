@@ -4,11 +4,17 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityMiddleware, httpsRedirectMiddleware } from "./security";
 
-// Log environment variables for debugging SSL setup
+// Log environment variables for debugging SSL setup and deployment mode
 console.log('SSL Configuration:', {
   useHTTPS: process.env.USE_HTTPS,
   certPath: process.env.SSL_CERT_PATH,
   keyPath: process.env.SSL_KEY_PATH
+});
+
+console.log('Environment Configuration:', {
+  isDeployment: process.env.REPLIT_DEPLOYMENT === '1',
+  nodeEnv: process.env.NODE_ENV,
+  replitDeployment: process.env.REPLIT_DEPLOYMENT
 });
 
 const app = express();
@@ -65,9 +71,13 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
+  const isDeployment = process.env.REPLIT_DEPLOYMENT === '1';
+  
+  if (!isDeployment) {
+    console.log('Starting in development mode with Vite');
     await setupVite(app, server);
   } else {
+    console.log('Starting in deployment mode - serving static files');
     serveStatic(app);
   }
 
