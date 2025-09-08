@@ -20,8 +20,8 @@ export function Footer() {
           <p className="text-white/80 text-sm">Wilmington, Delaware</p>
         </div>
         
-        <div className="mb-8 w-full flex justify-center">
-          <div className="flex items-center justify-center gap-6 md:gap-10">
+        <div className="mb-8">
+          <div className="flex items-center gap-6 mx-auto w-fit">
             <button 
               onClick={() => scrollToSection('home')}
               className="text-white text-sm md:text-base hover:opacity-80 transition-colors duration-300"
