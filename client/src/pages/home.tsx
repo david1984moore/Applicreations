@@ -45,7 +45,7 @@ export default function Home() {
       
       {/* Continuous gradient container for Hero section with integrated nav */}
       <div 
-        className="gradient-container" 
+        className="gradient-container navbar-hero-container" 
         style={{ 
           background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)',
           minHeight: '100vh',

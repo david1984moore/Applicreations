@@ -719,40 +719,29 @@ body {
     left: 0;
     right: 0;
     bottom: 0; /* Position at the bottom */
-    height: 500px; /* Further increased height for more gradual transition */
+    height: 600px; /* Increased height for even more gradual transition */
     background: linear-gradient(to bottom, 
-      /* Start with completely transparent purple that matches the background */
+      /* Start with completely transparent - very gradual fade in */
       rgba(107, 72, 255, 0) 0%,
-      /* Very subtle initial gradient to prevent banding */
-      rgba(110, 76, 255, 0.001) 2%,
-      rgba(112, 78, 255, 0.003) 5%,
-      rgba(115, 81, 255, 0.005) 8%,
-      rgba(118, 84, 255, 0.01) 12%,
-      rgba(121, 87, 255, 0.015) 16%,
-      rgba(124, 90, 255, 0.02) 20%,
-      rgba(127, 93, 255, 0.03) 24%,
-      rgba(130, 96, 255, 0.04) 28%,
-      rgba(135, 105, 255, 0.06) 32%,
-      rgba(140, 110, 255, 0.08) 36%,
-      rgba(145, 120, 255, 0.10) 40%,
-      rgba(150, 130, 255, 0.13) 44%,
-      rgba(160, 140, 255, 0.16) 48%,
-      rgba(170, 150, 255, 0.20) 52%,
-      rgba(180, 165, 255, 0.25) 56%,
-      rgba(190, 180, 255, 0.30) 60%,
-      rgba(200, 195, 255, 0.37) 64%,
-      rgba(210, 210, 255, 0.45) 68%,
-      rgba(220, 225, 255, 0.54) 72%,
-      rgba(230, 235, 255, 0.63) 76%,
-      rgba(235, 240, 255, 0.72) 80%,
-      rgba(240, 245, 255, 0.81) 84%,
-      rgba(243, 247, 255, 0.90) 88%,
-      rgba(245, 247, 252, 0.96) 92%,
-      /* Final steps perfectly match the background color of #f8f9fb with extra precision */
-      rgba(247, 248, 251, 0.985) 94%,
-      rgba(247.5, 249, 251, 0.992) 96%,
-      rgba(248, 249, 251, 0.997) 98%, 
-      rgb(248, 249, 251) 99%,
+      rgba(107, 72, 255, 0) 10%, /* Stay transparent longer */
+      rgba(107, 72, 255, 0) 15%,
+      rgba(108, 73, 255, 0.005) 20%,
+      rgba(110, 75, 255, 0.01) 25%,
+      rgba(113, 78, 255, 0.02) 30%,
+      rgba(116, 81, 255, 0.03) 35%,
+      rgba(120, 85, 255, 0.05) 40%,
+      rgba(125, 90, 255, 0.08) 45%,
+      rgba(130, 95, 255, 0.12) 50%,
+      rgba(138, 105, 255, 0.17) 55%,
+      rgba(148, 118, 255, 0.24) 60%,
+      rgba(160, 135, 255, 0.32) 65%,
+      rgba(175, 155, 255, 0.42) 70%,
+      rgba(195, 180, 255, 0.54) 75%,
+      rgba(220, 210, 255, 0.68) 80%,
+      rgba(240, 235, 254, 0.82) 85%,
+      rgba(245, 245, 253, 0.92) 90%,
+      rgba(247, 248, 252, 0.97) 95%,
+      rgba(248, 249, 251, 0.99) 98%,
       rgb(248, 249, 251) 100%);
     pointer-events: none;
     z-index: 2; /* Positioned below the hero content but above other elements */
