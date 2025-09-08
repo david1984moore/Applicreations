@@ -30,28 +30,13 @@ export function Footer2() {
         </div>
         
         {/* Navigation Links */}
-        <div 
-          className="mb-8" 
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: '40px',
-            background: 'red',
-            border: '5px solid yellow'
-          }}
-        >
+        <div className="mb-8 flex justify-center">
           <div 
             style={{
-              position: 'absolute',
-              top: '0',
-              left: '50%',
-              transform: 'translateX(-50%)',
               display: 'flex',
               alignItems: 'center',
               gap: '24px',
-              whiteSpace: 'nowrap',
-              background: 'blue',
-              padding: '10px'
+              whiteSpace: 'nowrap'
             }}
           >
             <a 
