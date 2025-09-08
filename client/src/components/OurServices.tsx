@@ -59,7 +59,7 @@ export function OurServices() {
                   We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
                   Our web solutions combine striking visuals with intuitive navigation to help you connect with your audience effectively.
                 </p>
-                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                <p className="text-blue-600 font-medium mt-3 mb-1">
                   Starting at $250 for simple websites.
                 </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
@@ -80,7 +80,7 @@ export function OurServices() {
                 <p className="text-neutral-dark/70 leading-relaxed">
                   Strategy and thoughtful design are the cornerstones of our process. We take the time to truly understand your problem and work closely with you to create the remedy you're seeking.
                 </p>
-                <p className="text-neutral-dark/80 font-medium mt-3">
+                <p className="text-blue-600 font-medium mt-3">
                   Contact us for a free quote.
                 </p>
               </div>
@@ -114,7 +114,7 @@ export function OurServices() {
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
                   Our infrastructure is built for speed, security, and reliability so you can focus on growing your business.
                 </p>
-                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                <p className="text-blue-600 font-medium mt-3 mb-1">
                   Starting at $50 per month
                 </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
@@ -136,7 +136,7 @@ export function OurServices() {
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
                   Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
                 </p>
-                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                <p className="text-blue-600 font-medium mt-3 mb-1">
                   Starting at $50 per month
                 </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
