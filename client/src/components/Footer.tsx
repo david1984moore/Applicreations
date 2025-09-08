@@ -20,29 +20,25 @@ export function Footer() {
           <p className="text-white/80 text-sm">Wilmington, Delaware</p>
         </div>
         
-        <div className="mb-8 w-full">
-          <div className="w-full mx-auto text-center">
-            <div className="inline-flex gap-5 flex-wrap justify-center">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => scrollToSection('our-services')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Services
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Contact
-              </button>
-            </div>
-          </div>
+        <div className="mb-8 text-center">
+          <button 
+            onClick={() => scrollToSection('home')}
+            className="text-white text-sm md:text-base hover:opacity-80 mx-2"
+          >
+            Home
+          </button>
+          <button 
+            onClick={() => scrollToSection('our-services')}
+            className="text-white text-sm md:text-base hover:opacity-80 mx-2"
+          >
+            Services
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="text-white text-sm md:text-base hover:opacity-80 mx-2"
+          >
+            Contact
+          </button>
         </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
