@@ -55,7 +55,7 @@ export function Footer() {
           </div>
           
           <p className="text-xs text-white/70">
-            &copy; {currentYear} ALL rights reserved.
+            &copy; {currentYear} Applicreations, ALL rights reserved.
           </p>
         </div>
       </div>
