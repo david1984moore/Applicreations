@@ -59,6 +59,9 @@ export function OurServices() {
                   We create responsive, modern websites that showcase your brand and deliver an exceptional user experience across all devices. 
                   Our web solutions combine striking visuals with intuitive navigation to help you connect with your audience effectively.
                 </p>
+                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                  Starting at $250 for simple websites.
+                </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Responsive Design</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Performance Focused</span>
