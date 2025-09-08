@@ -61,7 +61,7 @@ export default function Home() {
         position: 'relative', 
         zIndex: 5, 
         background: '#f8f9fb',
-        marginTop: '85vh', /* Position after hero section */
+        marginTop: '0px', /* No margin to eliminate dark blue gap */
         minHeight: '100vh', /* Ensure this container fills at least the full viewport height */
         display: 'flex',
         flexDirection: 'column'
