@@ -15,13 +15,13 @@ export function Footer() {
 
   return (
     <footer className="bg-black py-8 text-white">
-      <div className="container mx-auto px-4">
+      <div className="w-full max-w-7xl mx-auto px-4">
         <div className="text-center mb-6">
           <p className="text-white/80 text-sm">Wilmington, Delaware</p>
         </div>
         
-        <div className="mb-8 text-center">
-          <div className="inline-flex items-center justify-center space-x-6">
+        <div className="mb-8 w-full flex justify-center">
+          <div className="flex items-center gap-6">
             <button 
               onClick={() => scrollToSection('home')}
               className="text-white text-sm md:text-base hover:opacity-80"
