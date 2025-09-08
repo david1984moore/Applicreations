@@ -114,6 +114,9 @@ export function OurServices() {
                   We provide reliable, secure, and scalable hosting solutions to ensure your websites and applications are always available and performing optimally.
                   Our infrastructure is built for speed, security, and reliability so you can focus on growing your business.
                 </p>
+                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                  Starting at $50 per month
+                </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Cloud-based</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>99.9% Uptime</span>
