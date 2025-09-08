@@ -79,8 +79,8 @@ export function Navbar() {
     }, 10);
   };
 
-  // Change background color to match the header gradient
-  const navbarBackground = 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 100%)';
+  // Make navbar background transparent to blend seamlessly with hero gradient
+  const navbarBackground = 'transparent';
   
   return (
     <div 
@@ -179,11 +179,12 @@ export function Navbar() {
         <div 
           className="absolute left-0 right-0 w-full z-[999]"
           style={{
-            background: navbarBackground, // Uses black background from navbar
+            background: 'rgba(107, 72, 255, 0.95)', // Semi-transparent blue for mobile menu
             top: '70px', // Position calculated from navbar height
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-            paddingTop: '0'
+            paddingTop: '0',
+            backdropFilter: 'blur(10px)'
           }}
         >
           <div className="py-2 px-4 flex flex-col items-end">
