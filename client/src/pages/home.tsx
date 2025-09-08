@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { OurServices } from '@/components/OurServices';
 import { Contact } from '@/components/Contact';
@@ -40,7 +39,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)' }}>
+    <div className="min-h-screen w-full m-0 p-0" style={{ 
+      background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)'
+    }}>
       
       {/* Continuous gradient container for Hero section with integrated nav */}
       <div 

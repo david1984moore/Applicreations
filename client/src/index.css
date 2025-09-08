@@ -8,6 +8,8 @@
 
 /* Make sure iOS tap-to-top works properly and pull-to-refresh behavior */
 html {
+  margin: 0;
+  padding: 0;
   -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
   overflow-y: auto; /* Ensure content is scrollable */
   overscroll-behavior-y: contain; /* Improves refresh behavior */
@@ -15,15 +17,9 @@ html {
 
 /* Responsive body padding - Mobile vs Desktop */
 body {
-  padding-top: 0; /* No padding needed with sticky navbar on mobile */
+  padding-top: 0; /* No padding needed since navbar is integrated into hero */
+  margin: 0;
   min-height: 100%; /* Ensure body takes full height */
-}
-
-/* For desktop screens, add padding to account for fixed navbar */
-@media (min-width: 768px) {
-  body {
-    padding-top: 70px; /* Account for fixed navbar height on desktop */
-  }
 }
 
 /* Sticky navbar wrapper rules */
