@@ -33,19 +33,21 @@ export function Footer2() {
         <div 
           className="mb-8" 
           style={{
-            display: 'grid !important',
-            placeItems: 'center !important',
-            width: '100% !important',
-            textAlign: 'center !important'
+            position: 'relative',
+            width: '100%',
+            height: '40px'
           }}
         >
           <div 
             style={{
-              display: 'flex !important',
-              justifyContent: 'center !important',
-              alignItems: 'center !important',
-              gap: '24px !important',
-              width: '100% !important'
+              position: 'absolute',
+              top: '0',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '24px',
+              whiteSpace: 'nowrap'
             }}
           >
             <a 
