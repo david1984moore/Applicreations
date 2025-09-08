@@ -79,8 +79,8 @@ export function Navbar() {
     }, 10);
   };
 
-  // Make navbar background transparent to blend seamlessly with hero gradient
-  const navbarBackground = 'transparent';
+  // Dynamic navbar background - transparent over hero gradient, solid when scrolled past it
+  const navbarBackground = scrolled ? 'rgba(107, 72, 255, 0.95)' : 'transparent';
   
   return (
     <div 
@@ -95,6 +95,7 @@ export function Navbar() {
         className="z-[1000] flex items-center h-[70px] w-full"
         style={{ 
           background: navbarBackground,
+          backdropFilter: scrolled ? 'blur(10px)' : 'none',
           borderBottom: 'none',
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
           transition: 'all 0.3s ease',
