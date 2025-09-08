@@ -35,7 +35,9 @@ export function Footer2() {
           style={{
             position: 'relative',
             width: '100%',
-            height: '40px'
+            height: '40px',
+            background: 'red',
+            border: '5px solid yellow'
           }}
         >
           <div 
@@ -47,7 +49,9 @@ export function Footer2() {
               display: 'flex',
               alignItems: 'center',
               gap: '24px',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              background: 'blue',
+              padding: '10px'
             }}
           >
             <a 
