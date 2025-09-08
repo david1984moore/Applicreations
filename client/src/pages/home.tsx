@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
-import { WhatWeDo } from '@/components/WhatWeDo';
 import { OurServices } from '@/components/OurServices';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
@@ -58,7 +57,6 @@ export default function Home() {
         }}
       >
         <Hero />
-        <WhatWeDo />
       </div>
       
       {/* Our Services and remaining sections - ensure this container fills space to footer */}

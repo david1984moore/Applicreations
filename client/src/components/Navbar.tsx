@@ -130,18 +130,6 @@ export function Navbar() {
             </li>
             <li>
               <a 
-                href="#what-we-do" 
-                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('what-we-do');
-                }}
-              >
-                Our Process
-              </a>
-            </li>
-            <li>
-              <a 
                 href="#our-services" 
                 className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                 onClick={(e) => {
@@ -207,16 +195,6 @@ export function Navbar() {
               }}
             >
               Home
-            </a>
-            <a 
-              href="#what-we-do"
-              className="block py-1.5 text-white text-base font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('what-we-do');
-              }}
-            >
-              Our Process
             </a>
             <a 
               href="#our-services"
