@@ -21,22 +21,22 @@ export function Footer() {
         </div>
         
         <div className="mb-8 w-full flex justify-center">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center justify-center gap-6 md:gap-10">
             <button 
               onClick={() => scrollToSection('home')}
-              className="text-white text-sm md:text-base hover:opacity-80"
+              className="text-white text-sm md:text-base hover:opacity-80 transition-colors duration-300"
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('our-services')}
-              className="text-white text-sm md:text-base hover:opacity-80"
+              className="text-white text-sm md:text-base hover:opacity-80 transition-colors duration-300"
             >
               Services
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-white text-sm md:text-base hover:opacity-80"
+              className="text-white text-sm md:text-base hover:opacity-80 transition-colors duration-300"
             >
               Contact
             </button>
