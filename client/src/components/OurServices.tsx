@@ -136,6 +136,9 @@ export function OurServices() {
                   We offer ongoing maintenance and support services to keep your digital solutions running smoothly, secure, and up-to-date with the latest technologies.
                   Our team provides responsive support to address issues promptly and implement enhancements to keep your business moving forward.
                 </p>
+                <p className="text-neutral-dark/80 font-medium mt-3 mb-1">
+                  Starting at $50 per month
+                </p>
                 <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>24/7 Support</span>
                   <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>Regular Updates</span>
