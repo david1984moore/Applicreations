@@ -88,7 +88,7 @@ export function Footer2() {
           </div>
           
           <div className="flex items-center justify-center">
-            <span className="text-sm text-white/80">&copy; {currentYear} ALL rights reserved.</span>
+            <span className="text-sm text-white/80">&copy; {currentYear} Applicreations, ALL rights reserved.</span>
           </div>
         </div>
       </div>
