@@ -20,8 +20,8 @@ export function Footer() {
           <p className="text-white/80 text-sm">Wilmington, Delaware</p>
         </div>
         
-        <nav className="mb-8">
-          <ul className="flex flex-wrap justify-center gap-5">
+        <nav className="mb-8 text-center">
+          <ul className="flex flex-wrap justify-center gap-5 items-center">
             <li>
               <button 
                 onClick={() => scrollToSection('home')}
