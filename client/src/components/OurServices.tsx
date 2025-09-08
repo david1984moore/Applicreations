@@ -80,6 +80,9 @@ export function OurServices() {
                 <p className="text-neutral-dark/70 leading-relaxed">
                   Strategy and thoughtful design are the cornerstones of our process. We take the time to truly understand your problem and work closely with you to create the remedy you're seeking.
                 </p>
+                <p className="text-neutral-dark/80 font-medium mt-3">
+                  Contact us for a free quote.
+                </p>
               </div>
             </div>
             <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-2 md:py-4">
