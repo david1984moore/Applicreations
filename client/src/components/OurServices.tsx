@@ -75,13 +75,8 @@ export function OurServices() {
                 <h3 className="text-xl md:text-2xl font-semibold text-black mb-1 md:mb-4">App Development</h3>
                 <div className="w-12 md:w-16 h-1 bg-gradient mb-1 md:mb-4"></div>
                 <p className="text-neutral-dark/70 leading-relaxed">
-                  We design and develop intuitive, feature-rich mobile applications that engage users and solve real business problems.
-                  Our mobile solutions work seamlessly across platforms, providing a consistent experience that keeps users coming back.
+                  Strategy and thoughtful design are the cornerstones of our process. We take the time to truly understand your problem and work closely with you to create the remedy you're seeking.
                 </p>
-                <div className="mt-2 md:mt-4 flex gap-2 md:gap-4">
-                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>iOS & Android</span>
-                  <span className="inline-flex items-center text-sm font-medium text-blue-600"><svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>User-Centered Design</span>
-                </div>
               </div>
             </div>
             <div className="md:col-span-4 md:order-2 order-1 flex justify-center items-center py-2 md:py-4">
