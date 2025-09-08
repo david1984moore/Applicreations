@@ -79,8 +79,8 @@ export function Navbar() {
     }, 10);
   };
 
-  // Change background color to black
-  const navbarBackground = '#000000';
+  // Change background color to match the header gradient
+  const navbarBackground = 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 100%)';
   
   return (
     <div 
