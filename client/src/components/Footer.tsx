@@ -20,35 +20,28 @@ export function Footer() {
           <p className="text-white/80 text-sm">Wilmington, Delaware</p>
         </div>
         
-        <nav className="mb-8 text-center">
-          <ul className="flex flex-wrap justify-center gap-5 items-center">
-            <li>
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Home
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => scrollToSection('our-services')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Services
-              </button>
-            </li>
-
-            <li>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-white text-sm md:text-base hover:opacity-80"
-              >
-                Contact
-              </button>
-            </li>
-          </ul>
-        </nav>
+        <div className="mb-8 text-center">
+          <div className="flex justify-center items-center gap-5 flex-wrap">
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="text-white text-sm md:text-base hover:opacity-80"
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => scrollToSection('our-services')}
+              className="text-white text-sm md:text-base hover:opacity-80"
+            >
+              Services
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-white text-sm md:text-base hover:opacity-80"
+            >
+              Contact
+            </button>
+          </div>
+        </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
           <div className="mb-4">
