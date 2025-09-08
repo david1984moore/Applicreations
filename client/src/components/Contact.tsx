@@ -115,7 +115,7 @@ export function Contact() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block text-black">Let's Go!</h2>
             <p className="text-lg text-black">
-              Tell us about your project and we'll get back to you within 24 hours.
+              Send us a message about the problem you want to solve. We respond in 24 hrs or less.
             </p>
           </div>
 
