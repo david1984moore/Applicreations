@@ -3,7 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { OurServices } from '@/components/OurServices';
 import { Contact } from '@/components/Contact';
-import { Footer } from '@/components/Footer';
+import { Footer2 as Footer } from '@/components/Footer2';
 import { ScrollToTop } from '@/components/ScrollToTop';
 
 export default function Home() {

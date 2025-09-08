@@ -46,18 +46,6 @@ export function Footer2() {
             </li>
             <li>
               <a 
-                href="#what-we-do" 
-                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('what-we-do');
-                }}
-              >
-                Our Process
-              </a>
-            </li>
-            <li>
-              <a 
                 href="#our-services" 
                 className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
                 onClick={(e) => {
