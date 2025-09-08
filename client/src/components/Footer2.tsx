@@ -30,46 +30,55 @@ export function Footer2() {
         </div>
         
         {/* Navigation Links */}
-        <div className="flex justify-center mb-8">
-          <ul className="flex flex-wrap justify-center gap-6 md:gap-10">
-            <li>
-              <a 
-                href="#home" 
-                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('home');
-                }}
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#our-services" 
-                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('our-services');
-                }}
-              >
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a 
-                href="#contact" 
-                className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('contact');
-                }}
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+        <div 
+          className="mb-8" 
+          style={{
+            display: 'grid !important',
+            placeItems: 'center !important',
+            width: '100% !important',
+            textAlign: 'center !important'
+          }}
+        >
+          <div 
+            style={{
+              display: 'flex !important',
+              justifyContent: 'center !important',
+              alignItems: 'center !important',
+              gap: '24px !important',
+              width: '100% !important'
+            }}
+          >
+            <a 
+              href="#home" 
+              className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home');
+              }}
+            >
+              Home
+            </a>
+            <a 
+              href="#our-services" 
+              className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('our-services');
+              }}
+            >
+              Services
+            </a>
+            <a 
+              href="#contact" 
+              className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('contact');
+              }}
+            >
+              Contact
+            </a>
+          </div>
         </div>
         
         <div className="border-t border-white/20 pt-6 text-center">
