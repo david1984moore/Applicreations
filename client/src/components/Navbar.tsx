@@ -102,10 +102,11 @@ export function Navbar() {
           paddingTop: 'env(safe-area-inset-top, 0)'
         }}
       >
-        <nav className="w-full px-4 flex items-center justify-between h-full">
+        <nav className="w-full px-4 flex items-center justify-center h-full relative">
+          {/* Logo positioned absolutely on the left */}
           <a 
             href="#home" 
-            className="navbar-logo max-w-[70%] md:max-w-none"
+            className="navbar-logo max-w-[70%] md:max-w-none absolute left-4"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('home');
@@ -114,7 +115,7 @@ export function Navbar() {
             <Logo className="text-white scale-[0.85] md:scale-100" />
           </a>
           
-          {/* Desktop Navigation */}
+          {/* Centered Desktop Navigation */}
           <ul className="hidden md:flex space-x-6">
             <li>
               <a 
@@ -155,9 +156,9 @@ export function Navbar() {
             </li>
           </ul>
           
-          {/* Simple Hamburger Button - No fancy logic */}
+          {/* Simple Hamburger Button positioned absolutely on the right */}
           <button 
-            className="md:hidden text-white p-2"
+            className="md:hidden text-white p-2 absolute right-4"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
