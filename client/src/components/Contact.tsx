@@ -225,7 +225,7 @@ export function Contact() {
                     name="projectDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="block text-sm font-medium text-black mb-1">Tell us about your project *</FormLabel>
+                        <FormLabel className="block text-sm font-medium text-black mb-1">Tell us about your problem *</FormLabel>
                         <FormControl>
                           <Textarea 
                             {...field} 
