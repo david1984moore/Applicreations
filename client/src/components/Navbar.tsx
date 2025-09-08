@@ -84,10 +84,9 @@ export function Navbar() {
   
   return (
     <div 
-      className={`${isMobile ? 'sticky' : 'fixed'} left-0 right-0 w-full z-[1000] top-0`}
+      className="relative left-0 right-0 w-full z-[1000]"
       style={{
-        position: isMobile ? 'sticky' : 'fixed',
-        // On web, ensure full width and stay at top
+        position: 'relative',
         width: '100%'
       }}
     >

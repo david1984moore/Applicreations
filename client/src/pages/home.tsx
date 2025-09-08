@@ -40,24 +40,19 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full m-0 p-0" style={{ background: '#6b48ff' }}>
-      <Navbar />
+    <div className="min-h-screen w-full m-0 p-0" style={{ background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)' }}>
       
-      {/* Continuous gradient container for Hero and WhatWeDo sections */}
+      {/* Continuous gradient container for Hero and Navbar sections */}
       <div 
         className="gradient-container" 
         style={{ 
           background: 'linear-gradient(to bottom, #6b48ff 0%, #5590ff 40%, #4bacff 70%, #4bc9ff 100%)',
-          marginTop: '0px',
-          position: 'absolute',
-          top: '0',
-          left: '0',
-          right: '0',
           minHeight: '100vh',
           zIndex: 1,
           overflow: 'hidden'
         }}
       >
+        <Navbar />
         <Hero />
       </div>
       
