@@ -81,7 +81,7 @@ export function OurServices() {
                   Strategy and thoughtful design are the cornerstones of our process. We take the time to truly understand your problem and work closely with you to create the remedy you're seeking.
                 </p>
                 <p className="text-blue-600 font-medium mt-3">
-                  Contact us for a free quote.
+                  Contact us for a free quote
                 </p>
               </div>
             </div>
