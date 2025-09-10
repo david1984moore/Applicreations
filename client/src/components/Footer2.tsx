@@ -8,15 +8,31 @@ export function Footer2() {
     const section = document.getElementById(sectionId);
     
     if (section) {
-      const navbarHeight = 70;
-      const scrollToPosition = section.offsetTop - navbarHeight;
+      // Get safe area inset top value (or 0 if not supported)
+      const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
       
+      // Calculate offset with safe area considerations
+      // Use negative offset to account for section padding (Services has pt-12 md:pt-24)
+      const navbarHeight = -50; // Negative offset to compensate for Services section padding
+      const totalOffset = navbarHeight + safeAreaTop;
+      
+      // Get the position of the section relative to the document
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top + window.pageYOffset;
+      
+      // Calculate position accounting for navbar height and safe area
+      const scrollToPosition = sectionTop - totalOffset;
+      
+      // Use window.scrollTo for more reliable smooth scrolling
       window.scrollTo({
         top: scrollToPosition,
         behavior: 'smooth'
       });
       
+      // Use replaceState instead of pushState to prevent navigation issues in WebViews
       history.replaceState(null, '', `#${sectionId}`);
+    } else {
+      console.error("Section not found:", sectionId);
     }
   };
   
