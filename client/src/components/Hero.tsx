@@ -98,11 +98,11 @@ export function Hero() {
           <nav className="w-full px-4 flex items-center justify-between h-full relative">
             {/* Logo positioned on the left */}
             <a 
-              href="#home" 
+              href="#contact" 
               className="navbar-logo max-w-[70%] md:max-w-none"
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick('home');
+                handleNavClick('contact');
               }}
             >
               <Logo className="text-white scale-[0.85] md:scale-100" />
