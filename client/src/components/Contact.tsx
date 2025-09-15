@@ -230,7 +230,7 @@ export function Contact() {
                           <Textarea 
                             {...field} 
                             rows={5}
-                            className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white/90 focus:outline-none focus:border-primary transition-colors text-black"
+                            className="w-full px-4 py-2 rounded-md border-2 border-gray-400 bg-white/90 focus:outline-none focus:border-primary transition-colors text-black"
                           />
                         </FormControl>
                         <FormMessage className="text-red-600 font-bold text-sm mt-1 bg-red-100 px-2 py-1 rounded-sm" />
