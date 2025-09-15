@@ -5,6 +5,16 @@ export function Footer2() {
   const [currentYear] = useState(new Date().getFullYear());
   
   const handleNavClick = (sectionId: string) => {
+    // Special case for 'home' - scroll to the very top of the page
+    if (sectionId === 'home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      history.replaceState(null, '', '#home');
+      return;
+    }
+
     const section = document.getElementById(sectionId);
     
     if (section) {
