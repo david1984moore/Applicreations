@@ -112,18 +112,6 @@ export function Hero() {
             <ul className="hidden md:flex space-x-6">
               <li>
                 <a 
-                  href="#home" 
-                  className="nav-link font-medium text-sm transition-colors duration-300 text-white"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('home');
-                  }}
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a 
                   href="#our-services" 
                   className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                   onClick={(e) => {
@@ -179,16 +167,6 @@ export function Hero() {
             }}
           >
             <div className="py-2 px-4 flex flex-col items-end">
-              <a 
-                href="#home"
-                className="block py-1.5 text-white text-base font-medium"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('home');
-                }}
-              >
-                Home
-              </a>
               <a 
                 href="#our-services"
                 className="block py-1.5 text-white text-base font-medium"

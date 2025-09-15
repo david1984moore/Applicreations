@@ -56,16 +56,6 @@ export function Footer2() {
             }}
           >
             <a 
-              href="#home" 
-              className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('home');
-              }}
-            >
-              Home
-            </a>
-            <a 
               href="#our-services" 
               className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
               onClick={(e) => {
