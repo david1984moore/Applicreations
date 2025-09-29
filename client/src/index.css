@@ -634,29 +634,38 @@ body {
     content: none !important;
   }
 
-  /* Completely disable any style changes for Pay link and its parent */
+  /* NUCLEAR OPTION: Completely disable any style changes for Pay link and its parent */
   #pay-nav-item,
-  #pay-nav-item:hover {
+  #pay-nav-item:hover,
+  #pay-nav-item:active,
+  #pay-nav-item:focus {
     opacity: 1 !important;
     filter: none !important;
     transform: none !important;
     transition: none !important;
     background-color: transparent !important;
+    pointer-events: auto !important;
   }
   
-  #pay-nav-link,
-  #pay-nav-link:hover,
-  #pay-nav-link:active,
-  #pay-nav-link:focus,
-  #pay-nav-link:visited,
-  #pay-nav-link:link {
-    color: #ffffff !important;
+  span#pay-nav-link,
+  #pay-nav-item span,
+  #pay-nav-item #pay-nav-link,
+  span#pay-nav-link:hover,
+  #pay-nav-item:hover span,
+  #pay-nav-item:hover #pay-nav-link,
+  span#pay-nav-link:active,
+  span#pay-nav-link:focus {
+    color: rgb(255, 255, 255) !important;
     background-color: transparent !important;
     text-decoration: none !important;
     opacity: 1 !important;
     filter: none !important;
+    brightness: 1 !important;
+    contrast: 1 !important;
     transition: none !important;
     transform: none !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+    text-shadow: none !important;
   }
   
   #pay-nav-link::after,
