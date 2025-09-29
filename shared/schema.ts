@@ -106,10 +106,12 @@ export const billsInsertSchema = createInsertSchema(bills, {
   customerEmail: (schema) => schema.email("Please enter a valid email address"),
   amount: (schema) => schema.refine(val => parseFloat(val) > 0, "Amount must be greater than 0"),
   description: (schema) => schema.min(1, "Description is required"),
-  dueDate: () => z.preprocess(
-    (val) => (val === '' || val === null ? undefined : val),
-    z.coerce.date()
-  ).optional().nullable(),
+}).extend({
+  dueDate: z.union([z.string(), z.date(), z.null(), z.undefined()]).optional().nullable().transform(val => {
+    if (!val || val === '') return null;
+    if (val instanceof Date) return val;
+    return new Date(val);
+  }),
 });
 
 export const billsSelectSchema = createSelectSchema(bills);
