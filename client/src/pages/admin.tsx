@@ -72,8 +72,20 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
     }
   });
 
+  // Validate form fields
+  const isFormValid = 
+    formData.accountNumber.trim().length > 0 &&
+    formData.customerName.trim().length >= 2 &&
+    formData.customerEmail.trim().length > 0 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.customerEmail) &&
+    formData.amount.trim().length > 0 &&
+    parseFloat(formData.amount || "0") > 0 &&
+    formData.description.trim().length > 0;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isFormValid) return;
     
     // Ensure amount is properly formatted as a decimal string
     const formattedAmount = parseFloat(formData.amount || "0").toFixed(2);
@@ -84,7 +96,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
       customerEmail: formData.customerEmail,
       amount: formattedAmount,
       description: formData.description,
-      dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
+      dueDate: formData.dueDate ? formData.dueDate : undefined
     });
   };
 
@@ -103,78 +115,86 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
             Create a new bill for a customer. An email notification will be sent automatically with payment instructions.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto flex-1 pr-2">
-          <div>
-            <Label htmlFor="accountNumber">Account Number</Label>
-            <Input
-              id="accountNumber"
-              type="text"
-              placeholder="ACCT-001"
-              value={formData.accountNumber}
-              onChange={(e) => setFormData(prev => ({ ...prev, accountNumber: e.target.value }))}
-              required
-            />
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
+          <div className="space-y-4 overflow-y-auto flex-1 pr-2">
+            <div>
+              <Label htmlFor="accountNumber">Account Number</Label>
+              <Input
+                id="accountNumber"
+                type="text"
+                placeholder="ACCT-001"
+                value={formData.accountNumber}
+                onChange={(e) => setFormData(prev => ({ ...prev, accountNumber: e.target.value }))}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="customerName">Customer Name</Label>
+              <Input
+                id="customerName"
+                type="text"
+                placeholder="John Smith"
+                value={formData.customerName}
+                onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="customerEmail">Customer Email</Label>
+              <Input
+                id="customerEmail"
+                type="email"
+                placeholder="john@example.com"
+                value={formData.customerEmail}
+                onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
+                required
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                Bill notification will be sent to this email
+              </p>
+            </div>
+            <div>
+              <Label htmlFor="amount">Amount</Label>
+              <Input
+                id="amount"
+                type="number"
+                step="0.01"
+                min="0.01"
+                placeholder="150.00"
+                value={formData.amount}
+                onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                placeholder="Monthly service fee"
+                value={formData.description}
+                onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="dueDate">Due Date (Optional)</Label>
+              <Input
+                id="dueDate"
+                type="date"
+                value={formData.dueDate}
+                onChange={(e) => setFormData(prev => ({ ...prev, dueDate: e.target.value }))}
+              />
+            </div>
           </div>
-          <div>
-            <Label htmlFor="customerName">Customer Name</Label>
-            <Input
-              id="customerName"
-              type="text"
-              placeholder="John Smith"
-              value={formData.customerName}
-              onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
-              required
-            />
+          <div className="pt-4 border-t mt-4">
+            <Button 
+              type="submit" 
+              disabled={!isFormValid || addBillMutation.isPending} 
+              className="w-full"
+            >
+              {addBillMutation.isPending ? "Creating..." : "Create Bill"}
+            </Button>
           </div>
-          <div>
-            <Label htmlFor="customerEmail">Customer Email</Label>
-            <Input
-              id="customerEmail"
-              type="email"
-              placeholder="john@example.com"
-              value={formData.customerEmail}
-              onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
-              required
-            />
-            <p className="text-sm text-muted-foreground mt-1">
-              Bill notification will be sent to this email
-            </p>
-          </div>
-          <div>
-            <Label htmlFor="amount">Amount</Label>
-            <Input
-              id="amount"
-              type="number"
-              step="0.01"
-              min="0.01"
-              placeholder="150.00"
-              value={formData.amount}
-              onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              placeholder="Monthly service fee"
-              value={formData.description}
-              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="dueDate">Due Date (Optional)</Label>
-            <Input
-              id="dueDate"
-              type="date"
-              value={formData.dueDate}
-              onChange={(e) => setFormData(prev => ({ ...prev, dueDate: e.target.value }))}
-            />
-          </div>
-          <Button type="submit" disabled={addBillMutation.isPending} className="w-full">
-            {addBillMutation.isPending ? "Creating..." : "Create Bill"}
-          </Button>
         </form>
       </DialogContent>
     </Dialog>
