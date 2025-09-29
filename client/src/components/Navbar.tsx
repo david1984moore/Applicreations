@@ -131,17 +131,19 @@ export function Navbar() {
             </li>
 
             <li id="pay-nav-item">
-              <a 
+              <span 
                 id="pay-nav-link"
-                href="/pay"
                 className="font-medium text-sm cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
+                style={{
+                  color: '#ffffff',
+                  display: 'inline-block'
+                }}
+                onClick={() => {
                   window.location.href = '/pay';
                 }}
               >
                 Pay
-              </a>
+              </span>
             </li>
 
             <li>
