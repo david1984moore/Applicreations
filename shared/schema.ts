@@ -1,22 +1,40 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { pgTable, text, serial, integer, boolean, timestamp, varchar, jsonb, index, decimal } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { relations } from "drizzle-orm";
 
-// Users table (keeping the existing users table)
+// Session storage table for Replit Auth
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)]
+);
+
+// Users table - Enhanced for Replit Auth while keeping existing structure
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+  id: serial("id").primaryKey(), // Keep existing serial ID
+  username: text("username").unique(), // Make optional for Replit Auth
+  password: text("password"), // Make optional for Replit Auth
+  // Replit Auth fields
+  replitId: text("replit_id").unique(), // Store Replit user ID here
+  email: text("email").unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
+export const insertUserSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type User = z.infer<typeof selectUserSchema>;
+export type UpsertUser = Pick<InsertUser, 'replitId' | 'email' | 'firstName' | 'lastName' | 'profileImageUrl'>;
 
 // Contacts table for storing form submissions
 export const contacts = pgTable("contacts", {
@@ -44,3 +62,58 @@ export const insertContactSchema = createInsertSchema(contacts);
 
 export type ContactInsert = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
+
+// Bills table for customer billing
+export const bills = pgTable("bills", {
+  id: serial("id").primaryKey(),
+  accountNumber: text("account_number").notNull().unique(),
+  customerName: text("customer_name").notNull(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  description: text("description").notNull(),
+  dueDate: timestamp("due_date"),
+  status: text("status").notNull().default("unpaid"), // 'paid' | 'unpaid' | 'overdue'
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Payments table for tracking transactions
+export const payments = pgTable("payments", {
+  id: serial("id").primaryKey(),
+  billId: integer("bill_id").references(() => bills.id).notNull(),
+  stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  paymentMethod: text("payment_method").notNull(), // 'card' | 'ach'
+  status: text("status").notNull().default("pending"), // 'pending' | 'succeeded' | 'failed'
+  customerEmail: text("customer_email"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  processedAt: timestamp("processed_at"),
+});
+
+// Define relationships
+export const billsRelations = relations(bills, ({ many }) => ({
+  payments: many(payments)
+}));
+
+export const paymentsRelations = relations(payments, ({ one }) => ({
+  bill: one(bills, { fields: [payments.billId], references: [bills.id] })
+}));
+
+// Validation schemas for bills
+export const billsInsertSchema = createInsertSchema(bills, {
+  accountNumber: (schema) => schema.min(1, "Account number is required"),
+  customerName: (schema) => schema.min(2, "Customer name must be at least 2 characters"),
+  amount: (schema) => schema.refine(val => parseFloat(val) > 0, "Amount must be greater than 0"),
+  description: (schema) => schema.min(1, "Description is required"),
+});
+
+export const billsSelectSchema = createSelectSchema(bills);
+
+export type BillInsert = z.infer<typeof billsInsertSchema>;
+export type Bill = z.infer<typeof billsSelectSchema>;
+
+// Validation schemas for payments
+export const paymentsInsertSchema = createInsertSchema(payments);
+export const paymentsSelectSchema = createSelectSchema(payments);
+
+export type PaymentInsert = z.infer<typeof paymentsInsertSchema>;
+export type Payment = z.infer<typeof paymentsSelectSchema>;

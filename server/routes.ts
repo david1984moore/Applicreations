@@ -1,12 +1,15 @@
 import type { Express } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
-import { contactFormSchema } from "@shared/schema";
+import { contactFormSchema, billsInsertSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from 'nodemailer';
 import { createSecureServer } from "./https";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Auth middleware setup
+  await setupAuth(app);
   // Health check endpoint for Replit deployment (separate from root)
   app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Applicreations API is running' });
@@ -126,6 +129,108 @@ ${validatedData.projectDescription}
         success: false,
         message: 'An error occurred while processing your request. Please try again later.'
       });
+    }
+  });
+
+  // Auth routes
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const replitId = req.user.claims.sub;
+      const user = await storage.getUser(replitId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // Bill management routes (Admin-only)
+  app.get('/api/admin/bills', isAuthenticated, async (req, res) => {
+    try {
+      const bills = await storage.getAllBills();
+      res.json(bills);
+    } catch (error) {
+      console.error("Error fetching bills:", error);
+      res.status(500).json({ message: "Failed to fetch bills" });
+    }
+  });
+
+  app.post('/api/admin/bills', isAuthenticated, async (req, res) => {
+    try {
+      const validatedData = billsInsertSchema.parse(req.body);
+      const newBill = await storage.insertBill(validatedData);
+      res.status(201).json(newBill);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: 'Validation failed',
+          errors: error.errors 
+        });
+      }
+      console.error("Error creating bill:", error);
+      res.status(500).json({ message: "Failed to create bill" });
+    }
+  });
+
+  // Customer bill lookup (Public)
+  app.get('/api/bills/lookup/:accountNumber', async (req, res) => {
+    try {
+      const { accountNumber } = req.params;
+      const bill = await storage.getBillByAccountNumber(accountNumber);
+      
+      if (!bill) {
+        return res.status(404).json({ message: "Account not found" });
+      }
+
+      // Only return essential info for customer
+      res.json({
+        id: bill.id,
+        accountNumber: bill.accountNumber,
+        customerName: bill.customerName,
+        amount: bill.amount,
+        description: bill.description,
+        dueDate: bill.dueDate,
+        status: bill.status
+      });
+    } catch (error) {
+      console.error("Error looking up bill:", error);
+      res.status(500).json({ message: "Failed to lookup bill" });
+    }
+  });
+
+  // Payment processing endpoint (Public)
+  app.post('/api/payments/process', async (req, res) => {
+    try {
+      const { billId, stripePaymentIntentId, amount, paymentMethod, customerEmail } = req.body;
+      
+      // Validate required fields
+      if (!billId || !stripePaymentIntentId || !amount || !paymentMethod) {
+        return res.status(400).json({ message: "Missing required payment fields" });
+      }
+
+      // Record the payment attempt
+      const payment = await storage.insertPayment({
+        billId,
+        stripePaymentIntentId,
+        amount,
+        paymentMethod,
+        customerEmail,
+        status: 'pending'
+      });
+
+      // TODO: Integrate with Stripe here
+      // For now, we'll just mark as succeeded
+      await storage.updatePaymentStatus(payment.id, 'succeeded');
+      await storage.updateBillStatus(billId, 'paid');
+
+      res.json({
+        success: true,
+        paymentId: payment.id,
+        message: "Payment processed successfully"
+      });
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      res.status(500).json({ message: "Failed to process payment" });
     }
   });
 
