@@ -19,7 +19,8 @@ function createTransporter() {
 // Read logo file and convert to base64 for embedding in email
 function getLogoBase64(): string {
   try {
-    const logoPath = path.join(process.cwd(), 'client/public/images/applicreations-logo.png');
+    // Use server-side logo path for more reliable deployment
+    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-logo.png');
     const logoBuffer = fs.readFileSync(logoPath);
     return logoBuffer.toString('base64');
   } catch (error) {
