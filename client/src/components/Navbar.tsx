@@ -133,7 +133,20 @@ export function Navbar() {
             <li>
               <Link 
                 href="/pay"
-                className="font-medium text-sm text-white"
+                className="font-medium text-sm text-white cursor-pointer"
+                style={{ 
+                  color: 'white',
+                  textDecoration: 'none',
+                  transition: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.textDecoration = 'none';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.textDecoration = 'none';
+                }}
               >
                 Pay
               </Link>
