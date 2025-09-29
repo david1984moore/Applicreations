@@ -609,6 +609,31 @@ body {
     width: 100%;
   }
 
+  /* Disable hover effects for specific elements */
+  .no-hover-effect,
+  .no-hover-effect:hover,
+  .no-hover-effect:active,
+  .no-hover-effect:focus,
+  .no-hover-effect:visited {
+    color: white !important;
+    text-decoration: none !important;
+    transition: none !important;
+    background-color: transparent !important;
+  }
+  
+  .no-hover-effect::after,
+  .no-hover-effect::before {
+    display: none !important;
+    content: none !important;
+  }
+  
+  .no-hover-effect:hover::after,
+  .no-hover-effect:hover::before {
+    display: none !important;
+    width: 0 !important;
+    content: none !important;
+  }
+
   /* The navbar-logo styling is now defined above */
 
   /* Navbar styles */
