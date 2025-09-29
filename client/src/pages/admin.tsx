@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
-import { isUnauthorizedError } from "@/lib/authUtils";
+import { isUnauthorizedError, isForbiddenError } from "@/lib/authUtils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -449,11 +449,22 @@ export default function AdminPage() {
   }, [isAuthenticated, isLoading, toast]);
 
   // Fetch bills
-  const { data: bills, isLoading: billsLoading } = useQuery<Bill[]>({
+  const { data: bills, isLoading: billsLoading, error: billsError } = useQuery<Bill[]>({
     queryKey: ["/api/admin/bills"],
     enabled: isAuthenticated,
     retry: false,
   });
+
+  // Check for access denied error
+  useEffect(() => {
+    if (billsError && isForbiddenError(billsError as Error)) {
+      toast({
+        title: "Access Denied",
+        description: "You are not authorized to access this admin area. Please contact the administrator.",
+        variant: "destructive",
+      });
+    }
+  }, [billsError, toast]);
 
   const handleBillAdded = () => {
     queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
@@ -481,6 +492,35 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return null; // Will redirect to login
+  }
+
+  // Show access denied screen if not authorized
+  if (billsError && isForbiddenError(billsError as Error)) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+        <Card className="max-w-md">
+          <CardHeader>
+            <CardTitle className="text-red-600">Access Denied</CardTitle>
+            <CardDescription>
+              You are not authorized to access this admin area.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Your account does not have administrator privileges. If you believe this is an error, please contact the system administrator.
+            </p>
+            <div className="flex gap-2">
+              <Button onClick={() => window.location.href = "/"} variant="outline" className="flex-1">
+                Go to Home
+              </Button>
+              <Button onClick={handleLogout} variant="default" className="flex-1">
+                Logout
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   const totalBills = bills?.length || 0;
