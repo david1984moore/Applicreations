@@ -47,7 +47,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
       });
       onBillAdded();
     },
-    onError: (error) => {
+    onError: (error: any) => {
       if (isUnauthorizedError(error)) {
         toast({
           title: "Unauthorized",
@@ -59,9 +59,14 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
         }, 500);
         return;
       }
+      
+      // Show specific error message if available
+      const errorMessage = error?.message || error?.errors?.[0]?.message || "Failed to create bill. Please try again.";
+      console.error("Create bill error:", error);
+      
       toast({
         title: "Error",
-        description: "Failed to create bill. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     }
@@ -87,14 +92,14 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
           Add New Bill
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Add New Bill</DialogTitle>
           <DialogDescription>
             Create a new bill for a customer. An email notification will be sent automatically with payment instructions.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto flex-1 pr-2">
           <div>
             <Label htmlFor="accountNumber">Account Number</Label>
             <Input
@@ -137,6 +142,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
               id="amount"
               type="number"
               step="0.01"
+              min="0.01"
               placeholder="150.00"
               value={formData.amount}
               onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
@@ -235,14 +241,14 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
           Edit
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Edit Bill</DialogTitle>
           <DialogDescription>
             Update the bill information for {bill.customerName}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto flex-1 pr-2">
           <div>
             <Label htmlFor="edit-accountNumber">Account Number</Label>
             <Input
@@ -279,6 +285,7 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
               id="edit-amount"
               type="number"
               step="0.01"
+              min="0.01"
               value={formData.amount}
               onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
               required
