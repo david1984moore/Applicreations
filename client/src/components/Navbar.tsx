@@ -130,7 +130,7 @@ export function Navbar() {
               </a>
             </li>
 
-            <li>
+            <li id="pay-nav-item">
               <a 
                 id="pay-nav-link"
                 href="/pay"
