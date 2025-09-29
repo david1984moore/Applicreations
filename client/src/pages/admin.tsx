@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "@/hooks/useAuth";
+import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError, isForbiddenError } from "@/lib/authUtils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -430,42 +430,38 @@ function DeleteBillButton({ bill, onBillDeleted }: { bill: Bill; onBillDeleted: 
 }
 
 export default function AdminPage() {
-  const { user, isLoading, isAuthenticated } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [, setLocation] = useLocation();
+
+  // Check admin authentication status
+  const { data: authStatus, isLoading: authLoading } = useQuery<{ authenticated: boolean }>({
+    queryKey: ["/api/admin/auth/status"],
+    retry: false,
+  });
+
+  const isAuthenticated = authStatus?.authenticated === true;
 
   // Redirect to login if not authenticated
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!authLoading && !isAuthenticated) {
       toast({
-        title: "Unauthorized",
-        description: "You are logged out. Logging in again...",
+        title: "Authentication Required",
+        description: "Please log in to access the admin dashboard",
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        setLocation("/admin/login");
       }, 500);
-      return;
     }
-  }, [isAuthenticated, isLoading, toast]);
+  }, [isAuthenticated, authLoading, toast, setLocation]);
 
   // Fetch bills
-  const { data: bills, isLoading: billsLoading, error: billsError } = useQuery<Bill[]>({
+  const { data: bills, isLoading: billsLoading } = useQuery<Bill[]>({
     queryKey: ["/api/admin/bills"],
     enabled: isAuthenticated,
     retry: false,
   });
-
-  // Check for access denied error
-  useEffect(() => {
-    if (billsError && isForbiddenError(billsError as Error)) {
-      toast({
-        title: "Access Denied",
-        description: "You are not authorized to access this admin area. Please contact the administrator.",
-        variant: "destructive",
-      });
-    }
-  }, [billsError, toast]);
 
   const handleBillAdded = () => {
     queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
@@ -479,11 +475,24 @@ export default function AdminPage() {
     queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
   };
 
-  const handleLogout = () => {
-    window.location.href = "/api/logout";
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/admin/logout", { method: "POST" });
+      toast({
+        title: "Logged Out",
+        description: "You have been logged out successfully",
+      });
+      setLocation("/admin/login");
+    } catch (error) {
+      toast({
+        title: "Logout Failed",
+        description: "An error occurred during logout",
+        variant: "destructive",
+      });
+    }
   };
 
-  if (isLoading) {
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full" />
@@ -493,35 +502,6 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return null; // Will redirect to login
-  }
-
-  // Show access denied screen if not authorized
-  if (billsError && isForbiddenError(billsError as Error)) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
-        <Card className="max-w-md">
-          <CardHeader>
-            <CardTitle className="text-red-600">Access Denied</CardTitle>
-            <CardDescription>
-              You are not authorized to access this admin area.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Your account does not have administrator privileges. If you believe this is an error, please contact the system administrator.
-            </p>
-            <div className="flex gap-2">
-              <Button onClick={() => window.location.href = "/"} variant="outline" className="flex-1">
-                Go to Home
-              </Button>
-              <Button onClick={handleLogout} variant="default" className="flex-1">
-                Logout
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
   }
 
   const totalBills = bills?.length || 0;
@@ -546,7 +526,7 @@ export default function AdminPage() {
               Admin Dashboard
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              Welcome back, {user?.firstName || user?.email}
+              Manage customer bills and track payments
             </p>
           </div>
           <Button variant="outline" onClick={handleLogout}>

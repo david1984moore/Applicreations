@@ -133,8 +133,7 @@ export function Navbar() {
             <li>
               <Link 
                 href="/pay"
-                className="nav-link font-medium text-sm text-white"
-                style={{ transition: 'none' }}
+                className="font-medium text-sm text-white"
               >
                 Pay
               </Link>

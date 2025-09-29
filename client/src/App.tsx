@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Home from "@/pages/home";
 import PayPage from "@/pages/pay";
 import AdminPage from "@/pages/admin";
+import AdminLoginPage from "@/pages/admin-login";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/pay" component={PayPage} />
+      <Route path="/admin/login" component={AdminLoginPage} />
       <Route path="/admin" component={AdminPage} />
       <Route component={NotFound} />
     </Switch>

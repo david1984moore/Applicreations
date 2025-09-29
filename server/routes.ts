@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, RequestHandler } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
 import { contactFormSchema, billsInsertSchema } from "@shared/schema";
@@ -8,6 +8,14 @@ import { createSecureServer } from "./https";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import Stripe from "stripe";
 import { sendBillNotificationEmail } from "./email";
+
+// Simple admin authentication middleware
+const isAdminAuthenticated: RequestHandler = (req, res, next) => {
+  if ((req.session as any).isAdminAuthenticated === true) {
+    return next();
+  }
+  return res.status(401).json({ message: "Unauthorized - Please login" });
+};
 
 // Initialize Stripe with secret key
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -20,6 +28,49 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware setup
   await setupAuth(app);
+  
+  // Admin login endpoint
+  app.post('/api/admin/login', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      const adminUsername = process.env.ADMIN_USERNAME;
+      const adminPassword = process.env.ADMIN_PASSWORD;
+      
+      if (!adminUsername || !adminPassword) {
+        console.error('Admin credentials not configured');
+        return res.status(500).json({ message: 'Server configuration error' });
+      }
+      
+      if (username === adminUsername && password === adminPassword) {
+        // Set session flag for admin authentication
+        (req.session as any).isAdminAuthenticated = true;
+        return res.status(200).json({ success: true, message: 'Login successful' });
+      } else {
+        return res.status(401).json({ message: 'Invalid username or password' });
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      return res.status(500).json({ message: 'Login failed' });
+    }
+  });
+  
+  // Admin logout endpoint
+  app.post('/api/admin/logout', (req, res) => {
+    (req.session as any).isAdminAuthenticated = false;
+    res.status(200).json({ success: true, message: 'Logged out successfully' });
+  });
+  
+  // Check admin auth status
+  app.get('/api/admin/auth/status', (req, res) => {
+    const isAuthenticated = (req.session as any).isAdminAuthenticated === true;
+    if (isAuthenticated) {
+      return res.status(200).json({ authenticated: true });
+    } else {
+      return res.status(401).json({ authenticated: false });
+    }
+  });
+  
   // Health check endpoint for Replit deployment (separate from root)
   app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Applicreations API is running' });
@@ -155,7 +206,7 @@ ${validatedData.projectDescription}
   });
 
   // Bill management routes (Admin-only)
-  app.get('/api/admin/bills', isAuthenticated, async (req, res) => {
+  app.get('/api/admin/bills', isAdminAuthenticated, async (req, res) => {
     try {
       const bills = await storage.getAllBills();
       res.json(bills);
@@ -165,7 +216,7 @@ ${validatedData.projectDescription}
     }
   });
 
-  app.post('/api/admin/bills', isAuthenticated, async (req, res) => {
+  app.post('/api/admin/bills', isAdminAuthenticated, async (req, res) => {
     try {
       const validatedData = billsInsertSchema.parse(req.body);
       const newBill = await storage.insertBill(validatedData);
@@ -194,7 +245,7 @@ ${validatedData.projectDescription}
   });
 
   // Update bill (Admin only)
-  app.put('/api/admin/bills/:id', isAuthenticated, async (req, res) => {
+  app.put('/api/admin/bills/:id', isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const billId = parseInt(id);
@@ -230,7 +281,7 @@ ${validatedData.projectDescription}
   });
 
   // Delete bill (Admin only)
-  app.delete('/api/admin/bills/:id', isAuthenticated, async (req, res) => {
+  app.delete('/api/admin/bills/:id', isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const billId = parseInt(id);
