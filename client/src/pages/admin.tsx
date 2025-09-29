@@ -74,11 +74,15 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Ensure amount is properly formatted as a decimal string
+    const formattedAmount = parseFloat(formData.amount || "0").toFixed(2);
+    
     addBillMutation.mutate({
       accountNumber: formData.accountNumber,
       customerName: formData.customerName,
       customerEmail: formData.customerEmail,
-      amount: formData.amount,
+      amount: formattedAmount,
       description: formData.description,
       dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
     });
@@ -223,11 +227,15 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Ensure amount is properly formatted as a decimal string
+    const formattedAmount = parseFloat(formData.amount || "0").toFixed(2);
+    
     updateBillMutation.mutate({
       accountNumber: formData.accountNumber,
       customerName: formData.customerName,
       customerEmail: formData.customerEmail,
-      amount: formData.amount,
+      amount: formattedAmount,
       description: formData.description,
       dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
     });
