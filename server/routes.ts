@@ -284,27 +284,43 @@ ${validatedData.projectDescription}
     try {
       const { amount, billId, paymentMethod = 'card' } = req.body;
       
+      console.log("Creating payment intent with:", { amount, billId, paymentMethod });
+      
       if (!amount || !billId) {
         return res.status(400).json({ message: "Amount and billId are required" });
       }
 
       // Convert amount to cents (Stripe requires cents)
       const amountInCents = Math.round(parseFloat(amount) * 100);
+      console.log("Amount in cents:", amountInCents);
 
       // Create payment intent with Stripe
-      const paymentIntent = await stripe.paymentIntents.create({
+      const paymentIntentConfig = {
         amount: amountInCents,
         currency: 'usd',
         payment_method_types: paymentMethod === 'ach' ? ['us_bank_account'] : ['card'],
         metadata: {
           billId: billId.toString()
         }
+      };
+      
+      console.log("Stripe payment intent config:", paymentIntentConfig);
+      
+      const paymentIntent = await stripe.paymentIntents.create(paymentIntentConfig);
+      
+      console.log("Stripe payment intent created:", {
+        id: paymentIntent.id,
+        client_secret: paymentIntent.client_secret ? "present" : "missing",
+        status: paymentIntent.status
       });
 
-      res.json({ 
+      const response = { 
         clientSecret: paymentIntent.client_secret,
         paymentIntentId: paymentIntent.id
-      });
+      };
+      
+      console.log("Sending response:", response);
+      res.json(response);
     } catch (error: any) {
       console.error("Error creating payment intent:", error);
       res.status(500).json({ message: "Error creating payment intent: " + error.message });
