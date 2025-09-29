@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'wouter';
 import { Logo } from './Logo';
 
 export function Navbar() {
@@ -130,6 +131,14 @@ export function Navbar() {
             </li>
 
             <li>
+              <Link href="/pay">
+                <a className="nav-link font-medium text-sm transition-colors duration-300 text-white hover:text-blue-200">
+                  Pay
+                </a>
+              </Link>
+            </li>
+
+            <li>
               <a 
                 href="#contact" 
                 className="nav-link font-medium text-sm transition-colors duration-300 text-white"
@@ -185,6 +194,15 @@ export function Navbar() {
             >
               Services
             </a>
+
+            <Link href="/pay">
+              <a 
+                className="block py-1.5 text-white text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Pay
+              </a>
+            </Link>
 
             <a 
               href="#contact"

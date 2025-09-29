@@ -6,6 +6,15 @@ import { z } from "zod";
 import nodemailer from 'nodemailer';
 import { createSecureServer } from "./https";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import Stripe from "stripe";
+
+// Initialize Stripe with secret key
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+}
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2025-08-27.basil",
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware setup
@@ -198,6 +207,38 @@ ${validatedData.projectDescription}
     }
   });
 
+  // Create Stripe payment intent
+  app.post('/api/create-payment-intent', async (req, res) => {
+    try {
+      const { amount, billId, paymentMethod = 'card' } = req.body;
+      
+      if (!amount || !billId) {
+        return res.status(400).json({ message: "Amount and billId are required" });
+      }
+
+      // Convert amount to cents (Stripe requires cents)
+      const amountInCents = Math.round(parseFloat(amount) * 100);
+
+      // Create payment intent with Stripe
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amountInCents,
+        currency: 'usd',
+        payment_method_types: paymentMethod === 'ach' ? ['us_bank_account'] : ['card'],
+        metadata: {
+          billId: billId.toString()
+        }
+      });
+
+      res.json({ 
+        clientSecret: paymentIntent.client_secret,
+        paymentIntentId: paymentIntent.id
+      });
+    } catch (error: any) {
+      console.error("Error creating payment intent:", error);
+      res.status(500).json({ message: "Error creating payment intent: " + error.message });
+    }
+  });
+
   // Payment processing endpoint (Public)
   app.post('/api/payments/process', async (req, res) => {
     try {
@@ -208,19 +249,24 @@ ${validatedData.projectDescription}
         return res.status(400).json({ message: "Missing required payment fields" });
       }
 
-      // Record the payment attempt
+      // Verify payment with Stripe
+      const paymentIntent = await stripe.paymentIntents.retrieve(stripePaymentIntentId);
+      
+      if (paymentIntent.status !== 'succeeded') {
+        return res.status(400).json({ message: "Payment not completed" });
+      }
+
+      // Record the successful payment
       const payment = await storage.insertPayment({
         billId,
         stripePaymentIntentId,
         amount,
         paymentMethod,
         customerEmail,
-        status: 'pending'
+        status: 'succeeded'
       });
 
-      // TODO: Integrate with Stripe here
-      // For now, we'll just mark as succeeded
-      await storage.updatePaymentStatus(payment.id, 'succeeded');
+      // Mark bill as paid
       await storage.updateBillStatus(billId, 'paid');
 
       res.json({
