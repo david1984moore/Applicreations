@@ -16,24 +16,8 @@ function createTransporter() {
   });
 }
 
-// Read logo file and convert to base64 for embedding in email
-function getLogoBase64(): string {
-  try {
-    // Use server-side logo path for more reliable deployment
-    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-logo.png');
-    const logoBuffer = fs.readFileSync(logoPath);
-    return logoBuffer.toString('base64');
-  } catch (error) {
-    console.error('Error reading logo file:', error);
-    return '';
-  }
-}
-
 // Generate branded email HTML for bill notification
-function generateBillNotificationHTML(bill: Bill, paymentUrl: string): string {
-  const logoBase64 = getLogoBase64();
-  const logoSrc = logoBase64 ? `data:image/png;base64,${logoBase64}` : '';
-  
+function generateBillNotificationHTML(bill: Bill, paymentUrl: string, hasLogo: boolean = false): string {
   const amount = typeof bill.amount === 'string' ? parseFloat(bill.amount) : bill.amount;
   const formattedAmount = amount.toFixed(2);
   const dueDate = bill.dueDate ? new Date(bill.dueDate).toLocaleDateString('en-US', { 
@@ -57,8 +41,15 @@ function generateBillNotificationHTML(bill: Bill, paymentUrl: string): string {
         <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header with Logo -->
           <tr>
-            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
-              ${logoSrc ? `<img src="${logoSrc}" alt="Applicreations" style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />` : '<div style="font-size: 28px; font-weight: bold; color: white;">Applicreations</div>'}
+            <td style="padding: 40px 40px 20px; text-align: center; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  ${hasLogo ? '<td align="center" valign="middle" style="padding-right: 12px;"><img src="cid:logo" alt="Applicreations Logo" width="60" style="display: block; border: none;" /></td>' : ''}
+                  <td align="center" valign="middle">
+                    <span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
           
@@ -105,7 +96,7 @@ function generateBillNotificationHTML(bill: Bill, paymentUrl: string): string {
               <table role="presentation" style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td align="center" style="padding: 10px 0 30px;">
-                    <a href="${paymentUrl}" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(139, 92, 246, 0.3);">
+                    <a href="${paymentUrl}" style="display: inline-block; padding: 16px 40px; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(139, 92, 246, 0.3);">
                       Pay Bill Now
                     </a>
                   </td>
@@ -209,12 +200,31 @@ export async function sendBillNotificationEmail(bill: Bill): Promise<boolean> {
 
     const transporter = createTransporter();
     
+    // Prepare logo attachment
+    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-logo.png');
+    const attachments = [];
+    let hasLogo = false;
+    
+    try {
+      if (fs.existsSync(logoPath)) {
+        attachments.push({
+          filename: 'applicreations-logo.png',
+          path: logoPath,
+          cid: 'logo'
+        });
+        hasLogo = true;
+      }
+    } catch (logoError) {
+      console.warn('Could not attach logo to email:', logoError);
+    }
+    
     const mailOptions = {
       from: `"Applicreations" <${process.env.EMAIL_USER || 'solutions@applicreations.com'}>`,
       to: bill.customerEmail,
       subject: `Bill from Applicreations - Account ${bill.accountNumber}`,
       text: generateBillNotificationText(bill, paymentUrl),
-      html: generateBillNotificationHTML(bill, paymentUrl),
+      html: generateBillNotificationHTML(bill, paymentUrl, hasLogo),
+      attachments: attachments
     };
 
     console.log(`Sending bill notification email to ${bill.customerEmail}...`);
