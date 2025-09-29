@@ -5,6 +5,7 @@ import { Switch, Route } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import Home from "@/pages/home";
 import PayPage from "@/pages/pay";
+import PaySuccess from "@/pages/pay-success";
 import AdminPage from "@/pages/admin";
 import AdminLoginPage from "@/pages/admin-login";
 import NotFound from "@/pages/not-found";

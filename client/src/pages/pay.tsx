@@ -40,73 +40,28 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
     setIsProcessing(true);
 
     try {
-      // Confirm the payment
-      const { error, paymentIntent } = await stripe.confirmPayment({
+      // Confirm the payment - allow redirects for ACH bank verification
+      const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${window.location.origin}/pay/success`,
+          return_url: `${window.location.origin}/pay/success?account=${bill.accountNumber}`,
         },
-        redirect: 'if_required'
       });
 
       if (error) {
+        // This will only trigger if there's an actual error
+        // For ACH, Stripe will redirect to bank verification before this
         toast({
           title: "Payment Failed",
           description: error.message,
           variant: "destructive",
         });
+        setIsProcessing(false);
         return;
       }
 
-      // If no error and paymentIntent exists, check the status
-      if (paymentIntent) {
-        // Handle different payment statuses
-        if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing') {
-          // Record the payment on the server
-          try {
-            const response = await apiRequest("POST", "/api/payments/process", {
-              billId: bill.id,
-              stripePaymentIntentId: paymentIntent.id
-            });
-            
-            await response.json();
-            
-            // Show appropriate message based on status
-            if (paymentIntent.status === 'processing') {
-              toast({
-                title: "Payment Processing",
-                description: "Your bank transfer is being processed. This typically takes 2-4 business days.",
-              });
-            } else {
-              toast({
-                title: "Payment Successful",
-                description: "Thank you for your payment!",
-              });
-            }
-            onSuccess();
-          } catch (recordError: any) {
-            console.error('Error recording payment:', recordError);
-            const errorMessage = recordError.message || "Unknown error";
-            toast({
-              title: "Payment Confirmation Issue",
-              description: `Payment was processed but there was an issue recording it: ${errorMessage}. Please contact support.`,
-              variant: "destructive",
-            });
-          }
-        } else if (paymentIntent.status === 'requires_action' || paymentIntent.status === 'requires_payment_method') {
-          toast({
-            title: "Bank Account Verification Required",
-            description: "For ACH payments, please use a credit/debit card instead, or contact support@applicreations.com to set up ACH verification.",
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "Payment Incomplete",
-            description: `Payment status: ${paymentIntent.status}. Please try again or contact support.`,
-            variant: "destructive",
-          });
-        }
-      }
+      // If we reach here without being redirected, payment succeeded immediately (credit card)
+      // For ACH, user will be redirected to bank verification and then to success page
     } catch (error) {
       toast({
         title: "Payment Error",
