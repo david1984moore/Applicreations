@@ -634,6 +634,32 @@ body {
     content: none !important;
   }
 
+  /* Completely disable any style changes for Pay link */
+  #pay-nav-link,
+  #pay-nav-link:hover,
+  #pay-nav-link:active,
+  #pay-nav-link:focus,
+  #pay-nav-link:visited,
+  #pay-nav-link:link {
+    color: #ffffff !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  #pay-nav-link::after,
+  #pay-nav-link::before,
+  #pay-nav-link:hover::after,
+  #pay-nav-link:hover::before {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
   /* The navbar-logo styling is now defined above */
 
   /* Navbar styles */

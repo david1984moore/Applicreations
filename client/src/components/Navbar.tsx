@@ -132,21 +132,9 @@ export function Navbar() {
 
             <li>
               <a 
+                id="pay-nav-link"
                 href="/pay"
                 className="font-medium text-sm cursor-pointer"
-                style={{ 
-                  color: 'white !important',
-                  textDecoration: 'none',
-                  transition: 'none',
-                  position: 'relative',
-                  pointerEvents: 'auto'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'white';
-                }}
                 onClick={(e) => {
                   e.preventDefault();
                   window.location.href = '/pay';
