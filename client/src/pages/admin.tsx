@@ -20,6 +20,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
   const [formData, setFormData] = useState({
     accountNumber: "",
     customerName: "",
+    customerEmail: "",
     amount: "",
     description: "",
     dueDate: ""
@@ -39,6 +40,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
       setFormData({
         accountNumber: "",
         customerName: "",
+        customerEmail: "",
         amount: "",
         description: "",
         dueDate: ""
@@ -70,6 +72,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
     addBillMutation.mutate({
       accountNumber: formData.accountNumber,
       customerName: formData.customerName,
+      customerEmail: formData.customerEmail,
       amount: formData.amount,
       description: formData.description,
       dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
@@ -88,7 +91,7 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
         <DialogHeader>
           <DialogTitle>Add New Bill</DialogTitle>
           <DialogDescription>
-            Create a new bill for a customer. They'll be able to pay using their account number.
+            Create a new bill for a customer. An email notification will be sent automatically with payment instructions.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -113,6 +116,20 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
               onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
               required
             />
+          </div>
+          <div>
+            <Label htmlFor="customerEmail">Customer Email</Label>
+            <Input
+              id="customerEmail"
+              type="email"
+              placeholder="john@example.com"
+              value={formData.customerEmail}
+              onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
+              required
+            />
+            <p className="text-sm text-muted-foreground mt-1">
+              Bill notification will be sent to this email
+            </p>
           </div>
           <div>
             <Label htmlFor="amount">Amount</Label>
@@ -159,6 +176,7 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
   const [formData, setFormData] = useState({
     accountNumber: bill.accountNumber,
     customerName: bill.customerName,
+    customerEmail: bill.customerEmail,
     amount: bill.amount,
     description: bill.description,
     dueDate: bill.dueDate ? new Date(bill.dueDate).toISOString().split('T')[0] : ""
@@ -202,6 +220,7 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
     updateBillMutation.mutate({
       accountNumber: formData.accountNumber,
       customerName: formData.customerName,
+      customerEmail: formData.customerEmail,
       amount: formData.amount,
       description: formData.description,
       dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
@@ -241,6 +260,16 @@ function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: ()
               type="text"
               value={formData.customerName}
               onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="edit-customerEmail">Customer Email</Label>
+            <Input
+              id="edit-customerEmail"
+              type="email"
+              value={formData.customerEmail}
+              onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
               required
             />
           </div>

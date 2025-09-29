@@ -7,6 +7,7 @@ import nodemailer from 'nodemailer';
 import { createSecureServer } from "./https";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import Stripe from "stripe";
+import { sendBillNotificationEmail } from "./email";
 
 // Initialize Stripe with secret key
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -168,6 +169,17 @@ ${validatedData.projectDescription}
     try {
       const validatedData = billsInsertSchema.parse(req.body);
       const newBill = await storage.insertBill(validatedData);
+      
+      // Send email notification to customer
+      console.log(`Sending bill notification email for account ${newBill.accountNumber}...`);
+      try {
+        await sendBillNotificationEmail(newBill);
+        console.log('Bill notification email sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send bill notification email:', emailError);
+        // Don't fail the request if email fails - bill was created successfully
+      }
+      
       res.status(201).json(newBill);
     } catch (error) {
       if (error instanceof z.ZodError) {
