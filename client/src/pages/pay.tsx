@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import type { Bill } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { Logo } from "@/components/Logo";
 
 // Initialize Stripe
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
@@ -206,6 +207,13 @@ export default function PayPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
+          {/* Home Button */}
+          <div className="mb-6">
+            <a href="/" className="inline-block hover:opacity-80 transition-opacity">
+              <Logo className="w-12 h-12" />
+            </a>
+          </div>
+          
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">

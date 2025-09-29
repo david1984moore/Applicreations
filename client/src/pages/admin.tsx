@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus, LogOut, DollarSign, Users, FileText, Edit, Trash2 } from "lucide-react";
 import type { Bill, BillInsert } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { Logo } from "@/components/Logo";
 
 function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
   const [open, setOpen] = useState(false);
@@ -531,6 +532,13 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
+        {/* Home Button */}
+        <div className="mb-6">
+          <a href="/" className="inline-block hover:opacity-80 transition-opacity">
+            <Logo className="w-12 h-12" />
+          </a>
+        </div>
+        
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>

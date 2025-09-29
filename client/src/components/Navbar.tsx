@@ -133,7 +133,7 @@ export function Navbar() {
             <li>
               <Link 
                 href="/pay"
-                className="nav-link font-medium text-sm transition-colors duration-300 text-white hover:text-blue-200"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white"
               >
                 Pay
               </Link>
