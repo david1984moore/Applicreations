@@ -157,8 +157,7 @@ export default function PayPage() {
   // Payment intent creation
   const createPaymentIntentMutation = useMutation({
     mutationFn: async ({ amount, billId, paymentMethod }: { amount: string; billId: number; paymentMethod: 'card' | 'ach' }) => {
-      const data = await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod });
-      return data as { clientSecret: string; paymentIntentId: string };
+      return await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod }) as Promise<{ clientSecret: string; paymentIntentId: string }>;
     },
     onSuccess: (data) => {
       setClientSecret(data.clientSecret);
