@@ -131,10 +131,11 @@ export function Navbar() {
             </li>
 
             <li>
-              <Link href="/pay">
-                <a className="nav-link font-medium text-sm transition-colors duration-300 text-white hover:text-blue-200">
-                  Pay
-                </a>
+              <Link 
+                href="/pay"
+                className="nav-link font-medium text-sm transition-colors duration-300 text-white hover:text-blue-200"
+              >
+                Pay
               </Link>
             </li>
 
@@ -195,13 +196,12 @@ export function Navbar() {
               Services
             </a>
 
-            <Link href="/pay">
-              <a 
-                className="block py-1.5 text-white text-base font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Pay
-              </a>
+            <Link 
+              href="/pay"
+              className="block py-1.5 text-white text-base font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pay
             </Link>
 
             <a 
