@@ -106,6 +106,10 @@ export const billsInsertSchema = createInsertSchema(bills, {
   customerEmail: (schema) => schema.email("Please enter a valid email address"),
   amount: (schema) => schema.refine(val => parseFloat(val) > 0, "Amount must be greater than 0"),
   description: (schema) => schema.min(1, "Description is required"),
+  dueDate: () => z.preprocess(
+    (val) => (val === '' || val === null ? undefined : val),
+    z.coerce.date()
+  ).optional().nullable(),
 });
 
 export const billsSelectSchema = createSelectSchema(bills);
