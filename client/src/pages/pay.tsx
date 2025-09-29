@@ -159,8 +159,9 @@ export default function PayPage() {
     mutationFn: async ({ amount, billId, paymentMethod }: { amount: string; billId: number; paymentMethod: 'card' | 'ach' }) => {
       console.log('API request to create payment intent:', { amount, billId, paymentMethod });
       const response = await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod });
-      console.log('Payment intent response:', response);
-      return response as { clientSecret: string; paymentIntentId: string };
+      const jsonData = await response.json();
+      console.log('Payment intent response:', jsonData);
+      return jsonData as { clientSecret: string; paymentIntentId: string };
     },
     onSuccess: (data) => {
       console.log('Payment intent created successfully:', data);
