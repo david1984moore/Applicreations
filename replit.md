@@ -2,7 +2,7 @@
 
 ## Overview
 
-Applicreations is a professional web platform for a web and app development service based in Wilmington, Delaware. The platform showcases the company's digital solutions through a modern, responsive design with advanced animations and interactive components. The application emphasizes user experience with gradient backgrounds, sticky navigation, and comprehensive contact forms to capture potential client inquiries.
+Applicreations is a professional web platform for a web and app development service based in Wilmington, Delaware. The platform showcases the company's digital solutions through a modern, responsive design with advanced animations and interactive components. The application includes a comprehensive customer bill payment system that enables clients to pay bills online using credit/debit cards or ACH bank transfers. The system features secure admin access for bill management and automatic email notifications with professional branding.
 
 ## User Preferences
 
@@ -24,9 +24,17 @@ Preferred communication style: Simple, everyday language.
 
 **Express.js Server**: The server-side application is built with Express.js and TypeScript, providing a RESTful API for client communications. The server implements security middleware for HTTPS redirects and security headers.
 
-**Database Layer**: Uses Drizzle ORM with PostgreSQL for data persistence. The database schema includes tables for contacts and users, with proper TypeScript type definitions generated from the schema.
+**Database Layer**: Uses Drizzle ORM with PostgreSQL for data persistence. The database schema includes tables for contacts, users, bills, and payments with proper TypeScript type definitions generated from the schema.
 
-**Email Integration**: Implements contact form functionality using Nodemailer with Hostinger SMTP configuration for reliable email delivery to the business owner.
+**Bill Payment System**: Comprehensive customer billing system integrated with Stripe for payment processing. Customers can pay bills using their account number without requiring login. The system supports credit/debit cards and ACH bank transfers (with lower processing fees). Bills are managed through an admin panel with Replit Auth authentication.
+
+**Email Integration**: Automated email notification system using Nodemailer with Hostinger SMTP configuration. When bills are created in the admin panel, customers automatically receive professionally branded email notifications with:
+- Embedded Applicreations logo
+- Bill details (account number, amount, description, due date)
+- Direct payment link with pre-filled account number
+- Clear call-to-action button
+- Mobile-responsive HTML design
+Contact form submissions also send notifications to the business owner.
 
 **Security Implementation**: Comprehensive security measures including HTTPS support, security headers (CSP, HSTS, X-Frame-Options), and CORS configuration. The application supports SSL certificate management for production deployments.
 
@@ -61,9 +69,15 @@ Preferred communication style: Simple, everyday language.
 - **Drizzle ORM**: Type-safe SQL ORM
 - **WebSocket (ws)**: For database connections
 
+### Payment Processing
+- **Stripe**: Payment processing platform for credit/debit cards and ACH bank transfers
+- **@stripe/stripe-js**: Stripe.js JavaScript library for frontend
+- **@stripe/react-stripe-js**: React components for Stripe Elements
+
 ### Email Service
 - **Nodemailer**: Email sending library
 - **Hostinger SMTP**: Email service provider integration
+- **Professional Email Templates**: Branded HTML emails with embedded logo for bill notifications
 
 ### Development Environment
 - **Replit**: Cloud development environment with live deployment
