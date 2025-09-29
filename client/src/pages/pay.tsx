@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, CreditCard, Building2 } from "lucide-react";
+import { ArrowLeft, AlertTriangle } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import type { Bill } from "@shared/schema";
@@ -18,6 +18,9 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+// Detect test mode
+const isTestMode = import.meta.env.VITE_STRIPE_PUBLIC_KEY?.startsWith('pk_test_');
 
 // Payment form component (inside Stripe Elements)
 function PaymentForm({ bill, onSuccess }: { bill: Bill; onSuccess: () => void }) {
@@ -83,52 +86,10 @@ function PaymentForm({ bill, onSuccess }: { bill: Bill; onSuccess: () => void })
   );
 }
 
-// Payment method selection component
-function PaymentMethodSelector({ 
-  bill, 
-  onPaymentMethodSelect 
-}: { 
-  bill: Bill; 
-  onPaymentMethodSelect: (method: 'card' | 'ach') => void;
-}) {
-  return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Choose Payment Method</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card 
-          className="cursor-pointer hover:bg-muted/50 border-2 transition-colors"
-          onClick={() => onPaymentMethodSelect('card')}
-        >
-          <CardContent className="flex items-center p-6">
-            <CreditCard className="h-8 w-8 mr-3 text-primary" />
-            <div>
-              <h4 className="font-semibold">Credit/Debit Card</h4>
-              <p className="text-sm text-muted-foreground">Instant processing</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card 
-          className="cursor-pointer hover:bg-muted/50 border-2 transition-colors"
-          onClick={() => onPaymentMethodSelect('ach')}
-        >
-          <CardContent className="flex items-center p-6">
-            <Building2 className="h-8 w-8 mr-3 text-primary" />
-            <div>
-              <h4 className="font-semibold">Bank Transfer (ACH)</h4>
-              <p className="text-sm text-muted-foreground">Lower fees, 2-4 business days</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
-  );
-}
 
 export default function PayPage() {
   const [accountNumber, setAccountNumber] = useState("");
   const [bill, setBill] = useState<Bill | null>(null);
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'ach' | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const { toast } = useToast();
 
@@ -156,19 +117,15 @@ export default function PayPage() {
 
   // Payment intent creation
   const createPaymentIntentMutation = useMutation({
-    mutationFn: async ({ amount, billId, paymentMethod }: { amount: string; billId: number; paymentMethod: 'card' | 'ach' }) => {
-      console.log('API request to create payment intent:', { amount, billId, paymentMethod });
-      const response = await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod });
+    mutationFn: async ({ amount, billId }: { amount: string; billId: number }) => {
+      const response = await apiRequest("POST", "/api/create-payment-intent", { amount, billId });
       const jsonData = await response.json();
-      console.log('Payment intent response:', jsonData);
       return jsonData as { clientSecret: string; paymentIntentId: string };
     },
     onSuccess: (data) => {
-      console.log('Payment intent created successfully:', data);
       setClientSecret(data.clientSecret);
     },
     onError: (error) => {
-      console.error('Payment intent creation failed:', error);
       toast({
         title: "Payment Setup Failed",
         description: "Unable to initialize payment. Please try again.",
@@ -177,6 +134,16 @@ export default function PayPage() {
     }
   });
 
+  // Automatically create payment intent when bill is loaded
+  useEffect(() => {
+    if (bill && !clientSecret) {
+      createPaymentIntentMutation.mutate({
+        amount: bill.amount,
+        billId: bill.id
+      });
+    }
+  }, [bill]);
+
   const handleBillLookup = (e: React.FormEvent) => {
     e.preventDefault();
     if (accountNumber.trim()) {
@@ -184,29 +151,11 @@ export default function PayPage() {
     }
   };
 
-  const handlePaymentMethodSelect = (method: 'card' | 'ach') => {
-    console.log('Payment method selected:', method, 'Bill:', bill);
-    setPaymentMethod(method);
-    if (bill) {
-      console.log('Creating payment intent for bill:', bill.id, 'amount:', bill.amount);
-      createPaymentIntentMutation.mutate({
-        amount: bill.amount,
-        billId: bill.id,
-        paymentMethod: method
-      });
-    }
-  };
-
-  const handleBackToBillDetails = () => {
-    setPaymentMethod(null);
-    setClientSecret(null);
-  };
 
   const handlePaymentSuccess = () => {
     // Reset everything and show success
     setBill(null);
     setAccountNumber("");
-    setPaymentMethod(null);
     setClientSecret(null);
     toast({
       title: "Payment Complete",
@@ -262,18 +211,29 @@ export default function PayPage() {
             </Card>
           )}
 
-          {/* Step 2: Bill Details and Payment Method Selection */}
-          {bill && !paymentMethod && (
+          {/* Step 2: Bill Details and Payment Form */}
+          {bill && (
             <Card>
               <CardHeader>
-                <CardTitle>Bill Details</CardTitle>
+                <CardTitle>Complete Payment</CardTitle>
                 <CardDescription>
-                  Review your bill and choose a payment method
+                  Review your bill details and enter payment information
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Test Mode Banner */}
+                {isTestMode && (
+                  <Alert className="bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
+                    <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
+                    <AlertDescription className="text-sm text-yellow-800 dark:text-yellow-200">
+                      <strong>TEST MODE:</strong> For bank transfers, you'll see test banks like "Test Institution." 
+                      In production, customers connect to their real bank or enter routing/account numbers. No real charges occur.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
                 {/* Bill Information */}
-                <div className="space-y-3">
+                <div className="space-y-3 bg-muted/50 p-4 rounded-lg">
                   <div className="flex justify-between">
                     <span className="text-sm font-medium">Account:</span>
                     <span className="text-sm">{bill.accountNumber}</span>
@@ -299,64 +259,44 @@ export default function PayPage() {
                   </div>
                 </div>
 
-                <PaymentMethodSelector 
-                  bill={bill} 
-                  onPaymentMethodSelect={handlePaymentMethodSelect}
-                />
+                {/* Loading State for Payment Setup */}
+                {createPaymentIntentMutation.isPending && (
+                  <div className="text-center py-8">
+                    <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
+                    <p>Setting up secure payment...</p>
+                  </div>
+                )}
+
+                {/* Payment Form */}
+                {clientSecret && !createPaymentIntentMutation.isPending && (
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      Choose your payment method below. Card payments process instantly. Bank transfers (ACH) have lower fees and settle in 2-4 business days.
+                    </div>
+                    <Elements 
+                      stripe={stripePromise} 
+                      options={{ 
+                        clientSecret,
+                        appearance: {
+                          theme: 'stripe'
+                        }
+                      }}
+                    >
+                      <PaymentForm bill={bill} onSuccess={handlePaymentSuccess} />
+                    </Elements>
+                  </div>
+                )}
 
                 <Button 
                   variant="outline" 
-                  onClick={() => setBill(null)}
+                  onClick={() => {
+                    setBill(null);
+                    setClientSecret(null);
+                  }}
                   className="w-full"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Look Up Different Account
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Loading State for Payment Setup */}
-          {bill && paymentMethod && createPaymentIntentMutation.isPending && (
-            <Card>
-              <CardContent className="py-8">
-                <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
-                  <p>Setting up payment...</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Step 3: Payment Form */}
-          {bill && paymentMethod && clientSecret && !createPaymentIntentMutation.isPending && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Complete Payment</CardTitle>
-                <CardDescription>
-                  Paying ${bill.amount} for {bill.customerName} via {paymentMethod === 'card' ? 'Credit/Debit Card' : 'Bank Transfer'}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Elements 
-                  stripe={stripePromise} 
-                  options={{ 
-                    clientSecret,
-                    appearance: {
-                      theme: 'stripe'
-                    }
-                  }}
-                >
-                  <PaymentForm bill={bill} onSuccess={handlePaymentSuccess} />
-                </Elements>
-
-                <Button 
-                  variant="outline" 
-                  onClick={handleBackToBillDetails}
-                  className="w-full mt-4"
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Change Payment Method
                 </Button>
               </CardContent>
             </Card>
