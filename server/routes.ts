@@ -282,14 +282,27 @@ ${validatedData.projectDescription}
   // Create Stripe payment intent
   app.post('/api/create-payment-intent', async (req, res) => {
     try {
-      const { amount, billId } = req.body;
+      const { billId } = req.body;
       
-      if (!amount || !billId) {
-        return res.status(400).json({ message: "Amount and billId are required" });
+      if (!billId) {
+        return res.status(400).json({ message: "billId is required" });
+      }
+
+      // SECURITY: Fetch bill from database to verify it exists and get the actual amount
+      const bill = await storage.getBillById(billId);
+      
+      if (!bill) {
+        return res.status(404).json({ message: "Bill not found" });
+      }
+
+      // Verify bill is unpaid
+      if (bill.status === 'paid') {
+        return res.status(400).json({ message: "Bill has already been paid" });
       }
 
       // Convert amount to cents (Stripe requires cents)
-      const amountInCents = Math.round(parseFloat(amount) * 100);
+      // SECURITY: Use amount from database, not from client
+      const amountInCents = Math.round(parseFloat(bill.amount) * 100);
 
       // Create payment intent with both card and ACH enabled
       const paymentIntent = await stripe.paymentIntents.create({
@@ -297,7 +310,8 @@ ${validatedData.projectDescription}
         currency: 'usd',
         payment_method_types: ['card', 'us_bank_account'],
         metadata: {
-          billId: billId.toString()
+          billId: billId.toString(),
+          accountNumber: bill.accountNumber
         }
       });
 
@@ -314,32 +328,76 @@ ${validatedData.projectDescription}
   // Payment processing endpoint (Public)
   app.post('/api/payments/process', async (req, res) => {
     try {
-      const { billId, stripePaymentIntentId, amount, paymentMethod, customerEmail } = req.body;
+      const { billId, stripePaymentIntentId } = req.body;
       
       // Validate required fields
-      if (!billId || !stripePaymentIntentId || !amount || !paymentMethod) {
+      if (!billId || !stripePaymentIntentId) {
         return res.status(400).json({ message: "Missing required payment fields" });
       }
 
-      // Verify payment with Stripe
-      const paymentIntent = await stripe.paymentIntents.retrieve(stripePaymentIntentId);
-      
-      if (paymentIntent.status !== 'succeeded') {
-        return res.status(400).json({ message: "Payment not completed" });
+      // SECURITY: Fetch bill from database
+      const bill = await storage.getBillById(billId);
+      if (!bill) {
+        return res.status(404).json({ message: "Bill not found" });
       }
 
-      // Record the successful payment
+      // Check if bill is already paid (idempotency)
+      if (bill.status === 'paid') {
+        return res.json({ message: "Bill already paid", status: 'paid' });
+      }
+
+      // SECURITY: Verify payment with Stripe and get actual payment details
+      const paymentIntent = await stripe.paymentIntents.retrieve(stripePaymentIntentId);
+      
+      // SECURITY: Verify payment intent is for this bill
+      if (paymentIntent.metadata.billId !== billId.toString()) {
+        return res.status(400).json({ message: "Payment intent does not match bill" });
+      }
+
+      // SECURITY: Verify payment intent amount matches bill amount
+      const expectedAmountInCents = Math.round(parseFloat(bill.amount) * 100);
+      if (paymentIntent.amount !== expectedAmountInCents) {
+        return res.status(400).json({ message: "Payment amount does not match bill amount" });
+      }
+
+      // SECURITY: Verify currency
+      if (paymentIntent.currency !== 'usd') {
+        return res.status(400).json({ message: "Invalid payment currency" });
+      }
+
+      // Handle both succeeded and processing statuses
+      if (paymentIntent.status !== 'succeeded' && paymentIntent.status !== 'processing') {
+        return res.status(400).json({ message: `Payment not completed. Status: ${paymentIntent.status}` });
+      }
+
+      // SECURITY: Derive amount and payment method from Stripe, not from client
+      const amount = (paymentIntent.amount / 100).toFixed(2);
+      const paymentMethod = paymentIntent.payment_method_types[0] || 'card';
+
+      // Check for duplicate payment (idempotency)
+      const existingPayments = await storage.getPaymentsByBillId(billId);
+      const duplicatePayment = existingPayments.find(p => p.stripePaymentIntentId === stripePaymentIntentId);
+      if (duplicatePayment) {
+        return res.json({ message: "Payment already recorded", status: duplicatePayment.status });
+      }
+
+      // Record the payment
       const payment = await storage.insertPayment({
         billId,
         stripePaymentIntentId,
         amount,
         paymentMethod,
-        customerEmail,
-        status: 'succeeded'
+        customerEmail: '',
+        status: paymentIntent.status
       });
 
-      // Mark bill as paid
-      await storage.updateBillStatus(billId, 'paid');
+      // Update bill status based on payment status
+      if (paymentIntent.status === 'succeeded') {
+        await storage.updateBillStatus(billId, 'paid');
+      } else if (paymentIntent.status === 'processing') {
+        // For ACH, mark bill as processing (not paid yet)
+        await storage.updateBillStatus(billId, 'processing');
+      }
 
       res.json({
         success: true,

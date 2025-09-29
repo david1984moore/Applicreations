@@ -23,7 +23,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 const isTestMode = import.meta.env.VITE_STRIPE_PUBLIC_KEY?.startsWith('pk_test_');
 
 // Payment form component (inside Stripe Elements)
-function PaymentForm({ bill, onSuccess }: { bill: Bill; onSuccess: () => void }) {
+function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecret: string; onSuccess: () => void }) {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -39,7 +39,8 @@ function PaymentForm({ bill, onSuccess }: { bill: Bill; onSuccess: () => void })
     setIsProcessing(true);
 
     try {
-      const { error } = await stripe.confirmPayment({
+      // Confirm the payment
+      const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/pay/success`,
@@ -53,12 +54,50 @@ function PaymentForm({ bill, onSuccess }: { bill: Bill; onSuccess: () => void })
           description: error.message,
           variant: "destructive",
         });
-      } else {
-        toast({
-          title: "Payment Successful",
-          description: "Thank you for your payment!",
-        });
-        onSuccess();
+        return;
+      }
+
+      // If no error and paymentIntent exists, check the status
+      if (paymentIntent) {
+        // For ACH, status will be 'processing'; for cards, usually 'succeeded'
+        if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing') {
+          // Record the payment on the server
+          try {
+            const response = await apiRequest("POST", "/api/payments/process", {
+              billId: bill.id,
+              stripePaymentIntentId: paymentIntent.id
+            });
+            
+            await response.json();
+            
+            // Show appropriate message based on status
+            if (paymentIntent.status === 'processing') {
+              toast({
+                title: "Payment Processing",
+                description: "Your bank transfer is being processed. This typically takes 2-4 business days.",
+              });
+            } else {
+              toast({
+                title: "Payment Successful",
+                description: "Thank you for your payment!",
+              });
+            }
+            onSuccess();
+          } catch (recordError) {
+            console.error('Error recording payment:', recordError);
+            toast({
+              title: "Payment Confirmation Issue",
+              description: "Payment was processed but there was an issue recording it. Please contact support.",
+              variant: "destructive",
+            });
+          }
+        } else {
+          toast({
+            title: "Payment Incomplete",
+            description: `Payment status: ${paymentIntent.status}. Please try again or contact support.`,
+            variant: "destructive",
+          });
+        }
       }
     } catch (error) {
       toast({
@@ -117,8 +156,8 @@ export default function PayPage() {
 
   // Payment intent creation
   const createPaymentIntentMutation = useMutation({
-    mutationFn: async ({ amount, billId }: { amount: string; billId: number }) => {
-      const response = await apiRequest("POST", "/api/create-payment-intent", { amount, billId });
+    mutationFn: async ({ billId }: { billId: number }) => {
+      const response = await apiRequest("POST", "/api/create-payment-intent", { billId });
       const jsonData = await response.json();
       return jsonData as { clientSecret: string; paymentIntentId: string };
     },
@@ -138,7 +177,6 @@ export default function PayPage() {
   useEffect(() => {
     if (bill && !clientSecret) {
       createPaymentIntentMutation.mutate({
-        amount: bill.amount,
         billId: bill.id
       });
     }
@@ -282,7 +320,7 @@ export default function PayPage() {
                         }
                       }}
                     >
-                      <PaymentForm bill={bill} onSuccess={handlePaymentSuccess} />
+                      <PaymentForm bill={bill} clientSecret={clientSecret} onSuccess={handlePaymentSuccess} />
                     </Elements>
                   </div>
                 )}
