@@ -68,10 +68,11 @@ export const bills = pgTable("bills", {
   id: serial("id").primaryKey(),
   accountNumber: text("account_number").notNull().unique(),
   customerName: text("customer_name").notNull(),
+  customerEmail: text("customer_email").notNull(),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
   description: text("description").notNull(),
   dueDate: timestamp("due_date"),
-  status: text("status").notNull().default("unpaid"), // 'paid' | 'unpaid' | 'overdue'
+  status: text("status").notNull().default("unpaid"), // 'paid' | 'unpaid' | 'overdue' | 'processing'
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -102,6 +103,7 @@ export const paymentsRelations = relations(payments, ({ one }) => ({
 export const billsInsertSchema = createInsertSchema(bills, {
   accountNumber: (schema) => schema.min(1, "Account number is required"),
   customerName: (schema) => schema.min(2, "Customer name must be at least 2 characters"),
+  customerEmail: (schema) => schema.email("Please enter a valid email address"),
   amount: (schema) => schema.refine(val => parseFloat(val) > 0, "Amount must be greater than 0"),
   description: (schema) => schema.min(1, "Description is required"),
 });
