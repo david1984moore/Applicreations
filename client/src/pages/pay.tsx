@@ -83,11 +83,12 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
               });
             }
             onSuccess();
-          } catch (recordError) {
+          } catch (recordError: any) {
             console.error('Error recording payment:', recordError);
+            const errorMessage = recordError.message || "Unknown error";
             toast({
               title: "Payment Confirmation Issue",
-              description: "Payment was processed but there was an issue recording it. Please contact support.",
+              description: `Payment was processed but there was an issue recording it: ${errorMessage}. Please contact support.`,
               variant: "destructive",
             });
           }
