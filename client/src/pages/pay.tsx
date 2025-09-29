@@ -157,12 +157,17 @@ export default function PayPage() {
   // Payment intent creation
   const createPaymentIntentMutation = useMutation({
     mutationFn: async ({ amount, billId, paymentMethod }: { amount: string; billId: number; paymentMethod: 'card' | 'ach' }) => {
-      return await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod }) as Promise<{ clientSecret: string; paymentIntentId: string }>;
+      console.log('API request to create payment intent:', { amount, billId, paymentMethod });
+      const response = await apiRequest("POST", "/api/create-payment-intent", { amount, billId, paymentMethod });
+      console.log('Payment intent response:', response);
+      return response as { clientSecret: string; paymentIntentId: string };
     },
     onSuccess: (data) => {
+      console.log('Payment intent created successfully:', data);
       setClientSecret(data.clientSecret);
     },
     onError: (error) => {
+      console.error('Payment intent creation failed:', error);
       toast({
         title: "Payment Setup Failed",
         description: "Unable to initialize payment. Please try again.",
@@ -179,8 +184,10 @@ export default function PayPage() {
   };
 
   const handlePaymentMethodSelect = (method: 'card' | 'ach') => {
+    console.log('Payment method selected:', method, 'Bill:', bill);
     setPaymentMethod(method);
     if (bill) {
+      console.log('Creating payment intent for bill:', bill.id, 'amount:', bill.amount);
       createPaymentIntentMutation.mutate({
         amount: bill.amount,
         billId: bill.id,
@@ -308,8 +315,20 @@ export default function PayPage() {
             </Card>
           )}
 
+          {/* Loading State for Payment Setup */}
+          {bill && paymentMethod && createPaymentIntentMutation.isPending && (
+            <Card>
+              <CardContent className="py-8">
+                <div className="text-center">
+                  <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
+                  <p>Setting up payment...</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Step 3: Payment Form */}
-          {bill && paymentMethod && clientSecret && (
+          {bill && paymentMethod && clientSecret && !createPaymentIntentMutation.isPending && (
             <Card>
               <CardHeader>
                 <CardTitle>Complete Payment</CardTitle>
@@ -338,18 +357,6 @@ export default function PayPage() {
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Change Payment Method
                 </Button>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Loading State */}
-          {createPaymentIntentMutation.isPending && (
-            <Card>
-              <CardContent className="py-8">
-                <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
-                  <p>Setting up payment...</p>
-                </div>
               </CardContent>
             </Card>
           )}

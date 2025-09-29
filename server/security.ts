@@ -33,11 +33,13 @@ export function securityMiddleware(req: Request, res: Response, next: NextFuncti
   // Content-Security-Policy helps prevent XSS and other code injection attacks
   res.setHeader('Content-Security-Policy', 
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " + 
-    "style-src 'self' 'unsafe-inline'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://m.stripe.network; " + 
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://js.stripe.com; " +
     "img-src 'self' data: https:; " +
-    "font-src 'self'; " +
-    "connect-src 'self';"
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "connect-src 'self' https://api.stripe.com https://uploads.stripe.com; " +
+    "frame-src 'self' https://js.stripe.com https://hooks.stripe.com; " +
+    "child-src 'self' https://js.stripe.com;"
   );
   
   // If site is served over HTTPS, add Strict-Transport-Security header
