@@ -124,6 +124,14 @@ export function Hero() {
               </li>
               <li>
                 <a 
+                  href="/pay" 
+                  className="nav-link font-medium text-sm transition-colors duration-300 text-white hover:text-blue-200"
+                >
+                  Pay
+                </a>
+              </li>
+              <li>
+                <a 
                   href="#contact" 
                   className="nav-link font-medium text-sm transition-colors duration-300 text-white"
                   onClick={(e) => {
@@ -176,6 +184,13 @@ export function Hero() {
                 }}
               >
                 Services
+              </a>
+              <a 
+                href="/pay"
+                className="block py-1.5 text-white text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Pay
               </a>
               <a 
                 href="#contact"
