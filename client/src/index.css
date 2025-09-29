@@ -634,49 +634,6 @@ body {
     content: none !important;
   }
 
-  /* NUCLEAR OPTION: Completely disable any style changes for Pay link and its parent */
-  #pay-nav-item,
-  #pay-nav-item:hover,
-  #pay-nav-item:active,
-  #pay-nav-item:focus {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    transition: none !important;
-    background-color: transparent !important;
-    pointer-events: auto !important;
-  }
-  
-  span#pay-nav-link,
-  #pay-nav-item span,
-  #pay-nav-item #pay-nav-link,
-  span#pay-nav-link:hover,
-  #pay-nav-item:hover span,
-  #pay-nav-item:hover #pay-nav-link,
-  span#pay-nav-link:active,
-  span#pay-nav-link:focus {
-    color: rgb(255, 255, 255) !important;
-    background-color: transparent !important;
-    text-decoration: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-    brightness: 1 !important;
-    contrast: 1 !important;
-    transition: none !important;
-    transform: none !important;
-    -webkit-text-fill-color: rgb(255, 255, 255) !important;
-    text-shadow: none !important;
-  }
-  
-  #pay-nav-link::after,
-  #pay-nav-link::before,
-  #pay-nav-link:hover::after,
-  #pay-nav-link:hover::before {
-    display: none !important;
-    content: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
 
   /* The navbar-logo styling is now defined above */
 
@@ -1145,4 +1102,55 @@ body {
     transition: none !important;
     opacity: 0 !important;
   }
+}
+
+/* CRITICAL: This MUST be at the end - Pay button hover fix with maximum specificity */
+/* Force Pay link to NEVER change color on any interaction */
+#pay-nav-item,
+#pay-nav-item *,
+li#pay-nav-item,
+li#pay-nav-item *,
+nav #pay-nav-item,
+nav #pay-nav-item *,
+ul #pay-nav-item,
+ul #pay-nav-item * {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+span#pay-nav-link,
+#pay-nav-item > span,
+li#pay-nav-item > span,
+#pay-nav-link {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+}
+
+span#pay-nav-link:hover,
+span#pay-nav-link:active,
+span#pay-nav-link:focus,
+span#pay-nav-link:visited,
+#pay-nav-item:hover > span,
+#pay-nav-item:hover span#pay-nav-link,
+#pay-nav-item:active > span,
+#pay-nav-item:focus > span,
+li#pay-nav-item:hover > span,
+nav #pay-nav-item:hover > span,
+ul #pay-nav-item:hover > span {
+  color: rgb(255, 255, 255) !important;
+  background-color: transparent !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }

@@ -37,6 +37,33 @@ export function Navbar() {
     updateLogoColors();
     document.documentElement.style.setProperty('--nav-link-hover', '#f0f0f0');
     
+    // CRITICAL: Force Pay link to stay white on hover - JavaScript enforcement
+    const payLink = document.getElementById('pay-nav-link');
+    if (payLink) {
+      const forceWhite = () => {
+        (payLink as HTMLElement).style.setProperty('color', 'rgb(255, 255, 255)', 'important');
+        (payLink as HTMLElement).style.setProperty('opacity', '1', 'important');
+        (payLink as HTMLElement).style.setProperty('filter', 'none', 'important');
+      };
+      
+      forceWhite();
+      payLink.addEventListener('mouseenter', forceWhite);
+      payLink.addEventListener('mouseleave', forceWhite);
+      payLink.addEventListener('mouseover', forceWhite);
+      
+      // Also force parent to maintain opacity
+      const payItem = document.getElementById('pay-nav-item');
+      if (payItem) {
+        const forceParentNormal = () => {
+          (payItem as HTMLElement).style.setProperty('opacity', '1', 'important');
+          (payItem as HTMLElement).style.setProperty('filter', 'none', 'important');
+        };
+        forceParentNormal();
+        payItem.addEventListener('mouseenter', forceParentNormal);
+        payItem.addEventListener('mouseleave', forceParentNormal);
+      }
+    }
+    
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
       window.removeEventListener('resize', checkMobileView);
