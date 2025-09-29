@@ -60,7 +60,7 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
 
       // If no error and paymentIntent exists, check the status
       if (paymentIntent) {
-        // For ACH, status will be 'processing'; for cards, usually 'succeeded'
+        // Handle different payment statuses
         if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing') {
           // Record the payment on the server
           try {
@@ -93,6 +93,12 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
               variant: "destructive",
             });
           }
+        } else if (paymentIntent.status === 'requires_action' || paymentIntent.status === 'requires_payment_method') {
+          toast({
+            title: "Bank Account Verification Required",
+            description: "For ACH payments, please use a credit/debit card instead, or contact support@applicreations.com to set up ACH verification.",
+            variant: "destructive",
+          });
         } else {
           toast({
             title: "Payment Incomplete",
