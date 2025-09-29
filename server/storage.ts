@@ -87,6 +87,23 @@ export const storage = {
     return updatedBill;
   },
 
+  async updateBill(id: number, billData: Partial<BillInsert>): Promise<Bill | undefined> {
+    const [updatedBill] = await db
+      .update(bills)
+      .set({ ...billData, updatedAt: new Date() })
+      .where(eq(bills.id, id))
+      .returning();
+    return updatedBill;
+  },
+
+  async deleteBill(id: number): Promise<Bill | undefined> {
+    const [deletedBill] = await db
+      .delete(bills)
+      .where(eq(bills.id, id))
+      .returning();
+    return deletedBill;
+  },
+
   // Payments operations
   async insertPayment(paymentData: PaymentInsert): Promise<Payment> {
     const [newPayment] = await db.insert(payments).values(paymentData).returning();

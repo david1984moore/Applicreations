@@ -181,6 +181,78 @@ ${validatedData.projectDescription}
     }
   });
 
+  // Update bill (Admin only)
+  app.put('/api/admin/bills/:id', isAuthenticated, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const billId = parseInt(id);
+      
+      if (isNaN(billId)) {
+        return res.status(400).json({ message: "Invalid bill ID" });
+      }
+
+      // Check if bill exists
+      const existingBill = await storage.getBillById(billId);
+      if (!existingBill) {
+        return res.status(404).json({ message: "Bill not found" });
+      }
+
+      const validatedData = billsInsertSchema.partial().parse(req.body);
+      const updatedBill = await storage.updateBill(billId, validatedData);
+      
+      if (!updatedBill) {
+        return res.status(404).json({ message: "Bill not found" });
+      }
+      
+      res.json(updatedBill);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: 'Validation failed',
+          errors: error.errors 
+        });
+      }
+      console.error("Error updating bill:", error);
+      res.status(500).json({ message: "Failed to update bill" });
+    }
+  });
+
+  // Delete bill (Admin only)
+  app.delete('/api/admin/bills/:id', isAuthenticated, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const billId = parseInt(id);
+      
+      if (isNaN(billId)) {
+        return res.status(400).json({ message: "Invalid bill ID" });
+      }
+
+      // Check if bill exists
+      const existingBill = await storage.getBillById(billId);
+      if (!existingBill) {
+        return res.status(404).json({ message: "Bill not found" });
+      }
+
+      // Check if bill has been paid (optional safety check)
+      if (existingBill.status === 'paid') {
+        return res.status(400).json({ 
+          message: "Cannot delete a paid bill. This would affect financial records." 
+        });
+      }
+
+      const deletedBill = await storage.deleteBill(billId);
+      
+      if (!deletedBill) {
+        return res.status(404).json({ message: "Bill not found" });
+      }
+      
+      res.json({ message: "Bill deleted successfully", bill: deletedBill });
+    } catch (error) {
+      console.error("Error deleting bill:", error);
+      res.status(500).json({ message: "Failed to delete bill" });
+    }
+  });
+
   // Customer bill lookup (Public)
   app.get('/api/bills/lookup/:accountNumber', async (req, res) => {
     try {

@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, LogOut, DollarSign, Users, FileText } from "lucide-react";
+import { Plus, LogOut, DollarSign, Users, FileText, Edit, Trash2 } from "lucide-react";
 import type { Bill, BillInsert } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -154,6 +154,196 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
   );
 }
 
+function EditBillDialog({ bill, onBillUpdated }: { bill: Bill; onBillUpdated: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    accountNumber: bill.accountNumber,
+    customerName: bill.customerName,
+    amount: bill.amount,
+    description: bill.description,
+    dueDate: bill.dueDate ? new Date(bill.dueDate).toISOString().split('T')[0] : ""
+  });
+  const { toast } = useToast();
+
+  const updateBillMutation = useMutation({
+    mutationFn: async (billData: Partial<BillInsert>) => {
+      return await apiRequest("PUT", `/api/admin/bills/${bill.id}`, billData);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Bill Updated",
+        description: "Bill has been updated successfully.",
+      });
+      setOpen(false);
+      onBillUpdated();
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "Error",
+        description: "Failed to update bill. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateBillMutation.mutate({
+      accountNumber: formData.accountNumber,
+      customerName: formData.customerName,
+      amount: formData.amount,
+      description: formData.description,
+      dueDate: formData.dueDate ? new Date(formData.dueDate) : undefined
+    });
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="sm">
+          <Edit className="h-4 w-4 mr-1" />
+          Edit
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit Bill</DialogTitle>
+          <DialogDescription>
+            Update the bill information for {bill.customerName}
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="edit-accountNumber">Account Number</Label>
+            <Input
+              id="edit-accountNumber"
+              type="text"
+              value={formData.accountNumber}
+              onChange={(e) => setFormData(prev => ({ ...prev, accountNumber: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="edit-customerName">Customer Name</Label>
+            <Input
+              id="edit-customerName"
+              type="text"
+              value={formData.customerName}
+              onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="edit-amount">Amount</Label>
+            <Input
+              id="edit-amount"
+              type="number"
+              step="0.01"
+              value={formData.amount}
+              onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="edit-description">Description</Label>
+            <Textarea
+              id="edit-description"
+              value={formData.description}
+              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="edit-dueDate">Due Date (Optional)</Label>
+            <Input
+              id="edit-dueDate"
+              type="date"
+              value={formData.dueDate}
+              onChange={(e) => setFormData(prev => ({ ...prev, dueDate: e.target.value }))}
+            />
+          </div>
+          <Button type="submit" disabled={updateBillMutation.isPending} className="w-full">
+            {updateBillMutation.isPending ? "Updating..." : "Update Bill"}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function DeleteBillButton({ bill, onBillDeleted }: { bill: Bill; onBillDeleted: () => void }) {
+  const { toast } = useToast();
+
+  const deleteBillMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("DELETE", `/api/admin/bills/${bill.id}`);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Bill Deleted",
+        description: "Bill has been deleted successfully.",
+      });
+      onBillDeleted();
+    },
+    onError: (error: any) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "Error",
+        description: error?.message || "Failed to delete bill. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const handleDelete = () => {
+    if (bill.status === 'paid') {
+      toast({
+        title: "Cannot Delete",
+        description: "Paid bills cannot be deleted to maintain financial records.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (confirm(`Are you sure you want to delete the bill for ${bill.customerName} (${bill.accountNumber})?\n\nThis action cannot be undone.`)) {
+      deleteBillMutation.mutate();
+    }
+  };
+
+  return (
+    <Button 
+      variant="destructive" 
+      size="sm" 
+      onClick={handleDelete}
+      disabled={deleteBillMutation.isPending || bill.status === 'paid'}
+    >
+      <Trash2 className="h-4 w-4 mr-1" />
+      {deleteBillMutation.isPending ? "Deleting..." : "Delete"}
+    </Button>
+  );
+}
+
 export default function AdminPage() {
   const { user, isLoading, isAuthenticated } = useAuth();
   const { toast } = useToast();
@@ -182,6 +372,14 @@ export default function AdminPage() {
   });
 
   const handleBillAdded = () => {
+    queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
+  };
+
+  const handleBillUpdated = () => {
+    queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
+  };
+
+  const handleBillDeleted = () => {
     queryClient.invalidateQueries({ queryKey: ["/api/admin/bills"] });
   };
 
@@ -297,6 +495,7 @@ export default function AdminPage() {
                     <TableHead>Status</TableHead>
                     <TableHead>Due Date</TableHead>
                     <TableHead>Created</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -315,6 +514,12 @@ export default function AdminPage() {
                       </TableCell>
                       <TableCell>
                         {new Date(bill.createdAt).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <EditBillDialog bill={bill} onBillUpdated={handleBillUpdated} />
+                          <DeleteBillButton bill={bill} onBillDeleted={handleBillDeleted} />
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
