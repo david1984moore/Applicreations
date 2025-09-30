@@ -581,6 +581,11 @@ body {
 
   .nav-link {
     position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #a855f7 !important; /* Purple text on hover */
   }
 
   :root {

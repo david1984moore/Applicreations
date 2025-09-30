@@ -511,8 +511,16 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Home Button - Positioned like navbar logo */}
-      <div className="fixed top-0 left-0 z-50 p-4" style={{ paddingTop: 'calc(1rem + env(safe-area-inset-top, 0))' }}>
+      {/* Home Button - Fixed at top, stays in place when scrolling */}
+      <div 
+        className="z-50 p-4" 
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          paddingTop: 'calc(1rem + env(safe-area-inset-top, 0))'
+        }}
+      >
         <a href="/" className="inline-block hover:opacity-80 transition-opacity">
           <Logo className="w-12 h-12" />
         </a>
