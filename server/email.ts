@@ -193,15 +193,15 @@ export async function sendBillNotificationEmail(bill: Bill): Promise<boolean> {
 
     const transporter = createTransporter();
     
-    // Prepare logo attachment - use butterfly logo SVG
-    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-butterfly-logo.svg');
+    // Prepare logo attachment - use butterfly logo PNG
+    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-butterfly-logo.png');
     const attachments = [];
     let hasLogo = false;
     
     try {
       if (fs.existsSync(logoPath)) {
         attachments.push({
-          filename: 'applicreations-logo.svg',
+          filename: 'applicreations-logo.png',
           path: logoPath,
           cid: 'logo'
         });
