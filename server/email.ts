@@ -44,7 +44,7 @@ function generateBillNotificationHTML(bill: Bill, paymentUrl: string, hasLogo: b
             <td style="padding: 40px 40px 20px; text-align: center; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
               <table role="presentation" style="width: 100%; border-collapse: collapse;">
                 <tr>
-                  ${hasLogo ? '<td align="center" valign="middle" style="padding-right: 12px;"><img src="cid:logo" alt="Applicreations Logo" width="60" style="display: block; border: none;" /></td>' : ''}
+                  ${hasLogo ? '<td align="center" valign="middle" style="padding-right: 12px;"><img src="cid:logo" alt="Applicreations Logo" width="80" height="auto" style="display: block; border: none;" /></td>' : ''}
                   <td align="center" valign="middle">
                     <span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>
                   </td>
@@ -200,15 +200,15 @@ export async function sendBillNotificationEmail(bill: Bill): Promise<boolean> {
 
     const transporter = createTransporter();
     
-    // Prepare logo attachment
-    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-logo.png');
+    // Prepare logo attachment - use butterfly logo SVG
+    const logoPath = path.join(process.cwd(), 'server/public/images/applicreations-butterfly-logo.svg');
     const attachments = [];
     let hasLogo = false;
     
     try {
       if (fs.existsSync(logoPath)) {
         attachments.push({
-          filename: 'applicreations-logo.png',
+          filename: 'applicreations-logo.svg',
           path: logoPath,
           cid: 'logo'
         });
