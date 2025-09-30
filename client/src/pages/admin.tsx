@@ -33,10 +33,6 @@ function AddBillDialog({ onBillAdded }: { onBillAdded: () => void }) {
       return await apiRequest("POST", "/api/admin/bills", billData);
     },
     onSuccess: () => {
-      toast({
-        title: "Bill Created",
-        description: "New bill has been added successfully.",
-      });
       setOpen(false);
       setFormData({
         accountNumber: "",
@@ -375,10 +371,6 @@ function DeleteBillButton({ bill, onBillDeleted }: { bill: Bill; onBillDeleted: 
       return await apiRequest("DELETE", `/api/admin/bills/${bill.id}`);
     },
     onSuccess: () => {
-      toast({
-        title: "Bill Deleted",
-        description: "Bill has been deleted successfully.",
-      });
       onBillDeleted();
     },
     onError: (error: any) => {
@@ -511,13 +503,10 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Home Button - Fixed at top, stays in place when scrolling */}
+      {/* Home Button - Scrolls with page */}
       <div 
         className="z-50 p-4" 
         style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
           paddingTop: 'calc(1rem + env(safe-area-inset-top, 0))'
         }}
       >
@@ -526,7 +515,7 @@ export default function AdminPage() {
         </a>
       </div>
       
-      <div className="container mx-auto px-4 py-8" style={{ paddingTop: '80px' }}>
+      <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>

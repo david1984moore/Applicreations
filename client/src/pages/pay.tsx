@@ -209,13 +209,10 @@ export default function PayPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Home Button - Fixed at top, stays in place when scrolling */}
+      {/* Home Button - Scrolls with page */}
       <div 
         className="z-50 p-4" 
         style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
           paddingTop: 'calc(1rem + env(safe-area-inset-top, 0))'
         }}
       >
@@ -225,7 +222,7 @@ export default function PayPage() {
       </div>
       
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto" style={{ paddingTop: '60px' }}>
+        <div className="max-w-2xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
