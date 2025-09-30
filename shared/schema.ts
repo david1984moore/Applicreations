@@ -104,7 +104,7 @@ export const billsInsertSchema = createInsertSchema(bills, {
   accountNumber: (schema) => schema.min(1, "Account number is required"),
   customerName: (schema) => schema.min(2, "Customer name must be at least 2 characters"),
   customerEmail: (schema) => schema.email("Please enter a valid email address"),
-  amount: (schema) => schema.refine(val => parseFloat(val) >= 0.50, "Amount must be at least $0.50 (Stripe minimum)"),
+  amount: (schema) => schema.refine(val => parseFloat(val) >= 1.00, "Amount must be at least $1.00 (required for all payment methods)"),
   description: (schema) => schema.min(1, "Description is required"),
 }).extend({
   dueDate: z.union([z.string(), z.date(), z.null(), z.undefined()]).optional().nullable().transform(val => {
