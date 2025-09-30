@@ -41,15 +41,8 @@ function generateBillNotificationHTML(bill: Bill, paymentUrl: string, hasLogo: b
         <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header with Logo -->
           <tr>
-            <td style="padding: 40px 40px 20px; text-align: center; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
-              <table role="presentation" style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  ${hasLogo ? '<td align="center" valign="middle" style="padding-right: 12px;"><img src="cid:logo" alt="Applicreations Logo" width="80" height="auto" style="display: block; border: none;" /></td>' : ''}
-                  <td align="center" valign="middle">
-                    <span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>
-                  </td>
-                </tr>
-              </table>
+            <td style="padding: 40px 40px 30px; text-align: center; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
+              ${hasLogo ? '<div style="margin-bottom: 0;"><img src="cid:logo" alt="Applicreations Logo" width="240" height="auto" style="display: block; margin: 0 auto; border: none;" /></div>' : '<span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>'}
             </td>
           </tr>
           
