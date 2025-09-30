@@ -76,6 +76,16 @@ export function Footer2() {
               Services
             </a>
             <a 
+              href="#pay" 
+              className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('pay');
+              }}
+            >
+              Pay
+            </a>
+            <a 
               href="#contact" 
               className="text-white hover:text-white/80 transition-colors duration-300 text-sm md:text-base"
               onClick={(e) => {
