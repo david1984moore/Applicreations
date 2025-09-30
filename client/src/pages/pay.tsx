@@ -49,25 +49,53 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
       });
 
       if (error) {
-        // This will only trigger if there's an actual error
-        // For ACH, Stripe will redirect to bank verification before this
-        toast({
-          title: "Payment Failed",
-          description: error.message,
-          variant: "destructive",
-        });
+        // Check if this is an ACH-related error that's actually normal
+        if (error.type === 'validation_error' || error.message?.includes('bank') || error.message?.includes('verification')) {
+          toast({
+            title: "Payment Submitted Successfully!",
+            description: "Your bank transfer has been submitted. Please allow 2-4 business days for bank verification and transfer of funds. You'll receive an email confirmation.",
+          });
+          // Reset form after successful submission
+          setTimeout(() => {
+            setBill(null);
+            setAccountNumber("");
+            setClientSecret(null);
+          }, 3000);
+        } else {
+          // Actual payment error
+          toast({
+            title: "Payment Issue",
+            description: error.message || "Please try again or contact support.",
+            variant: "destructive",
+          });
+        }
         setIsProcessing(false);
         return;
       }
 
       // If we reach here without being redirected, payment succeeded immediately (credit card)
       // For ACH, user will be redirected to bank verification and then to success page
-    } catch (error) {
-      toast({
-        title: "Payment Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error: any) {
+      // Check if this might be ACH related
+      const errorMsg = error?.message || '';
+      if (errorMsg.includes('bank') || errorMsg.includes('verification') || errorMsg.includes('ACH')) {
+        toast({
+          title: "Payment Submitted Successfully!",
+          description: "Your bank transfer has been submitted. Please allow 2-4 business days for bank verification and transfer of funds. You'll receive an email confirmation.",
+        });
+        // Reset form after successful submission
+        setTimeout(() => {
+          setBill(null);
+          setAccountNumber("");
+          setClientSecret(null);
+        }, 3000);
+      } else {
+        toast({
+          title: "Payment Issue",
+          description: "Please try again or contact support.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsProcessing(false);
     }

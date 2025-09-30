@@ -17,6 +17,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/pay" component={PayPage} />
+      <Route path="/pay/success" component={PaySuccess} />
       <Route path="/admin/login" component={AdminLoginPage} />
       <Route path="/admin" component={AdminPage} />
       <Route component={NotFound} />
