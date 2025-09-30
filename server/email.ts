@@ -42,7 +42,7 @@ function generateBillNotificationHTML(bill: Bill, paymentUrl: string, hasLogo: b
           <!-- Header with Logo -->
           <tr>
             <td style="padding: 40px 40px 30px; text-align: center; background-color: #8B5CF6; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); border-radius: 12px 12px 0 0;">
-              ${hasLogo ? '<div style="margin-bottom: 0;"><img src="cid:logo" alt="Applicreations Logo" width="240" height="auto" style="display: block; margin: 0 auto; border: none;" /></div>' : '<span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>'}
+              ${hasLogo ? '<div style="margin-bottom: 0;"><img src="cid:logo" alt="Applicreations Logo" width="80" height="auto" style="display: block; margin: 0 auto; border: none;" /></div>' : '<span style="font-size: 28px; font-weight: bold; color: #ffffff; display: block;">Applicreations</span>'}
             </td>
           </tr>
           
