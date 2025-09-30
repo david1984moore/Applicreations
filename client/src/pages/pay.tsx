@@ -55,12 +55,10 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
             title: "Payment Submitted Successfully!",
             description: "Your bank transfer has been submitted. Please allow 2-4 business days for bank verification and transfer of funds. You'll receive an email confirmation.",
           });
-          // Reset form after successful submission
+          // Call success callback to reset form
           setTimeout(() => {
-            setBill(null);
-            setAccountNumber("");
-            setClientSecret(null);
-          }, 3000);
+            onSuccess();
+          }, 2000);
         } else {
           // Actual payment error
           toast({
@@ -83,12 +81,10 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
           title: "Payment Submitted Successfully!",
           description: "Your bank transfer has been submitted. Please allow 2-4 business days for bank verification and transfer of funds. You'll receive an email confirmation.",
         });
-        // Reset form after successful submission
+        // Call success callback to reset form
         setTimeout(() => {
-          setBill(null);
-          setAccountNumber("");
-          setClientSecret(null);
-        }, 3000);
+          onSuccess();
+        }, 2000);
       } else {
         toast({
           title: "Payment Issue",
@@ -103,7 +99,15 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement />
+      <PaymentElement 
+        options={{
+          layout: {
+            type: 'tabs',
+            defaultCollapsed: false,
+          },
+          paymentMethodOrder: ['us_bank_account', 'card']
+        }}
+      />
       <Button
         type="submit"
         disabled={!stripe || isProcessing}
@@ -187,8 +191,8 @@ export default function PayPage() {
     setAccountNumber("");
     setClientSecret(null);
     toast({
-      title: "Payment Complete",
-      description: "Your payment has been processed successfully!",
+      title: "Payment Submitted Successfully!",
+      description: "Your bank transfer has been submitted. Please allow 2-4 business days for verification and transfer of funds.",
     });
   };
 
@@ -307,7 +311,7 @@ export default function PayPage() {
                 {clientSecret && !createPaymentIntentMutation.isPending && (
                   <div className="space-y-4">
                     <div className="text-sm text-muted-foreground">
-                      Choose your payment method below. Card payments process instantly. Bank transfers (ACH) have lower fees and settle in 2-4 business days.
+                      <strong>Recommended:</strong> Pay via bank transfer (ACH) with lower fees. Verification and transfer complete in 2-4 business days. Card payments also accepted.
                     </div>
                     <Elements 
                       stripe={stripePromise} 
