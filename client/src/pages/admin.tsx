@@ -437,16 +437,9 @@ export default function AdminPage() {
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
-      toast({
-        title: "Authentication Required",
-        description: "Please log in to access the admin dashboard",
-        variant: "destructive",
-      });
-      setTimeout(() => {
-        setLocation("/admin/login");
-      }, 500);
+      setLocation("/admin/login");
     }
-  }, [isAuthenticated, authLoading, toast, setLocation]);
+  }, [isAuthenticated, authLoading, setLocation]);
 
   // Fetch bills
   const { data: bills, isLoading: billsLoading } = useQuery<Bill[]>({
@@ -470,10 +463,6 @@ export default function AdminPage() {
   const handleLogout = async () => {
     try {
       await fetch("/api/admin/logout", { method: "POST" });
-      toast({
-        title: "Logged Out",
-        description: "You have been logged out successfully",
-      });
       setLocation("/admin/login");
     } catch (error) {
       toast({

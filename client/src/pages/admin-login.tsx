@@ -32,11 +32,6 @@ export default function AdminLoginPage() {
         throw new Error(error.message || "Invalid credentials");
       }
 
-      toast({
-        title: "Login Successful",
-        description: "Welcome to the admin dashboard",
-      });
-
       // Redirect to admin page
       setLocation("/admin");
     } catch (error: any) {
