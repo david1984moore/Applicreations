@@ -113,10 +113,22 @@ function PaymentForm({ bill, clientSecret, onSuccess }: { bill: Bill; clientSecr
       <PaymentElement 
         options={{
           layout: {
-            type: 'tabs',
+            type: 'accordion',
             defaultCollapsed: false,
+            radios: false,
+            spacedAccordionItems: true
           },
-          paymentMethodOrder: ['us_bank_account', 'card']
+          paymentMethodOrder: ['us_bank_account', 'card'],
+          defaultValues: {
+            billingDetails: {
+              email: bill.customerEmail,
+            }
+          },
+          fields: {
+            billingDetails: {
+              email: 'never'
+            }
+          }
         }}
       />
       <Button
