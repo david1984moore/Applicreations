@@ -1,36 +1,24 @@
 #!/bin/bash
 
-# Script to push Applicreations project to GitHub
-# Run this script from your project root directory
+echo "🚀 Pushing code to GitHub..."
+echo ""
 
-echo "Setting up Git repository..."
-
-# Initialize git repository if not already done
-if [ ! -d ".git" ]; then
-    git init
-    echo "Git repository initialized."
-fi
-
-# Add all files
+# Add any new or modified files
+echo "📦 Staging changes..."
 git add .
 
-# Create initial commit
-git commit -m "Initial commit: Applicreations web platform
+# Check if there are changes to commit
+if git diff --staged --quiet; then
+  echo "✓ No new changes to commit"
+else
+  echo "💾 Committing changes..."
+  git commit -m "Update codebase - $(date '+%Y-%m-%d %H:%M:%S')"
+fi
 
-- React frontend with TypeScript
-- Express backend with PostgreSQL
-- Responsive design with Tailwind CSS
-- Interactive pricing components
-- Email integration
-- Session management"
+# Push to GitHub
+echo "⬆️  Pushing to GitHub..."
+git push origin main
 
-echo "Files committed to local Git repository."
 echo ""
-echo "Next steps:"
-echo "1. Create a new repository on GitHub.com"
-echo "2. Copy the repository URL (e.g., https://github.com/yourusername/applicreations-web-platform.git)"
-echo "3. Run: git remote add origin YOUR_GITHUB_REPO_URL"
-echo "4. Run: git branch -M main"
-echo "5. Run: git push -u origin main"
-echo ""
-echo "Your project will then be available on GitHub!"
+echo "✅ Done! Your code has been pushed to:"
+echo "   https://github.com/david1984moore/Applicreations"
