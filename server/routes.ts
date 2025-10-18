@@ -4,16 +4,16 @@ import { db } from "@db";
 import {
   bills,
   contacts,
-  insertBillSchema,
+  billsInsertSchema,
   insertContactSchema,
-} from "@db/schema";
+} from "@shared/schema";
 import { eq } from "drizzle-orm";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import { requireAuth } from "./auth";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-11-20.acacia",
+  apiVersion: "2025-08-27.basil",
 });
 
 const transporter = nodemailer.createTransport({
@@ -39,14 +39,15 @@ export function registerRoutes(app: Express) {
       await transporter.sendMail({
         from: process.env.SMTP_USER,
         to: process.env.BUSINESS_EMAIL || process.env.SMTP_USER,
-        subject: `New Contact Form Submission from ${validatedData.name}`,
+        subject: `New Contact Form Submission from ${validatedData.firstName} ${validatedData.lastName}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${validatedData.name}</p>
+          <p><strong>Name:</strong> ${validatedData.firstName} ${validatedData.lastName}</p>
           <p><strong>Email:</strong> ${validatedData.email}</p>
           <p><strong>Phone:</strong> ${validatedData.phone || "Not provided"}</p>
-          <p><strong>Message:</strong></p>
-          <p>${validatedData.message}</p>
+          <p><strong>Organization:</strong> ${validatedData.organizationName || "Not provided"}</p>
+          <p><strong>Project Description:</strong></p>
+          <p>${validatedData.projectDescription}</p>
         `,
       });
 
@@ -54,6 +55,35 @@ export function registerRoutes(app: Express) {
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
+  });
+
+  // Admin login endpoint
+  app.post("/api/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      if (
+        username === process.env.ADMIN_USERNAME &&
+        password === process.env.ADMIN_PASSWORD
+      ) {
+        // @ts-ignore - session may not be typed
+        req.session.isAuthenticated = true;
+        res.json({ success: true, message: "Login successful" });
+      } else {
+        res
+          .status(401)
+          .json({ success: false, message: "Invalid username or password" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ success: false, message: error.message });
+    }
+  });
+
+  // Admin logout endpoint
+  app.post("/api/logout", async (req, res) => {
+    // @ts-ignore
+    req.session.destroy();
+    res.json({ success: true, message: "Logged out successfully" });
   });
 
   // Get all bills (admin only)
@@ -69,7 +99,7 @@ export function registerRoutes(app: Express) {
   // Create a new bill (admin only)
   app.post("/api/bills", requireAuth, async (req, res) => {
     try {
-      const validatedData = insertBillSchema.parse(req.body);
+      const validatedData = billsInsertSchema.parse(req.body);
       const result = await db.insert(bills).values(validatedData).returning();
       res.json(result[0]);
     } catch (error: any) {

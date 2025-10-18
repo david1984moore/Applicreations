@@ -1,25 +1,39 @@
-import 'dotenv/config';
+import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
+import session from "express-session";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityMiddleware, httpsRedirectMiddleware } from "./security";
 
 // Log environment variables for debugging SSL setup and deployment mode
-console.log('SSL Configuration:', {
+console.log("SSL Configuration:", {
   useHTTPS: process.env.USE_HTTPS,
   certPath: process.env.SSL_CERT_PATH,
-  keyPath: process.env.SSL_KEY_PATH
+  keyPath: process.env.SSL_KEY_PATH,
 });
-
-console.log('Environment Configuration:', {
-  isDeployment: process.env.REPLIT_DEPLOYMENT === '1',
+console.log("Environment Configuration:", {
+  isDeployment: process.env.REPLIT_DEPLOYMENT === "1",
   nodeEnv: process.env.NODE_ENV,
-  replitDeployment: process.env.REPLIT_DEPLOYMENT
+  replitDeployment: process.env.REPLIT_DEPLOYMENT,
 });
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Session middleware
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your-secret-key-change-this",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  }),
+);
 
 // First apply HTTPS redirect in production environments
 app.use(httpsRedirectMiddleware);
@@ -63,7 +77,6 @@ app.use((req, res, next) => {
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-
     res.status(status).json({ message });
     throw err;
   });
@@ -71,13 +84,13 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  const isDeployment = process.env.REPLIT_DEPLOYMENT === '1';
-  
+  const isDeployment = process.env.REPLIT_DEPLOYMENT === "1";
+
   if (!isDeployment) {
-    console.log('Starting in development mode with Vite');
+    console.log("Starting in development mode with Vite");
     await setupVite(app, server);
   } else {
-    console.log('Starting in deployment mode - serving static files');
+    console.log("Starting in deployment mode - serving static files");
     serveStatic(app);
   }
 
@@ -85,11 +98,14 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    },
+  );
 })();
