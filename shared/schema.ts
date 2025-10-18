@@ -3,7 +3,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { relations } from "drizzle-orm";
 
-// Session storage table for Replit Auth
+// Session storage table for admin authentication
 export const sessions = pgTable(
   "sessions",
   {
@@ -13,28 +13,6 @@ export const sessions = pgTable(
   },
   (table) => [index("IDX_session_expire").on(table.expire)]
 );
-
-// Users table - Enhanced for Replit Auth while keeping existing structure
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(), // Keep existing serial ID
-  username: text("username").unique(), // Make optional for Replit Auth
-  password: text("password"), // Make optional for Replit Auth
-  // Replit Auth fields
-  replitId: text("replit_id").unique(), // Store Replit user ID here
-  email: text("email").unique(),
-  firstName: text("first_name"),
-  lastName: text("last_name"),
-  profileImageUrl: text("profile_image_url"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
-
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = z.infer<typeof selectUserSchema>;
-export type UpsertUser = Pick<InsertUser, 'replitId' | 'email' | 'firstName' | 'lastName' | 'profileImageUrl'>;
 
 // Contacts table for storing form submissions
 export const contacts = pgTable("contacts", {

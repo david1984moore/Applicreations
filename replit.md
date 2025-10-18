@@ -26,7 +26,7 @@ Preferred communication style: Simple, everyday language.
 
 **Database Layer**: Uses Drizzle ORM with PostgreSQL for data persistence. The database schema includes tables for contacts, users, bills, and payments with proper TypeScript type definitions generated from the schema.
 
-**Bill Payment System**: Comprehensive customer billing system integrated with Stripe for payment processing. Customers can pay bills using their account number without requiring login. The system supports credit/debit cards and ACH bank transfers (with lower processing fees). Bills are managed through an admin panel with Replit Auth authentication.
+**Bill Payment System**: Comprehensive customer billing system integrated with Stripe for payment processing. Customers can pay bills using their account number without requiring login. The system supports credit/debit cards and ACH bank transfers (with lower processing fees). Bills are managed through an admin panel with username/password authentication.
 
 **Email Integration**: Automated email notification system using Nodemailer with Hostinger SMTP configuration. When bills are created in the admin panel, customers automatically receive professionally branded email notifications with:
 - Embedded Applicreations logo
@@ -46,9 +46,11 @@ Contact form submissions also send notifications to the business owner.
 
 ### Authentication and Authorization
 
-**Basic Authentication Schema**: Includes user table structure with username/password authentication, though the current implementation focuses primarily on the public-facing website rather than user management.
+**Admin Authentication**: The admin panel is protected with simple username/password authentication stored in environment variables (ADMIN_USERNAME and ADMIN_PASSWORD). Sessions are managed using express-session with PostgreSQL session storage for persistence across server restarts.
 
-**Form Validation**: Implements both client-side and server-side validation using Zod schemas for contact forms and other user inputs.
+**Session Management**: Uses express-session with connect-pg-simple for PostgreSQL-backed session storage. Sessions are configured with a 7-day TTL and stored in the sessions table.
+
+**Form Validation**: Implements both client-side and server-side validation using Zod schemas for contact forms, bills, and other user inputs.
 
 ## External Dependencies
 
@@ -80,11 +82,11 @@ Contact form submissions also send notifications to the business owner.
 - **Professional Email Templates**: Branded HTML emails with embedded logo for bill notifications
 
 ### Development Environment
-- **Replit**: Cloud development environment with live deployment
-- **Replit-specific plugins**: Cartographer for development tooling and runtime error handling
+- **Express Session**: Session management with PostgreSQL storage
+- **Connect-pg-simple**: PostgreSQL session store for express-session
 
 ### Fonts and Assets
 - **Google Fonts (Inter)**: Typography system
 - **Custom SVG assets**: Logo and graphic elements
 
-The application is configured for deployment on Replit with automatic SSL certificate management and includes comprehensive documentation for security setup, deployment procedures, and contribution guidelines.
+The application is platform-agnostic and can be deployed on any Node.js hosting platform. It includes support for SSL certificate management and comprehensive security features including HTTPS redirects, security headers, and CORS configuration.

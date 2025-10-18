@@ -1,41 +1,10 @@
 import { db } from "@db";
-import { contacts, users, bills, payments } from "@shared/schema";
-import type { Contact, ContactInsert, User, UpsertUser, Bill, BillInsert, Payment, PaymentInsert } from "@shared/schema";
+import { contacts, bills, payments } from "@shared/schema";
+import type { Contact, ContactInsert, Bill, BillInsert, Payment, PaymentInsert } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 // Storage interface for database operations
 export const storage = {
-  // User operations (IMPORTANT: mandatory for Replit Auth)
-  async getUser(replitId: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.replitId, replitId));
-    return user;
-  },
-
-  async upsertUser(userData: UpsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values({
-        replitId: userData.replitId,
-        email: userData.email,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        profileImageUrl: userData.profileImageUrl,
-        updatedAt: new Date(),
-      })
-      .onConflictDoUpdate({
-        target: users.replitId,
-        set: {
-          email: userData.email,
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          profileImageUrl: userData.profileImageUrl,
-          updatedAt: new Date(),
-        },
-      })
-      .returning();
-    return user;
-  },
-
   // Contact form operations
   async insertContactForm(contactData: ContactInsert): Promise<Contact> {
     const [newContact] = await db.insert(contacts).values(contactData).returning();

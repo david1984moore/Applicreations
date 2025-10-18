@@ -5,9 +5,10 @@ import { contactFormSchema, billsInsertSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from 'nodemailer';
 import { createSecureServer } from "./https";
-import { setupAuth, isAuthenticated } from "./replitAuth";
 import Stripe from "stripe";
 import { sendBillNotificationEmail } from "./email";
+import session from "express-session";
+import connectPg from "connect-pg-simple";
 
 // Simple admin authentication middleware
 const isAdminAuthenticated: RequestHandler = (req, res, next) => {
@@ -26,8 +27,37 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Auth middleware setup
-  await setupAuth(app);
+  // Setup session management for admin authentication
+  if (!process.env.SESSION_SECRET) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('SESSION_SECRET environment variable is required for secure session management in production');
+    }
+    console.warn('WARNING: SESSION_SECRET not set. Using a temporary secret for development. DO NOT use in production!');
+  }
+  
+  const sessionTtlMs = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+  const sessionTtlSeconds = Math.floor(sessionTtlMs / 1000); // Convert to seconds for connect-pg-simple
+  
+  const pgStore = connectPg(session);
+  const sessionStore = new pgStore({
+    conString: process.env.DATABASE_URL,
+    createTableIfMissing: false,
+    ttl: sessionTtlSeconds, // TTL must be in seconds for connect-pg-simple
+    tableName: "sessions",
+  });
+  
+  app.set("trust proxy", 1);
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'dev-secret-change-in-production',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: sessionTtlMs, // Cookie maxAge is in milliseconds
+    },
+  }));
   
   // Admin login endpoint
   app.post('/api/admin/login', async (req, res) => {
@@ -71,7 +101,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
-  // Health check endpoint for Replit deployment (separate from root)
+  // Health check endpoint
   app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Applicreations API is running' });
   });
@@ -190,18 +220,6 @@ ${validatedData.projectDescription}
         success: false,
         message: 'An error occurred while processing your request. Please try again later.'
       });
-    }
-  });
-
-  // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
-    try {
-      const replitId = req.user.claims.sub;
-      const user = await storage.getUser(replitId);
-      res.json(user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
     }
   });
 
