@@ -9,6 +9,8 @@ import { setupAuth, isAuthenticated } from "./replitAuth";
 import Stripe from "stripe";
 import { sendBillNotificationEmail } from "./email";
 
+import { requireAuth } from './auth';
+
 // Simple admin authentication middleware
 const isAdminAuthenticated: RequestHandler = (req, res, next) => {
   if ((req.session as any).isAdminAuthenticated === true) {
