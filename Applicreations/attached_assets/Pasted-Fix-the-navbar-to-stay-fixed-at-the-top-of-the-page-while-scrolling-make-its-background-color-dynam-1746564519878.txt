@@ -1,0 +1,18 @@
+Fix the navbar to stay fixed at the top of the page while scrolling, make its background color dynamically change to match the section I’m scrolling over, and ensure the navigation links and logo text are always visible by adjusting their colors based on the section’s background.
+
+Step 1: In the style.css file, update the nav element to stay fixed at the top by setting "position: fixed;", "top: 0;", "width: 100%;", and "z-index: 1000;" to ensure it stays above other content. Remove any conflicting position styles (e.g., position: static). Add "margin-top: 70px;" to the .hero section to prevent its content from being hidden behind the fixed navbar (since the navbar height is 70px). Add "transition: background 0.3s ease;" to the nav element for a smooth background color change. Ensure the existing styles for nav (padding, background: none, etc.) and the seamless gradient effect with the body background remain intact.
+
+Step 2: In the index.html file, add a <script> tag at the bottom of the <body> section to handle the dynamic background color change and text visibility. The script should:
+- Detect the scroll position using window.scrollY.
+- Target the sections: .hero, #services, and #contact.
+- Calculate the offsetTop of each section to determine which section is in view.
+- Update the nav element's background to match the section in view:
+  - For .hero: "background: linear-gradient(90deg, #6b48ff, #00ddeb);"
+  - For #services: "background: #f5f5f5;"
+  - For #contact: "background: #1f2937;"
+- Adjust the nav ul li a color and the logo text fill (.cls-4, .cls-9, .cls-10, .cls-11, .cls-15 in the navbar SVG) for visibility:
+  - For .hero (gradient) and #contact (dark): set link color to "white" and logo text fill to "white".
+  - For #services (light): set link color to "#1f2937" (dark gray) and logo text fill to "#1f2937".
+- Update the link hover effect accordingly: use "#e0e0e0" for light backgrounds and "#f0f0f0" for dark backgrounds.
+
+The script should run on scroll and initially on page load to set the correct styles. Ensure the navbar logo, navigation links, and Hero section content remain unchanged in their layout and functionality. Verify that the navbar stays fixed at the top, its background changes smoothly to match the section in view, and the text remains visible in all sections.

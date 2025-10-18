@@ -1,0 +1,21 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+C = US
+ST = Delaware
+L = Wilmington
+O = Applicreations
+OU = Web Development
+CN = applicreations.com
+
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = applicreations.com
+DNS.2 = www.applicreations.com

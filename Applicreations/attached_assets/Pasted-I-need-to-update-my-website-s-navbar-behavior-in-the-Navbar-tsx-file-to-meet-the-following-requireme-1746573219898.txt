@@ -1,0 +1,17 @@
+I need to update my website’s navbar behavior in the Navbar.tsx file to meet the following requirements:
+
+The navbar should display a visible border (e.g., a 1px solid border with a color like #ffffff or a subtle shadow) the moment the user starts scrolling (i.e., when the scroll position is greater than 0). The border should disappear when the user scrolls back to the very top of the page (scroll position = 0).
+The navbar’s background color should always match the hero section’s background, which is a gradient (linear-gradient(90deg, #6b48ff, #00ddeb)), regardless of which section the user is in. Remove the current logic that changes the background color based on sections (e.g., #f5f5f5 for the services section, rgba(31, 41, 55, 0.9) for the contact section, etc.).
+The navbar should remain fixed at the top of the page as the user scrolls, which it already does.
+Fix the issue where the navbar text overlaps other text on the site. Ensure that the content below the navbar (e.g., in the hero section and other sections) has proper padding or margin to account for the navbar’s height (70px) to prevent overlap. The navbar already has a z-index: 1000, but verify that no other elements are causing overlap due to improper positioning or z-index.
+In the Navbar.tsx file:
+
+Update the scrolled state logic to set scrolled to true when window.scrollY > 0 (instead of scrollPosition > 10).
+Add a border to the navbar when scrolled is true (e.g., border-bottom: 1px solid #ffffff or a subtle shadow).
+Set the navbar’s background to linear-gradient(90deg, #6b48ff, #00ddeb) at all times, removing the section-based background logic.
+Remove the section-based text color logic (setTextColor, updateLogoTextColors, etc.), but ensure the text color remains readable against the gradient background (e.g., keep it white).
+Verify that the currentSection state and related logic are no longer needed since the background color won’t change based on sections.
+In the Hero.tsx, OurServices.tsx, WhatWeDo.tsx, and Contact.tsx files:
+
+Ensure each section has a padding-top of at least 70px to account for the fixed navbar’s height, preventing overlap.
+Please update the code to meet these requirements and ensure the navbar behaves as described.
