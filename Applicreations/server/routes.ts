@@ -1,13 +1,13 @@
 import type { Express, RequestHandler } from "express";
 import type { Server } from "http";
-import { storage } from "./storage";
-import { contactFormSchema, billsInsertSchema } from "@shared/schema";
+import { storage } from "./storage.js";
+import { contactFormSchema, billsInsertSchema } from "../shared/schema.js";
 import { z } from "zod";
 import nodemailer from 'nodemailer';
-import { createSecureServer } from "./https";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { createSecureServer } from "./https.js";
+import { setupAuth, isAuthenticated } from "./replitAuth.js";
 import Stripe from "stripe";
-import { sendBillNotificationEmail } from "./email";
+import { sendBillNotificationEmail } from "./email.js";
 
 // Simple admin authentication middleware
 const isAdminAuthenticated: RequestHandler = (req, res, next) => {
