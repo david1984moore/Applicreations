@@ -1,6 +1,6 @@
-import { db } from "@db";
-import { contacts, bills, payments } from "@shared/schema";
-import type { Contact, ContactInsert, Bill, BillInsert, Payment, PaymentInsert } from "@shared/schema";
+import { db } from "../db/index.js";
+import { contacts, bills, payments } from "../shared/schema.js";
+import type { Contact, ContactInsert, Bill, BillInsert, Payment, PaymentInsert } from "../shared/schema.js";
 import { eq } from "drizzle-orm";
 
 // Storage interface for database operations

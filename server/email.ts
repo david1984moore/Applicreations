@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import type { Bill } from '@shared/schema';
+import type { Bill } from '../shared/schema.js';
 import fs from 'fs';
 import path from 'path';
 

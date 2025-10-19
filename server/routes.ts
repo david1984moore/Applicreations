@@ -1,6 +1,6 @@
 import type { Express } from "express";
-import { db } from "../db";
-import { applications, submissions, jobPostings } from "@db/schema";
+import { db } from "../db/index.js";
+import { applications, submissions, jobPostings } from "../shared/schema.js";
 import { eq, and, desc, sql } from "drizzle-orm";
 
 export async function registerRoutes(app: Express) {
