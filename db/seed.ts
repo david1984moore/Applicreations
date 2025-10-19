@@ -1,5 +1,5 @@
-import { db } from "./index.js";
-import * as schema from "../shared/schema.js";
+import { db } from "@db";
+import * as schema from "@shared/schema";
 
 async function seed() {
   try {
@@ -10,6 +10,7 @@ async function seed() {
       {
         accountNumber: "ACCT-001",
         customerName: "John Smith",
+        customerEmail: "john.smith@example.com",
         amount: "150.00",
         description: "Monthly web hosting service",
         dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Due in 7 days
@@ -18,6 +19,7 @@ async function seed() {
       {
         accountNumber: "ACCT-002", 
         customerName: "Sarah Johnson",
+        customerEmail: "sarah.johnson@example.com",
         amount: "75.50",
         description: "Website maintenance fee",
         dueDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // Due in 14 days
@@ -26,6 +28,7 @@ async function seed() {
       {
         accountNumber: "ACCT-003",
         customerName: "Mike Wilson",
+        customerEmail: "mike.wilson@example.com",
         amount: "300.00",
         description: "Custom app development - Phase 1",
         dueDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // Overdue by 2 days
@@ -34,6 +37,7 @@ async function seed() {
       {
         accountNumber: "DEMO-001",
         customerName: "Test Customer",
+        customerEmail: "test@example.com",
         amount: "25.00",
         description: "Demo bill for testing payments",
         status: "unpaid"
