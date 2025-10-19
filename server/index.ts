@@ -3,6 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityMiddleware, httpsRedirectMiddleware } from "./security";
+import http from 'http';
 
 // Log environment variables for debugging SSL setup and deployment mode
 console.log('SSL Configuration:', {
@@ -56,10 +57,7 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Import http module for plain HTTP server
-  const http = require('http');
-  
-  // Register routes on the Express app
+  // Register routes on the Express app (don't expect a server return)
   await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -72,7 +70,7 @@ app.use((req, res, next) => {
 
   const isProduction = process.env.NODE_ENV === 'production';
   
-  // Create HTTP server (Render handles HTTPS at load balancer level)
+  // Create plain HTTP server - Render handles HTTPS at load balancer
   const server = http.createServer(app);
   
   if (!isProduction) {
