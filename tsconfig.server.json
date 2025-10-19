@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@db": ["./db/index.ts"],
+      "@db/*": ["./db/*"],
+      "@shared/*": ["./shared/*"]
+    }
+  },
+  "include": [
+    "server/**/*.ts",
+    "db/**/*.ts",
+    "shared/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "client"
+  ]
+}
+
