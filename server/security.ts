@@ -4,12 +4,13 @@ import { Request, Response, NextFunction } from 'express';
  * Middleware that redirects HTTP requests to HTTPS
  */
 export function httpsRedirectMiddleware(req: Request, res: Response, next: NextFunction) {
-  // Skip HTTPS redirects for deployment - Replit will handle HTTPS
-  if (true || process.env.NODE_ENV !== 'production' || req.secure || req.headers['x-forwarded-proto'] === 'https') {
+  // Skip HTTPS redirects in development or if already secure
+  // Render handles HTTPS at the load balancer level
+  if (process.env.NODE_ENV !== 'production' || req.secure || req.headers['x-forwarded-proto'] === 'https') {
     return next();
   }
   
-  // Redirect to HTTPS - This is now disabled
+  // Redirect to HTTPS in production
   const httpsUrl = `https://${req.headers.host}${req.originalUrl}`;
   return res.redirect(301, httpsUrl);
 }
@@ -31,16 +32,31 @@ export function securityMiddleware(req: Request, res: Response, next: NextFuncti
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   
   // Content-Security-Policy helps prevent XSS and other code injection attacks
-  res.setHeader('Content-Security-Policy', 
-    "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://m.stripe.network; " + 
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://js.stripe.com; " +
+  // Includes support for production domains: applicreations.com and *.onrender.com
+  const host = req.get('host') || '';
+  const isProduction = process.env.NODE_ENV === 'production';
+  
+  // Build CSP based on environment
+  let csp = "default-src 'self'";
+  
+  // Add production domains to default-src if in production
+  if (isProduction) {
+    csp += " https://applicreations.com https://*.applicreations.com https://*.onrender.com";
+  }
+  
+  csp += "; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://m.stripe.network" +
+    (isProduction ? " https://applicreations.com https://*.applicreations.com https://*.onrender.com" : "") + "; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://js.stripe.com" +
+    (isProduction ? " https://applicreations.com https://*.applicreations.com https://*.onrender.com" : "") + "; " +
     "img-src 'self' data: https:; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "connect-src 'self' https://api.stripe.com https://uploads.stripe.com; " +
+    "connect-src 'self' https://api.stripe.com https://uploads.stripe.com" +
+    (isProduction ? " https://applicreations.com https://*.applicreations.com https://*.onrender.com" : "") + "; " +
     "frame-src 'self' https://js.stripe.com https://hooks.stripe.com; " +
-    "child-src 'self' https://js.stripe.com;"
-  );
+    "child-src 'self' https://js.stripe.com;";
+  
+  res.setHeader('Content-Security-Policy', csp);
   
   // If site is served over HTTPS, add Strict-Transport-Security header
   if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
