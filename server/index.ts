@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
-import { securityMiddleware, httpsRedirectMiddleware } from "./security";
+import { registerRoutes } from "./routes.js";
+import { setupVite, serveStatic, log } from "./vite.js";
+import { securityMiddleware, httpsRedirectMiddleware } from "./security.js";
 import http from 'http';
 
 // Log environment variables for debugging SSL setup and deployment mode
